@@ -8,3 +8,6 @@
  * Author URI: https://github.com/nationalarchives
  * License: GPL2
  */
+
+/* Included functions */
+include 'functions.php';
