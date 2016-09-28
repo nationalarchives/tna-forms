@@ -23,6 +23,9 @@ module.exports = function (grunt) {
                 tasks: ['sass']
             }
         },
+        qunit: {
+            all: ['js/tests/**/*.html']
+        },
         concat: {
             options: {
                 separator: ';'
@@ -48,8 +51,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-qunit');
 
     // Default task(s).
-    grunt.registerTask('default', ['sass', 'concat', 'uglify', 'watch']);
+    grunt.registerTask('default', ['sass', 'concat', 'uglify', 'watch', 'qunit']);
 
 };

@@ -1,0 +1,17 @@
+language:
+  - node_js
+
+node_js:
+  - 4.4.5
+
+install:
+  - npm install -g grunt-cli
+  - npm install
+
+script:
+  - grunt qunit
+
+notifications:
+  slack:
+    rooms:
+      - tnawebteam:C2GnodnLsxhwwGvr0xAcajzc#code-builds
