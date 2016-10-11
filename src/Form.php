@@ -15,6 +15,8 @@ class Form
      */
     private $actionUrl;
 
+    private $template = '<form action="%s"></form>';
+
     /**
      * @return string
      */
@@ -29,6 +31,11 @@ class Form
     public function setActionUrl($actionUrl)
     {
         $this->actionUrl = $actionUrl;
+    }
+
+    public function render()
+    {
+        return sprintf($this->template, $this->actionUrl);
     }
 
     /**

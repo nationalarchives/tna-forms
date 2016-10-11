@@ -1,14 +1,22 @@
 <?php
 
-require dirname(__DIR__) . '/src/Form.php';
-
 class FormTest extends PHPUnit_Framework_TestCase
 {
+    public function setUp()
+    {
+        $this->actionURL = 'http://www.nationalarchives.gov.uk';
+        $this->contactForm = new TNAContactForms\Form($this->actionURL);
+    }
+
     public function testConstructorSetsActionURL()
     {
-        $actionURL = 'http://www.nationalarchives.gov.uk';
-        $contactForm = new TNAContactForms\Form($actionURL);
-        $this->assertEquals($contactForm->getActionUrl(), $actionURL);
+        $this->assertEquals($this->contactForm->getActionUrl(), $this->actionURL);
     }
+
+    public function testActionInRenderedForm()
+    {
+        $this->assertEquals($this->contactForm->render(), sprintf('<form action="%s"></form>', $this->actionURL));
+    }
+    
 }
 
