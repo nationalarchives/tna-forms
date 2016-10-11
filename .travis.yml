@@ -1,12 +1,12 @@
 language:
-  - node_js
   - php
-
-node_js:
-  - 4.4.5
+  - node_js
 
 php:
   - 5.5
+
+node_js:
+  - 4.4.5
 
 install:
   - composer require --dev phpunit/phpunit
@@ -14,8 +14,8 @@ install:
   - npm install
 
 script:
-  - grunt qunit
   - phpunit tests/FormTest.php
+  - grunt qunit
 
 notifications:
   slack:
