@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: gwynjones
- * Date: 11/10/2016
- * Time: 12:19
+ * From Class
  */
 
 namespace TNAContactForms;
