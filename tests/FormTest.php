@@ -17,6 +17,5 @@ class FormTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals($this->contactForm->render(), sprintf('<form action="%s"></form>', $this->actionURL));
     }
-
 }
 
