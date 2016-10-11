@@ -3,7 +3,7 @@
 class TnaFormsTest extends PHPUnit_Framework_TestCase
 {
 
-    public function testBlah()
+    public function testCform()
     {
         $this->assertTrue(true);
     }
