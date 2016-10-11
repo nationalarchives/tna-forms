@@ -15,7 +15,7 @@ install:
 
 script:
   - grunt qunit
-  - phpunit tests/tna-forms.php
+  - phpunit tests/FormTest.php
 
 notifications:
   slack:
