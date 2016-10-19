@@ -29,7 +29,7 @@ textarea {
     min-width: 90px;
 }
 .dob-approx label {
-    width: auto;
+    width: auto !important;
 }
 .registration-year label {
     width: auto !important;
