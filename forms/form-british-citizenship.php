@@ -6,7 +6,7 @@
 
 function return_form_british_citizenship() {
 
-	$form = '<form action="" id="naturalisation" method="POST" novalidate>
+	$form = '<form action="" id="naturalisation" method="POST">
                             <fieldset class="form-step-1">
                                 <legend>Your details</legend>
                                 <p>Enter your names in full.</p>
