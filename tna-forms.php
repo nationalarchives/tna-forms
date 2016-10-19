@@ -11,3 +11,7 @@
 
 /* Included functions */
 include 'functions.php';
+include 'tna-forms-shortcode.php';
+
+/* Included forms */
+include 'forms/form-british-citizenship.php';
