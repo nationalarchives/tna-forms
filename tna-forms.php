@@ -11,6 +11,7 @@
 
 /* Included functions */
 include 'functions.php';
+include 'tna-forms-validation.php';
 include 'tna-forms-shortcode.php';
 
 /* Included forms */
