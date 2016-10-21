@@ -153,13 +153,8 @@ function process_form_british_citizenship() {
 	$forename = is_mandatory_text_field_valid( $_POST['forename'] );
 	$surname  = is_mandatory_text_field_valid( $_POST['surname'] );
 	$email    = is_mandatory_email_field_valid( $_POST['email'] );
-	$country  = $_POST['country'];
-	$enquiry  = is_mandatory_text_field_valid( $_POST['enquiry'] );
-	if ( isset($_POST['contact']) ) { $contact = $_POST['contact']; } else { $contact = ''; }
-	if ( isset($_POST['hear']) ) { $hear = $_POST['hear']; } else { $hear = ''; }
-	$id = rand( 10000, 99999 );
 
-	if ( $forename == false || $surname == false || $email == false || $enquiry == false ) {
+	if ( $forename == false || $surname == false || $email == false ) {
 
 		// Error
 		global $form_messages;
@@ -175,16 +170,11 @@ function process_form_british_citizenship() {
 		$to = array( get_option( 'admin_email' ), $email );
 
 		// Email Subject
-		$subject = $forename . $surname . ' has completed the contact form';
+		$subject = $forename . ' ' . $surname . ' has completed the contact form';
 
 		// Email message
 		$message = '<p>Sender: ' . $forename . ' ' . $surname . '</p>';
-		$message .= '<p>ID: ' . $id . '</p>';
 		$message .= '<p>Email: ' . $email . '</p>';
-		$message .= '<p>Country: ' . $country . '</p>';
-		$message .= '<p>Enquiry: ' . $enquiry . '</p>';
-		$message .= '<p>Preferred form of contact: ' . $contact . '</p>';
-		$message .= '<p>How did they hear about us: ' . $hear . '</p>';
 
 		if ( $email ) {
 			wp_mail( $to, $subject, $message );
