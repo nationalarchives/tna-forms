@@ -64,3 +64,12 @@ function ref_number( $name, $time_stamp ) {
 	}
 	return $prefix . $time_stamp . $suffix;
 }
+
+if ( !function_exists('wp_mail_set_text_body') ) :
+	function wp_mail_set_text_body( $phpmailer ) {
+		if ( empty( $phpmailer->AltBody ) ) {
+			$phpmailer->AltBody = strip_tags( $phpmailer->Body );
+		}
+	}
+endif;
+add_action( 'phpmailer_init', 'wp_mail_set_text_body' );
