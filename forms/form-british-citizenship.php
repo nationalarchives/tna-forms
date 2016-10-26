@@ -63,7 +63,7 @@ function return_form_british_citizenship() {
                                 </div>
                                 <p class="form-hint">If you are not sure of the exact date of birth, please enter an approximation</p>
                                 <div class="form-row dob-approx">
-                                    <input id="certificate_dob_approx" type="checkbox" name="certificate-dob-approx" value="dob-approx">
+                                    <input id="certificate_dob_approx" type="checkbox" name="certificate-dob-approx" value="Yes">
                                     <label for="certificate_dob_approx">Tick here if the date of birth is an approximation.</label>
                                 </div>
                                 <div class="form-row">
@@ -175,8 +175,7 @@ function return_form_british_citizenship() {
 function process_form_british_citizenship() {
 
 	global $success_message,
-	       $error_message,
-	       $error_messages;
+	       $error_message;
 
 	if ( !isset($_POST['submit']) ) {
 		return;
@@ -188,10 +187,10 @@ function process_form_british_citizenship() {
 		'Certificate holder surname'    => is_mandatory_text_field_valid( $_POST['certificate-surname'] ),
 		'Alternative surname'           => is_text_field_valid( $_POST['certificate-surname-alt'] ),
 		'Country of birth'              => is_mandatory_text_field_valid( $_POST['certificate-birth-country'] ),
-		'DOB day'                       => is_text_field_valid( $_POST['certificate-day'] ),
-		'DOB month'                     => is_text_field_valid( $_POST['certificate-month'] ),
-		'DOB year'                      => is_text_field_valid( $_POST['certificate-year'] ),
-		'Approx DOB'                    => is_text_field_valid( $_POST['certificate-dob-approx'] ),
+		'DOB'                           => is_text_field_valid( $_POST['certificate-day'] ) . '-' .
+		                                   is_text_field_valid( $_POST['certificate-month'] ) . '-' .
+		                                   is_text_field_valid( $_POST['certificate-year'] ),
+		'Approx DOB'                    => ( isset( $_POST['certificate-dob-approx'] ) ) ? is_checkbox_radio_valid( $_POST['certificate-dob-approx'] ) : 'No',
 		'Certificate holder address'    => is_text_field_valid( $_POST['certificate-postal-address'] ),
 		'Country of issue'              => is_text_field_valid( $_POST['certificate-issued-country'] ),
 		'Certificate number'            => is_text_field_valid( $_POST['certificate-number'] ),
@@ -199,7 +198,7 @@ function process_form_british_citizenship() {
 		'Issued to'                     => is_text_field_valid( $_POST['certificate-year-issued-to'] ),
 		'Forename'                      => is_mandatory_text_field_valid( $_POST['forename'] ),
 		'Surname'                       => is_mandatory_text_field_valid( $_POST['surname'] ),
-		'Preferred contact'             => is_mandatory_text_field_valid( $_POST['preferred-contact'] ),
+		'Preferred contact'             => ( isset( $_POST['preferred-contact'] ) ) ? is_checkbox_radio_valid( $_POST['preferred-contact'] ) : false,
 		'Email'                         => is_text_field_valid( $_POST['email'] ),
 		'Confirm email'                 => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 		'Postal address'                => is_text_field_valid( $_POST['postal-address'] )

@@ -70,7 +70,9 @@ function display_compiled_form_data( $data ) {
 	if ( is_array( $data ) ) {
 		$display_data = '<div class="form-data"><ul>';
 		foreach ( $data as $field_name => $field_value ) {
-			$display_data .= '<li>' . $field_name . ': ' . $field_value . '</li>';
+			if ( $field_value != '1' ) {
+				$display_data .= '<li>' . $field_name . ': ' . $field_value . '</li>';
+			}
 		}
 		$display_data .= '</ul></div>';
 
