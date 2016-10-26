@@ -65,14 +65,12 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	}
 	public function testRefNumberOutput()
 	{
-		$time = date_timestamp_get( date_create() );
-		$data = ref_number( 'John', $time );
-		$this->assertEquals($data, 'TNA' . $time . 'JOH');
+		$data = ref_number( 'Smith', '1477476797' );
+		$this->assertEquals($data, 'TNA1477476797SMI');
 	}
 	public function testRefNumberOutputShortSurname()
 	{
-		$time = date_timestamp_get( date_create() );
-		$data = ref_number( 'Ho', $time );
-		$this->assertEquals($data, 'TNA' . $time . 'HO');
+		$data = ref_number( 'Ho', '1477476797' );
+		$this->assertEquals($data, 'TNA1477476797HO');
 	}
 }
