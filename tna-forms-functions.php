@@ -36,7 +36,8 @@ function set_value( $name, $type = 'text', $select_value = '' ) {
 }
 
 function field_error_message( $name, $type = 'required', $reconfirm_name = '' ) {
-	global $error_messages, $error_wrapper;
+	global $error_messages;
+	$error_wrapper = '<span class="form-error form-hint">%s</span>';
 	if ( isset( $_POST[$name] ) ) {
 		switch( $type ){
 			case 'required': {
@@ -65,11 +66,32 @@ function ref_number( $name, $time_stamp ) {
 	return $prefix . $time_stamp . $suffix;
 }
 
-if ( !function_exists('wp_mail_set_text_body') ) :
-	function wp_mail_set_text_body( $phpmailer ) {
-		if ( empty( $phpmailer->AltBody ) ) {
-			$phpmailer->AltBody = strip_tags( $phpmailer->Body );
+function display_compiled_form_data( $data ) {
+	if ( is_array( $data ) ) {
+		$display_data = '<div class="form-data"><ul>';
+		foreach ( $data as $field_name => $field_value ) {
+			$display_data .= '<li>' . $field_name . ': ' . $field_value . '</li>';
 		}
+		$display_data .= '</ul></div>';
+
+		return $display_data;
 	}
-endif;
-add_action( 'phpmailer_init', 'wp_mail_set_text_body' );
+}
+
+function display_error_message( $data ) {
+	if ( in_array( false, $data ) ) {
+		global $error_messages;
+		$error_message = '<div class="form-error-message"><h3>Error</h3><ul>';
+		foreach ( $data as $field_name => $field_value ) {
+			if ( $field_value == false ) {
+				$error[$field_name] = $error_messages[$field_name];
+				$error_message .= '<li>' . $error[$field_name] . '</li>';
+			}
+		}
+		$error_message .= '</ul></div>';
+
+		return $error_message;
+	}
+}
+
+

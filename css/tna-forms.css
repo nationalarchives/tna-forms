@@ -42,24 +42,99 @@ textarea {
     color: #6f777b;
 }
 
-.warning {
-    border:1px solid red !important;
+.form-warning {
+    outline:1px solid red !important;
 }
 
-.error{
+.form-error{
+    color:red;
+}
+
+.button-back,
+.form-step-2 .button,
+.form-step-1 .button {
+    display:none;
+}
+
+.bs-wizard {margin-top: 40px;}
+
+/** Colors **/
+ol.progress-track {
     display: none;
-
+    list-style-type: none;
+    margin: 0;
+    padding: 2em 1em;
+    table-layout: fixed;
+    width: 100%;
 }
-
-.error_show{
-    color: red;
-    margin-left: 10px;
+ol.progress-track li {
+    display: table-cell;
+    line-height: 3em;
+    position: relative;
+    text-align: center;
 }
-
-input.invalid, textarea.invalid{
-    border: 2px solid red;
+ol.progress-track li .icon-wrap {
+    border-radius: 50%;
+    top: -1.5em;
+    color: #fff;
+    display: block;
+    height: 2.5em;
+    margin: 0 auto -2em;
+    left: 0;
+    right: 0;
+    position: absolute;
+    width: 2.5em;
 }
-
-input.valid, textarea.valid{
-    border: 2px solid green;
+ol.progress-track li .icon-check-mark,
+ol.progress-track li .icon-down-arrow {
+    height: 25px;
+    width: 15px;
+    display: inline-block;
+    fill: currentColor;
+}
+ol.progress-track li .progress-text {
+    position: relative;
+    top: 10px;
+}
+ol.progress-track li.progress-done {
+    border-top: 7px solid #008484;
+    transition: border-color 1s ease-in-out;
+    -webkit-transition: border-color 1s ease-in-out;
+    -moz-transition: border-color 1s ease-in-out;
+}
+ol.progress-track li.progress-done .icon-down-arrow {
+    display: none;
+}
+ol.progress-track li.progress-done.progress-current .icon-wrap {
+    background-color: #008484;
+}
+ol.progress-track li.progress-done.progress-current .icon-wrap .icon-check-mark {
+    display: none;
+}
+ol.progress-track li.progress-done.progress-current .icon-wrap .icon-down-arrow {
+    display: block;
+}
+ol.progress-track li.progress-done .icon-wrap {
+    background-color: #008484;
+    border: 5px solid #008484;
+}
+ol.progress-track li.progress-todo {
+    border-top: 7px solid #dddddd;
+    color: black;
+}
+ol.progress-track li.progress-todo .icon-wrap {
+    background-color: #FFF;
+    border: 5px solid #dddddd;
+    border-radius: 50%;
+    bottom: 1.5em;
+    color: #fff;
+    display: block;
+    height: 2.5em;
+    margin: 0 auto -2em;
+    position: relative;
+    width: 2.5em;
+}
+ol.progress-track li.progress-todo .icon-wrap .icon-check-mark,
+ol.progress-track li.progress-todo .icon-wrap .icon-down-arrow {
+    display: none;
 }

@@ -42,20 +42,18 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	}
 	public function testFieldErrorMessageRequired()
 	{
-		global $error_messages, $error_wrapper;
+		global $error_messages;
 		$_POST['surname'] = '';
 		$error_messages['surname'] = 'Please enter your surname';
-		$error_wrapper = '<span class="form-error form-hint">%s</span>';
 		$data = field_error_message( 'surname' );
 		$this->assertEquals($data, '<span class="form-error form-hint">Please enter your surname</span>');
 	}
 	public function testFieldErrorMessageReconfirm()
 	{
-		global $error_messages, $error_wrapper;
+		global $error_messages;
 		$_POST['email'] = 'info@domain.com';
 		$_POST['confirm-email'] = 'info@domain.net';
 		$error_messages['confirm-email'] = 'Please re-type your email address';
-		$error_wrapper = '<span class="form-error form-hint">%s</span>';
 		$data = field_error_message( 'confirm-email', 'reconfirm', 'email' );
 		$this->assertEquals($data, '<span class="form-error form-hint">Please re-type your email address</span>');
 	}
