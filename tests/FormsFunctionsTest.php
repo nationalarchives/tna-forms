@@ -69,4 +69,10 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 		$data = ref_number( 'John', $time );
 		$this->assertEquals($data, 'TNA' . $time . 'JOH');
 	}
+	public function testRefNumberOutputShortSurname()
+	{
+		$time = date_timestamp_get( date_create() );
+		$data = ref_number( 'Ho', $time );
+		$this->assertEquals($data, 'TNA' . $time . 'HO');
+	}
 }
