@@ -15,4 +15,5 @@ include 'tna-forms-validation.php';
 include 'tna-forms-shortcode.php';
 
 /* Included forms */
+include 'forms/form-newsletter-signup.php';
 include 'forms/form-british-citizenship.php';

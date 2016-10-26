@@ -14,8 +14,7 @@ install:
   - npm install
 
 script:
-  - phpunit tests/FormTest.php
-  - grunt qunit
+  - phpunit tests/ValidationTest.php
 
 notifications:
   slack:

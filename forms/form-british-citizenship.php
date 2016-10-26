@@ -149,38 +149,5 @@ function process_form_british_citizenship() {
 		return;
 	}
 
-	// Get the form elements and store them in variables
-	$forename = is_mandatory_text_field_valid( $_POST['forename'] );
-	$surname  = is_mandatory_text_field_valid( $_POST['surname'] );
-	$email    = is_mandatory_email_field_valid( $_POST['email'] );
-
-	if ( $forename == false || $surname == false || $email == false ) {
-
-		// Error
-		global $form_messages;
-		$form_messages = '<div class="breather" style="background-color:rgba(252,228,92,.5);margin-bottom: 1em;border-left: 4px solid #fce45c;"><h3>Error</h3></div>';
-
-	} else {
-
-		// Success
-		global $form_messages;
-		$form_messages = '<div class="bg-success breather" style="margin-bottom: 1em;border-left: 4px solid green;"><h3>Thank you for your enquiry</h3><p>Your message has been sent to someone</p></div>';
-
-		// Send email to these email addresses
-		$to = array( get_option( 'admin_email' ), $email );
-
-		// Email Subject
-		$subject = $forename . ' ' . $surname . ' has completed the contact form';
-
-		// Email message
-		$message = '<p>Sender: ' . $forename . ' ' . $surname . '</p>';
-		$message .= '<p>Email: ' . $email . '</p>';
-
-		if ( $email ) {
-			wp_mail( $to, $subject, $message );
-		}
-
-	}
-
 }
 add_action('init', 'process_form_british_citizenship');
