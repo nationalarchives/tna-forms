@@ -55,13 +55,12 @@ function field_error_message( $name, $type = 'required', $reconfirm_name = '' ) 
 	}
 }
 
-function ref_number( $name ) {
-	$date = date_create();
+function ref_number( $name, $time_stamp ) {
 	$prefix = 'TNA';
 	if (strlen( $name ) > 3) {
 		$suffix = strtoupper( substr( $name, 0, 3 ) );
 	} else {
 		$suffix = strtoupper( $name );
 	}
-	return $prefix . date_timestamp_get($date) . $suffix;
+	return $prefix . $time_stamp . $suffix;
 }

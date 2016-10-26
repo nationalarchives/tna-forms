@@ -59,4 +59,14 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 		$data = field_error_message( 'confirm-email', 'reconfirm', 'email' );
 		$this->assertEquals($data, '<span class="form-error form-hint">Please re-type your email address</span>');
 	}
+	public function testRefNumber()
+	{
+		$this->assertTrue(function_exists('ref_number'));
+	}
+	public function testRefNumberOutput()
+	{
+		$time = date_timestamp_get( date_create() );
+		$data = ref_number( 'John', $time );
+		$this->assertEquals($data, 'TNA' . $time . 'JOH');
+	}
 }
