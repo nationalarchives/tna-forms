@@ -228,9 +228,23 @@ function process_form_british_citizenship() {
 
 		// Yay! Success!
 
-		$success_message = display_ref_number( $form_fields['Surname'] );
+		$ref_number = display_ref_number( $form_fields['Surname'] );
+
+		$success_message = $ref_number;
 		$success_message .= display_compiled_form_data( $form_fields );
 
+		// Send email to these email addresses
+		$to = array( get_option( 'admin_email' ), $form_fields['Email'] );
+
+		// Email Subject
+		$subject = ref_number( $form_fields['Surname'], date_timestamp_get( date_create() ) ) . ' certificate of British citizenship request';
+
+		// Email message
+		$email_message = $success_message;
+
+		if ( $form_fields['Email'] ) {
+			wp_mail( $to, $subject, $email_message );
+		}
 	}
 }
 add_action('init', 'process_form_british_citizenship');
