@@ -15,11 +15,9 @@
  *      5.2 If form is valid do following things
  *          5.2.1 If form step 1 is visible
  *          5.2.3 If submit button is click check if Email or Post methods were selected
- * 6. If check box is checked change red colour to black. This is a fallback in case if user click on back button
- * 7. If check box is checked change red colour to black
- * 8. Show / hide Email / address
- * 9. Back button on step two
- * 10. Back button on step three
+ * 6. Show / hide Email / address
+ * 7. Back button on step two
+ * 8. Back button on step three
  * */
 
 $(document).ready(function(){
@@ -27,7 +25,7 @@ $(document).ready(function(){
         /**
          * 1. Define all variables
          * */
-        var emailWrapper = '.email-wrapper',
+        var emailWrapper= '.email-wrapper',
             addressWrapper = '.address-wrapper',
             contactEmail = '#contact_email',
             contactPostal = '#contact_postal',
@@ -38,9 +36,7 @@ $(document).ready(function(){
             buttonBack = '.button-back',
             radio = 'input[type="radio"]',
             submit = 'input[type="submit"]',
-            formWarningError = '.form-warning-error',
-            formNatName = "#naturalisation",
-            progressTrack = ".progress-track";
+            formNatName = "#naturalisation";
 
         /**
          * 2. If JS is enabled hide all sections
@@ -55,8 +51,6 @@ $(document).ready(function(){
          * */
         $(button,'.form-step-1,.form-step-2').css("display","block");
         $(buttonBack,'.form-step-2,.form-step-3').css("display","block");
-        $(progressTrack).css("display","table");
-        $(formWarningError).css("color","black");
 
         /**
          * 5. Form validation
@@ -169,7 +163,7 @@ $(document).ready(function(){
                         required:"Please enter your email address",
                         equalTo: "Please enter your email address again"
                     },
-                    "postal-address":{
+                    "postal-addresss":{
                         required:"Please enter your postal address"
                     },
                     /* Form Step Two */
@@ -226,50 +220,26 @@ $(document).ready(function(){
             }
         });
 
-
-
         /**
-         * 6. If check box is checked
-         * Change red colour to black
-         * This is a fallback in case if user click on back button
-         * */
-        if($(radio).is(":checked")){
-            $(formWarningError).css("color","black");
-            $(submit).prop('disabled', false);
-        }
-
-
-        /**
-         * 7. If check box is checked
-         * Change red colour to black
-         * */
-        $(radio).change(function(){
-            $(formWarningError).css("color","black");
-            $(submit).prop('disabled', false);
-        });
-
-        /**
-         * 8. Show / hide Email / address
+         * 6. Show / hide Email / address
          * */
         $(radio).on('click', function(){
             if ($(contactEmail).is(':checked')){
 
                 $(emailWrapper).show();
                 $(addressWrapper).hide();
-                $(formWarningError).css("color","black");
 
 
             } else if ($(contactPostal).is(':checked')) {
 
                 $(addressWrapper).show();
                 $(emailWrapper).hide();
-                $(formWarningError).css("color","black");
 
             }
         });
 
         /**
-         * 9. Back button on step two
+         * 7. Back button on step two
          * */
         $(buttonBack, formStepTwo).on('click', function() {
             $(formStepOne).show();
@@ -279,7 +249,7 @@ $(document).ready(function(){
         });
 
         /**
-         * 10. Back button on step three
+         * 8. Back button on step three
          * */
         $(buttonBack, formStepThree).on('click', function() {
             $(formStepTwo).show();

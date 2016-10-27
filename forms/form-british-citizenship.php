@@ -169,7 +169,7 @@ function return_form_british_citizenship() {
 	                    </div>
 	                    <div class="form-row address-wrapper">
 	                        <label for="postal_address">Postal address</label>
-	                        <textarea id="postal_address" name="postal-address"> ' . set_value( 'postal-address', 'textarea' ) . '</textarea>
+	                        <textarea id="postal_address" name="postal-address">' . set_value( 'postal-address', 'textarea' ) . '</textarea>
 	                    </div>
 	                    <div class="form-row">
 	                        <input type="submit" alt="Submit" name="submit" id="send-message" value="Submit" class="button">
