@@ -1,10 +1,10 @@
 
 /**
  * @owner: The National Archives
- * @projectname: Naturalisation Form Validation
+ * @contact-form-name: Naturalisation Form Validation
  * @author: WebTeam
  *
- * ----- Table of contents -------------------------------------------------------------------------------------------------
+ * ----- Table of contents ------------------------------------------------------------------------------------------
  *
  * 1. Define all variables
  * 2. If JS is enabled hide all sections
@@ -20,7 +20,6 @@
  * 6. Show / hide Email / address
  * 7. Back button on step two
  * 8. Back button on step three
- *
  * */
 
 $(document).ready(function(){
@@ -83,7 +82,9 @@ $(document).ready(function(){
                 $(element).closest('textarea').addClass("form-warning");
             },
             unhighlight: function(element, errorClass, validClass) {
-                $(element).closest('input').removeClass("form-warning");
+                $(element).closest('input[type="text"]').removeClass("form-warning");
+                $(element).closest('input[type="email"]').removeClass("form-warning");
+                $(element).closest('textarea').removeClass("form-warning");
             },
             rules: {
                 /* Form Step One */
@@ -203,7 +204,7 @@ $(document).ready(function(){
                 /* Show progress bar */
                 $('.arrow-steps li:nth-child(2)').addClass("current");
 
-                $(button).prop('disabled', true);
+                $(submit).prop('disabled', true);
 
             }
             /**
@@ -215,7 +216,7 @@ $(document).ready(function(){
 
                 /* Show progress bar */
                 $('.arrow-steps li:nth-child(3)').addClass("current");
-                $(button).prop('disabled', false);
+                $(submit).prop('disabled', false);
             }
 
             next_fs.show();
@@ -233,7 +234,7 @@ $(document).ready(function(){
      * */
     if($(radio).is(":checked")){
         $(formWarningError).css("color","black");
-        $(button).prop('disabled', false);
+        $(submit).prop('disabled', false);
     }
 
 
@@ -243,7 +244,7 @@ $(document).ready(function(){
      * */
     $(radio).change(function(){
         $(formWarningError).css("color","black");
-        $(button).prop('disabled', false);
+        $(submit).prop('disabled', false);
     });
 
     /**
@@ -278,7 +279,6 @@ $(document).ready(function(){
 
     /**
      * 8. Back button on step three
-     *
      * */
     $(buttonBack, formStepThree).on('click', function() {
         $(formStepTwo).show();
@@ -287,3 +287,4 @@ $(document).ready(function(){
     });
 
 });
+
