@@ -71,4 +71,29 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 		$data = ref_number( 'Ho', '1477476797' );
 		$this->assertEquals($data, 'TNA1477476797HO');
 	}
+	public function testDisplayRefNumber()
+	{
+		$this->assertTrue(function_exists('display_ref_number'));
+	}
+	public function testDisplayCompiledFormData()
+	{
+		$this->assertTrue(function_exists('display_compiled_form_data'));
+	}
+	public function testDisplayCompiledFormDataOutput()
+	{
+		$data = display_compiled_form_data( array( 'Name' => 'John Smith') );
+		$this->assertEquals($data, '<div class="form-data"><ul><li>Name: John Smith</li></ul></div>');
+	}
+	public function testDisplayErrorMessage()
+	{
+		$this->assertTrue(function_exists('display_error_message'));
+	}
+	public function testDisplayErrorMessageOutput()
+	{
+		global $error_messages;
+		$error_messages['Name'] = 'Please enter your name';
+		$error_messages['Email'] = 'Please enter your email address';
+		$data = display_error_message( array( 'Name' => false, 'Email' => 'info@domain.com'  ) );
+		$this->assertEquals($data, '<div class="emphasis-block error-message"><h3>Error</h3><ul><li>Please enter your name</li></ul></div>');
+	}
 }
