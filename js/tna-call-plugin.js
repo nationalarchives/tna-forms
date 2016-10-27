@@ -3,4 +3,4 @@
  */
 
 /* run the Jquery plugin */
-$('#signup').newsletterValidation();
+$('#signup').newsletterValidation()

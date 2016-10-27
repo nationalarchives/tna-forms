@@ -14,7 +14,7 @@ function enqueue_form_styles() {
 add_action('wp_enqueue_scripts', 'enqueue_form_styles');
 
 function enqueue_form_scripts() {
-	wp_register_script( 'tna-form-scripts', plugin_dir_url(__FILE__) . 'js/tna-forms.js', array(), '1.0.0', true  );
+	wp_register_script( 'tna-form-scripts', plugin_dir_url(__FILE__) . 'js/compiled/tna-forms-compiled.min.js', array(), '1.0.0', true  );
 	wp_register_script( 'jquery-validate', 'http://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.js', array(), '1.15.1', true  );
 	wp_register_script( 'additional-methods', 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/additional-methods.js', array(), '1.13.1', true  );
 	global $post;
