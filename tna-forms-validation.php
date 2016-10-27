@@ -19,6 +19,14 @@ function is_text_field_valid( $data ) {
 		return '-';
 	}
 }
+function is_textarea_field_valid( $data ) {
+	if ( trim( $data ) !== '' ) {
+		$sanitize_data = sanitize_text_field( $data );
+		return esc_html( $sanitize_data );
+	} else {
+		return '-';
+	}
+}
 function is_checkbox_radio_valid( $data ) {
 	if ( $data ) {
 		$sanitize_data = sanitize_text_field( $data );

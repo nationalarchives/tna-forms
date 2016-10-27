@@ -7,11 +7,14 @@ function set_value( $name, $type = 'text', $select_value = '' ) {
 	if ( isset( $_POST[$name] ) ) {
 		switch( $type ) {
 			case 'text': {
-				return ' value="' . htmlspecialchars( $_POST[$name] ) . '" ';
+				return ' value="' . htmlspecialchars( trim( $_POST[$name] ) ) . '" ';
 				break;
 			}
 			case 'textarea': {
-				return htmlspecialchars( $_POST[$name] );
+				if ( trim( $_POST[$name] ) !== '' ) {
+					return htmlspecialchars( $_POST[$name] );
+				}
+				return '';
 				break;
 			}
 			case 'checkbox': {
@@ -38,7 +41,7 @@ function set_value( $name, $type = 'text', $select_value = '' ) {
 function field_error_message( $input_name, $error_field_name, $type = 'required', $reconfirm_name = '' ) {
 	global $error_messages;
 	$error_wrapper = '<span class="form-error form-hint">%s</span>';
-	if ( isset( $_POST[$input_name] ) ) {
+	if ( isset( $_POST[$input_name] ) && isset( $_POST['submit'] ) ) {
 		switch( $type ) {
 			case 'required': {
 				if ( trim( $_POST[$input_name] ) === '' ) {
@@ -53,7 +56,7 @@ function field_error_message( $input_name, $error_field_name, $type = 'required'
 				break;
 			}
 		}
-	} elseif ( !isset( $_POST[$input_name] ) && $type == 'check' ) {
+	} elseif ( !isset( $_POST[$input_name] ) && $type == 'radio' && isset( $_POST['submit'] ) ) {
 		return sprintf( $error_wrapper, $error_messages[$error_field_name] );
 	}
 }
