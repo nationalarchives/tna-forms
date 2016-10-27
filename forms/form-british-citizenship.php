@@ -190,25 +190,25 @@ function process_form_british_citizenship() {
 
 	// Get the form elements and store them into an array
 	$form_fields = array(
-		'Certificate holder forename'   => is_mandatory_text_field_valid( $_POST['certificate-forename'] ),
-		'Certificate holder surname'    => is_mandatory_text_field_valid( $_POST['certificate-surname'] ),
-		'Alternative surname'           => is_text_field_valid( $_POST['certificate-surname-alt'] ),
-		'Country of birth'              => is_mandatory_text_field_valid( $_POST['certificate-birth-country'] ),
-		'DOB'                           => is_text_field_valid( $_POST['certificate-day'] ) . '-' .
-		                                   is_text_field_valid( $_POST['certificate-month'] ) . '-' .
-		                                   is_text_field_valid( $_POST['certificate-year'] ),
-		'Approx DOB'                    => ( isset( $_POST['certificate-dob-approx'] ) ) ? is_checkbox_radio_valid( $_POST['certificate-dob-approx'] ) : 'No',
-		'Certificate holder address'    => is_text_field_valid( $_POST['certificate-postal-address'] ),
-		'Country of issue'              => is_text_field_valid( $_POST['certificate-issued-country'] ),
-		'Certificate number'            => is_text_field_valid( $_POST['certificate-number'] ),
-		'Issued from'                   => is_text_field_valid( $_POST['certificate-year-issued-from'] ),
-		'Issued to'                     => is_text_field_valid( $_POST['certificate-year-issued-to'] ),
-		'Forename'                      => is_mandatory_text_field_valid( $_POST['forename'] ),
-		'Surname'                       => is_mandatory_text_field_valid( $_POST['surname'] ),
-		'Preferred contact'             => ( isset( $_POST['preferred-contact'] ) ) ? is_checkbox_radio_valid( $_POST['preferred-contact'] ) : false,
-		'Email'                         => is_text_field_valid( $_POST['email'] ),
+		'Certificate holder forename'   => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-forename') ),
+		'Certificate holder surname'    => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-surname') ),
+		'Alternative surname'           => is_text_field_valid( filter_input( INPUT_POST, 'certificate-surname-alt') ),
+		'Country of birth'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-birth-country') ),
+		'DOB'                           => is_text_field_valid( filter_input( INPUT_POST, 'certificate-day') ) . '-' .
+		                                   is_text_field_valid( filter_input( INPUT_POST, 'certificate-month') ) . '-' .
+		                                   is_text_field_valid( filter_input( INPUT_POST, 'certificate-year') ),
+		'Approx DOB'                    => ( isset( $_POST['certificate-dob-approx'] ) ) ? is_checkbox_radio_valid( filter_input( INPUT_POST, 'certificate-dob-approx') ) : 'No',
+		'Certificate holder address'    => is_text_field_valid( filter_input( INPUT_POST, 'certificate-postal-address') ),
+		'Country of issue'              => is_text_field_valid( filter_input( INPUT_POST, 'certificate-issued-country') ),
+		'Certificate number'            => is_text_field_valid( filter_input( INPUT_POST, 'certificate-number') ),
+		'Issued from'                   => is_text_field_valid( filter_input( INPUT_POST, 'certificate-year-issued-from') ),
+		'Issued to'                     => is_text_field_valid( filter_input( INPUT_POST, 'certificate-year-issued-to') ),
+		'Forename'                      => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'forename') ),
+		'Surname'                       => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'surname') ),
+		'Preferred contact'             => ( isset( $_POST['preferred-contact'] ) ) ? is_checkbox_radio_valid( filter_input( INPUT_POST, 'preferred-contact') ) : false,
+		'Email'                         => is_text_field_valid( filter_input( INPUT_POST, 'email') ),
 		'Confirm email'                 => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
-		'Postal address'                => is_text_field_valid( $_POST['postal-address'] )
+		'Postal address'                => is_text_field_valid( filter_input( INPUT_POST, 'postal-address') )
 	);
 
 	if ( in_array( false, $form_fields ) ) {
