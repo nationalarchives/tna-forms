@@ -41,13 +41,19 @@ textarea {
 .form-hint {
     color: #6f777b;
 }
-
 .form-warning {
-    outline:1px solid red !important;
+    outline: 1px solid #CB0D07 !important;
 }
-
-.form-error{
-    color:red;
+.form-error {
+    color: #CB0D07;
+}
+.success-message {
+    background-color: #D5EAEA !important;
+    border-left: 4px solid #008484 !important;
+}
+.error-message {
+    background-color: #F8DFDD !important;
+    border-left: 4px solid #CB0D07 !important;
 }
 
 .button-back,

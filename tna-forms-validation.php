@@ -16,7 +16,7 @@ function is_text_field_valid( $data ) {
 		$sanitize_data = sanitize_text_field( $data );
 		return esc_html( $sanitize_data );
 	} else {
-		return 'Empty';
+		return '-';
 	}
 }
 function is_checkbox_radio_valid( $data ) {

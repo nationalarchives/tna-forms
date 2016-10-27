@@ -66,6 +66,13 @@ function ref_number( $name, $time_stamp ) {
 	return $prefix . $time_stamp . $suffix;
 }
 
+function display_ref_number( $suffix ) {
+	$ref_number_wrapper = '<div class="reference-number emphasis-block success-message"><p>Thank you!</p><p>Your reference number:</p><h2>%s</h2></div>';
+	$ref_number = ref_number( $suffix, date_timestamp_get( date_create() ) );
+
+	return sprintf( $ref_number_wrapper, $ref_number );
+}
+
 function display_compiled_form_data( $data ) {
 	if ( is_array( $data ) ) {
 		$display_data = '<div class="form-data"><ul>';
@@ -81,19 +88,17 @@ function display_compiled_form_data( $data ) {
 }
 
 function display_error_message( $data ) {
-	if ( in_array( false, $data ) ) {
-		global $error_messages;
-		$error_message = '<div class="form-error-message"><h3>Error</h3><ul>';
-		foreach ( $data as $field_name => $field_value ) {
-			if ( $field_value == false ) {
-				$error[$field_name] = $error_messages[$field_name];
-				$error_message .= '<li>' . $error[$field_name] . '</li>';
-			}
+	global $error_messages;
+	$error_message = '<div class="emphasis-block error-message"><h3>Error</h3><ul>';
+	foreach ( $data as $field_name => $field_value ) {
+		if ( $field_value == false ) {
+			$error[$field_name] = $error_messages[$field_name];
+			$error_message .= '<li>' . $error[$field_name] . '</li>';
 		}
-		$error_message .= '</ul></div>';
-
-		return $error_message;
 	}
+	$error_message .= '</ul></div>';
+
+	return $error_message;
 }
 
 

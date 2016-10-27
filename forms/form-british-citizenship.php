@@ -22,6 +22,10 @@ $error_messages     = array(
 
 function return_form_british_citizenship() {
 
+	global $success_message,
+	       $error_message,
+	       $error_messages;
+
 	$form = '<form action=""  id="naturalisation" method="POST">
                             <fieldset class="form-step-1">
                                 <legend>Certificate holder\'s details</legend>
@@ -159,10 +163,6 @@ function return_form_british_citizenship() {
                             </fieldset>
                         </form>';
 
-	global $success_message,
-	       $error_message,
-	       $error_messages;
-
 	if ( $error_message ) {
 		return $error_message . $form;
 	} elseif ( $success_message ) {
@@ -204,9 +204,19 @@ function process_form_british_citizenship() {
 		'Postal address'                => is_text_field_valid( $_POST['postal-address'] )
 	);
 
-	$success_message = display_compiled_form_data( $form_fields );
+	if ( in_array( false, $form_fields ) ) {
 
-	$error_message = display_error_message( $form_fields );
+		// Oops! Error!
 
+		$error_message = display_error_message( $form_fields );
+
+	} else {
+
+		// Yay! Success!
+
+		$success_message = display_ref_number( $form_fields['Surname'] );
+		$success_message .= display_compiled_form_data( $form_fields );
+
+	}
 }
 add_action('init', 'process_form_british_citizenship');

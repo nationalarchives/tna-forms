@@ -24,7 +24,7 @@ class ValidationTest extends \PHPUnit_Framework_TestCase {
 	public function testIsTextFieldValidEmpty()
 	{
 		$data = is_text_field_valid('');
-		$this->assertEquals($data, 'Empty');
+		$this->assertEquals($data, '-');
 	}
 	public function testIsMandatoryEmailFieldValid()
 	{
