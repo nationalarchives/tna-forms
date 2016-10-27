@@ -106,4 +106,23 @@ function display_error_message( $data ) {
 	return $error_message;
 }
 
+function display_confirmation_content() {
+	global $post;
+	$child = get_pages(
+		array( 'child_of' => $post->ID,
+		       'number' => '1',
+		       'sort_column' => 'post_date',
+		       'sort_order' => 'desc'
+		));
+
+	$content = '';
+	foreach( $child as $page ) {
+
+		$content .= apply_filters( 'the_content', $page->post_content );
+
+	}
+
+	return $content;
+}
+
 
