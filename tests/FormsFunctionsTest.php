@@ -43,6 +43,7 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	public function testFieldErrorMessageRequired()
 	{
 		global $error_messages;
+		$_POST['submit'] = 'submit';
 		$_POST['surname'] = '';
 		$error_messages['Surname'] = 'Please enter your surname';
 		$data = field_error_message( 'surname', 'Surname' );
@@ -51,6 +52,7 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	public function testFieldErrorMessageReconfirm()
 	{
 		global $error_messages;
+		$_POST['submit'] = 'submit';
 		$_POST['email'] = 'info@domain.com';
 		$_POST['confirm-email'] = 'info@domain.net';
 		$error_messages['Confirm email'] = 'Please re-type your email address';
