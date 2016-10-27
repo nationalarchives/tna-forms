@@ -42,10 +42,12 @@ function return_form_british_citizenship() {
 	                    <div class="form-row">
 	                        <label for="certificate_forename">First name(s) *</label>
 	                        <input value="" type="text" id="certificate_forename" name="certificate-forename" aria-required="true" required>
+	                        ' . field_error_message( 'certificate-forename', 'Certificate holder forename' ) . '
 	                    </div>
 	                    <div class="form-row">
 	                        <label for="certificate_surname">Last name *</label>
 	                        <input value="" type="text" id="certificate_surname" name="certificate-surname" aria-required="true" required>
+	                        ' . field_error_message( 'certificate-surname', 'Certificate holder surname' ) . '
 	                    </div>
 	                    <div class="form-row">
 	                        <label for="certificate_surname_alt">Alternative last name</label>
@@ -55,6 +57,7 @@ function return_form_british_citizenship() {
 	                    <div class="form-row">
 	                        <label for="certificate_birth_country">Country of birth *</label>
 	                        <input value="" type="text" id="certificate_birth_country" name="certificate-birth-country" aria-required="true" required>
+	                        ' . field_error_message( 'certificate-birth-country', 'Country of birth' ) . '
 	                    </div>
 	                    <p>Date of birth</p>
 	                    <div class="form-row">
@@ -136,12 +139,15 @@ function return_form_british_citizenship() {
 	                    <div class="form-row">
 	                        <label for="forename">First name *</label>
 	                        <input value="" type="text" id="forename" name="forename" aria-required="true" required>
+	                        ' . field_error_message( 'forename', 'Forename' ) . '
 	                    </div>
 	                    <div class="form-row">
 	                        <label for="surname">Last name *</label>
 	                        <input value="" type="text" id="surname" name="surname" aria-required="true" required>
+	                        ' . field_error_message( 'surname', 'Surname' ) . '
 	                    </div>
 	                    <p class="form-warning-error">How would you prefer to be contacted? *</p>
+	                    ' . field_error_message( 'preferred-contact', 'Preferred contact', 'check' ) . '
 	                    <div class="form-col">
 	                        <input id="contact_email" type="radio" name="preferred-contact" value="Email">
 	                        <label for="contact_email">Email</label>
@@ -158,6 +164,7 @@ function return_form_british_citizenship() {
 	                        <div class="form-row">
 	                            <label for="confirm_email">Please re-type your email address</label>
 	                            <input value="" type="email" id="confirm_email" name="confirm-email">
+	                            ' . field_error_message( 'confirm-email', 'Confirm email', 'reconfirm', 'email' ) . '
 	                        </div>
 	                    </div>
 	                    <div class="form-row address-wrapper">

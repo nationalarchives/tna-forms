@@ -44,8 +44,8 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	{
 		global $error_messages;
 		$_POST['surname'] = '';
-		$error_messages['surname'] = 'Please enter your surname';
-		$data = field_error_message( 'surname' );
+		$error_messages['Surname'] = 'Please enter your surname';
+		$data = field_error_message( 'surname', 'Surname' );
 		$this->assertEquals($data, '<span class="form-error form-hint">Please enter your surname</span>');
 	}
 	public function testFieldErrorMessageReconfirm()
@@ -53,8 +53,8 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 		global $error_messages;
 		$_POST['email'] = 'info@domain.com';
 		$_POST['confirm-email'] = 'info@domain.net';
-		$error_messages['confirm-email'] = 'Please re-type your email address';
-		$data = field_error_message( 'confirm-email', 'reconfirm', 'email' );
+		$error_messages['Confirm email'] = 'Please re-type your email address';
+		$data = field_error_message( 'confirm-email', 'Confirm email', 'reconfirm', 'email' );
 		$this->assertEquals($data, '<span class="form-error form-hint">Please re-type your email address</span>');
 	}
 	public function testRefNumber()

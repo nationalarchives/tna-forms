@@ -35,24 +35,26 @@ function set_value( $name, $type = 'text', $select_value = '' ) {
 	return '';
 }
 
-function field_error_message( $name, $type = 'required', $reconfirm_name = '' ) {
+function field_error_message( $input_name, $error_field_name, $type = 'required', $reconfirm_name = '' ) {
 	global $error_messages;
 	$error_wrapper = '<span class="form-error form-hint">%s</span>';
-	if ( isset( $_POST[$name] ) ) {
-		switch( $type ){
+	if ( isset( $_POST[$input_name] ) ) {
+		switch( $type ) {
 			case 'required': {
-				if ( trim( $_POST[$name] ) === '' ) {
-					return sprintf( $error_wrapper, $error_messages[$name] );
+				if ( trim( $_POST[$input_name] ) === '' ) {
+					return sprintf( $error_wrapper, $error_messages[$error_field_name] );
 				}
 				break;
 			}
 			case 'reconfirm': {
-				if ( trim( $_POST[$name] ) !== trim( $_POST[$reconfirm_name] ) ) {
-					return sprintf( $error_wrapper, $error_messages[$name] );
+				if ( trim( $_POST[$input_name] ) !== trim( $_POST[$reconfirm_name] ) ) {
+					return sprintf( $error_wrapper, $error_messages[$error_field_name] );
 				}
 				break;
 			}
 		}
+	} elseif ( !isset( $_POST[$input_name] ) && $type == 'check' ) {
+		return sprintf( $error_wrapper, $error_messages[$error_field_name] );
 	}
 }
 
