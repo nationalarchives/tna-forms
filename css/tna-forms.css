@@ -16,18 +16,15 @@ textarea {
 
 .form-row p {
   margin: 0.4em 0; }
-
 .form-row .button {
   float: right; }
-
 .form-row .dob-col {
   display: inline-block;
   max-width: 90px; }
-
-.form-row .dob-col input {
-  width: 90px;
-  max-width: 90px;
-  min-width: 90px; }
+  .form-row .dob-col input {
+    width: 90px;
+    max-width: 90px;
+    min-width: 90px; }
 
 .dob-approx label {
   width: auto !important; }
@@ -68,16 +65,18 @@ textarea {
   margin: 0 0 10px 0; }
   .arrow-steps ul {
     list-style-type: none;
+    list-style-image: none;
     margin: 0;
     padding: 0; }
     .arrow-steps ul li {
       font-size: 14px;
       list-style-type: none;
+      list-style-image: none;
       color: #666;
       cursor: default;
       margin: 0 3px;
       padding: 6px 0 3px 0;
-      min-width: 226px;
+      width: 32%;
       float: left;
       position: relative;
       background-color: #e2e2e2;
@@ -86,6 +85,32 @@ textarea {
       -ms-user-select: none;
       user-select: none;
       transition: background-color 0.2s ease; }
+      @media (max-width: 1141px) {
+        .arrow-steps ul li {
+          display: block;
+          float: none;
+          width: 100%; } }
+      .arrow-steps ul li:before {
+        right: auto;
+        left: 0;
+        border-left: 17px solid #fff;
+        z-index: 0; }
+  .arrow-steps span {
+    position: relative;
+    border-radius: 100%;
+    background: white;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-left: 20px;
+    text-align: center;
+    color: black; }
+    .arrow-steps spanbefore {
+      opacity: 0;
+      content: "✔";
+      position: absolute;
+      top: -2px;
+      left: -20px; }
 
 .arrow-steps li:after,
 .arrow-steps li:before {
@@ -100,33 +125,13 @@ textarea {
   border-left: 17px solid #e2e2e2;
   z-index: 2;
   transition: border-color 0.2s ease; }
-
-.arrow-steps li:before {
-  right: auto;
-  left: 0;
-  border-left: 17px solid #fff;
-  z-index: 0; }
+  @media (max-width: 1141px) {
+    .arrow-steps li:after,
+    .arrow-steps li:before {
+      display: none; } }
 
 .arrow-steps li:first-child:before {
   border: none; }
-
-.arrow-steps li span {
-  position: relative;
-  border-radius: 100%;
-  background: white;
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  margin-left: 20px;
-  text-align: center;
-  color: black; }
-
-.arrow-steps li span:before {
-  opacity: 0;
-  content: "✔";
-  position: absolute;
-  top: -2px;
-  left: -20px; }
 
 .arrow-steps li.done span:before {
   opacity: 1;
@@ -138,9 +143,11 @@ textarea {
 .arrow-steps li.current {
   color: #fff;
   background-color: #23468c; }
-
-.arrow-steps li.current:after {
-  border-left: 17px solid #23468c; }
+  .arrow-steps li.current:after {
+    border-left: 17px solid #23468c; }
+    @media (max-width: 1141px) {
+      .arrow-steps li.current:after {
+        display: none; } }
 
 #preferred-contact-error {
   position: absolute;
