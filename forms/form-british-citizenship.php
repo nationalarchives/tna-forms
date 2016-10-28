@@ -33,7 +33,7 @@ function return_form_british_citizenship() {
 	                    <li><span>3</span> Your details</li>
 	                </ul>
 	            </div>
-	            <form action=""  id="check-for-a-certificate-of-british-citizenship" method="POST">
+	            <form action=""  id="naturalisation" method="POST">
 	                <fieldset class="form-step-1">
 	                    <legend>Certificate holder\'s details</legend>
 	                    <p class="mandatory">* mandatory field</p>
