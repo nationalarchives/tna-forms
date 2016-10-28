@@ -73,10 +73,6 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 		$data = ref_number( 'Ho', '1477476797' );
 		$this->assertEquals($data, 'TNA1477476797HO');
 	}
-	public function testDisplayRefNumber()
-	{
-		$this->assertTrue(function_exists('display_ref_number'));
-	}
 	public function testDisplayCompiledFormData()
 	{
 		$this->assertTrue(function_exists('display_compiled_form_data'));
