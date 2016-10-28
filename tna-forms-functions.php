@@ -39,25 +39,25 @@ function set_value( $name, $type = 'text', $select_value = '' ) {
 }
 
 function field_error_message( $input_name, $error_field_name, $type = 'required', $reconfirm_name = '' ) {
-	global $error_messages;
+	global $tna_error_messages;
 	$error_wrapper = '<span class="form-error form-hint">%s</span>';
-	if ( isset( $_POST[$input_name] ) && isset( $_POST['submit'] ) ) {
+	if ( isset( $_POST[$input_name] ) && isset( $_POST['submit-tna-form'] ) ) {
 		switch( $type ) {
 			case 'required': {
 				if ( trim( $_POST[$input_name] ) === '' ) {
-					return sprintf( $error_wrapper, $error_messages[$error_field_name] );
+					return sprintf( $error_wrapper, $tna_error_messages[$error_field_name] );
 				}
 				break;
 			}
 			case 'reconfirm': {
 				if ( trim( $_POST[$input_name] ) !== trim( $_POST[$reconfirm_name] ) ) {
-					return sprintf( $error_wrapper, $error_messages[$error_field_name] );
+					return sprintf( $error_wrapper, $tna_error_messages[$error_field_name] );
 				}
 				break;
 			}
 		}
-	} elseif ( !isset( $_POST[$input_name] ) && $type == 'radio' && isset( $_POST['submit'] ) ) {
-		return sprintf( $error_wrapper, $error_messages[$error_field_name] );
+	} elseif ( !isset( $_POST[$input_name] ) && $type == 'radio' && isset( $_POST['submit-tna-form'] ) ) {
+		return sprintf( $error_wrapper, $tna_error_messages[$error_field_name] );
 	}
 }
 
@@ -92,11 +92,11 @@ function display_compiled_form_data( $data ) {
 }
 
 function display_error_message( $data ) {
-	global $error_messages;
+	global $tna_error_messages;
 	$error_message = '<div class="emphasis-block error-message"><h3>Error</h3><ul>';
 	foreach ( $data as $field_name => $field_value ) {
 		if ( $field_value == false ) {
-			$error[$field_name] = $error_messages[$field_name];
+			$error[$field_name] = $tna_error_messages[$field_name];
 			$error_message .= '<li>' . $error[$field_name] . '</li>';
 		}
 	}
@@ -115,8 +115,10 @@ function confirmation_content( $id ) {
 		));
 
 	$content = '';
-	foreach( $child as $page ) {
-		$content .= apply_filters( 'the_content', $page->post_content );
+	if ( $child ) {
+		foreach( $child as $page ) {
+			$content .= apply_filters( 'the_content', $page->post_content );
+		}
 	}
 
 	return $content;

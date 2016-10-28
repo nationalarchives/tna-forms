@@ -42,20 +42,20 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	}
 	public function testFieldErrorMessageRequired()
 	{
-		global $error_messages;
-		$_POST['submit'] = 'submit';
+		global $tna_error_messages;
+		$_POST['submit-tna-form'] = 'submit';
 		$_POST['surname'] = '';
-		$error_messages['Surname'] = 'Please enter your surname';
+		$tna_error_messages['Surname'] = 'Please enter your surname';
 		$data = field_error_message( 'surname', 'Surname' );
 		$this->assertEquals($data, '<span class="form-error form-hint">Please enter your surname</span>');
 	}
 	public function testFieldErrorMessageReconfirm()
 	{
-		global $error_messages;
-		$_POST['submit'] = 'submit';
+		global $tna_error_messages;
+		$_POST['submit-tna-form'] = 'submit';
 		$_POST['email'] = 'info@domain.com';
 		$_POST['confirm-email'] = 'info@domain.net';
-		$error_messages['Confirm email'] = 'Please re-type your email address';
+		$tna_error_messages['Confirm email'] = 'Please re-type your email address';
 		$data = field_error_message( 'confirm-email', 'Confirm email', 'reconfirm', 'email' );
 		$this->assertEquals($data, '<span class="form-error form-hint">Please re-type your email address</span>');
 	}
@@ -88,9 +88,9 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	}
 	public function testDisplayErrorMessageOutput()
 	{
-		global $error_messages;
-		$error_messages['Name'] = 'Please enter your name';
-		$error_messages['Email'] = 'Please enter your email address';
+		global $tna_error_messages;
+		$tna_error_messages['Name'] = 'Please enter your name';
+		$tna_error_messages['Email'] = 'Please enter your email address';
 		$data = display_error_message( array( 'Name' => false, 'Email' => 'info@domain.com'  ) );
 		$this->assertEquals($data, '<div class="emphasis-block error-message"><h3>Error</h3><ul><li>Please enter your name</li></ul></div>');
 	}

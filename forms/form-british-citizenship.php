@@ -4,27 +4,10 @@
  *
  */
 
-// Global variables
-global $success_message,
-       $error_message,
-       $error_messages;
-$success_message    = '';
-$error_message      = '';
-$error_messages     = array(
-	'Certificate holder forename'   => 'Please enter the certificate holder’s first name',
-	'Certificate holder surname'    => 'Please enter the certificate holder’s last name',
-	'Country of birth'              => 'Please enter the certificate holder’s country of birth',
-	'Forename'                      => 'Please enter your first name',
-	'Surname'                       => 'Please enter your last name',
-	'Preferred contact'             => 'Please indicate your preferred method of contact',
-	'Email'                         => 'Please enter a valid email address',
-	'Confirm email'                 => 'Please enter your email address again'
-);
-
 function return_form_british_citizenship() {
 
-	global $success_message,
-	       $error_message;
+	global $tna_success_message,
+	       $tna_error_message;
 
 	$form = '<div class="arrow-steps clearfix">
 	                <ul>
@@ -173,15 +156,15 @@ function return_form_british_citizenship() {
 	                        <textarea id="postal_address" name="postal-address">' . set_value( 'postal-address', 'textarea' ) . '</textarea>
 	                    </div>
 	                    <div class="form-row">
-	                        <input type="submit" alt="Submit" name="submit-naturalisation" id="submit-naturalisation" value="Submit naturalisation" class="button">
+	                        <input type="submit" alt="Submit" name="submit-tna-form" id="submit-tna-form" value="Submit" class="button">
 	                    </div>
 	                </fieldset>
 	            </form>';
 
-	if ( $error_message ) {
-		return $error_message . $form;
-	} elseif ( $success_message ) {
-		return $success_message;
+	if ( $tna_error_message ) {
+		return $tna_error_message . $form;
+	} elseif ( $tna_success_message ) {
+		return $tna_success_message;
 	} else {
 		return $form;
 	}
@@ -189,12 +172,26 @@ function return_form_british_citizenship() {
 
 function process_form_british_citizenship() {
 
-	global $success_message,
-	       $error_message;
-
-	if ( !isset($_POST['submit-naturalisation']) ) {
+	if ( !isset($_POST['submit-tna-form']) ) {
 		return;
 	}
+
+	// Global variables
+	global $tna_success_message,
+	       $tna_error_message,
+	       $tna_error_messages;
+	$tna_success_message    = '';
+	$tna_error_message      = '';
+	$tna_error_messages     = array(
+		'Certificate holder forename'   => 'Please enter the certificate holder’s first name',
+		'Certificate holder surname'    => 'Please enter the certificate holder’s last name',
+		'Country of birth'              => 'Please enter the certificate holder’s country of birth',
+		'Forename'                      => 'Please enter your first name',
+		'Surname'                       => 'Please enter your last name',
+		'Preferred contact'             => 'Please indicate your preferred method of contact',
+		'Email'                         => 'Please enter a valid email address',
+		'Confirm email'                 => 'Please enter your email address again'
+	);
 
 	// Get the form elements and store them into an array
 	$form_fields = array(
@@ -223,7 +220,7 @@ function process_form_british_citizenship() {
 
 		// Oops! Error!
 
-		$error_message = display_error_message( $form_fields );
+		$tna_error_message = display_error_message( $form_fields );
 
 	} else {
 
@@ -232,12 +229,12 @@ function process_form_british_citizenship() {
 		$page_id = url_to_postid( 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] );
 		$ref_number = ref_number( $form_fields['Surname'], date_timestamp_get( date_create() ) );
 
-		$success_message = success_message_header( $ref_number );
-		$success_message .= confirmation_content( $page_id );
-		$success_message .= display_compiled_form_data( $form_fields );
+		$tna_success_message = success_message_header( $ref_number );
+		$tna_success_message .= confirmation_content( $page_id );
+		$tna_success_message .= display_compiled_form_data( $form_fields );
 
 		// Send email to user
-		send_form_via_email( $form_fields['Email'], $ref_number, 'certificate of British citizenship request',  $success_message );
+		send_form_via_email( $form_fields['Email'], $ref_number, 'certificate of British citizenship request',  $tna_success_message );
 
 		$email_to_us_message = success_message_header( $ref_number );
 		$email_to_us_message .= display_compiled_form_data( $form_fields );
