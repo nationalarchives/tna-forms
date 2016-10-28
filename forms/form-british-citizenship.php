@@ -17,6 +17,7 @@ $error_messages     = array(
 	'Forename'                      => 'Please enter your first name',
 	'Surname'                       => 'Please enter your last name',
 	'Preferred contact'             => 'Please indicate your preferred method of contact',
+	'Email'                         => 'Please enter a valid email address',
 	'Confirm email'                 => 'Please enter your email address again'
 );
 
@@ -159,6 +160,7 @@ function return_form_british_citizenship() {
 	                        <div class="form-row">
 	                            <label for="email">Email address</label>
 	                            <input type="email" id="email" name="email" ' . set_value( 'email' ) . '>
+	                            ' . field_error_message( 'email', 'Email' ) . '
 	                        </div>
 	                        <div class="form-row">
 	                            <label for="confirm_email">Please re-type your email address</label>
@@ -179,7 +181,7 @@ function return_form_british_citizenship() {
 	if ( $error_message ) {
 		return $error_message . $form;
 	} elseif ( $success_message ) {
-		return display_confirmation_page( confirmation_content(), $success_message );
+		return $success_message;
 	} else {
 		return $form;
 	}
@@ -212,7 +214,7 @@ function process_form_british_citizenship() {
 		'Forename'                      => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'forename') ),
 		'Surname'                       => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'surname') ),
 		'Preferred contact'             => ( isset( $_POST['preferred-contact'] ) ) ? is_checkbox_radio_valid( filter_input( INPUT_POST, 'preferred-contact') ) : false,
-		'Email'                         => is_text_field_valid( filter_input( INPUT_POST, 'email') ),
+		'Email'                         => is_email_field_valid( filter_input( INPUT_POST, 'email') ),
 		'Confirm email'                 => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 		'Postal address'                => is_textarea_field_valid( filter_input( INPUT_POST, 'postal-address') )
 	);
@@ -227,23 +229,22 @@ function process_form_british_citizenship() {
 
 		// Yay! Success!
 
+		$page_id = url_to_postid( 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] );
 		$ref_number = ref_number( $form_fields['Surname'], date_timestamp_get( date_create() ) );
 
-		$success_message = success_message_header_wrapper( $ref_number );
+		$success_message = success_message_header( $ref_number );
+		$success_message .= confirmation_content( $page_id );
 		$success_message .= display_compiled_form_data( $form_fields );
 
-		// Send email to these email addresses
-		$to = array( get_option( 'admin_email' ), $form_fields['Email'] );
+		// Send email to user
+		send_form_via_email( $form_fields['Email'], $ref_number, 'certificate of British citizenship request',  $success_message );
 
-		// Email Subject
-		$subject = $ref_number . ' certificate of British citizenship request';
+		$email_to_us_message = success_message_header( $ref_number );
+		$email_to_us_message .= display_compiled_form_data( $form_fields );
 
-		// Email message
-		$email_message = $success_message;
+		// Send email to us
+		send_form_via_email( get_option( 'admin_email' ), $ref_number, 'certificate of British citizenship request',  $email_to_us_message );
 
-		if ( $form_fields['Email'] ) {
-			wp_mail( $to, $subject, $email_message );
-		}
 	}
 }
 add_action('init', 'process_form_british_citizenship');

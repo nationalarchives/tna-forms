@@ -71,8 +71,8 @@ function ref_number( $name, $time_stamp ) {
 	return $prefix . $time_stamp . $suffix;
 }
 
-function success_message_header_wrapper( $number ) {
-	$wrapper = '<div class="reference-number emphasis-block success-message"><span>Your reference number:</span><h2>%s</h2></div>';
+function success_message_header( $number ) {
+	$wrapper = '<div class="reference-number emphasis-block success-message"><span>Reference number:</span><h2>%s</h2></div>';
 
 	return sprintf( $wrapper, $number );
 }
@@ -105,10 +105,10 @@ function display_error_message( $data ) {
 	return $error_message;
 }
 
-function confirmation_content() {
-	global $post;
+function confirmation_content( $id ) {
+
 	$child = get_pages(
-		array( 'child_of' => $post->ID,
+		array( 'child_of' => $id,
 		       'number' => '1',
 		       'sort_column' => 'post_date',
 		       'sort_order' => 'desc'
@@ -116,18 +116,21 @@ function confirmation_content() {
 
 	$content = '';
 	foreach( $child as $page ) {
-
 		$content .= apply_filters( 'the_content', $page->post_content );
-
 	}
 
 	return $content;
 }
 
-function display_confirmation_page( $content, $success ) {
-	$page = $content . $success;
+function send_form_via_email( $email, $ref_number, $subject, $content ) {
+	if ( is_email( $email ) ) {
 
-	return $page;
+		// Email Subject
+		$email_subject = $ref_number . ' ' . $subject;
+
+		// Email message
+		$email_message = $content;
+
+		wp_mail( $email, $email_subject, $email_message );
+	}
 }
-
-
