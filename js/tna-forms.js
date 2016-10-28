@@ -12,9 +12,10 @@
  * 4. If JS is enabled show continue buttons
  * 5. Form validation
  *      5.1 Is checking for exact length on dob fields
- *      5.2 If form is valid do following things
- *          5.2.1 If form step 1 is visible
- *          5.2.3 If submit button is click check if Email or Post methods were selected
+ *      5.2 Is checking for white space at the beginning of fields
+ *      5.3 If form is valid do following things
+ *          5.3.1 If form step 1 is visible
+ *          5.3.3 If submit button is click check if Email or Post methods were selected
  * 6. Show / hide Email / address
  * 7. Back button on step two
  * 8. Back button on step three
@@ -67,6 +68,14 @@ $(document).ready(function(){
                     return this.optional(element) || value.length === parameter;
                 });
 
+            /** White space method
+             * 5.2 Is checking for white space at the beginning of fields
+             * */
+
+            $.validator.addMethod("noSpace", function(value, element) {
+                // allow any non-whitespace characters as the host part
+                return this.optional( element ) || /(?=\S)/.test( value );
+            }, 'Please complete the field'); // Global message if there's only white space for required fields
 
             form.validate({
                 errorElement: 'span',
@@ -86,6 +95,7 @@ $(document).ready(function(){
                     "certificate-day":{
                         digits:true,
                         exactLength:2
+
                     },
                     "certificate-month":{
                         digits:true,
@@ -96,13 +106,16 @@ $(document).ready(function(){
                         exactLength:4
                     },
                     forename: {
-                        required: true
+                        required: true,
+                        noSpace: true
                     },
                     surname: {
-                        required: true
+                        required: true,
+                        noSpace:true
                     },
                     preferred_contact: {
-                        required:true
+                        required:true,
+                        noSpace: true
                     },
                     email: "required",
                     "confirm-email": {
@@ -110,18 +123,22 @@ $(document).ready(function(){
                     },
 
                     "postal-address":{
-                        required:true
+                        required:true,
+                        noSpace: true
                     },
 
                     /* Form Step Two */
                     "certificate-forename":{
-                        required:true
+                        required:true,
+                        noSpace:true
                     },
                     "certificate-surname":{
-                        required:true
+                        required:true,
+                        noSpace: true
                     },
                     "certificate-birth-country":{
-                        required:true
+                        required:true,
+                        noSpace: true
                     },
                     /* Form Step Three */
                     contact_email:{
@@ -163,7 +180,7 @@ $(document).ready(function(){
                         required:"Please enter your email address",
                         equalTo: "Please enter your email address again"
                     },
-                    "postal-addresss":{
+                    "postal-address":{
                         required:"Please enter your postal address"
                     },
                     /* Form Step Two */
@@ -184,13 +201,13 @@ $(document).ready(function(){
             });
 
             /**
-             * 5.2 If form is valid do following things
+             * 5.3 If form is valid do following things
              * */
 
             if (form.valid() === true){
 
                 /**
-                 * 5.2.1 If form step 1 is visible
+                 * 5.3.1 If form step 1 is visible
                  * */
                 if ($(formStepOne).is(":visible")){
                     current_fs = $(formStepOne);
@@ -203,7 +220,7 @@ $(document).ready(function(){
 
                 }
                 /**
-                 * 5.2.2 If form step 2 is visible
+                 * 5.3.2 If form step 2 is visible
                  * */
                 else if($(formStepTwo).is(":visible")) {
                     current_fs = $(formStepTwo);
