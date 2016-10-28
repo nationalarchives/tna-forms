@@ -173,7 +173,7 @@ function return_form_british_citizenship() {
 	                        <textarea id="postal_address" name="postal-address">' . set_value( 'postal-address', 'textarea' ) . '</textarea>
 	                    </div>
 	                    <div class="form-row">
-	                        <input type="submit" alt="Submit" name="submit" id="send-message" value="Submit" class="button">
+	                        <input type="submit" alt="Submit" name="submit-naturalisation" id="submit-naturalisation" value="Submit naturalisation" class="button">
 	                    </div>
 	                </fieldset>
 	            </form>';
@@ -192,7 +192,7 @@ function process_form_british_citizenship() {
 	global $success_message,
 	       $error_message;
 
-	if ( !isset($_POST['submit']) ) {
+	if ( !isset($_POST['submit-naturalisation']) ) {
 		return;
 	}
 
