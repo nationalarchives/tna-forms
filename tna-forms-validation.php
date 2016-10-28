@@ -42,7 +42,9 @@ function is_mandatory_email_field_valid( $data ) {
 	}
 }
 function is_email_field_valid( $data ) {
-	if ( !is_email( $data ) ) {
+	if ( trim( $data ) === '' ) {
+		return '-';
+	} elseif ( !is_email( $data ) ) {
 		return false;
 	} else {
 		$sanitize_data = sanitize_email( $data );
