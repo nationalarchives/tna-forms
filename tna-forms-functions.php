@@ -71,11 +71,10 @@ function ref_number( $name, $time_stamp ) {
 	return $prefix . $time_stamp . $suffix;
 }
 
-function display_ref_number( $suffix ) {
-	$ref_number_wrapper = '<div class="reference-number emphasis-block success-message"><p>Thank you!</p><p>Your reference number:</p><h2>%s</h2></div>';
-	$ref_number = ref_number( $suffix, date_timestamp_get( date_create() ) );
+function success_message_header_wrapper( $number ) {
+	$wrapper = '<div class="reference-number emphasis-block success-message"><span>Your reference number:</span><h2>%s</h2></div>';
 
-	return sprintf( $ref_number_wrapper, $ref_number );
+	return sprintf( $wrapper, $number );
 }
 
 function display_compiled_form_data( $data ) {
@@ -106,7 +105,7 @@ function display_error_message( $data ) {
 	return $error_message;
 }
 
-function display_confirmation_content() {
+function confirmation_content() {
 	global $post;
 	$child = get_pages(
 		array( 'child_of' => $post->ID,
@@ -123,6 +122,12 @@ function display_confirmation_content() {
 	}
 
 	return $content;
+}
+
+function display_confirmation_page( $content, $success ) {
+	$page = $content . $success;
+
+	return $page;
 }
 
 

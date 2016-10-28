@@ -23,8 +23,7 @@ $error_messages     = array(
 function return_form_british_citizenship() {
 
 	global $success_message,
-	       $error_message,
-	       $error_messages;
+	       $error_message;
 
 	$form = '<div class="arrow-steps clearfix">
 	                <ul>
@@ -33,7 +32,7 @@ function return_form_british_citizenship() {
 	                    <li><span>3</span> Your details</li>
 	                </ul>
 	            </div>
-	            <form action=""  id="naturalisation" method="POST">
+	            <form action=""  id="check-for-a-certificate-of-british-citizenship" method="POST">
 	                <fieldset class="form-step-1">
 	                    <legend>Certificate holder\'s details</legend>
 	                    <p class="mandatory">* mandatory field</p>
@@ -180,7 +179,7 @@ function return_form_british_citizenship() {
 	if ( $error_message ) {
 		return $error_message . $form;
 	} elseif ( $success_message ) {
-		return $success_message;
+		return display_confirmation_page( confirmation_content(), $success_message );
 	} else {
 		return $form;
 	}
@@ -228,16 +227,16 @@ function process_form_british_citizenship() {
 
 		// Yay! Success!
 
-		$ref_number = display_ref_number( $form_fields['Surname'] );
+		$ref_number = ref_number( $form_fields['Surname'], date_timestamp_get( date_create() ) );
 
-		$success_message = $ref_number;
+		$success_message = success_message_header_wrapper( $ref_number );
 		$success_message .= display_compiled_form_data( $form_fields );
 
 		// Send email to these email addresses
 		$to = array( get_option( 'admin_email' ), $form_fields['Email'] );
 
 		// Email Subject
-		$subject = ref_number( $form_fields['Surname'], date_timestamp_get( date_create() ) ) . ' certificate of British citizenship request';
+		$subject = $ref_number . ' certificate of British citizenship request';
 
 		// Email message
 		$email_message = $success_message;
