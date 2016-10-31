@@ -226,11 +226,9 @@ function process_form_british_citizenship() {
 
 		// Yay! Success!
 
-		$page_id = url_to_postid( 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] );
 		$ref_number = ref_number( $form_fields['Surname'], date_timestamp_get( date_create() ) );
 
 		$tna_success_message = success_message_header( $ref_number );
-		$tna_success_message .= confirmation_content( $page_id );
 		$tna_success_message .= display_compiled_form_data( $form_fields );
 
 		// Send email to user
