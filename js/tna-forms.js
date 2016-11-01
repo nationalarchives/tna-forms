@@ -46,7 +46,7 @@ $(document).ready(function(){
         $(addressWrapper).hide();
         $(formStepTwo).hide();
         $(formStepThree).hide();
-
+        
         /**
          * 4. If JS is enabled show continue buttons and progress bar
          * */

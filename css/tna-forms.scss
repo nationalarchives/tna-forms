@@ -172,3 +172,37 @@ textarea {
   margin-top: -25px;
   margin-left: -15px;
 }
+
+.form-data {
+  ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    li {
+      box-sizing: border-box;
+      list-style-image:none;
+      padding:10px 5px;
+      border-bottom:1px solid #EFEFEF;
+    }
+  }
+}
+.print_button {
+  background:#008484;
+  color:#ffffff;
+  border:none;
+  padding: .5em;
+  min-width: 24px;
+  &:hover {
+    background: #FCE45C;
+    color: #000;
+    text-decoration: underline;
+  }
+}
+
+@media print {
+  .breadcrumbs,
+  .print_button,
+  .cookieNotice {
+    display:none;
+  }
+}
