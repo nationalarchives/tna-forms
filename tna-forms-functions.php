@@ -71,10 +71,10 @@ function ref_number( $name, $time_stamp ) {
 	return $prefix . $time_stamp . $suffix;
 }
 
-function success_message_header( $number ) {
-	$wrapper = '<div class="reference-number emphasis-block success-message"><span>Reference number:</span><h2>%s</h2></div>';
+function success_message_header( $content = '', $number ) {
+	$wrapper = '<div class="reference-number emphasis-block success-message"><span>%s</span><h2>%s</h2></div>';
 
-	return sprintf( $wrapper, $number );
+	return sprintf( $wrapper, $content, $number );
 }
 
 function print_page() {

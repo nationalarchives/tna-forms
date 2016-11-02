@@ -229,7 +229,7 @@ function process_form_british_citizenship() {
 			global $post;
 			$ref_number = ref_number( $form_fields['Surname'], date_timestamp_get( date_create() ) );
 
-			$tna_success_message = success_message_header( $ref_number );
+			$tna_success_message = success_message_header( 'Your reference number:', $ref_number );
 			$tna_success_message .= confirmation_content( $post->ID );
 			$tna_success_message .= display_compiled_form_data( $form_fields );
 
@@ -237,7 +237,7 @@ function process_form_british_citizenship() {
 			send_form_via_email( $form_fields['Email'], $ref_number, 'certificate of British citizenship request',
 				$tna_success_message );
 
-			$email_to_us_message = success_message_header( $ref_number );
+			$email_to_us_message = success_message_header( 'Reference number:', $ref_number );
 			$email_to_us_message .= display_compiled_form_data( $form_fields );
 
 			// Send email to us
