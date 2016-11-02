@@ -171,75 +171,80 @@ function return_form_british_citizenship() {
 }
 
 function process_form_british_citizenship() {
+	if ( ! is_admin() ) {
+		if ( ! isset( $_POST['submit-tna-form'] ) ) {
+			return;
+		}
 
-	if ( !isset($_POST['submit-tna-form']) ) {
-		return;
-	}
+		// Global variables
+		global $tna_success_message,
+		       $tna_error_message,
+		       $tna_error_messages;
+		$tna_success_message = '';
+		$tna_error_message   = '';
+		$tna_error_messages  = array(
+			'Certificate holder forename' => 'Please enter the certificate holder’s first name',
+			'Certificate holder surname'  => 'Please enter the certificate holder’s last name',
+			'Country of birth'            => 'Please enter the certificate holder’s country of birth',
+			'Forename'                    => 'Please enter your first name',
+			'Surname'                     => 'Please enter your last name',
+			'Preferred contact'           => 'Please indicate your preferred method of contact',
+			'Email'                       => 'Please enter a valid email address',
+			'Confirm email'               => 'Please enter your email address again'
+		);
 
-	// Global variables
-	global $tna_success_message,
-	       $tna_error_message,
-	       $tna_error_messages;
-	$tna_success_message    = '';
-	$tna_error_message      = '';
-	$tna_error_messages     = array(
-		'Certificate holder forename'   => 'Please enter the certificate holder’s first name',
-		'Certificate holder surname'    => 'Please enter the certificate holder’s last name',
-		'Country of birth'              => 'Please enter the certificate holder’s country of birth',
-		'Forename'                      => 'Please enter your first name',
-		'Surname'                       => 'Please enter your last name',
-		'Preferred contact'             => 'Please indicate your preferred method of contact',
-		'Email'                         => 'Please enter a valid email address',
-		'Confirm email'                 => 'Please enter your email address again'
-	);
+		// Get the form elements and store them into an array
+		$form_fields = array(
+			'Certificate holder forename' => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-forename' ) ),
+			'Certificate holder surname'  => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-surname' ) ),
+			'Alternative surname'         => is_text_field_valid( filter_input( INPUT_POST, 'certificate-surname-alt' ) ),
+			'Country of birth'            => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-birth-country' ) ),
+			'DOB'                         => is_text_field_valid( filter_input( INPUT_POST, 'certificate-day' ) ) . '-' .
+			                                 is_text_field_valid( filter_input( INPUT_POST, 'certificate-month' ) ) . '-' .
+			                                 is_text_field_valid( filter_input( INPUT_POST, 'certificate-year' ) ),
+			'Approx DOB'                  => ( isset( $_POST['certificate-dob-approx'] ) ) ? is_checkbox_radio_valid( filter_input( INPUT_POST, 'certificate-dob-approx' ) ) : 'No',
+			'Certificate holder address'  => is_textarea_field_valid( filter_input( INPUT_POST, 'certificate-postal-address' ) ),
+			'Country of issue'            => is_text_field_valid( filter_input( INPUT_POST, 'certificate-issued-country' ) ),
+			'Certificate number'          => is_text_field_valid( filter_input( INPUT_POST, 'certificate-number' ) ),
+			'Issued from'                 => is_text_field_valid( filter_input( INPUT_POST, 'certificate-year-issued-from' ) ),
+			'Issued to'                   => is_text_field_valid( filter_input( INPUT_POST, 'certificate-year-issued-to' ) ),
+			'Forename'                    => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'forename' ) ),
+			'Surname'                     => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'surname' ) ),
+			'Preferred contact'           => ( isset( $_POST['preferred-contact'] ) ) ? is_checkbox_radio_valid( filter_input( INPUT_POST, 'preferred-contact' ) ) : false,
+			'Email'                       => is_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
+			'Confirm email'               => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
+			'Postal address'              => is_textarea_field_valid( filter_input( INPUT_POST, 'postal-address' ) )
+		);
 
-	// Get the form elements and store them into an array
-	$form_fields = array(
-		'Certificate holder forename'   => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-forename') ),
-		'Certificate holder surname'    => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-surname') ),
-		'Alternative surname'           => is_text_field_valid( filter_input( INPUT_POST, 'certificate-surname-alt') ),
-		'Country of birth'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-birth-country') ),
-		'DOB'                           => is_text_field_valid( filter_input( INPUT_POST, 'certificate-day') ) . '-' .
-		                                   is_text_field_valid( filter_input( INPUT_POST, 'certificate-month') ) . '-' .
-		                                   is_text_field_valid( filter_input( INPUT_POST, 'certificate-year') ),
-		'Approx DOB'                    => ( isset( $_POST['certificate-dob-approx'] ) ) ? is_checkbox_radio_valid( filter_input( INPUT_POST, 'certificate-dob-approx') ) : 'No',
-		'Certificate holder address'    => is_textarea_field_valid( filter_input( INPUT_POST, 'certificate-postal-address') ),
-		'Country of issue'              => is_text_field_valid( filter_input( INPUT_POST, 'certificate-issued-country') ),
-		'Certificate number'            => is_text_field_valid( filter_input( INPUT_POST, 'certificate-number') ),
-		'Issued from'                   => is_text_field_valid( filter_input( INPUT_POST, 'certificate-year-issued-from') ),
-		'Issued to'                     => is_text_field_valid( filter_input( INPUT_POST, 'certificate-year-issued-to') ),
-		'Forename'                      => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'forename') ),
-		'Surname'                       => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'surname') ),
-		'Preferred contact'             => ( isset( $_POST['preferred-contact'] ) ) ? is_checkbox_radio_valid( filter_input( INPUT_POST, 'preferred-contact') ) : false,
-		'Email'                         => is_email_field_valid( filter_input( INPUT_POST, 'email') ),
-		'Confirm email'                 => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
-		'Postal address'                => is_textarea_field_valid( filter_input( INPUT_POST, 'postal-address') )
-	);
+		if ( in_array( false, $form_fields ) ) {
 
-	if ( in_array( false, $form_fields ) ) {
+			// Oops! Error!
 
-		// Oops! Error!
+			$tna_error_message = display_error_message( $form_fields );
 
-		$tna_error_message = display_error_message( $form_fields );
+		} else {
 
-	} else {
+			// Yay! Success!
 
-		// Yay! Success!
+			global $post;
+			$ref_number = ref_number( $form_fields['Surname'], date_timestamp_get( date_create() ) );
 
-		$ref_number = ref_number( $form_fields['Surname'], date_timestamp_get( date_create() ) );
+			$tna_success_message = success_message_header( $ref_number );
+			$tna_success_message .= confirmation_content( $post->ID );
+			$tna_success_message .= display_compiled_form_data( $form_fields );
 
-		$tna_success_message = success_message_header( $ref_number );
-		$tna_success_message .= display_compiled_form_data( $form_fields );
+			// Send email to user
+			send_form_via_email( $form_fields['Email'], $ref_number, 'certificate of British citizenship request',
+				$tna_success_message );
 
-		// Send email to user
-		send_form_via_email( $form_fields['Email'], $ref_number, 'certificate of British citizenship request',  $tna_success_message );
+			$email_to_us_message = success_message_header( $ref_number );
+			$email_to_us_message .= display_compiled_form_data( $form_fields );
 
-		$email_to_us_message = success_message_header( $ref_number );
-		$email_to_us_message .= display_compiled_form_data( $form_fields );
+			// Send email to us
+			send_form_via_email( get_option( 'admin_email' ), $ref_number, 'certificate of British citizenship request',
+				$email_to_us_message );
 
-		// Send email to us
-		send_form_via_email( get_option( 'admin_email' ), $ref_number, 'certificate of British citizenship request',  $email_to_us_message );
-
+		}
 	}
 }
-add_action('init', 'process_form_british_citizenship');
+add_action('wp', 'process_form_british_citizenship');
