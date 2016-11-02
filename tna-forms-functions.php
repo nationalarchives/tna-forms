@@ -72,11 +72,15 @@ function ref_number( $name, $time_stamp ) {
 }
 
 function success_message_header( $number ) {
-	$wrapper = '<input class="print_button" type="button"
-  onClick="window.print()"
-  value="Print This Page"/><div class="reference-number emphasis-block success-message"><span>Reference number:</span><h2>%s</h2></div>';
+	$wrapper = '<div class="reference-number emphasis-block success-message"><span>Reference number:</span><h2>%s</h2></div>';
 
 	return sprintf( $wrapper, $number );
+}
+
+function print_page() {
+	$print = '<input class="print_button" type="button" onClick="window.print()" value="Print this page"/>';
+
+	return $print;
 }
 
 function display_compiled_form_data( $data ) {

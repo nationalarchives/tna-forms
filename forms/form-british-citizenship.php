@@ -164,7 +164,7 @@ function return_form_british_citizenship() {
 	if ( $tna_error_message ) {
 		return $tna_error_message . $form;
 	} elseif ( $tna_success_message ) {
-		return $tna_success_message;
+		return $tna_success_message . print_page();
 	} else {
 		return $form;
 	}
