@@ -139,6 +139,9 @@ function send_form_via_email( $email, $ref_number, $subject, $content ) {
 		// Email message
 		$email_message = $content;
 
-		wp_mail( $email, $email_subject, $email_message );
+		// Email header
+		$email_headers = 'From: No reply <no-reply@nationalarchives.gov.uk>';
+
+		wp_mail( $email, $email_subject, $email_message, $email_headers );
 	}
 }
