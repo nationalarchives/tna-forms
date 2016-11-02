@@ -193,6 +193,9 @@ textarea {
   border:none;
   padding: .5em;
   min-width: 24px;
+  margin-top:1em;
+  float:right;
+  
   &:hover {
     background: #FCE45C;
     color: #000;
