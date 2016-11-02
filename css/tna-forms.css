@@ -161,8 +161,9 @@ textarea {
   .form-data ul li {
     box-sizing: border-box;
     list-style-image: none;
-    padding: 10px 5px;
-    border-bottom: 1px solid #EFEFEF; }
+    border-bottom: 1px solid #EFEFEF;
+    padding: 5px 0 5px 0;
+    margin: 0 0 0; }
 
 .print_button {
   background: #008484;
