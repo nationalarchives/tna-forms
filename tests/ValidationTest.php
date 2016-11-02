@@ -58,4 +58,14 @@ class ValidationTest extends \PHPUnit_Framework_TestCase {
 		$data = does_fields_match('info@domain.com', 'info@domain.com');
 		$this->assertTrue( $data );
 	}
+
+	public function testMandatoryEmailFieldIsValidFalse() {
+		$data = is_mandatory_email_field_valid('');
+		$this->assertFalse($data);
+	}
+	
+	public function testIsEmailFieldValidLeftEmpty() {
+		$data = is_email_field_valid('');
+		$this->assertEquals($data, '-');
+	}
 }
