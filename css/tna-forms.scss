@@ -200,6 +200,12 @@ textarea {
   }
 }
 
+.reference-number {
+  h2 {
+    margin:0;
+  }
+}
+
 @media print {
   .breadcrumbs,
   .print_button,
