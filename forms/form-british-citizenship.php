@@ -234,14 +234,14 @@ function process_form_british_citizenship() {
 			$tna_success_message .= display_compiled_form_data( $form_fields );
 
 			// Send email to user
-			send_form_via_email( $form_fields['Email'], $ref_number, 'certificate of British citizenship request',
+			send_form_via_email( $form_fields['Email'], $ref_number, 'Check for a certificate of British citizenship - Ref:',
 				$tna_success_message );
 
 			$email_to_us_message = success_message_header( 'Reference number:', $ref_number );
 			$email_to_us_message .= display_compiled_form_data( $form_fields );
 
 			// Send email to us
-			send_form_via_email( get_option( 'admin_email' ), $ref_number, 'certificate of British citizenship request',
+			send_form_via_email( get_option( 'admin_email' ), $ref_number, 'Certificate of British citizenship request - Ref:',
 				$email_to_us_message );
 
 		}
