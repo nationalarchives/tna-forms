@@ -134,7 +134,7 @@ function send_form_via_email( $email, $ref_number, $subject, $content ) {
 	if ( is_email( $email ) ) {
 
 		// Email Subject
-		$email_subject = $ref_number . ' ' . $subject;
+		$email_subject = $subject . ' ' . $ref_number;
 
 		// Email message
 		$email_message = $content;
