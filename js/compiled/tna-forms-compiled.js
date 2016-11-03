@@ -120,10 +120,21 @@ $(document).ready(function(){
              * 5.2 Is checking for white space at the beginning of fields
              * */
 
-            $.validator.addMethod("noSpace", function(value, element) {
+            $.validator.addMethod("noSpace",
+                function(value, element) {
                 // allow any non-whitespace characters as the host part
                 return this.optional( element ) || /(?=\S)/.test( value );
             }, 'Please complete the field'); // Global message if there's only white space for required fields
+
+
+            /** Advance email validation method
+             * */
+            $.validator.addMethod("advEmail",
+                function(value, element) {
+                    return this.optional( element ) || /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value);
+                },
+                "Please insert a valid email address"
+            );
 
             form.validate({
                 errorElement: 'span',
@@ -165,7 +176,11 @@ $(document).ready(function(){
                         required:true,
                         noSpace: true
                     },
-                    email: "required",
+                    email: {
+                        required: true,
+                        email:true,
+                        advEmail:true
+                    },
                     "confirm-email": {
                         equalTo: "#email"
                     },
