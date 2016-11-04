@@ -6,9 +6,12 @@
 
 function return_form_british_citizenship() {
 
+	// Global variables to determine if the form submission
+	// is successful or comes back with errors
 	global $tna_success_message,
 	       $tna_error_message;
 
+	// HTML form string (I know, it's long!)
 	$form = '<div class="arrow-steps clearfix">
 	                <ul>
 	                    <li class="current"><span>1</span> Certificate holder\'s details</li>
@@ -161,17 +164,29 @@ function return_form_british_citizenship() {
 	                </fieldset>
 	            </form>';
 
+	// If the form submission comes with errors give us back
+	// the form populated with form data and error messages
 	if ( $tna_error_message ) {
 		return $tna_error_message . $form;
-	} elseif ( $tna_success_message ) {
+	}
+
+	// If the form is successful give us the confirmation content
+	elseif ( $tna_success_message ) {
 		return $tna_success_message . print_page();
-	} else {
+	}
+
+	// If there no form submission, hence the user has
+	// accessed the page for the first time, give us an empty form
+	else {
 		return $form;
 	}
 }
 
 function process_form_british_citizenship() {
 	if ( ! is_admin() ) {
+
+		// The processing happens at form submission.
+		// If no form is submitted we stop here.
 		if ( ! isset( $_POST['submit-tna-form'] ) ) {
 			return;
 		}
@@ -180,8 +195,13 @@ function process_form_british_citizenship() {
 		global $tna_success_message,
 		       $tna_error_message,
 		       $tna_error_messages;
+
+		// Setting global variables
 		$tna_success_message = '';
 		$tna_error_message   = '';
+
+		// Error messages for individual form fields stored into an array
+		// IMPORTANT: $tna_error_messages array keys must match exactly the $form_fields array keys
 		$tna_error_messages  = array(
 			'Certificate holder forename' => 'Please enter the certificate holder’s first name',
 			'Certificate holder surname'  => 'Please enter the certificate holder’s last name',
@@ -194,6 +214,7 @@ function process_form_british_citizenship() {
 		);
 
 		// Get the form elements and store them into an array
+		// IMPORTANT: $form_fields array keys must match exactly the $tna_error_messages array keys
 		$form_fields = array(
 			'Certificate holder forename' => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-forename' ) ),
 			'Certificate holder surname'  => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-surname' ) ),
@@ -216,10 +237,12 @@ function process_form_british_citizenship() {
 			'Postal address'              => is_textarea_field_valid( filter_input( INPUT_POST, 'postal-address' ) )
 		);
 
+		// If any value inside the array is false then there is an error
 		if ( in_array( false, $form_fields ) ) {
 
 			// Oops! Error!
 
+			// Store error messages into the global variable
 			$tna_error_message = display_error_message( $form_fields );
 
 		} else {
@@ -227,27 +250,31 @@ function process_form_british_citizenship() {
 			// Yay! Success!
 
 			global $post;
+			// Generate reference number based on user's surname and timestamp
 			$ref_number = ref_number( $form_fields['Surname'], date_timestamp_get( date_create() ) );
 
+			// Store confirmation content into the global variable
 			$tna_success_message = success_message_header( 'Your reference number:', $ref_number );
 			$tna_success_message .= confirmation_content( $post->ID );
 			$tna_success_message .= '<p>If you provided your email address you will shortly receive an email confirming your application – please do not reply to this email</p>';
 			$tna_success_message .= '<h3>Your application details</h3>';
 			$tna_success_message .= display_compiled_form_data( $form_fields );
 
-			// Send email to user
+			// Store email content to user into a variable
 			$email_to_user = success_message_header( 'Your reference number:', $ref_number );
 			$email_to_user .= confirmation_content( $post->ID );
 			$email_to_user .= '<h3>Your application details</h3>';
 			$email_to_user .= display_compiled_form_data( $form_fields );
 
+			// Send email to user
 			send_form_via_email( $form_fields['Email'], $ref_number, 'Check for a certificate of British citizenship - Ref:',
 				$email_to_user );
 
-			// Send email to us
+			// Store email content to TNA into a variable
 			$email_to_tna = success_message_header( 'Reference number:', $ref_number );
 			$email_to_tna .= display_compiled_form_data( $form_fields );
 
+			// Send email to TNA
 			send_form_via_email( get_option( 'admin_email' ), $ref_number, 'Certificate of British citizenship request - Ref:',
 				$email_to_tna );
 
