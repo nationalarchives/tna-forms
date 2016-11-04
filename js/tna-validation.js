@@ -39,4 +39,4 @@
         $submit.prop('disabled', !$.isEmail($email.val()));
     };
 
-}(jQuery));
+}(jQuery))

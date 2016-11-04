@@ -9,7 +9,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    'tna-forms.css': 'css/tna-forms.scss'
+                    'css/tna-forms.css': 'css/tna-forms.scss'
                 }
             }
         },
@@ -31,8 +31,8 @@ module.exports = function (grunt) {
                 separator: ';'
             },
             dist: {
-                src: ['js/tna-validation.js', 'js/tna-call-plugin.js'],
-                dest: 'js/compiled/tna-forms.js'
+                src: ['js/tna-validation.js', 'js/tna-call-plugin.js', 'js/tna-forms.js'],
+                dest: 'js/compiled/tna-forms-compiled.js'
             }
         },
         uglify: {
@@ -41,7 +41,7 @@ module.exports = function (grunt) {
             },
             my_target: {
                 files: {
-                    'js/compiled/tna-forms.min.js': ['js/compiled/tna-forms.js']
+                    'js/compiled/tna-forms-compiled.min.js': ['js/compiled/tna-forms-compiled.js']
                 }
             }
         }
