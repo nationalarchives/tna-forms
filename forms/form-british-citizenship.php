@@ -36,9 +36,8 @@ function return_form_british_citizenship() {
 	                        <p class="form-hint">For example: married or maiden names</p>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="certificate_birth_country">Country of birth *</label>
+	                        <label for="certificate_birth_country">Country of birth</label>
 	                        <input type="text" id="certificate_birth_country" name="certificate-birth-country" aria-required="true" required ' . set_value( 'certificate-birth-country' ) . '>
-	                        ' . field_error_message( 'certificate-birth-country', 'Country of birth' ) . '
 	                    </div>
 	                    <p>Date of birth</p>
 	                    <div class="form-row">
@@ -93,6 +92,39 @@ function return_form_british_citizenship() {
 	                            <option value="1951" ' . set_value( 'certificate-year-issued-from', 'select', '1951' ) . '>1951</option>
 	                            <option value="1952" ' . set_value( 'certificate-year-issued-from', 'select', '1952' ) . '>1952</option>
 	                            <option value="1953" ' . set_value( 'certificate-year-issued-from', 'select', '1953' ) . '>1953</option>
+	                            <option value="1954" ' . set_value( 'certificate-year-issued-from', 'select', '1954' ) . '>1954</option>
+	                            <option value="1955" ' . set_value( 'certificate-year-issued-from', 'select', '1955' ) . '>1955</option>
+	                            <option value="1956" ' . set_value( 'certificate-year-issued-from', 'select', '1956' ) . '>1956</option>
+	                            <option value="1957" ' . set_value( 'certificate-year-issued-from', 'select', '1957' ) . '>1957</option>
+	                            <option value="1958" ' . set_value( 'certificate-year-issued-from', 'select', '1958' ) . '>1958</option>
+	                            <option value="1959" ' . set_value( 'certificate-year-issued-from', 'select', '1959' ) . '>1959</option>
+	                            <option value="1960" ' . set_value( 'certificate-year-issued-from', 'select', '1960' ) . '>1960</option>
+	                            <option value="1961" ' . set_value( 'certificate-year-issued-from', 'select', '1961' ) . '>1961</option>
+	                            <option value="1962" ' . set_value( 'certificate-year-issued-from', 'select', '1962' ) . '>1962</option>
+	                            <option value="1963" ' . set_value( 'certificate-year-issued-from', 'select', '1963' ) . '>1963</option>
+	                            <option value="1964" ' . set_value( 'certificate-year-issued-from', 'select', '1964' ) . '>1964</option>
+	                            <option value="1965" ' . set_value( 'certificate-year-issued-from', 'select', '1965' ) . '>1965</option>
+	                            <option value="1966" ' . set_value( 'certificate-year-issued-from', 'select', '1966' ) . '>1966</option>
+	                            <option value="1967" ' . set_value( 'certificate-year-issued-from', 'select', '1967' ) . '>1967</option>
+	                            <option value="1968" ' . set_value( 'certificate-year-issued-from', 'select', '1968' ) . '>1968</option>
+	                            <option value="1969" ' . set_value( 'certificate-year-issued-from', 'select', '1969' ) . '>1969</option>
+	                            <option value="1970" ' . set_value( 'certificate-year-issued-from', 'select', '1970' ) . '>1970</option>
+	                            <option value="1971" ' . set_value( 'certificate-year-issued-from', 'select', '1971' ) . '>1971</option>
+	                            <option value="1972" ' . set_value( 'certificate-year-issued-from', 'select', '1972' ) . '>1972</option>
+	                            <option value="1973" ' . set_value( 'certificate-year-issued-from', 'select', '1973' ) . '>1973</option>
+	                            <option value="1974" ' . set_value( 'certificate-year-issued-from', 'select', '1974' ) . '>1974</option>
+	                            <option value="1975" ' . set_value( 'certificate-year-issued-from', 'select', '1975' ) . '>1975</option>
+	                            <option value="1976" ' . set_value( 'certificate-year-issued-from', 'select', '1976' ) . '>1976</option>
+	                            <option value="1977" ' . set_value( 'certificate-year-issued-from', 'select', '1977' ) . '>1977</option>
+	                            <option value="1978" ' . set_value( 'certificate-year-issued-from', 'select', '1978' ) . '>1978</option>
+	                            <option value="1979" ' . set_value( 'certificate-year-issued-from', 'select', '1979' ) . '>1979</option>
+	                            <option value="1980" ' . set_value( 'certificate-year-issued-from', 'select', '1980' ) . '>1980</option>
+	                            <option value="1981" ' . set_value( 'certificate-year-issued-from', 'select', '1981' ) . '>1981</option>
+	                            <option value="1982" ' . set_value( 'certificate-year-issued-from', 'select', '1982' ) . '>1982</option>
+	                            <option value="1983" ' . set_value( 'certificate-year-issued-from', 'select', '1983' ) . '>1983</option>
+	                            <option value="1984" ' . set_value( 'certificate-year-issued-from', 'select', '1984' ) . '>1984</option>
+	                            <option value="1985" ' . set_value( 'certificate-year-issued-from', 'select', '1985' ) . '>1985</option>
+								<option value="1986" ' . set_value( 'certificate-year-issued-from', 'select', '1986' ) . '>1986</option>
 	                        </select>
 	                        <label class="form-label" for="certificate_year_issued_to">and</label>
 	                        <select id="certificate_year_issued_to" name="certificate-year-issued-to">
@@ -102,6 +134,39 @@ function return_form_british_citizenship() {
 	                            <option value="1951" ' . set_value( 'certificate-year-issued-to', 'select', '1951' ) . '>1951</option>
 	                            <option value="1952" ' . set_value( 'certificate-year-issued-to', 'select', '1952' ) . '>1952</option>
 	                            <option value="1953" ' . set_value( 'certificate-year-issued-to', 'select', '1953' ) . '>1953</option>
+	                            <option value="1954" ' . set_value( 'certificate-year-issued-to', 'select', '1954' ) . '>1954</option>
+	                            <option value="1955" ' . set_value( 'certificate-year-issued-to', 'select', '1955' ) . '>1955</option>
+	                            <option value="1956" ' . set_value( 'certificate-year-issued-to', 'select', '1956' ) . '>1956</option>
+	                            <option value="1957" ' . set_value( 'certificate-year-issued-to', 'select', '1957' ) . '>1957</option>
+	                            <option value="1958" ' . set_value( 'certificate-year-issued-to', 'select', '1958' ) . '>1958</option>
+	                            <option value="1959" ' . set_value( 'certificate-year-issued-to', 'select', '1959' ) . '>1959</option>
+	                            <option value="1960" ' . set_value( 'certificate-year-issued-to', 'select', '1960' ) . '>1960</option>
+	                            <option value="1961" ' . set_value( 'certificate-year-issued-to', 'select', '1961' ) . '>1961</option>
+	                            <option value="1962" ' . set_value( 'certificate-year-issued-to', 'select', '1962' ) . '>1962</option>
+	                            <option value="1963" ' . set_value( 'certificate-year-issued-to', 'select', '1963' ) . '>1963</option>
+	                            <option value="1964" ' . set_value( 'certificate-year-issued-to', 'select', '1964' ) . '>1964</option>
+	                            <option value="1965" ' . set_value( 'certificate-year-issued-to', 'select', '1965' ) . '>1965</option>
+	                            <option value="1966" ' . set_value( 'certificate-year-issued-to', 'select', '1966' ) . '>1966</option>
+	                            <option value="1967" ' . set_value( 'certificate-year-issued-to', 'select', '1967' ) . '>1967</option>
+	                            <option value="1968" ' . set_value( 'certificate-year-issued-to', 'select', '1968' ) . '>1968</option>
+	                            <option value="1969" ' . set_value( 'certificate-year-issued-to', 'select', '1969' ) . '>1969</option>
+	                            <option value="1970" ' . set_value( 'certificate-year-issued-to', 'select', '1970' ) . '>1970</option>
+	                            <option value="1971" ' . set_value( 'certificate-year-issued-to', 'select', '1971' ) . '>1971</option>
+	                            <option value="1972" ' . set_value( 'certificate-year-issued-to', 'select', '1972' ) . '>1972</option>
+	                            <option value="1973" ' . set_value( 'certificate-year-issued-to', 'select', '1973' ) . '>1973</option>
+	                            <option value="1974" ' . set_value( 'certificate-year-issued-to', 'select', '1974' ) . '>1974</option>
+	                            <option value="1975" ' . set_value( 'certificate-year-issued-to', 'select', '1975' ) . '>1975</option>
+	                            <option value="1976" ' . set_value( 'certificate-year-issued-to', 'select', '1976' ) . '>1976</option>
+	                            <option value="1977" ' . set_value( 'certificate-year-issued-to', 'select', '1977' ) . '>1977</option>
+	                            <option value="1978" ' . set_value( 'certificate-year-issued-to', 'select', '1978' ) . '>1978</option>
+	                            <option value="1979" ' . set_value( 'certificate-year-issued-to', 'select', '1979' ) . '>1979</option>
+	                            <option value="1980" ' . set_value( 'certificate-year-issued-to', 'select', '1980' ) . '>1980</option>
+	                            <option value="1981" ' . set_value( 'certificate-year-issued-to', 'select', '1981' ) . '>1981</option>
+	                            <option value="1982" ' . set_value( 'certificate-year-issued-to', 'select', '1982' ) . '>1982</option>
+	                            <option value="1983" ' . set_value( 'certificate-year-issued-to', 'select', '1983' ) . '>1983</option>
+	                            <option value="1984" ' . set_value( 'certificate-year-issued-to', 'select', '1984' ) . '>1984</option>
+	                            <option value="1985" ' . set_value( 'certificate-year-issued-to', 'select', '1985' ) . '>1985</option>
+								<option value="1986" ' . set_value( 'certificate-year-issued-to', 'select', '1986' ) . '>1986</option>
 	                        </select>
 	                    </div>
 
@@ -199,7 +264,6 @@ function process_form_british_citizenship() {
 		// IMPORTANT: $tna_error_messages array keys must match exactly the $form_fields array keys
 		$tna_error_messages  = array(
 			'Certificate holder name'   => 'Please enter the certificate holder’s name',
-			'Country of birth'          => 'Please enter the certificate holder’s country of birth',
 			'Forename'                  => 'Please enter your first name',
 			'Surname'                   => 'Please enter your last name',
 			'Preferred contact'         => 'Please indicate your preferred method of contact',
@@ -212,7 +276,7 @@ function process_form_british_citizenship() {
 		$form_fields = array(
 			'Certificate holder name'     => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-name' ) ),
 			'Alternative name'            => is_text_field_valid( filter_input( INPUT_POST, 'certificate-name-alt' ) ),
-			'Country of birth'            => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-birth-country' ) ),
+			'Country of birth'            => is_text_field_valid( filter_input( INPUT_POST, 'certificate-birth-country' ) ),
 			'DOB'                         => is_text_field_valid( filter_input( INPUT_POST, 'certificate-day' ) ) . '-' .
 			                                 is_text_field_valid( filter_input( INPUT_POST, 'certificate-month' ) ) . '-' .
 			                                 is_text_field_valid( filter_input( INPUT_POST, 'certificate-year' ) ),
