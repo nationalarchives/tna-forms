@@ -26,14 +26,9 @@ function return_form_british_citizenship() {
 
 	                    <p>Enter the details of the certificate holder at the time the certificate was issued.</p>
 	                    <div class="form-row">
-	                        <label for="certificate_forename">First name(s) *</label>
-	                        <input type="text" id="certificate_forename" name="certificate-forename" aria-required="true" required ' . set_value( 'certificate-forename' ) . '>
-	                        ' . field_error_message( 'certificate-forename', 'Certificate holder forename' ) . '
-	                    </div>
-	                    <div class="form-row">
-	                        <label for="certificate_surname">Last name *</label>
-	                        <input type="text" id="certificate_surname" name="certificate-surname" aria-required="true" required ' . set_value( 'certificate-surname' ) . '>
-	                        ' . field_error_message( 'certificate-surname', 'Certificate holder surname' ) . '
+	                        <label for="certificate_forename">Name(s) *</label>
+	                        <input type="text" id="certificate_name" name="certificate-name" aria-required="true" required ' . set_value( 'certificate-name' ) . '>
+	                        ' . field_error_message( 'certificate-name', 'Certificate holder name' ) . '
 	                    </div>
 	                    <div class="form-row">
 	                        <label for="certificate_surname_alt">Alternative last name</label>
@@ -203,21 +198,19 @@ function process_form_british_citizenship() {
 		// Error messages for individual form fields stored into an array
 		// IMPORTANT: $tna_error_messages array keys must match exactly the $form_fields array keys
 		$tna_error_messages  = array(
-			'Certificate holder forename' => 'Please enter the certificate holder’s first name',
-			'Certificate holder surname'  => 'Please enter the certificate holder’s last name',
-			'Country of birth'            => 'Please enter the certificate holder’s country of birth',
-			'Forename'                    => 'Please enter your first name',
-			'Surname'                     => 'Please enter your last name',
-			'Preferred contact'           => 'Please indicate your preferred method of contact',
-			'Email'                       => 'Please enter a valid email address',
-			'Confirm email'               => 'Please enter your email address again'
+			'Certificate holder name'   => 'Please enter the certificate holder’s name',
+			'Country of birth'          => 'Please enter the certificate holder’s country of birth',
+			'Forename'                  => 'Please enter your first name',
+			'Surname'                   => 'Please enter your last name',
+			'Preferred contact'         => 'Please indicate your preferred method of contact',
+			'Email'                     => 'Please enter a valid email address',
+			'Confirm email'             => 'Please enter your email address again'
 		);
 
 		// Get the form elements and store them into an array
 		// IMPORTANT: $form_fields array keys must match exactly the $tna_error_messages array keys
 		$form_fields = array(
-			'Certificate holder forename' => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-forename' ) ),
-			'Certificate holder surname'  => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-surname' ) ),
+			'Certificate holder name'     => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-name' ) ),
 			'Alternative surname'         => is_text_field_valid( filter_input( INPUT_POST, 'certificate-surname-alt' ) ),
 			'Country of birth'            => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-birth-country' ) ),
 			'DOB'                         => is_text_field_valid( filter_input( INPUT_POST, 'certificate-day' ) ) . '-' .
