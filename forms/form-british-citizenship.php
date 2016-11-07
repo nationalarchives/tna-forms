@@ -31,8 +31,8 @@ function return_form_british_citizenship() {
 	                        ' . field_error_message( 'certificate-name', 'Certificate holder name' ) . '
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="certificate_surname_alt">Alternative last name</label>
-	                        <input type="text" id="certificate_surname_alt" name="certificate-surname-alt" ' . set_value( 'certificate-surname-alt' ) . '>
+	                        <label for="certificate_surname_alt">Alternative name(s)</label>
+	                        <input type="text" id="certificate_name_alt" name="certificate-name-alt" ' . set_value( 'certificate-name-alt' ) . '>
 	                        <p class="form-hint">For example: married or maiden names</p>
 	                    </div>
 	                    <div class="form-row">
@@ -211,7 +211,7 @@ function process_form_british_citizenship() {
 		// IMPORTANT: $form_fields array keys must match exactly the $tna_error_messages array keys
 		$form_fields = array(
 			'Certificate holder name'     => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-name' ) ),
-			'Alternative surname'         => is_text_field_valid( filter_input( INPUT_POST, 'certificate-surname-alt' ) ),
+			'Alternative name'            => is_text_field_valid( filter_input( INPUT_POST, 'certificate-name-alt' ) ),
 			'Country of birth'            => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-birth-country' ) ),
 			'DOB'                         => is_text_field_valid( filter_input( INPUT_POST, 'certificate-day' ) ) . '-' .
 			                                 is_text_field_valid( filter_input( INPUT_POST, 'certificate-month' ) ) . '-' .
