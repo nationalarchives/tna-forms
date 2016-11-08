@@ -107,7 +107,7 @@ function process_form_default() {
 			'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 			'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
-			'Enquiry'              => is_textarea_field_valid( filter_input( INPUT_POST, 'postal-address' ) )
+			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'postal-address' ) )
 		);
 
 		// If any value inside the array is false then there is an error
