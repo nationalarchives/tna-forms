@@ -15,7 +15,8 @@ function tna_forms_shordcode( $atts ) {
 			return return_form_british_citizenship();
 			break;
 		default:
-			return 'No form defined';
+			return return_form_default();
+			break;
 	}
 }
 
