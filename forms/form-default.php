@@ -95,8 +95,8 @@ function process_form_default() {
 			'Surname'               => 'Please enter your last name',
 			'Email'                 => 'Please enter a valid email address',
 			'Confirm email'         => 'Please enter your email address again',
-			'Country'               => 'Please enter a your country',
-			'Enquiry'               => 'Please enter a your enquiry',
+			'Country'               => 'Please enter your country',
+			'Enquiry'               => 'Please enter your enquiry'
 		);
 
 		// Get the form elements and store them into an array
@@ -107,7 +107,7 @@ function process_form_default() {
 			'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 			'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
-			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'postal-address' ) )
+			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) )
 		);
 
 		// If any value inside the array is false then there is an error
