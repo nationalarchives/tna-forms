@@ -37,21 +37,21 @@ function return_form_british_citizenship() {
 	                    </div>
 	                    <div class="form-row">
 	                        <label for="certificate_birth_country">Country of birth</label>
-	                        <input type="text" id="certificate_birth_country" name="certificate-birth-country" aria-required="true" required ' . set_value( 'certificate-birth-country' ) . '>
+	                        <input type="text" id="certificate_birth_country" name="certificate-birth-country" ' . set_value( 'certificate-birth-country' ) . '>
 	                    </div>
 	                    <p>Date of birth</p>
 	                    <div class="form-row">
 	                        <span class="dob-col day">
 	                            <label for="certificate_day">Day</label>
-	                            <input type="text" id="certificate_day" name="certificate-day" placeholder="DD" ' . set_value( 'certificate-day' ) . '>
+	                            <input type="number" id="certificate_day" name="certificate-day" placeholder="DD" ' . set_value( 'certificate-day' ) . '>
 	                        </span>
 	                        <span class="dob-col month">
 	                            <label for="certificate_month">Month</label>
-	                            <input type="text" id="certificate_month" name="certificate-month" placeholder="MM" ' . set_value( 'certificate-month' ) . '>
+	                            <input type="number" id="certificate_month" name="certificate-month" placeholder="MM" ' . set_value( 'certificate-month' ) . '>
 	                        </span>
 	                        <span class="dob-col year">
 	                            <label for="certificate_year">Year</label>
-	                            <input type="text" id="certificate_year" name="certificate-year" placeholder="YYYY" ' . set_value( 'certificate-year' ) . '>
+	                            <input type="number" id="certificate_year" name="certificate-year" placeholder="YYYY" ' . set_value( 'certificate-year' ) . '>
 	                        </span>
 	                        <p class="form-hint">For example: 08 03 1955</p>
 	                    </div>

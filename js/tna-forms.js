@@ -46,7 +46,7 @@ $(document).ready(function(){
         $(addressWrapper).hide();
         $(formStepTwo).hide();
         $(formStepThree).hide();
-        
+
         /**
          * 4. If JS is enabled show continue buttons and progress bar
          * */
@@ -143,18 +143,11 @@ $(document).ready(function(){
                     },
 
                     /* Form Step Two */
-                    "certificate-forename":{
+                    "certificate-name":{
                         required:true,
                         noSpace:true
                     },
-                    "certificate-surname":{
-                        required:true,
-                        noSpace: true
-                    },
-                    "certificate-birth-country":{
-                        required:true,
-                        noSpace: true
-                    },
+
                     /* Form Step Three */
                     contact_email:{
                         required: function(element) {
@@ -199,14 +192,8 @@ $(document).ready(function(){
                         required:"Please enter your postal address"
                     },
                     /* Form Step Two */
-                    "certificate-forename":{
-                        required:"Please enter the certificate holder’s first name"
-                    },
-                    "certificate-surname":{
-                        required:"Please enter the certificate holder’s last name"
-                    },
-                    "certificate-birth-country":{
-                        required:"Please enter the certificate holder’s country of birth"
+                    "certificate-name":{
+                        required:"Please enter the certificate holder’s name(s)"
                     },
                     /* Form Step Three */
                     "preferred-contact":{
