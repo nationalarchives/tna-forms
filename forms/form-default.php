@@ -13,6 +13,7 @@ function return_form_default() {
 
 	// HTML form string (I know, it's long!)
 	$form = '<form action=""  id="default" method="POST">
+					<input type="hidden" name="form-default" value="default">
 	                <fieldset>
 	                    <legend>Your enquiry</legend>
 	                    <p class="mandatory">* mandatory field</p>
@@ -47,7 +48,7 @@ function return_form_default() {
 	                        ' . field_error_message( 'enquiry', 'Enquiry' ) . '
 	                    </div>
 	                    <div class="form-row">
-	                        <input type="submit" alt="Submit" name="submit-tna-form" id="submit-tna-form" value="Submit" class="button">
+	                        <input type="submit" alt="Submit" name="submit-tna-form-default" id="submit-tna-form" value="Submit" class="button">
 	                    </div>
 	                </fieldset>
 	            </form>';
@@ -75,7 +76,7 @@ function process_form_default() {
 
 		// The processing happens at form submission.
 		// If no form is submitted we stop here.
-		if ( ! isset( $_POST['submit-tna-form'] ) ) {
+		if ( ! isset( $_POST['submit-tna-form-default'] ) ) {
 			return;
 		}
 
