@@ -18,6 +18,11 @@ $(document).ready(function() {
             naturalisationForm();
         }
 
+        else if($('#records-research-enquiry').is(':visible')){
+            recordsResearchEnquiryForm();
+            alert("My name is Records Research Enquiry");
+        }
+
         else {
             defaultForm();
         }

@@ -49,12 +49,12 @@ function return_form_rre() {
 	                    <p>Please provide the dates or years that you are interested in.</p>
 	                    <div class="form-row">
 	                        <label for="from-date">From date</label>
-	                        <input type="text" id="from_date" name="from-date" aria-required="true" required ' . set_value( 'from-date' ) . '>
+	                        <input type="text" id="from_date" name="from-date" ' . set_value( 'from-date' ) . '>
 	                        <p class="form-hint">(Date or year)</p>
 	                    </div>
 	                    <div class="form-row">
 	                        <label for="to-date">To date</label>
-	                        <input type="text" id="to_date" name="to-date" aria-required="true" required ' . set_value( 'to-date' ) . '>
+	                        <input type="text" id="to_date" name="to-date" ' . set_value( 'to-date' ) . '>
 	                        <p class="form-hint">(Date or year)</p>
 	                    </div>
 	                    <div class="form-row">
