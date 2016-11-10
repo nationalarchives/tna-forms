@@ -43,17 +43,17 @@ function return_form_british_citizenship() {
 	                    <div class="form-row">
 	                        <span class="dob-col day">
 	                            <label for="certificate_day">Day</label>
-	                            <input type="number" id="certificate_day" name="certificate-day" placeholder="DD" ' . set_value( 'certificate-day' ) . '>
+	                            <input type="number" id="certificate_day" name="certificate-day" ' . set_value( 'certificate-day' ) . '>
 	                        </span>
 	                        <span class="dob-col month">
 	                            <label for="certificate_month">Month</label>
-	                            <input type="number" id="certificate_month" name="certificate-month" placeholder="MM" ' . set_value( 'certificate-month' ) . '>
+	                            <input type="number" id="certificate_month" name="certificate-month" ' . set_value( 'certificate-month' ) . '>
 	                        </span>
 	                        <span class="dob-col year">
 	                            <label for="certificate_year">Year</label>
-	                            <input type="number" id="certificate_year" name="certificate-year" placeholder="YYYY" ' . set_value( 'certificate-year' ) . '>
+	                            <input type="number" id="certificate_year" name="certificate-year" ' . set_value( 'certificate-year' ) . '>
 	                        </span>
-	                        <p class="form-hint">For example: 08 03 1955</p>
+	                        <p class="form-hint">For example: 8 3 1955</p>
 	                    </div>
 	                    <p class="form-hint">If you are not sure of the exact date of birth, please enter an approximation</p>
 	                    <div class="form-row dob-approx">
