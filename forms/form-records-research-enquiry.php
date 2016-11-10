@@ -1,6 +1,6 @@
 <?php
 /**
- * Form: Records and research enquiry
+ * Form: Records and research enquiry (RRE)
  *
  */
 
