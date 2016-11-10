@@ -20,7 +20,6 @@ $(document).ready(function() {
 
         else if($('#records-research-enquiry').is(':visible')){
             recordsResearchEnquiryForm();
-            alert("My name is Records Research Enquiry");
         }
 
         else {
