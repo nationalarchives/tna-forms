@@ -1,7 +1,27 @@
 /**
- * Created by mdiaconita on 26/09/2016.
+ * @name  : Newsletter and Contact forms Wordpress plugin
+ * @author: TNA WebTeam
+ * @owner : The National Archives
  */
+$(document).ready(function() {
+    (function() {
 
-/* run the Jquery plugin */
-$('#signup').newsletterValidation()
+        /**
+         * Call the Newsletter validation plugin
+         * */
+        $('#signup').newsletterValidation();
+
+        /**
+         * Contact forms
+         * */
+        if ($('#naturalisation').is(':visible')) {
+            naturalisationForm();
+        }
+
+        else {
+            defaultForm();
+        }
+    }());
+});
+
 
