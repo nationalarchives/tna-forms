@@ -20,6 +20,7 @@ function return_form_british_citizenship() {
 	                </ul>
 	            </div>
 	            <form action=""  id="naturalisation" method="POST">
+	            	<input type="hidden" name="tna-form" value="naturalisation">
 	                <fieldset class="form-step-1">
 	                    <legend>Certificate holder\'s details</legend>
 	                    <p class="mandatory">* mandatory field</p>

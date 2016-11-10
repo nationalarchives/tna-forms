@@ -13,19 +13,17 @@ function return_form_rre() {
 
 	// HTML form string (I know, it's long!)
 	$form = '<form action=""  id="default" method="POST" novalidate>
-					<input type="hidden" name="form-rre" value="rre">
+					<input type="hidden" name="tna-form" value="rre">
 	                <fieldset>
 	                    <legend>Your enquiry</legend>
 	                    <p class="mandatory">* mandatory field</p>
 	                    <div class="form-row">
 	                        <label for="forename">First name</label>
 	                        <input type="text" id="forename" name="forename" ' . set_value( 'forename' ) . '>
-	                        ' . field_error_message( 'forename', 'Forename' ) . '
 	                    </div>
 	                    <div class="form-row">
 	                        <label for="surname">Last name</label>
 	                        <input type="text" id="surname" name="surname" ' . set_value( 'surname' ) . '>
-	                        ' . field_error_message( 'surname', 'Surname' ) . '
 	                    </div>
                         <div class="form-row">
                             <label for="email">Email address *</label>

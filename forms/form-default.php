@@ -13,7 +13,7 @@ function return_form_default() {
 
 	// HTML form string (I know, it's long!)
 	$form = '<form action=""  id="default" method="POST">
-					<input type="hidden" name="form-default" value="default">
+					<input type="hidden" name="tna-form" value="default">
 	                <fieldset>
 	                    <legend>Your enquiry</legend>
 	                    <p class="mandatory">* mandatory field</p>

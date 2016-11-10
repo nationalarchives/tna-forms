@@ -41,7 +41,7 @@ function set_value( $name, $type = 'text', $select_value = '' ) {
 function field_error_message( $input_name, $error_field_name, $type = 'required', $reconfirm_name = '' ) {
 	global $tna_error_messages;
 	$error_wrapper = '<span class="form-error form-hint">%s</span>';
-	if ( isset( $_POST[$input_name] ) && isset( $_POST['submit-tna-form'] ) ) {
+	if ( isset( $_POST[$input_name] ) && isset( $_POST['tna-form'] ) ) {
 		switch( $type ) {
 			case 'required': {
 				if ( trim( $_POST[$input_name] ) === '' ) {
@@ -56,18 +56,23 @@ function field_error_message( $input_name, $error_field_name, $type = 'required'
 				break;
 			}
 		}
-	} elseif ( !isset( $_POST[$input_name] ) && $type == 'radio' && isset( $_POST['submit-tna-form'] ) ) {
+	} elseif ( !isset( $_POST[$input_name] ) && $type == 'radio' && isset( $_POST['tna-form'] ) ) {
 		return sprintf( $error_wrapper, $tna_error_messages[$error_field_name] );
 	}
 }
 
 function ref_number( $name, $time_stamp ) {
 	$prefix = 'TNA';
-	if (strlen( $name ) > 3) {
-		$suffix = strtoupper( substr( $name, 0, 3 ) );
+	if ( $name !== '-' ) {
+		if (strlen( $name ) > 3) {
+			$suffix = strtoupper( substr( $name, 0, 3 ) );
+		} else {
+			$suffix = strtoupper( $name );
+		}
 	} else {
-		$suffix = strtoupper( $name );
+		$suffix = 'NA';
 	}
+
 	return $prefix . $time_stamp . $suffix;
 }
 
