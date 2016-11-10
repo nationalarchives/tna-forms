@@ -9,9 +9,13 @@ TNA forms Wordpress plugin
 
 Add the shortcode to the desired page to display a form
 
-Check for a certificate of British citizenship form:
+**Check for a certificate of British citizenship** form:
 
 ```[tna-form name="British citizenship"]```
+
+**Records and research enquiry** form:
+
+```[tna-form name="Records and research enquiry"]```
 
 ## Development setup
 
