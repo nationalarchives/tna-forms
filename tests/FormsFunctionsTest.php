@@ -43,7 +43,7 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	public function testFieldErrorMessageRequired()
 	{
 		global $tna_error_messages;
-		$_POST['submit-tna-form'] = 'submit';
+		$_POST['tna-form'] = 'form';
 		$_POST['surname'] = '';
 		$tna_error_messages['Surname'] = 'Please enter your surname';
 		$data = field_error_message( 'surname', 'Surname' );
@@ -52,7 +52,7 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	public function testFieldErrorMessageReconfirm()
 	{
 		global $tna_error_messages;
-		$_POST['submit-tna-form'] = 'submit';
+		$_POST['tna-form'] = 'form';
 		$_POST['email'] = 'info@domain.com';
 		$_POST['confirm-email'] = 'info@domain.net';
 		$tna_error_messages['Confirm email'] = 'Please re-type your email address';
