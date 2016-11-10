@@ -12,7 +12,7 @@ function return_form_rre() {
 	       $tna_error_message;
 
 	// HTML form string (I know, it's long!)
-	$form = '<form action=""  id="default" method="POST">
+	$form = '<form action=""  id="records-research-enquiry" method="POST">
 					<input type="hidden" name="tna-form" value="rre">
 	                <fieldset>
 	                    <legend>Your enquiry</legend>
