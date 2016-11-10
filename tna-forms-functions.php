@@ -115,6 +115,7 @@ function confirmation_content( $id ) {
 
 	$child = get_pages(
 		array( 'child_of' => $id,
+		       'parent' => $id,
 		       'number' => '1',
 		       'sort_column' => 'post_date',
 		       'sort_order' => 'desc'
