@@ -12,7 +12,7 @@ function return_form_rre() {
 	       $tna_error_message;
 
 	// HTML form string (I know, it's long!)
-	$form = '<form action=""  id="default" method="POST" novalidate>
+	$form = '<form action=""  id="default" method="POST">
 					<input type="hidden" name="tna-form" value="rre">
 	                <fieldset>
 	                    <legend>Your enquiry</legend>
@@ -116,7 +116,9 @@ function process_form_rre() {
 			'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 			'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
-			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) )
+			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
+			'From date'            => is_text_field_valid( filter_input( INPUT_POST, 'from-date' ) ),
+			'To date'              => is_text_field_valid( filter_input( INPUT_POST, 'to-date' ) )
 		);
 
 		// If any value inside the array is false then there is an error
@@ -139,13 +141,13 @@ function process_form_rre() {
 			$tna_success_message = success_message_header( 'Your reference number:', $ref_number );
 			$tna_success_message .= confirmation_content( $post->ID );
 			$tna_success_message .= '<p>If you provided your email address you will shortly receive an email confirming your application – please do not reply to this email</p>';
-			$tna_success_message .= '<h3>Your details</h3>';
+			$tna_success_message .= '<h3>Your enquiry</h3>';
 			$tna_success_message .= display_compiled_form_data( $form_fields );
 
 			// Store email content to user into a variable
 			$email_to_user = success_message_header( 'Your reference number:', $ref_number );
 			$email_to_user .= confirmation_content( $post->ID );
-			$email_to_user .= '<h3>Your details</h3>';
+			$email_to_user .= '<h3>Your enquiry</h3>';
 			$email_to_user .= display_compiled_form_data( $form_fields );
 
 			// Send email to user
