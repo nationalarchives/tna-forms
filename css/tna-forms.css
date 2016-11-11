@@ -20,7 +20,8 @@ textarea {
   float: right; }
 .form-row .dob-col {
   display: inline-block;
-  max-width: 90px; }
+  max-width: 90px;
+  margin-right: 6px; }
   .form-row .dob-col input {
     width: 90px;
     max-width: 90px;
@@ -185,6 +186,21 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0; }
+
+#certificate_year-error {
+  margin-left: -189px;
+  z-index: 3; }
+
+#certificate_month-error {
+  margin-left: -94.5px;
+  z-index: 2; }
+
+#certificate_day-error, #certificate_year-error, #certificate_month-error {
+  position: absolute;
+  margin-top: 7px;
+  width: 100%;
+  display: block;
+  z-index: 1; }
 
 @media print {
   .breadcrumbs,
