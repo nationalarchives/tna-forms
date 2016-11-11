@@ -101,6 +101,10 @@ function naturalisationForm(){
         buttonBack = '.button-back',
         radio = 'input[type="radio"]',
         submit = 'input[type="submit"]',
+        certificateYear = 'certificate-year',
+        certificateMonth = 'certificate-month',
+        certificateDay = 'certificate-day',
+        groupErrorPlacement = '#groupErrorPlacement',
         formName = "#naturalisation";
 
     /**
@@ -118,6 +122,13 @@ function naturalisationForm(){
     $(buttonBack,'.form-step-2,.form-step-3').css("display","block");
 
     /**
+     * DOB validation
+     * */
+
+    $('.dob-col').wrapAll('<div id="groupErrorPlacement"></div>');
+
+
+    /**
      * 5. Form validation
      * */
     $(button).on('click',function(){
@@ -132,24 +143,43 @@ function naturalisationForm(){
         form.validate({
             errorElement: 'span',
             errorClass: 'form-error form-hint',
+            errorPlacement: function (error, element) {
+
+                if (element.attr('name') === certificateYear) {
+                    error.insertAfter(groupErrorPlacement);
+                }
+                    else if (element.attr('name') === certificateMonth) {
+                    error.insertAfter(groupErrorPlacement);
+                }
+                    else if (element.attr('name') === certificateDay) {
+                    error.insertAfter(groupErrorPlacement);
+                }
+                     else {
+                    error.insertAfter(element);
+                }
+            },
             highlight: function(element, errorClass, validClass) {
                 $(element).closest('input[type="text"]').addClass("form-warning");
                 $(element).closest('input[type="email"]').addClass("form-warning");
+                $(element).closest('input[type="number"]').addClass("form-warning");
                 $(element).closest('textarea').addClass("form-warning");
             },
             unhighlight: function(element, errorClass, validClass) {
                 $(element).closest('input[type="text"]').removeClass("form-warning");
                 $(element).closest('input[type="email"]').removeClass("form-warning");
+                $(element).closest('input[type="number"]').removeClass("form-warning");
                 $(element).closest('textarea').removeClass("form-warning");
             },
             rules: {
                 /* Form Step One */
                 "certificate-day":{
-                    digits:true
+                    digits:true,
+                    range: [1, 31]
 
                 },
                 "certificate-month":{
-                    digits:true
+                    digits:true,
+                    range: [1, 12]
                 },
                 "certificate-year":{
                     digits:true,
@@ -203,17 +233,19 @@ function naturalisationForm(){
             messages: {
                 "certificate-day":{
                     required: "Day",
-                    digits: "Only digits"
+                    digits: "Only digits",
+                    range:"Please enter a valid date"
                 },
                 "certificate-month":{
                     required: "Month",
-                    digits: "Only digits"
+                    digits: "Only digits",
+                    range: "Please enter a valid date"
 
                 },
                 "certificate-year":{
                     required: "Year",
                     digits: "Only digits",
-                    exactLength:"Four digits"
+                    exactLength:"Please enter a valid date"
                 },
                 forename: {
                     required: "Please enter your first name"
@@ -237,6 +269,9 @@ function naturalisationForm(){
                 "preferred-contact":{
                     required: "Please select one option"
                 }
+            },
+            groups: {
+                inputGroup: "certificate-day certificate-month certificate-year",
             }
         });
 
@@ -277,6 +312,7 @@ function naturalisationForm(){
         }
     });
 
+
     /**
      * 6. Show / hide Email / address
      * */
@@ -294,6 +330,7 @@ function naturalisationForm(){
 
         }
     });
+
 
     /**
      * 7. Back button on step two

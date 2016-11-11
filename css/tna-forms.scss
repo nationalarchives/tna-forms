@@ -23,6 +23,7 @@ textarea {
   .dob-col {
     display: inline-block;
     max-width: 90px;
+    margin-right:6px;
     input {
       width: 90px;
       max-width: 90px;
@@ -214,6 +215,23 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+#certificate_year-error {
+  @extend #certificate_day-error;
+  margin-left:-189px;
+  z-index:3;
+}
+#certificate_month-error {
+  @extend #certificate_day-error;
+  margin-left:-94.5px;
+  z-index:2;
+}
+#certificate_day-error {
+  position: absolute;
+  margin-top: 7px;
+  width: 100%;
+  display: block;
+  z-index:1;
 }
 
 @media print {
