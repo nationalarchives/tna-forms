@@ -146,7 +146,7 @@ function send_form_via_email( $email, $ref_number, $subject, $content ) {
 		$email_message = $content;
 
 		// Email header
-		$email_headers = 'From: No reply <no-reply@nationalarchives.gov.uk>';
+		$email_headers = 'From: The National Archives (DO NOT REPLY) <no-reply@nationalarchives.gov.uk>';
 
 		wp_mail( $email, $email_subject, $email_message, $email_headers );
 	}
