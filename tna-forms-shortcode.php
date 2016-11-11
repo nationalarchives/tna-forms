@@ -4,7 +4,7 @@
  *
  */
 
-function tna_forms_shordcode( $atts ) {
+function tna_forms_shortcode( $atts ) {
 
 	$a = shortcode_atts( array(
 		'name' => 'form'
@@ -23,4 +23,4 @@ function tna_forms_shordcode( $atts ) {
 	}
 }
 
-add_shortcode( 'tna-form', 'tna_forms_shordcode' );
+add_shortcode( 'tna-form', 'tna_forms_shortcode' );
