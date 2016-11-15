@@ -17,7 +17,9 @@ function return_form_rre() {
 					<input type="hidden" name="token" value="' . token() . '">
 	                <fieldset>
 	                    <legend>Your enquiry</legend>
-	                    <p class="mandatory">* mandatory field</p>
+	                    <div class="form-row">
+	                        <p class="mandatory">* mandatory field</p>
+	                    </div>
 	                    <div class="form-row">
 	                        <label for="forename">First name</label>
 	                        <input type="text" id="forename" name="forename" ' . set_value( 'forename' ) . '>
@@ -41,22 +43,22 @@ function return_form_rre() {
 	                        <input type="text" id="country" name="country" aria-required="true" required ' . set_value( 'country' ) . '>
 	                        ' . field_error_message( 'country', 'Country' ) . '
 	                    </div>
-	                    <p>Please provide specific details of the information you are looking for and avoid requests like &#34;anything you can tell me&#34; on a person or subject.</p>
 	                    <div class="form-row textarea">
+	                        <p>Please provide specific details of the information you are looking for and avoid requests like &#34;anything you can tell me&#34; on a person or subject.</p>
 	                        <label for="enquiry">Your enquiry *</label>
 	                        <textarea id="enquiry" name="enquiry" aria-required="true" required>' . set_value( 'enquiry', 'textarea' ) . '</textarea>
 	                        ' . field_error_message( 'enquiry', 'Enquiry' ) . '
 	                    </div>
-	                    <p>Please provide the dates or years that you are interested in.</p>
 	                    <div class="form-row">
+	                        <p>Please provide the dates or years that you are interested in.</p>
 	                        <label for="from-date">From date</label>
-	                        <input type="text" id="from_date" name="from-date" ' . set_value( 'from-date' ) . '>
 	                        <p class="form-hint">(Date or year)</p>
+	                        <input type="text" id="from_date" name="from-date" ' . set_value( 'from-date' ) . '>
 	                    </div>
 	                    <div class="form-row">
 	                        <label for="to-date">To date</label>
-	                        <input type="text" id="to_date" name="to-date" ' . set_value( 'to-date' ) . '>
 	                        <p class="form-hint">(Date or year)</p>
+	                        <input type="text" id="to_date" name="to-date" ' . set_value( 'to-date' ) . '>
 	                    </div>
 	                    <div class="form-row">
 	                        <input type="submit" alt="Submit" name="submit-rre" id="submit-tna-form" value="Submit" class="button">
