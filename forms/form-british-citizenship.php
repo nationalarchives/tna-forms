@@ -21,6 +21,7 @@ function return_form_british_citizenship() {
 	            </div>
 	            <form action=""  id="naturalisation" method="POST">
 	            	<input type="hidden" name="tna-form" value="naturalisation">
+	            	<input type="hidden" name="token" value="' . token() . '">
 	                <fieldset class="form-step-1">
 	                    <legend>Certificate holder\'s details</legend>
 	                    <p class="mandatory">* mandatory field</p>
@@ -220,7 +221,7 @@ function return_form_british_citizenship() {
 	                        <textarea id="postal_address" name="postal-address">' . set_value( 'postal-address', 'textarea' ) . '</textarea>
 	                    </div>
 	                    <div class="form-row">
-	                        <input type="submit" alt="Submit" name="submit-tna-form" id="submit-tna-form" value="Submit" class="button">
+	                        <input type="submit" alt="Submit" name="submit-bc" id="submit-tna-form" value="Submit" class="button">
 	                    </div>
 	                </fieldset>
 	            </form>';
@@ -244,13 +245,18 @@ function return_form_british_citizenship() {
 }
 
 function process_form_british_citizenship() {
-	if ( ! is_admin() ) {
+	// The processing happens at form submission.
+	// If no form is submitted we stop here.
+	if ( ! is_admin() && isset( $_POST['submit-bc'] ) ) {
 
-		// The processing happens at form submission.
-		// If no form is submitted we stop here.
-		if ( ! isset( $_POST['submit-tna-form'] ) ) {
+		// Checks for token
+		// If the token exists then the form has been submitted so do nothing
+		$token = filter_input( INPUT_POST, 'token' );
+		if ( get_transient( 'token_' . $token ) ) {
+			$_POST = array();
 			return;
 		}
+		set_transient( 'token_' . $token, 'form-token', 180 );
 
 		// Global variables
 		global $tna_success_message,

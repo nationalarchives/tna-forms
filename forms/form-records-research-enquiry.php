@@ -14,7 +14,7 @@ function return_form_rre() {
 	// HTML form string (I know, it's long!)
 	$form = '<form action=""  id="records-research-enquiry" method="POST">
 					<input type="hidden" name="tna-form" value="rre">
-					<input type="hidden" name="token" value="' . token() . '" />
+					<input type="hidden" name="token" value="' . token() . '">
 	                <fieldset>
 	                    <legend>Your enquiry</legend>
 	                    <p class="mandatory">* mandatory field</p>
@@ -59,7 +59,7 @@ function return_form_rre() {
 	                        <p class="form-hint">(Date or year)</p>
 	                    </div>
 	                    <div class="form-row">
-	                        <input type="submit" alt="Submit" name="submit-tna-form-rre" id="submit-tna-form" value="Submit" class="button">
+	                        <input type="submit" alt="Submit" name="submit-rre" id="submit-tna-form" value="Submit" class="button">
 	                    </div>
 	                </fieldset>
 	            </form>';
@@ -83,13 +83,18 @@ function return_form_rre() {
 }
 
 function process_form_rre() {
-	if ( ! is_admin() ) {
+	// The processing happens at form submission.
+	// If no form is submitted we stop here.
+	if ( ! is_admin() && isset( $_POST['submit-rre'] ) ) {
 
-		// The processing happens at form submission.
-		// If no form is submitted we stop here.
-		if ( ! isset( $_POST['submit-tna-form-rre'] ) ) {
+		// Checks for token
+		// If the token exists then the form has been submitted so do nothing
+		$token = filter_input( INPUT_POST, 'token' );
+		if ( get_transient( 'token_' . $token ) ) {
+			$_POST = array();
 			return;
 		}
+		set_transient( 'token_' . $token, 'form-token', 180 );
 
 		// Global variables
 		global $tna_success_message,
