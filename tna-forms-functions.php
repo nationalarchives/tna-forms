@@ -162,6 +162,7 @@ function get_tna_email( $user = '' ) {
 		$email = $contact_user->user_email;
 		return $email;
 	} else {
-		get_option( 'admin_email' );
+		$email = get_option( 'admin_email' );
+		return $email;
 	}
 }
