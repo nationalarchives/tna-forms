@@ -14,7 +14,7 @@ function return_form_rre() {
 	// HTML form string (I know, it's long!)
 	$form = '<form action=""  id="records-research-enquiry" method="POST">
 					<input type="hidden" name="tna-form" value="rre">
-					<input type="hidden" name="token" value="' . token() . '" />
+					<input type="hidden" name="token" value="' . token() . '">
 	                <fieldset>
 	                    <legend>Your enquiry</legend>
 	                    <p class="mandatory">* mandatory field</p>
