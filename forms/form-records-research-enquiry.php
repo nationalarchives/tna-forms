@@ -14,6 +14,7 @@ function return_form_rre() {
 	// HTML form string (I know, it's long!)
 	$form = '<form action=""  id="records-research-enquiry" method="POST">
 					<input type="hidden" name="tna-form" value="rre">
+					<input type="hidden" name="token" value="' . token() . '" />
 	                <fieldset>
 	                    <legend>Your enquiry</legend>
 	                    <p class="mandatory">* mandatory field</p>
@@ -158,9 +159,7 @@ function process_form_rre() {
 			$email_to_tna .= display_compiled_form_data( $form_fields );
 
 			// Send email to TNA
-			$contact_user = get_user_by( 'login', 'contactcentre' );
-			$tna_contact = $contact_user->user_email;
-			send_form_via_email( $tna_contact, $ref_number, 'Records and research enquiry - Ref:', $email_to_tna );
+			send_form_via_email( get_tna_email( 'contactcentre' ), $ref_number, 'Records and research enquiry - Ref:', $email_to_tna );
 
 		}
 	}

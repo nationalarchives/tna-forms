@@ -151,3 +151,18 @@ function send_form_via_email( $email, $ref_number, $subject, $content ) {
 		wp_mail( $email, $email_subject, $email_message, $email_headers );
 	}
 }
+
+function token() {
+	return md5( uniqid( "", true ) );
+}
+
+function get_tna_email( $user = '' ) {
+	if ( $user ) {
+		$contact_user = get_user_by( 'login', $user );
+		$email = $contact_user->user_email;
+		return $email;
+	} else {
+		$email = get_option( 'admin_email' );
+		return $email;
+	}
+}
