@@ -14,6 +14,7 @@ function return_form_default() {
 	// HTML form string (I know, it's long!)
 	$form = '<form action=""  id="default" method="POST">
 					<input type="hidden" name="tna-form" value="default">
+					<input type="hidden" name="token" value="' . token() . '">
 	                <fieldset>
 	                    <legend>Your enquiry</legend>
 	                    <p class="mandatory">* mandatory field</p>
@@ -48,7 +49,7 @@ function return_form_default() {
 	                        ' . field_error_message( 'enquiry', 'Enquiry' ) . '
 	                    </div>
 	                    <div class="form-row">
-	                        <input type="submit" alt="Submit" name="submit-tna-form-default" id="submit-tna-form" value="Submit" class="button">
+	                        <input type="submit" alt="Submit" name="submit-default" id="submit-tna-form" value="Submit" class="button">
 	                    </div>
 	                </fieldset>
 	            </form>';
@@ -72,13 +73,18 @@ function return_form_default() {
 }
 
 function process_form_default() {
-	if ( ! is_admin() ) {
+	// The processing happens at form submission.
+	// If no form is submitted we stop here.
+	if ( ! is_admin() && isset( $_POST['submit-default'] ) ) {
 
-		// The processing happens at form submission.
-		// If no form is submitted we stop here.
-		if ( ! isset( $_POST['submit-tna-form-default'] ) ) {
+		// Checks for token
+		// If the token exists then the form has been submitted so do nothing
+		$token = filter_input( INPUT_POST, 'token' );
+		if ( get_transient( 'token_' . $token ) ) {
+			$_POST = array();
 			return;
 		}
+		set_transient( 'token_' . $token, 'form-token', 180 );
 
 		// Global variables
 		global $tna_success_message,
