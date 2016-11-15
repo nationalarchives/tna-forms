@@ -17,7 +17,9 @@ function return_form_default() {
 					<input type="hidden" name="token" value="' . token() . '">
 	                <fieldset>
 	                    <legend>Your enquiry</legend>
-	                    <p class="mandatory">* mandatory field</p>
+	                    <div class="form-row">
+	                        <p class="mandatory">* mandatory field</p>
+	                    </div>
 	                    <div class="form-row">
 	                        <label for="forename">First name *</label>
 	                        <input type="text" id="forename" name="forename" aria-required="true" required ' . set_value( 'forename' ) . '>
