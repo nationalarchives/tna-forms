@@ -18,20 +18,17 @@ function return_form_default() {
 	                <fieldset>
 	                    <legend>Your enquiry</legend>
 	                    <div class="form-row">
-	                        <p class="mandatory">* mandatory field</p>
-	                    </div>
-	                    <div class="form-row">
-	                        <label for="forename">First name *</label>
+	                        <label for="forename">First name</label>
 	                        <input type="text" id="forename" name="forename" aria-required="true" required ' . set_value( 'forename' ) . '>
 	                        ' . field_error_message( 'forename', 'Forename' ) . '
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="surname">Last name *</label>
+	                        <label for="surname">Last name</label>
 	                        <input type="text" id="surname" name="surname" aria-required="true" required ' . set_value( 'surname' ) . '>
 	                        ' . field_error_message( 'surname', 'Surname' ) . '
 	                    </div>
                         <div class="form-row">
-                            <label for="email">Email address *</label>
+                            <label for="email">Email address</label>
                             <input type="email" id="email" name="email" aria-required="true" required ' . set_value( 'email' ) . '>
                             ' . field_error_message( 'email', 'Email' ) . '
                         </div>
@@ -41,12 +38,12 @@ function return_form_default() {
                             ' . field_error_message( 'confirm-email', 'Confirm email', 'reconfirm', 'email' ) . '
                         </div>
 	                    <div class="form-row">
-	                        <label for="country">Country *</label>
+	                        <label for="country">Country</label>
 	                        <input type="text" id="country" name="country" aria-required="true" required ' . set_value( 'country' ) . '>
 	                        ' . field_error_message( 'country', 'Country' ) . '
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="enquiry">Your enquiry *</label>
+	                        <label for="enquiry">Your enquiry</label>
 	                        <textarea id="enquiry" name="enquiry" aria-required="true" required>' . set_value( 'enquiry', 'textarea' ) . '</textarea>
 	                        ' . field_error_message( 'enquiry', 'Enquiry' ) . '
 	                    </div>
@@ -152,11 +149,13 @@ function process_form_default() {
 			send_form_via_email( $form_fields['Email'], $ref_number, 'Your enquiry - Ref:', $email_to_user );
 
 			// Store email content to TNA into a variable
-			$email_to_tna = success_message_header( 'Reference number:', $ref_number );
+			$email_to_tna = success_message_header( 'Reference number: ', $ref_number );
 			$email_to_tna .= display_compiled_form_data( $form_fields );
 
 			// Send email to TNA
-			send_form_via_email( get_option( 'admin_email' ), $ref_number, 'Enquiry - Ref:', $email_to_tna );
+			// Amend email address function with username to send email to desired destination.
+			// eg, get_tna_email( 'contactcentre' )
+			send_form_via_email( get_tna_email(), $ref_number, 'Enquiry - Ref: ', $email_to_tna );
 
 		}
 	}

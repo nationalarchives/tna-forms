@@ -18,18 +18,15 @@ function return_form_rre() {
 	                <fieldset>
 	                    <legend>Your enquiry</legend>
 	                    <div class="form-row">
-	                        <p class="mandatory">* mandatory field</p>
-	                    </div>
-	                    <div class="form-row">
-	                        <label for="forename">First name</label>
+	                        <label for="forename">First name <span class="optional">(optional)</span></label>
 	                        <input type="text" id="forename" name="forename" ' . set_value( 'forename' ) . '>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="surname">Last name</label>
+	                        <label for="surname">Last name <span class="optional">(optional)</span></label>
 	                        <input type="text" id="surname" name="surname" ' . set_value( 'surname' ) . '>
 	                    </div>
                         <div class="form-row">
-                            <label for="email">Email address *</label>
+                            <label for="email">Email address</label>
                             <input type="email" id="email" name="email" aria-required="true" required ' . set_value( 'email' ) . '>
                             ' . field_error_message( 'email', 'Email' ) . '
                         </div>
@@ -39,18 +36,18 @@ function return_form_rre() {
                             ' . field_error_message( 'confirm-email', 'Confirm email', 'reconfirm', 'email' ) . '
                         </div>
 	                    <div class="form-row">
-	                        <label for="country">Country *</label>
+	                        <label for="country">Country</label>
 	                        <input type="text" id="country" name="country" aria-required="true" required ' . set_value( 'country' ) . '>
 	                        ' . field_error_message( 'country', 'Country' ) . '
 	                    </div>
 	                    <div class="form-row textarea">
 	                        <p>Please provide specific details of the information you are looking for and avoid requests like &#34;anything you can tell me&#34; on a person or subject.</p>
-	                        <label for="enquiry">Your enquiry *</label>
+	                        <label for="enquiry">Your enquiry</label>
 	                        <textarea id="enquiry" name="enquiry" aria-required="true" required>' . set_value( 'enquiry', 'textarea' ) . '</textarea>
 	                        ' . field_error_message( 'enquiry', 'Enquiry' ) . '
 	                    </div>
 	                    <div class="form-row">
-	                        <p>Please provide the dates or years that you are interested in.</p>
+	                        <p>Please provide the dates or years that you are interested in. <span class="optional">(optional)</span></p>
 	                        <label for="from-date">From date</label>
 	                        <p class="form-hint">(Date or year)</p>
 	                        <input type="text" id="from_date" name="from-date" ' . set_value( 'from-date' ) . '>

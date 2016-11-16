@@ -19,7 +19,7 @@ function return_form_british_citizenship() {
 	                    <li><span>3</span> Your details</li>
 	                </ul>
 	            </div>
-	            <form action=""  id="naturalisation" method="POST" novalidate>
+	            <form action=""  id="naturalisation" method="POST">
 	            	<input type="hidden" name="tna-form" value="naturalisation">
 	            	<input type="hidden" name="token" value="' . token() . '">
 	                <fieldset class="form-step-1">
