@@ -11,47 +11,18 @@ function return_form_default() {
 	global $tna_success_message,
 	       $tna_error_message;
 
-	// HTML form string (I know, it's long!)
-	$form = '<form action=""  id="default" method="POST">
-					<input type="hidden" name="tna-form" value="default">
-					<input type="hidden" name="token" value="' . form_token() . '">
-	                <fieldset>
-	                    <legend>Your enquiry</legend>
-	                    <div class="form-row">
-	                        <label for="forename">First name</label>
-	                        <input type="text" id="forename" name="forename" aria-required="true" required ' . set_value( 'forename' ) . '>
-	                        ' . field_error_message( 'forename', 'Forename' ) . '
-	                    </div>
-	                    <div class="form-row">
-	                        <label for="surname">Last name</label>
-	                        <input type="text" id="surname" name="surname" aria-required="true" required ' . set_value( 'surname' ) . '>
-	                        ' . field_error_message( 'surname', 'Surname' ) . '
-	                    </div>
-                        <div class="form-row">
-                            <label for="email">Email address</label>
-                            <input type="email" id="email" name="email" aria-required="true" required ' . set_value( 'email' ) . '>
-                            ' . field_error_message( 'email', 'Email' ) . '
-                        </div>
-                        <div class="form-row">
-                            <label for="confirm_email">Please re-type your email address</label>
-                            <input type="email" id="confirm_email" name="confirm-email" aria-required="true" required ' . set_value( 'confirm-email' ) . '>
-                            ' . field_error_message( 'confirm-email', 'Confirm email', 'reconfirm', 'email' ) . '
-                        </div>
-	                    <div class="form-row">
-	                        <label for="country">Country</label>
-	                        <input type="text" id="country" name="country" aria-required="true" required ' . set_value( 'country' ) . '>
-	                        ' . field_error_message( 'country', 'Country' ) . '
-	                    </div>
-	                    <div class="form-row">
-	                        <label for="enquiry">Your enquiry</label>
-	                        <textarea id="enquiry" name="enquiry" aria-required="true" required>' . set_value( 'enquiry', 'textarea' ) . '</textarea>
-	                        ' . field_error_message( 'enquiry', 'Enquiry' ) . '
-	                    </div>
-	                    <div class="form-row">
-	                        <input type="submit" alt="Submit" name="submit-default" id="submit-tna-form" value="Submit" class="button">
-	                    </div>
-	                </fieldset>
-	            </form>';
+	// HTML form string
+	$html = new Form_Builder;
+	$form =  $html->form_begins( 'default', 'default' ) .
+	         $html->fieldset_begins( 'Your enquiry' ) .
+	         $html->form_text_input( 'Full name', 'name', 'name', true, 'Please enter your name' ) .
+	         $html->form_text_input( 'Email address', 'email', 'email', true, 'Please enter a valid email address' ) .
+	         $html->form_text_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', true, 'Please enter your email address again', '', 'email' ) .
+	         $html->form_text_input( 'Country', 'country', 'country', true, 'Please enter your country' ) .
+	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', true, 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .
+	         $html->submit_form( 'submit-default', 'submit-tna-form') .
+	         $html->fieldset_ends() .
+	         $html->form_ends();
 
 	// If the form submission comes with errors give us back
 	// the form populated with form data and error messages
@@ -67,16 +38,7 @@ function return_form_default() {
 	// If there no form submission, hence the user has
 	// accessed the page for the first time, give us an empty form
 	else {
-
-		$html = new Form_Builder;
-
-		return  $html->form_begins( 'default', 'default' ) .
-		        $html->fieldset_begins( 'Your enquiry' ) .
-		        $html->form_text_input( 'Full name', 'name', 'name', true, 'Please enter your name' ) .
-		        $html->submit_form( 'submit-default', 'submit-tna-form') .
-		        $html->fieldset_ends() .
-				$html->form_ends();
-
+		return $form;
 	}
 }
 
@@ -106,8 +68,7 @@ function process_form_default() {
 		// Error messages for individual form fields stored into an array
 		// IMPORTANT: $tna_error_messages array keys must match exactly the $form_fields array keys
 		$tna_error_messages  = array(
-			'Forename'              => 'Please enter your first name',
-			'Surname'               => 'Please enter your last name',
+			'Name'                  => 'Please enter your full name',
 			'Email'                 => 'Please enter a valid email address',
 			'Confirm email'         => 'Please enter your email address again',
 			'Country'               => 'Please enter your country',
@@ -117,8 +78,7 @@ function process_form_default() {
 		// Get the form elements and store them into an array
 		// IMPORTANT: $form_fields array keys must match exactly the $tna_error_messages array keys
 		$form_fields = array(
-			'Forename'             => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'forename' ) ),
-			'Surname'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'surname' ) ),
+			'Name'                 => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'name' ) ),
 			'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 			'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),

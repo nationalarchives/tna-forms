@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Form builder
  */
@@ -9,10 +8,15 @@ class Form_Builder {
 
 	}
 
-	public function input_error_message( $name, $error ) {
+	public function input_error_message( $name, $error, $match = '' ) {
 		$error_wrapper = '<span class="form-error form-hint">%s</span>';
-		if ( isset( $_POST[$name] ) && isset( $_POST['tna-form'] ) ) {
+		if ( isset( $_POST[$name] ) && isset( $_POST['tna-form'] ) && $error ) {
 			if ( trim( $_POST[$name] ) === '' ) {
+				return sprintf( $error_wrapper, $error );
+			}
+		}
+		if ( isset( $_POST[$name] ) && isset( $_POST['tna-form'] ) && $match ) {
+			if ( trim( $_POST[$name] ) !== trim( $_POST[$match] ) ) {
 				return sprintf( $error_wrapper, $error );
 			}
 		}
@@ -44,7 +48,7 @@ class Form_Builder {
 		return $form;
 	}
 
-	public function form_text_input( $label, $id, $name, $required = false, $error ) {
+	public function form_text_input( $label, $id, $name, $required = false, $error = '', $hint = '', $match = '' ) {
 		if ( $required ) {
 			$optional = '';
 			$required_att = 'aria-required="true" required ';
@@ -52,14 +56,53 @@ class Form_Builder {
 			$optional = ' <span class="optional">(optional)</span>';
 			$required_att = '';
 		}
+		if ( $hint ) {
+			$hint_text = sprintf( '<p class="form-hint">%s</p>', $hint );
+		} else {
+			$hint_text = '';
+		}
 		$form = '<div class="form-row">';
-		$form .= '<label for="forename">%s';
+		$form .= '<label for="';
+		$form .= $id;
+		$form .= '">%s';
 		$form .= $optional;
 		$form .= '</label>';
+		$form .= $hint_text;
 		$form .= '<input type="text" id="%s" name="%s" ';
 		$form .= $required_att;
 		$form .= set_value( $name );
 		$form .= '>';
+		$form .= $this->input_error_message( $name, $error, $match );
+		$form .= '</div>';
+
+		return sprintf( $form, $label, $id, $name );
+	}
+
+	public function form_textarea_input( $label, $id, $name, $required = false, $error = '', $hint = '' ) {
+		if ( $required ) {
+			$optional = '';
+			$required_att = 'aria-required="true" required ';
+		} else {
+			$optional = ' <span class="optional">(optional)</span>';
+			$required_att = '';
+		}
+		if ( $hint ) {
+			$hint_text = sprintf( '<p class="form-hint">%s</p>', $hint );
+		} else {
+			$hint_text = '';
+		}
+		$form = '<div class="form-row">';
+		$form .= '<label for="';
+		$form .= $id;
+		$form .= '">%s';
+		$form .= $optional;
+		$form .= '</label>';
+		$form .= $hint_text;
+		$form .= '<textarea id="%s" name="%s" ';
+		$form .= $required_att;
+		$form .= '>';
+		$form .= set_value( $name, 'textarea' );
+		$form .= '</textarea>';
 		$form .= $this->input_error_message( $name, $error );
 		$form .= '</div>';
 
