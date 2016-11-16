@@ -41,21 +41,14 @@ function return_form_rre() {
 	                        ' . field_error_message( 'country', 'Country' ) . '
 	                    </div>
 	                    <div class="form-row textarea">
-	                        <p>Please provide specific details of the information you are looking for and avoid requests like &#34;anything you can tell me&#34; on a person or subject.</p>
+	                        <p>Please provide specific details of the information you are looking for.</p>
 	                        <label for="enquiry">Your enquiry</label>
 	                        <textarea id="enquiry" name="enquiry" aria-required="true" required>' . set_value( 'enquiry', 'textarea' ) . '</textarea>
 	                        ' . field_error_message( 'enquiry', 'Enquiry' ) . '
 	                    </div>
 	                    <div class="form-row">
-	                        <p>Please provide the dates or years that you are interested in. <span class="optional">(optional)</span></p>
-	                        <label for="from-date">From date</label>
-	                        <p class="form-hint">(Date or year)</p>
-	                        <input type="text" id="from_date" name="from-date" ' . set_value( 'from-date' ) . '>
-	                    </div>
-	                    <div class="form-row">
-	                        <label for="to-date">To date</label>
-	                        <p class="form-hint">(Date or year)</p>
-	                        <input type="text" id="to_date" name="to-date" ' . set_value( 'to-date' ) . '>
+	                        <label for="date">Provide the dates or years that you are interested in. <span class="optional">(optional)</span></label>
+	                        <input type="text" id="date" name="date" ' . set_value( 'date' ) . '>
 	                    </div>
 	                    <div class="form-row">
 	                        <input type="submit" alt="Submit" name="submit-rre" id="submit-tna-form" value="Submit" class="button">
@@ -122,8 +115,7 @@ function process_form_rre() {
 			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 			'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
 			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
-			'From date'            => is_text_field_valid( filter_input( INPUT_POST, 'from-date' ) ),
-			'To date'              => is_text_field_valid( filter_input( INPUT_POST, 'to-date' ) )
+			'Date(s)'              => is_text_field_valid( filter_input( INPUT_POST, 'date' ) )
 		);
 
 		// If any value inside the array is false then there is an error
