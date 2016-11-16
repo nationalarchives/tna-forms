@@ -29,6 +29,8 @@ legend {
     float: right; }
   .form-row .form-hint {
     color: #6f777b; }
+  .form-row .optional {
+    color: #6f777b; }
   .form-row .form-error {
     color: #CB0D07;
     width: 100%;

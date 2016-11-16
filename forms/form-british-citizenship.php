@@ -19,31 +19,30 @@ function return_form_british_citizenship() {
 	                    <li><span>3</span> Your details</li>
 	                </ul>
 	            </div>
-	            <form action=""  id="naturalisation" method="POST">
+	            <form action=""  id="naturalisation" method="POST" novalidate>
 	            	<input type="hidden" name="tna-form" value="naturalisation">
 	            	<input type="hidden" name="token" value="' . token() . '">
 	                <fieldset class="form-step-1">
 	                    <legend>Certificate holder\'s details</legend>
 	                    <div class="form-row">
-	                        <p class="mandatory">* mandatory field</p>
 	                        <p>Enter the details of the certificate holder at the time the certificate was issued.</p>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="certificate_forename">Full name *</label>
+	                        <label for="certificate_forename">Full name</label>
 	                        <input type="text" id="certificate_name" name="certificate-name" aria-required="true" required ' . set_value( 'certificate-name' ) . '>
 	                        ' . field_error_message( 'certificate-name', 'Certificate holder name' ) . '
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="certificate_surname_alt">Alternative name(s)</label>
+	                        <label for="certificate_surname_alt">Alternative name(s) <span class="optional">(optional)</span></label>
 	                        <p class="form-hint">For example: married or maiden names</p>
 	                        <input type="text" id="certificate_name_alt" name="certificate-name-alt" ' . set_value( 'certificate-name-alt' ) . '>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="certificate_birth_country">Country of birth</label>
+	                        <label for="certificate_birth_country">Country of birth <span class="optional">(optional)</span></label>
 	                        <input type="text" id="certificate_birth_country" name="certificate-birth-country" ' . set_value( 'certificate-birth-country' ) . '>
 	                    </div>
 	                    <div class="form-row">
-	                    <p>Date of birth</p>
+	                    <p>Date of birth <span class="optional">(optional)</span></p>
 	                    <p class="form-hint">For example: 8 3 1955</p>
 	                        <span class="dob-col day">
 	                            <label for="certificate_day">Day</label>
@@ -63,14 +62,11 @@ function return_form_british_citizenship() {
 	                        <label for="certificate_dob_approx">Tick here if the date of birth is an approximation.</label>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="certificate_postal_address">Address</label>
+	                        <label for="certificate_postal_address">Address at time of registration <span class="optional">(optional)</span></label>
 	                        <textarea id="certificate_postal_address" name="certificate-postal-address">' . set_value( 'certificate-postal-address', 'textarea' ) . '</textarea>
 	                    </div>
 	                    <div class="form-row form-nav">
 	                        <a href="#" title="continue" class="button">Continue</a>
-	                    </div>
-	                    <div class="form-row">
-	                        <p>For the protection of personal data, these details will not be retained by us.</p>
 	                    </div>
 	                </fieldset>
 	                <fieldset class="form-step-2">
@@ -82,11 +78,11 @@ function return_form_british_citizenship() {
 	                        <p>If you know any details of the certificate, please provide them below. This will help us narrow down our search.</p>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="certificate_issued_country">Country of issue</label>
+	                        <label for="certificate_issued_country">Country of issue <span class="optional">(optional)</span></label>
 	                        <input type="text" id="certificate_issued_country" name="certificate-issued-country" ' . set_value( 'certificate-issued-country' ) . '>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="certificate_number">Certificate number</label>
+	                        <label for="certificate_number">Certificate number <span class="optional">(optional)</span></label>
 	                        <input type="text" id="certificate_number" name="certificate-number" ' . set_value( 'certificate-number' ) . '>
 	                    </div>
 	                    <div class="form-row registration-year">
@@ -174,32 +170,32 @@ function return_form_british_citizenship() {
 	                            <option value="1985" ' . set_value( 'certificate-year-issued-to', 'select', '1985' ) . '>1985</option>
 								<option value="1986" ' . set_value( 'certificate-year-issued-to', 'select', '1986' ) . '>1986</option>
 	                        </select>
+	                        <p><span class="optional">(optional)</span></p>
 	                    </div>
 	                    <div class="form-row form-nav ">
 	                        <a href="#" title="continue" class="button">Continue</a>
 	                    </div>
 	                </fieldset>
 	                <fieldset class="form-step-3">
-	                    <legend>Your details</legend>
+	                    <legend>Contact details</legend>
 	                    <div class="form-row form-nav">
 	                        <a href="#" title="back" class="button-back">&#10094; Back</a>
 	                    </div>
 	                    <div class="form-row">
-	                        <p class="mandatory">* mandatory field</p>
 	                        <p>Please provide your contact details so we can let you know the result of our check.</p>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="forename">First name *</label>
+	                        <label for="forename">First name</label>
 	                        <input type="text" id="forename" name="forename" aria-required="true" required ' . set_value( 'forename' ) . '>
 	                        ' . field_error_message( 'forename', 'Forename' ) . '
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="surname">Last name *</label>
+	                        <label for="surname">Last name</label>
 	                        <input type="text" id="surname" name="surname" aria-required="true" required ' . set_value( 'surname' ) . '>
 	                        ' . field_error_message( 'surname', 'Surname' ) . '
 	                    </div>
 	                    <div class="form-row">
-	                        <p class="form-warning-error">How would you prefer to be contacted? *</p>
+	                        <p class="form-warning-error">How would you prefer to be contacted?</p>
 		                    ' . field_error_message( 'preferred-contact', 'Preferred contact', 'radio' ) . '
 		                    <div class="form-col">
 		                        <input id="contact_email" type="radio" name="preferred-contact" value="Email" ' . set_value( 'preferred-contact', 'radio', 'Email' ) . '>
