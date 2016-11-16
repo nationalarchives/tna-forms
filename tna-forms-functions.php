@@ -152,7 +152,7 @@ function send_form_via_email( $email, $ref_number, $subject, $content ) {
 	}
 }
 
-function token() {
+function form_token() {
 	return md5( uniqid( "", true ) );
 }
 

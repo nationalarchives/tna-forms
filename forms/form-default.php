@@ -14,7 +14,7 @@ function return_form_default() {
 	// HTML form string (I know, it's long!)
 	$form = '<form action=""  id="default" method="POST">
 					<input type="hidden" name="tna-form" value="default">
-					<input type="hidden" name="token" value="' . token() . '">
+					<input type="hidden" name="token" value="' . form_token() . '">
 	                <fieldset>
 	                    <legend>Your enquiry</legend>
 	                    <div class="form-row">
@@ -149,13 +149,13 @@ function process_form_default() {
 			send_form_via_email( $form_fields['Email'], $ref_number, 'Your enquiry - Ref:', $email_to_user );
 
 			// Store email content to TNA into a variable
-			$email_to_tna = success_message_header( 'Reference number: ', $ref_number );
+			$email_to_tna = success_message_header( 'Reference number:', $ref_number );
 			$email_to_tna .= display_compiled_form_data( $form_fields );
 
 			// Send email to TNA
 			// Amend email address function with username to send email to desired destination.
 			// eg, get_tna_email( 'contactcentre' )
-			send_form_via_email( get_tna_email(), $ref_number, 'Enquiry - Ref: ', $email_to_tna );
+			send_form_via_email( get_tna_email(), $ref_number, 'Enquiry - Ref:', $email_to_tna );
 
 		}
 	}

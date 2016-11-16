@@ -21,7 +21,7 @@ function return_form_british_citizenship() {
 	            </div>
 	            <form action=""  id="naturalisation" method="POST">
 	            	<input type="hidden" name="tna-form" value="naturalisation">
-	            	<input type="hidden" name="token" value="' . token() . '">
+	            	<input type="hidden" name="token" value="' . form_token() . '">
 	                <fieldset class="form-step-1">
 	                    <legend>Certificate holder\'s details</legend>
 	                    <div class="form-row">

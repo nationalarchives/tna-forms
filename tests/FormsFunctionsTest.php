@@ -94,4 +94,12 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 		$data = display_error_message( array( 'Name' => false, 'Email' => 'info@domain.com'  ) );
 		$this->assertEquals($data, '<div class="emphasis-block error-message"><h3>Error</h3><ul><li>Please enter your name</li></ul></div>');
 	}
+	public function testFormToken()
+	{
+		$this->assertTrue(function_exists('form_token'));
+	}
+	public function testGetTnaEmail()
+	{
+		$this->assertTrue(function_exists('get_tna_email'));
+	}
 }
