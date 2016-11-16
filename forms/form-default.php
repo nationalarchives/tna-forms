@@ -15,12 +15,13 @@ function return_form_default() {
 	$html = new Form_Builder;
 	$form =  $html->form_begins( 'default', 'default' ) .
 	         $html->fieldset_begins( 'Your enquiry' ) .
-	         $html->help_text( 'Use this form to contact us with your general queries about our services. We will respond to you within ten days of receiving your enquiry.' ) .
+	         $html->help_text( 'Use this form to contact us with your queries about the records we hold at The National Archives and how to go about searching for them.' ) .
 	         $html->form_text_input( 'Full name', 'name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
 	         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
 	         $html->form_text_input( 'Country', 'country', 'country', 'Please enter your country' ) .
 	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .
+	         $html->form_text_input( 'Provide the dates or years that you are interested in', 'dates', 'dates' ) .
 	         $html->submit_form( 'submit-default', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
@@ -83,7 +84,8 @@ function process_form_default() {
 			'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 			'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
-			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) )
+			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
+			'Date(s)'              => is_text_field_valid( filter_input( INPUT_POST, 'dates' ) )
 		);
 
 		// If any value inside the array is false then there is an error
