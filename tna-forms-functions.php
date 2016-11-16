@@ -70,7 +70,7 @@ function ref_number( $name, $time_stamp ) {
 			$suffix = strtoupper( $name );
 		}
 	} else {
-		$suffix = 'NA';
+		$suffix = 'R' . rand(10, 99);
 	}
 
 	return $prefix . $time_stamp . $suffix;
