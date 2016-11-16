@@ -15,12 +15,13 @@ function return_form_default() {
 	$html = new Form_Builder;
 	$form =  $html->form_begins( 'default', 'default' ) .
 	         $html->fieldset_begins( 'Your enquiry' ) .
-	         $html->form_text_input( 'Full name', 'name', 'full-name', true, 'Please enter your name' ) .
-	         $html->form_text_input( 'Email address', 'email', 'email', true, 'Please enter a valid email address' ) .
-	         $html->form_text_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', true, 'Please enter your email address again', '', 'email' ) .
-	         $html->form_text_input( 'Country', 'country', 'country', true, 'Please enter your country' ) .
-	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', true, 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .
-	         $html->submit_form( 'submit-default', 'submit-tna-form') .
+	         $html->help_text( 'Use this form to contact us with your general queries about our services. We will respond to you within ten days of receiving your enquiry.' ) .
+	         $html->form_text_input( 'Full name', 'name', 'full-name', 'Please enter your full name' ) .
+	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
+	         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
+	         $html->form_text_input( 'Country', 'country', 'country', 'Please enter your country' ) .
+	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .
+	         $html->submit_form( 'submit-default', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
 

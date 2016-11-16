@@ -34,8 +34,8 @@ class Form_Builder {
 		return $form;
 	}
 
-	public function form_text_input( $label, $id, $name, $required = false, $error = '', $hint = '', $match = '' ) {
-		if ( $required == true ) {
+	public function form_text_input( $label, $id, $name, $error = '', $hint = '' ) {
+		if ( $error ) {
 			$optional = '';
 			$required_att = 'aria-required="true" required ';
 		} else {
@@ -58,14 +58,14 @@ class Form_Builder {
 		$form .= $required_att;
 		$form .= set_value( $name );
 		$form .= '>';
-		$form .= input_error_message( $name, $error, $match );
+		$form .= input_error_message( $name, $error );
 		$form .= '</div>';
 
 		return sprintf( $form, $label, $id, $name );
 	}
 
-	public function form_textarea_input( $label, $id, $name, $required = false, $error = '', $hint = '' ) {
-		if ( $required ) {
+	public function form_textarea_input( $label, $id, $name, $error = '', $hint = '' ) {
+		if ( $error ) {
 			$optional = '';
 			$required_att = 'aria-required="true" required ';
 		} else {
@@ -95,12 +95,44 @@ class Form_Builder {
 		return sprintf( $form, $label, $id, $name );
 	}
 
+	public function form_email_input( $label, $id, $name, $error = '', $match = '' ) {
+		if ( $error ) {
+			$optional = '';
+			$required_att = 'aria-required="true" required ';
+		} else {
+			$optional = ' <span class="optional">(optional)</span>';
+			$required_att = '';
+		}
+		$form = '<div class="form-row">';
+		$form .= '<label for="';
+		$form .= $id;
+		$form .= '">%s';
+		$form .= $optional;
+		$form .= '</label>';
+		$form .= '<input type="email" id="%s" name="%s" ';
+		$form .= $required_att;
+		$form .= set_value( $name );
+		$form .= '>';
+		$form .= input_error_message( $name, $error, $match );
+		$form .= '</div>';
+
+		return sprintf( $form, $label, $id, $name );
+	}
+
 	public function submit_form( $name, $id ) {
 		$form = '<div class="form-row">';
 		$form .= '<input type="submit" name="%s" id="%s" value="Submit" class="button">';
 		$form .= '</div>';
 
 		return sprintf( $form, $name, $id );
+	}
+
+	public function help_text( $text ) {
+		$form = '<div class="form-row">';
+		$form .= '<p>%s</p>';
+		$form .= '</div>';
+
+		return sprintf( $form, $text );
 	}
 
 }
