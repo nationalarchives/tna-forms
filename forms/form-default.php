@@ -67,7 +67,16 @@ function return_form_default() {
 	// If there no form submission, hence the user has
 	// accessed the page for the first time, give us an empty form
 	else {
-		return $form;
+
+		$html = new Form_Builder;
+
+		return  $html->form_begins( 'default', 'default' ) .
+		        $html->fieldset_begins( 'Your enquiry' ) .
+		        $html->form_text_input( 'Full name', 'name', 'name', true, 'Please enter your name' ) .
+		        $html->submit_form( 'submit-default', 'submit-tna-form') .
+		        $html->fieldset_ends() .
+				$html->form_ends();
+
 	}
 }
 
