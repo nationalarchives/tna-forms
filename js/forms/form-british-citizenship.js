@@ -49,18 +49,54 @@ function naturalisationForm(){
     $(button,'.form-step-1,.form-step-2').css("display","block");
     $(buttonBack,'.form-step-2,.form-step-3').css("display","block");
 
+    History.pushState({state:1},'Certificate holder\'s details', '#step-1');
+
+    // History JS
+    $(window).on('popstate', function() {
+        if(window.location.hash == "#step-2"){
+            $(formStepTwo).show();
+            $(formStepThree).hide();
+            $(formStepOne).hide();
+            $('.arrow-steps li:nth-child(2)').addClass("current");
+            $('.arrow-steps li:nth-child(1)').addClass("current");
+            $('.arrow-steps li:nth-child(3)').removeClass("current");
+
+        } else if(window.location.hash == "#step-3"){
+            $(formStepThree).show();
+            $(formStepTwo).hide();
+            $(formStepOne).hide();
+            $('.arrow-steps li:nth-child(3)').addClass("current");
+
+        } else if (window.location.hash == "#step-1") {
+            $(formStepOne).show();
+            $(formStepTwo).hide();
+            $(formStepThree).hide();
+            $('.arrow-steps li:nth-child(1)').addClass("current");
+            $('.arrow-steps li:nth-child(2)').removeClass("current");
+            $('.arrow-steps li:nth-child(3)').removeClass("current");
+
+        }
+    });
+
+
     /**
      * DOB validation
      * */
 
     $('.dob-col').wrapAll('<div id="groupErrorPlacement"></div>');
 
+    $(submit).prop('disabled', true);
+
 
     /**
      * 5. Form validation
      * */
-    $(button).on('click',function(){
+    $(button).on('click',function(e){
+        e.preventDefault();
         var form = $(formName);
+
+        // Scroll back to top
+        $("html, body").animate({ scrollTop: 0 }, "slow");
 
         /**
          * Included custom form validation methods from methods.js
@@ -219,6 +255,8 @@ function naturalisationForm(){
                 /* Show progress bar */
                 $('.arrow-steps li:nth-child(2)').addClass("current");
 
+                History.pushState({state:2},'State 2', '#step-2');
+
                 $(submit).prop('disabled', true);
 
             }
@@ -232,6 +270,9 @@ function naturalisationForm(){
                 /* Show progress bar */
                 $('.arrow-steps li:nth-child(3)').addClass("current");
                 $(submit).prop('disabled', false);
+
+                History.pushState({state:3},'State 3', '#step-3');
+
             }
 
             next_fs.show();
@@ -246,13 +287,11 @@ function naturalisationForm(){
      * */
     $(radio).on('click', function(){
         if ($(contactEmail).is(':checked')){
-
             $(emailWrapper).show();
             $(addressWrapper).hide();
 
 
         } else if ($(contactPostal).is(':checked')) {
-
             $(addressWrapper).show();
             $(emailWrapper).hide();
 
@@ -263,20 +302,25 @@ function naturalisationForm(){
     /**
      * 7. Back button on step two
      * */
-    $(buttonBack, formStepTwo).on('click', function() {
+    $(buttonBack, formStepTwo).on('click', function(e) {
+        e.preventDefault();
         $(formStepOne).show();
         $(formStepTwo).hide();
         $('.arrow-steps li:nth-child(2)').removeClass("current");
         $('.arrow-steps li:nth-child(3)').removeClass("current");
+        History.pushState({state:1},'Certificate holder\'s details', '#step-1');
     });
 
     /**
      * 8. Back button on step three
      * */
-    $(buttonBack, formStepThree).on('click', function() {
+    $(buttonBack, formStepThree).on('click', function(e) {
+        e.preventDefault();
         $(formStepTwo).show();
         $(formStepThree).hide();
         $('.arrow-steps li:nth-child(3)').removeClass("current");
+
+        History.pushState({state:2},'Certificate details (optional)', '#step-2');
     });
 };
 

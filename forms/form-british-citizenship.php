@@ -220,7 +220,7 @@ function return_form_british_citizenship() {
 	                        <textarea id="postal_address" name="postal-address">' . set_value( 'postal-address', 'textarea' ) . '</textarea>
 	                    </div>
 	                    <div class="form-row">
-	                        <input type="submit" alt="Submit" name="submit-tna-form" id="submit-tna-form" value="Submit" class="button">
+	                        <input type="submit" alt="Submit" name="submit-tna-form" id="submit-tna-form" value="Submit">
 	                    </div>
 	                </fieldset>
 	            </form>';
