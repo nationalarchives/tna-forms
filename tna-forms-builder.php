@@ -9,7 +9,7 @@ class Form_Builder {
 	}
 
 	public function form_begins( $id, $value ) {
-		$form = '<form action=""  id="%s" method="POST" novalidate>';
+		$form = '<form action=""  id="%s" method="POST">';
 		$form .= '<input type="hidden" name="tna-form" value="%s">';
 		$form .= '<input type="hidden" name="token" value="' . form_token() . '">';
 

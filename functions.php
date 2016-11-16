@@ -18,7 +18,7 @@ function enqueue_form_scripts() {
 	wp_register_script( 'jquery-validate', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js', array(), '1.15.1', true  );
 	wp_register_script( 'additional-methods', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/additional-methods.min.js', array(), '1.13.1', true  );
 	global $post;
-	if (has_shortcode($post->post_content, 'tna-forms')) {
+	if (has_shortcode($post->post_content, 'tna-form')) {
 		wp_enqueue_script('tna-form-scripts');
 		wp_enqueue_script('jquery-validate');
 		wp_enqueue_script('additional-methods');
