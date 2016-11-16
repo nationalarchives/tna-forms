@@ -15,7 +15,7 @@ function return_form_default() {
 	$html = new Form_Builder;
 	$form =  $html->form_begins( 'default', 'default' ) .
 	         $html->fieldset_begins( 'Your enquiry' ) .
-	         $html->form_text_input( 'Full name', 'name', 'name', true, 'Please enter your name' ) .
+	         $html->form_text_input( 'Full name', 'name', 'full-name', true, 'Please enter your name' ) .
 	         $html->form_text_input( 'Email address', 'email', 'email', true, 'Please enter a valid email address' ) .
 	         $html->form_text_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', true, 'Please enter your email address again', '', 'email' ) .
 	         $html->form_text_input( 'Country', 'country', 'country', true, 'Please enter your country' ) .
@@ -78,7 +78,7 @@ function process_form_default() {
 		// Get the form elements and store them into an array
 		// IMPORTANT: $form_fields array keys must match exactly the $tna_error_messages array keys
 		$form_fields = array(
-			'Name'                 => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'name' ) ),
+			'Name'                 => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
 			'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 			'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
@@ -99,7 +99,7 @@ function process_form_default() {
 
 			global $post;
 			// Generate reference number based on user's surname and timestamp
-			$ref_number = ref_number( $form_fields['Surname'], date_timestamp_get( date_create() ) );
+			$ref_number = ref_number( $form_fields['Name'], date_timestamp_get( date_create() ) );
 
 			// Store confirmation content into the global variable
 			$tna_success_message = success_message_header( 'Your reference number:', $ref_number );

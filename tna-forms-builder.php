@@ -8,20 +8,6 @@ class Form_Builder {
 
 	}
 
-	public function input_error_message( $name, $error, $match = '' ) {
-		$error_wrapper = '<span class="form-error form-hint">%s</span>';
-		if ( isset( $_POST[$name] ) && isset( $_POST['tna-form'] ) && $error ) {
-			if ( trim( $_POST[$name] ) === '' ) {
-				return sprintf( $error_wrapper, $error );
-			}
-		}
-		if ( isset( $_POST[$name] ) && isset( $_POST['tna-form'] ) && $match ) {
-			if ( trim( $_POST[$name] ) !== trim( $_POST[$match] ) ) {
-				return sprintf( $error_wrapper, $error );
-			}
-		}
-	}
-
 	public function form_begins( $id, $value ) {
 		$form = '<form action=""  id="%s" method="POST" novalidate>';
 		$form .= '<input type="hidden" name="tna-form" value="%s">';
@@ -49,7 +35,7 @@ class Form_Builder {
 	}
 
 	public function form_text_input( $label, $id, $name, $required = false, $error = '', $hint = '', $match = '' ) {
-		if ( $required ) {
+		if ( $required == true ) {
 			$optional = '';
 			$required_att = 'aria-required="true" required ';
 		} else {
@@ -72,7 +58,7 @@ class Form_Builder {
 		$form .= $required_att;
 		$form .= set_value( $name );
 		$form .= '>';
-		$form .= $this->input_error_message( $name, $error, $match );
+		$form .= input_error_message( $name, $error, $match );
 		$form .= '</div>';
 
 		return sprintf( $form, $label, $id, $name );
@@ -103,7 +89,7 @@ class Form_Builder {
 		$form .= '>';
 		$form .= set_value( $name, 'textarea' );
 		$form .= '</textarea>';
-		$form .= $this->input_error_message( $name, $error );
+		$form .= input_error_message( $name, $error );
 		$form .= '</div>';
 
 		return sprintf( $form, $label, $id, $name );
