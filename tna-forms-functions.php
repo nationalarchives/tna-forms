@@ -61,23 +61,6 @@ function field_error_message( $input_name, $error_field_name, $type = 'required'
 	}
 }
 
-function input_error_message( $name, $error, $match = '' ) {
-	$error_wrapper = '<span class="form-error form-hint">%s</span>';
-	if ( isset( $_POST[$name] ) && isset( $_POST['tna-form'] ) && isset( $error ) ) {
-		if ( trim( $_POST[$name] ) === '' ) {
-			return sprintf( $error_wrapper, $error );
-		}
-	}
-	if ( isset( $match ) && isset( $error ) ) {
-		if ( isset( $_POST[$name] ) && isset( $_POST['tna-form'] ) && isset( $_POST[$match] ) ) {
-			if ( trim( $_POST[$name] ) !== trim( $_POST[$match] ) ) {
-				return sprintf( $error_wrapper, $error );
-			}
-		}
-	}
-	return '';
-}
-
 function ref_number( $name, $time_stamp ) {
 	$prefix = 'TNA';
 	if ( $name !== '-' ) {
