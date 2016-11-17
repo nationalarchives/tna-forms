@@ -15,7 +15,6 @@ function return_form_default() {
 	$html = new Form_Builder;
 	$form =  $html->form_begins( 'default', 'default' ) .
 	         $html->fieldset_begins( 'Your enquiry' ) .
-	         $html->help_text( 'Use this form to contact us with your queries about the records we hold at The National Archives and how to go about searching for them.' ) .
 	         $html->form_text_input( 'Full name', 'name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
 	         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
