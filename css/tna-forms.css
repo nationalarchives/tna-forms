@@ -167,11 +167,13 @@ legend {
       .arrow-steps li.current:after {
         display: none; } }
 
-/*#preferred-contact-error {
+#preferred-contact-error {
   position: absolute;
-  margin-top: -25px;
-  margin-left: -15px;
-}*/
+  margin-top: -45px; }
+
+#contact_email {
+  margin-top: 20px; }
+
 .form-data ul {
   list-style-type: none;
   margin: 0;
