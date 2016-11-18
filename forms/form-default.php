@@ -55,7 +55,7 @@ function process_form_default() {
 			$_POST = array();
 			return;
 		}
-		set_transient( 'token_' . $token, 'form-token', 180 );
+		set_transient( 'token_' . $token, 'form-token', 360 );
 
 		// Global variables
 		global $tna_success_message,

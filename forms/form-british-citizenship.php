@@ -258,7 +258,7 @@ function process_form_british_citizenship() {
 			$_POST = array();
 			return;
 		}
-		set_transient( 'token_' . $token, 'form-token', 180 );
+		set_transient( 'token_' . $token, 'form-token', 360 );
 
 		// Global variables
 		global $tna_success_message,
