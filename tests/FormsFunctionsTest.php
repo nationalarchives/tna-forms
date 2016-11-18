@@ -102,4 +102,13 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	{
 		$this->assertTrue(function_exists('get_tna_email'));
 	}
+	public function testFormBuilder()
+	{
+		$this->assertTrue( class_exists('Form_Builder') );
+	}
+	public function testFormBuilderMethodFormBegins()
+	{
+		$myClass = new \Form_Builder();
+		$this->assertTrue( method_exists($myClass, 'form_begins') );
+	}
 }
