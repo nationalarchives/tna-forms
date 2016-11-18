@@ -105,6 +105,7 @@ function naturalisationForm(){
         certificateMonth = 'certificate-month',
         certificateDay = 'certificate-day',
         groupErrorPlacement = '#groupErrorPlacement',
+        preferredContact = 'preferred-contact',
         formName = "#naturalisation";
 
     /**
@@ -156,6 +157,9 @@ function naturalisationForm(){
      * */
 
     $('.dob-col').wrapAll('<div id="groupErrorPlacement"></div>');
+    $('.pref_contact').wrapAll('<div id="groupErrorPlacement"></div>');
+
+
 
     $(submit).prop('disabled', true);
 
@@ -327,7 +331,7 @@ function naturalisationForm(){
                 /* Show progress bar */
                 $('.arrow-steps li:nth-child(2)').addClass("current");
 
-                History.pushState({state:2},'State 2', '#step-2');
+                History.pushState({state:2},'Certificate details (optional)', '#step-2');
 
                 $(submit).prop('disabled', true);
 
@@ -343,7 +347,7 @@ function naturalisationForm(){
                 $('.arrow-steps li:nth-child(3)').addClass("current");
                 $(submit).prop('disabled', false);
 
-                History.pushState({state:3},'State 3', '#step-3');
+                History.pushState({state:3},'Contact details', '#step-3');
 
             }
 

@@ -159,8 +159,10 @@ function form_token() {
 function get_tna_email( $user = '' ) {
 	if ( $user ) {
 		$contact_user = get_user_by( 'login', $user );
-		$email = $contact_user->user_email;
-		return $email;
+		if($contact_user){
+			$email = $contact_user->user_email;
+			return $email;
+		}
 	} else {
 		$email = get_option( 'admin_email' );
 		return $email;

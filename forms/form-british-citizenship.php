@@ -197,11 +197,11 @@ function return_form_british_citizenship() {
 	                    <div class="form-row">
 	                        <p class="form-warning-error">How would you prefer to be contacted?</p>
 		                    ' . field_error_message( 'preferred-contact', 'Preferred contact', 'radio' ) . '
-		                    <div class="form-col">
+		                    <div class="form-col pref_contact">
 		                        <input id="contact_email" type="radio" name="preferred-contact" value="Email" ' . set_value( 'preferred-contact', 'radio', 'Email' ) . '>
 		                        <label for="contact_email">Email</label>
 		                    </div>
-		                    <div class="form-col">
+		                    <div class="form-col pref_contact">
 		                        <input id="contact_postal" type="radio" name="preferred-contact" value="Post" ' . set_value( 'preferred-contact', 'radio', 'Post' ) . '>
 		                        <label for="contact_postal">Post</label>
 		                    </div>
@@ -223,7 +223,7 @@ function return_form_british_citizenship() {
 	                        <textarea id="postal_address" name="postal-address">' . set_value( 'postal-address', 'textarea' ) . '</textarea>
 	                    </div>
 	                    <div class="form-row">
-	                        <input type="submit" alt="Submit" name="submit-tna-form" id="submit-tna-form" value="Submit">
+	                        <input type="submit" alt="Submit" name="submit-bc" id="submit-tna-form" value="Submit">
 	                    </div>
 	                </fieldset>
 	            </form>';
