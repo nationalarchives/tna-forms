@@ -55,7 +55,7 @@ function process_form_rre() {
 			$_POST = array();
 			return;
 		}
-		set_transient( 'token_' . $token, 'form-token', 180 );
+		set_transient( 'token_' . $token, 'form-token', 360 );
 
 		// Global variables
 		global $tna_success_message,
@@ -78,7 +78,7 @@ function process_form_rre() {
 		// Get the form elements and store them into an array
 		// IMPORTANT: $form_fields array keys must match exactly the $tna_error_messages array keys
 		$form_fields = array(
-			'Name'             => is_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
+			'Name'                 => is_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
 			'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 			'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
