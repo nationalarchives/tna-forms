@@ -17,7 +17,7 @@ function enqueue_form_scripts() {
 	wp_register_script( 'tna-form-scripts', plugin_dir_url(__FILE__) . 'js/compiled/tna-forms-compiled.min.js', array(), '1.0.0', true  );
 	wp_register_script( 'jquery-validate', plugin_dir_url(__FILE__) . 'js/jquery-validation/dist/jquery.validate.min.js', array(), '1.15.0', true  );
 	wp_register_script( 'additional-methods', plugin_dir_url(__FILE__) . 'js/jquery-validation/dist/additional-methods.min.js', array(), '1.15.0', true  );
-	wp_register_script( 'history-js', plugin_dir_url(__FILE__) . 'js/browserstate-history/scripts/bundled/html4+html5/jquery.history.js', array(), '1.13.1', true  );
+	wp_register_script( 'history-js', plugin_dir_url(__FILE__) . 'js/browserstate-history/scripts/bundled/html4-html5/jquery.history.js', array(), '1.13.1', true  );
 
 	global $post;
 	if (has_shortcode($post->post_content, 'tna-form')) {
