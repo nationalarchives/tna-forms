@@ -8,8 +8,8 @@ class Form_Builder {
 
 	}
 
-	public function form_begins( $id, $value ) {
-		$form = '<form action=""  id="%s" method="POST">';
+	public function form_begins( $id, $value, $no_validate = false ) {
+		$form = '<form action=""  id="%s" method="POST"' . $this->validate_for_testing( $no_validate ) . '>';
 		$form .= '<input type="hidden" name="tna-form" value="%s">';
 		$form .= '<input type="hidden" name="token" value="' . form_token() . '">';
 
@@ -45,6 +45,7 @@ class Form_Builder {
 		$form .= '<input type="text" id="%s" name="%s" ';
 		$form .= $this->required_atts( $error );
 		$form .= set_value( $name );
+		$form .= $this->input_error_class( $name, $error );
 		$form .= '>';
 		$form .= $this->input_error_message( $name, $error );
 		$form .= '</div>';
@@ -62,6 +63,7 @@ class Form_Builder {
 		$form .= $this->hint_text( $hint );
 		$form .= '<textarea id="%s" name="%s" ';
 		$form .= $this->required_atts( $error );
+		$form .= $this->input_error_class( $name, $error );
 		$form .= '>';
 		$form .= set_value( $name, 'textarea' );
 		$form .= '</textarea>';
@@ -81,6 +83,7 @@ class Form_Builder {
 		$form .= '<input type="email" id="%s" name="%s" ';
 		$form .= $this->required_atts( $error );
 		$form .= set_value( $name );
+		$form .= $this->input_error_class( $name, $error, $match );
 		$form .= '>';
 		$form .= $this->input_error_message( $name, $error, $match );
 		$form .= '</div>';
@@ -157,6 +160,32 @@ class Form_Builder {
 			if ( !isset( $_POST[$name] ) ) {
 				return sprintf( $error_wrapper, $error );
 			}
+		}
+		return '';
+	}
+
+	public function input_error_class( $name, $error, $match = '' ) {
+		if ( $error && isset( $_POST['tna-form'] ) ) {
+			if ( isset( $_POST[$name] ) && isset( $_POST[$match] ) ) {
+				if ( trim( $_POST[$name] ) !== trim( $_POST[$match] ) ) {
+					return ' class="form-warning" ';
+				}
+			}
+			if ( isset( $_POST[$name] ) ) {
+				if ( trim( $_POST[$name] ) === '' ) {
+					return ' class="form-warning" ';
+				}
+			}
+			if ( !isset( $_POST[$name] ) ) {
+				return ' class="form-warning" ';
+			}
+		}
+		return '';
+	}
+
+	public function validate_for_testing( $no_validate ) {
+		if ( $no_validate = true ) {
+			return 'novalidate';
 		}
 		return '';
 	}
