@@ -63,16 +63,6 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	{
 		$this->assertTrue(function_exists('ref_number'));
 	}
-	public function testRefNumberOutput()
-	{
-		$data = ref_number( 'Smith', '1477476797' );
-		$this->assertEquals($data, 'TNA1477476797SMI');
-	}
-	public function testRefNumberOutputShortSurname()
-	{
-		$data = ref_number( 'Ho', '1477476797' );
-		$this->assertEquals($data, 'TNA1477476797HO');
-	}
 	public function testDisplayCompiledFormData()
 	{
 		$this->assertTrue(function_exists('display_compiled_form_data'));
@@ -92,7 +82,7 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 		$tna_error_messages['Name'] = 'Please enter your name';
 		$tna_error_messages['Email'] = 'Please enter your email address';
 		$data = display_error_message( array( 'Name' => false, 'Email' => 'info@domain.com'  ) );
-		$this->assertEquals($data, '<div class="emphasis-block error-message"><h3>Error</h3><ul><li>Please enter your name</li></ul></div>');
+		$this->assertEquals($data, '<div class="emphasis-block error-message"><h3>Sorry, there was a problem</h3><p>You will find more details highlighted below.</p></div>');
 	}
 	public function testFormToken()
 	{
