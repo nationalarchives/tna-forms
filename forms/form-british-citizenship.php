@@ -185,14 +185,9 @@ function return_form_british_citizenship() {
 	                        <p>Please provide your contact details so we can let you know the result of our check.</p>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="forename">First name</label>
-	                        <input type="text" id="forename" name="forename" aria-required="true" required ' . set_value( 'forename' ) . '>
-	                        ' . field_error_message( 'forename', 'Forename' ) . '
-	                    </div>
-	                    <div class="form-row">
-	                        <label for="surname">Last name</label>
-	                        <input type="text" id="surname" name="surname" aria-required="true" required ' . set_value( 'surname' ) . '>
-	                        ' . field_error_message( 'surname', 'Surname' ) . '
+	                        <label for="forename">Full name</label>
+	                        <input type="text" id="full_name" name="full-name" aria-required="true" required ' . set_value( 'full-name' ) . '>
+	                        ' . field_error_message( 'full-name', 'Full name' ) . '
 	                    </div>
 	                    <div class="form-row">
 	                        <p class="form-warning-error">How would you prefer to be contacted?</p>
@@ -273,8 +268,7 @@ function process_form_british_citizenship() {
 		// IMPORTANT: $tna_error_messages array keys must match exactly the $form_fields array keys
 		$tna_error_messages  = array(
 			'Certificate holder name'   => 'Please enter the certificate holder’s name',
-			'Forename'                  => 'Please enter your first name',
-			'Surname'                   => 'Please enter your last name',
+			'Full name'                 => 'Please enter your full name',
 			'Preferred contact'         => 'Please indicate your preferred method of contact',
 			'Email'                     => 'Please enter a valid email address',
 			'Confirm email'             => 'Please enter your email address again'
@@ -295,8 +289,7 @@ function process_form_british_citizenship() {
 			'Certificate number'          => is_text_field_valid( filter_input( INPUT_POST, 'certificate-number' ) ),
 			'Issued from'                 => is_text_field_valid( filter_input( INPUT_POST, 'certificate-year-issued-from' ) ),
 			'Issued to'                   => is_text_field_valid( filter_input( INPUT_POST, 'certificate-year-issued-to' ) ),
-			'Forename'                    => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'forename' ) ),
-			'Surname'                     => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'surname' ) ),
+			'Full name'                    => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
 			'Preferred contact'           => ( isset( $_POST['preferred-contact'] ) ) ? is_checkbox_radio_valid( filter_input( INPUT_POST, 'preferred-contact' ) ) : false,
 			'Email'                       => is_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'               => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
@@ -309,7 +302,7 @@ function process_form_british_citizenship() {
 			// Oops! Error!
 
 			// Store error messages into the global variable
-			$tna_error_message = display_error_message( $form_fields );
+			$tna_error_message = display_error_message();
 
 		} else {
 
@@ -317,7 +310,7 @@ function process_form_british_citizenship() {
 
 			global $post;
 			// Generate reference number based on user's surname and timestamp
-			$ref_number = ref_number( $form_fields['Surname'], date_timestamp_get( date_create() ) );
+			$ref_number = ref_number( 'TNA', date_timestamp_get( date_create() ) );
 
 			// Store confirmation content into the global variable
 			$tna_success_message = success_message_header( 'Your reference number:', $ref_number );

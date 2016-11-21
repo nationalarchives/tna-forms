@@ -61,17 +61,9 @@ function field_error_message( $input_name, $error_field_name, $type = 'required'
 	}
 }
 
-function ref_number( $name, $time_stamp ) {
-	$prefix = 'TNA';
-	if ( $name !== '-' ) {
-		if (strlen( $name ) > 3) {
-			$suffix = strtoupper( substr( $name, 0, 3 ) );
-		} else {
-			$suffix = strtoupper( $name );
-		}
-	} else {
-		$suffix = 'R' . rand(10, 99);
-	}
+function ref_number( $prefix, $time_stamp ) {
+	$letter = chr(rand(65,90));
+	$suffix = $letter . rand(10, 99);
 
 	return $prefix . $time_stamp . $suffix;
 }
@@ -102,16 +94,9 @@ function display_compiled_form_data( $data ) {
 	}
 }
 
-function display_error_message( $data ) {
-	global $tna_error_messages;
-	$error_message = '<div class="emphasis-block error-message"><h3>Error</h3><ul>';
-	foreach ( $data as $field_name => $field_value ) {
-		if ( $field_value == false ) {
-			$error[$field_name] = $tna_error_messages[$field_name];
-			$error_message .= '<li>' . $error[$field_name] . '</li>';
-		}
-	}
-	$error_message .= '</ul></div>';
+function display_error_message() {
+	$error_message = '<div class="emphasis-block error-message"><h3>Sorry, there was a problem</h3>';
+	$error_message .= '<p>You will find more details highlighted below.</p></div>';
 
 	return $error_message;
 }

@@ -59,24 +59,13 @@ function process_form_rre() {
 
 		// Global variables
 		global $tna_success_message,
-		       $tna_error_message,
-		       $tna_error_messages;
+		       $tna_error_message;
 
 		// Setting global variables
 		$tna_success_message = '';
 		$tna_error_message   = '';
 
-		// Error messages for individual form fields stored into an array
-		// IMPORTANT: $tna_error_messages array keys must match exactly the $form_fields array keys
-		$tna_error_messages  = array(
-			'Email'                 => 'Please enter a valid email address',
-			'Confirm email'         => 'Please enter your email address again',
-			'Country'               => 'Please enter your country',
-			'Enquiry'               => 'Please enter your enquiry'
-		);
-
 		// Get the form elements and store them into an array
-		// IMPORTANT: $form_fields array keys must match exactly the $tna_error_messages array keys
 		$form_fields = array(
 			'Name'                 => is_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
 			'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
@@ -92,7 +81,7 @@ function process_form_rre() {
 			// Oops! Error!
 
 			// Store error messages into the global variable
-			$tna_error_message = display_error_message( $form_fields );
+			$tna_error_message = display_error_message();
 
 		} else {
 
@@ -100,7 +89,7 @@ function process_form_rre() {
 
 			global $post;
 			// Generate reference number based on user's surname and timestamp
-			$ref_number = ref_number( $form_fields['Name'], date_timestamp_get( date_create() ) );
+			$ref_number = ref_number( 'TNA', date_timestamp_get( date_create() ) );
 
 			// Store confirmation content into the global variable
 			$tna_success_message = success_message_header( 'Your reference number:', $ref_number );
