@@ -50,12 +50,12 @@ function process_form_rre() {
 
 		// Checks for token
 		// If the token exists then the form has been submitted so do nothing
-		$token = filter_input( INPUT_POST, 'token' );
+		/* $token = filter_input( INPUT_POST, 'token' );
 		if ( get_transient( 'token_' . $token ) ) {
 			$_POST = array();
 			return;
 		}
-		set_transient( 'token_' . $token, 'form-token', 360 );
+		set_transient( 'token_' . $token, 'form-token', 360 ); */
 
 		// Global variables
 		global $tna_success_message,
