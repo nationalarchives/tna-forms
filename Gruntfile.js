@@ -31,7 +31,7 @@ module.exports = function (grunt) {
                 separator: ';'
             },
             dist: {
-                src: ['js/tna-validation.js', 'js/forms/inc/methods.js', 'js/forms/form-british-citizenship.js', 'js/forms/form-default.js', 'js/forms/form-records-research-enquiry.js', 'js/tna-call-plugin.js' ],
+                src: ['js/tna-validation.js', 'js/forms/inc/methods.js', 'js/forms/form-british-citizenship.js', 'js/forms/form-default.js', 'js/forms/form-records-research-enquiry.js', 'js/tna-call-plugin.js','js/jquery.history.js' ],
                 dest: 'js/compiled/tna-forms-compiled.js'
             }
         },
