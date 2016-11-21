@@ -16,7 +16,7 @@ function return_form_british_citizenship() {
 	                <ul>
 	                    <li class="current"><span>1</span> Certificate holder\'s details</li>
 	                    <li><span>2</span> Certificate details</li>
-	                    <li><span>3</span> Your details</li>
+	                    <li><span>3</span> Contact details</li>
 	                </ul>
 	            </div>
 	            <form action=""  id="naturalisation" method="POST">
@@ -182,7 +182,7 @@ function return_form_british_citizenship() {
 	                        <a href="#" title="back" class="button-back">&#10094; Back</a>
 	                    </div>
 	                    <div class="form-row">
-	                        <p>Please provide your contact details so we can let you know the result of our check.</p>
+	                        <p>Please provide your details so we can let you know whether we\'ve found the certificate.</p>
 	                    </div>
 	                    <div class="form-row">
 	                        <label for="forename">First name</label>
