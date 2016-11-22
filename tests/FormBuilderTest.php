@@ -22,20 +22,45 @@ class FormBuilderTest extends \PHPUnit_Framework_TestCase {
 		$class = new \Form_Builder();
 		$this->assertTrue( method_exists($class, 'form_ends') );
 	}
+	public function testFormBuilderMethodFormEndsReturns()
+	{
+		$class = new \Form_Builder();
+		$html = $class->form_ends();
+		$this->assertEquals($html, '</form>');
+	}
 	public function testFormBuilderMethodFieldsetBegins()
 	{
 		$class = new \Form_Builder();
 		$this->assertTrue( method_exists($class, 'fieldset_begins') );
+
+	}
+	public function testFormBuilderMethodFieldsetBeginsReturns()
+	{
+		$class = new \Form_Builder();
+		$html = $class->fieldset_begins('Legend');
+		$this->assertEquals($html, '<fieldset><legend>Legend</legend>');
 	}
 	public function testFormBuilderMethodFieldsetEnds()
 	{
 		$class = new \Form_Builder();
 		$this->assertTrue( method_exists($class, 'fieldset_ends') );
 	}
+	public function testFormBuilderMethodFieldsetEndsReturns()
+	{
+		$class = new \Form_Builder();
+		$html = $class->fieldset_ends();
+		$this->assertEquals($html, '</fieldset>');
+	}
 	public function testFormBuilderMethodFormTextInput()
 	{
 		$class = new \Form_Builder();
 		$this->assertTrue( method_exists($class, 'form_text_input') );
+	}
+	public function testFormBuilderMethodFormTextInputReturns()
+	{
+		$class = new \Form_Builder();
+		$html = $class->form_text_input( 'Label', 'id', 'name', 'Error message', 'Hint text');
+		$this->assertEquals($html, '<div class="form-row"><label for="id">Label</label><p class="form-hint">Hint text</p><input type="text" id="id" name="name"  aria-required="true" required ></div>');
 	}
 	public function testFormBuilderMethodFormTextareaInput()
 	{
