@@ -14,14 +14,19 @@ function return_form_contact_us() {
 	// HTML form string
 	$html = new Form_Builder;
 	$form =  $html->form_begins( 'contact-us', 'contact-us' ) .
-	         $html->fieldset_begins( 'Your views' ) .
+	         $html->fieldset_begins( 'Your details' ) .
 	         $html->form_text_input( 'Full name', 'name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
 	         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
-	         $html->form_text_input( 'Country', 'country', 'country', 'Please enter your country' ) .
-	         $html->form_select_input( 'Country', 'country', 'country', array('Australia', 'United Kingdom', 'New Zealand') ) .
-	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .
-	         $html->form_text_input( 'Provide the dates or years that you are interested in', 'dates', 'dates' ) .
+	         $html->fieldset_ends() .
+	         $html->fieldset_begins( 'Your message' ) .
+	         $html->form_select_input( 'Reason for contact', 'reason', 'reason', array('Compliment', 'Suggestion or comment', 'Criticism or concern', 'Complaint'), 'Please select an option' ) .
+	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry' ) .
+	         $html->fieldset_ends() .
+	         $html->fieldset_begins( 'Additional record information' ) .
+	         $html->help_text( 'Please enter an order number or Catalogue reference if either are relevant to this message.' ) .
+	         $html->form_text_input( 'Order number', 'order_number', 'order-number' ) .
+	         $html->form_text_input( 'Catalogue reference', 'catalogue_reference', 'catalogue-reference' ) .
 	         $html->submit_form( 'submit-cu', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();

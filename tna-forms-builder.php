@@ -119,8 +119,11 @@ class Form_Builder {
 		$form .= $this->required_atts( $error );
 		$form .= $this->input_error_class( $name, $error );
 		$form .= '>';
+		$form .= '<option value="">Please select</option>';
 		foreach ( $options as $option ) {
-			$form .= '<option value="' . $option . '">';
+			$form .= '<option value="' . $option . '" ';
+			$form .= set_value( $name, 'select', $option );
+			$form .= '>';
 			$form .= $option;
 			$form .= '</option>';
 		}
