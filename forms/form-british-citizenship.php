@@ -16,77 +16,73 @@ function return_form_british_citizenship() {
 	                <ul>
 	                    <li class="current"><span>1</span> Certificate holder\'s details</li>
 	                    <li><span>2</span> Certificate details</li>
-	                    <li><span>3</span> Your details</li>
+	                    <li><span>3</span> Contact details</li>
 	                </ul>
 	            </div>
 	            <form action=""  id="naturalisation" method="POST">
+	            	<input type="hidden" name="tna-form" value="naturalisation">
+	            	<input type="hidden" name="token" value="' . form_token() . '">
 	                <fieldset class="form-step-1">
 	                    <legend>Certificate holder\'s details</legend>
-	                    <p class="mandatory">* mandatory field</p>
-
-	                    <p>Enter the details of the certificate holder at the time the certificate was issued.</p>
 	                    <div class="form-row">
-	                        <label for="certificate_forename">First name(s) *</label>
-	                        <input type="text" id="certificate_forename" name="certificate-forename" aria-required="true" required ' . set_value( 'certificate-forename' ) . '>
-	                        ' . field_error_message( 'certificate-forename', 'Certificate holder forename' ) . '
+	                        <p>Enter the details of the certificate holder at the time the certificate was issued.</p>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="certificate_surname">Last name *</label>
-	                        <input type="text" id="certificate_surname" name="certificate-surname" aria-required="true" required ' . set_value( 'certificate-surname' ) . '>
-	                        ' . field_error_message( 'certificate-surname', 'Certificate holder surname' ) . '
+	                        <label for="certificate_forename">Full name</label>
+	                        <input type="text" id="certificate_name" name="certificate-name" aria-required="true" required ' . set_value( 'certificate-name' ) . '>
+	                        ' . field_error_message( 'certificate-name', 'Certificate holder name' ) . '
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="certificate_surname_alt">Alternative last name</label>
-	                        <input type="text" id="certificate_surname_alt" name="certificate-surname-alt" ' . set_value( 'certificate-surname-alt' ) . '>
+	                        <label for="certificate_surname_alt">Alternative name(s) <span class="optional">(optional)</span></label>
 	                        <p class="form-hint">For example: married or maiden names</p>
+	                        <input type="text" id="certificate_name_alt" name="certificate-name-alt" ' . set_value( 'certificate-name-alt' ) . '>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="certificate_birth_country">Country of birth *</label>
-	                        <input type="text" id="certificate_birth_country" name="certificate-birth-country" aria-required="true" required ' . set_value( 'certificate-birth-country' ) . '>
-	                        ' . field_error_message( 'certificate-birth-country', 'Country of birth' ) . '
+	                        <label for="certificate_birth_country">Country of birth <span class="optional">(optional)</span></label>
+	                        <input type="text" id="certificate_birth_country" name="certificate-birth-country" ' . set_value( 'certificate-birth-country' ) . '>
 	                    </div>
-	                    <p>Date of birth</p>
 	                    <div class="form-row">
+	                    <p>Date of birth <span class="optional">(optional)</span></p>
+	                    <p class="form-hint">For example: 8 3 1955</p>
 	                        <span class="dob-col day">
 	                            <label for="certificate_day">Day</label>
-	                            <input type="text" id="certificate_day" name="certificate-day" placeholder="DD" ' . set_value( 'certificate-day' ) . '>
+	                            <input type="number" id="certificate_day" name="certificate-day" ' . set_value( 'certificate-day' ) . '>
 	                        </span>
 	                        <span class="dob-col month">
 	                            <label for="certificate_month">Month</label>
-	                            <input type="text" id="certificate_month" name="certificate-month" placeholder="MM" ' . set_value( 'certificate-month' ) . '>
+	                            <input type="number" id="certificate_month" name="certificate-month" ' . set_value( 'certificate-month' ) . '>
 	                        </span>
 	                        <span class="dob-col year">
 	                            <label for="certificate_year">Year</label>
-	                            <input type="text" id="certificate_year" name="certificate-year" placeholder="YYYY" ' . set_value( 'certificate-year' ) . '>
+	                            <input type="number" id="certificate_year" name="certificate-year" ' . set_value( 'certificate-year' ) . '>
 	                        </span>
-	                        <p class="form-hint">For example: 08 03 1955</p>
 	                    </div>
-	                    <p class="form-hint">If you are not sure of the exact date of birth, please enter an approximation</p>
 	                    <div class="form-row dob-approx">
 	                        <input id="certificate_dob_approx" type="checkbox" name="certificate-dob-approx" value="Yes" ' . set_value( 'certificate-dob-approx', 'checkbox' ) . '>
 	                        <label for="certificate_dob_approx">Tick here if the date of birth is an approximation.</label>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="certificate_postal_address">Address</label>
+	                        <label for="certificate_postal_address">Address at time of registration <span class="optional">(optional)</span></label>
 	                        <textarea id="certificate_postal_address" name="certificate-postal-address">' . set_value( 'certificate-postal-address', 'textarea' ) . '</textarea>
 	                    </div>
 	                    <div class="form-row form-nav">
 	                        <a href="#" title="continue" class="button">Continue</a>
 	                    </div>
-	                    <p>For the protection of personal data, these details will not be retained by us.</p>
 	                </fieldset>
 	                <fieldset class="form-step-2">
+	                    <legend>Certificate details (optional)</legend>
 	                    <div class="form-row form-nav">
 	                        <a href="#" title="back" class="button-back">&#10094; Back</a>
 	                    </div>
-	                    <legend>Certificate details (optional)</legend>
-	                    <p>If you know any details of the certificate, please provide them below. This will help us narrow down our search.</p>
 	                    <div class="form-row">
-	                        <label for="certificate_issued_country">Country of issue</label>
+	                        <p>If you know any details of the certificate, please provide them below. This will help us narrow down our search.</p>
+	                    </div>
+	                    <div class="form-row">
+	                        <label for="certificate_issued_country">Country of issue <span class="optional">(optional)</span></label>
 	                        <input type="text" id="certificate_issued_country" name="certificate-issued-country" ' . set_value( 'certificate-issued-country' ) . '>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="certificate_number">Certificate number</label>
+	                        <label for="certificate_number">Certificate number <span class="optional">(optional)</span></label>
 	                        <input type="text" id="certificate_number" name="certificate-number" ' . set_value( 'certificate-number' ) . '>
 	                    </div>
 	                    <div class="form-row registration-year">
@@ -98,6 +94,39 @@ function return_form_british_citizenship() {
 	                            <option value="1951" ' . set_value( 'certificate-year-issued-from', 'select', '1951' ) . '>1951</option>
 	                            <option value="1952" ' . set_value( 'certificate-year-issued-from', 'select', '1952' ) . '>1952</option>
 	                            <option value="1953" ' . set_value( 'certificate-year-issued-from', 'select', '1953' ) . '>1953</option>
+	                            <option value="1954" ' . set_value( 'certificate-year-issued-from', 'select', '1954' ) . '>1954</option>
+	                            <option value="1955" ' . set_value( 'certificate-year-issued-from', 'select', '1955' ) . '>1955</option>
+	                            <option value="1956" ' . set_value( 'certificate-year-issued-from', 'select', '1956' ) . '>1956</option>
+	                            <option value="1957" ' . set_value( 'certificate-year-issued-from', 'select', '1957' ) . '>1957</option>
+	                            <option value="1958" ' . set_value( 'certificate-year-issued-from', 'select', '1958' ) . '>1958</option>
+	                            <option value="1959" ' . set_value( 'certificate-year-issued-from', 'select', '1959' ) . '>1959</option>
+	                            <option value="1960" ' . set_value( 'certificate-year-issued-from', 'select', '1960' ) . '>1960</option>
+	                            <option value="1961" ' . set_value( 'certificate-year-issued-from', 'select', '1961' ) . '>1961</option>
+	                            <option value="1962" ' . set_value( 'certificate-year-issued-from', 'select', '1962' ) . '>1962</option>
+	                            <option value="1963" ' . set_value( 'certificate-year-issued-from', 'select', '1963' ) . '>1963</option>
+	                            <option value="1964" ' . set_value( 'certificate-year-issued-from', 'select', '1964' ) . '>1964</option>
+	                            <option value="1965" ' . set_value( 'certificate-year-issued-from', 'select', '1965' ) . '>1965</option>
+	                            <option value="1966" ' . set_value( 'certificate-year-issued-from', 'select', '1966' ) . '>1966</option>
+	                            <option value="1967" ' . set_value( 'certificate-year-issued-from', 'select', '1967' ) . '>1967</option>
+	                            <option value="1968" ' . set_value( 'certificate-year-issued-from', 'select', '1968' ) . '>1968</option>
+	                            <option value="1969" ' . set_value( 'certificate-year-issued-from', 'select', '1969' ) . '>1969</option>
+	                            <option value="1970" ' . set_value( 'certificate-year-issued-from', 'select', '1970' ) . '>1970</option>
+	                            <option value="1971" ' . set_value( 'certificate-year-issued-from', 'select', '1971' ) . '>1971</option>
+	                            <option value="1972" ' . set_value( 'certificate-year-issued-from', 'select', '1972' ) . '>1972</option>
+	                            <option value="1973" ' . set_value( 'certificate-year-issued-from', 'select', '1973' ) . '>1973</option>
+	                            <option value="1974" ' . set_value( 'certificate-year-issued-from', 'select', '1974' ) . '>1974</option>
+	                            <option value="1975" ' . set_value( 'certificate-year-issued-from', 'select', '1975' ) . '>1975</option>
+	                            <option value="1976" ' . set_value( 'certificate-year-issued-from', 'select', '1976' ) . '>1976</option>
+	                            <option value="1977" ' . set_value( 'certificate-year-issued-from', 'select', '1977' ) . '>1977</option>
+	                            <option value="1978" ' . set_value( 'certificate-year-issued-from', 'select', '1978' ) . '>1978</option>
+	                            <option value="1979" ' . set_value( 'certificate-year-issued-from', 'select', '1979' ) . '>1979</option>
+	                            <option value="1980" ' . set_value( 'certificate-year-issued-from', 'select', '1980' ) . '>1980</option>
+	                            <option value="1981" ' . set_value( 'certificate-year-issued-from', 'select', '1981' ) . '>1981</option>
+	                            <option value="1982" ' . set_value( 'certificate-year-issued-from', 'select', '1982' ) . '>1982</option>
+	                            <option value="1983" ' . set_value( 'certificate-year-issued-from', 'select', '1983' ) . '>1983</option>
+	                            <option value="1984" ' . set_value( 'certificate-year-issued-from', 'select', '1984' ) . '>1984</option>
+	                            <option value="1985" ' . set_value( 'certificate-year-issued-from', 'select', '1985' ) . '>1985</option>
+								<option value="1986" ' . set_value( 'certificate-year-issued-from', 'select', '1986' ) . '>1986</option>
 	                        </select>
 	                        <label class="form-label" for="certificate_year_issued_to">and</label>
 	                        <select id="certificate_year_issued_to" name="certificate-year-issued-to">
@@ -107,40 +136,70 @@ function return_form_british_citizenship() {
 	                            <option value="1951" ' . set_value( 'certificate-year-issued-to', 'select', '1951' ) . '>1951</option>
 	                            <option value="1952" ' . set_value( 'certificate-year-issued-to', 'select', '1952' ) . '>1952</option>
 	                            <option value="1953" ' . set_value( 'certificate-year-issued-to', 'select', '1953' ) . '>1953</option>
+	                            <option value="1954" ' . set_value( 'certificate-year-issued-to', 'select', '1954' ) . '>1954</option>
+	                            <option value="1955" ' . set_value( 'certificate-year-issued-to', 'select', '1955' ) . '>1955</option>
+	                            <option value="1956" ' . set_value( 'certificate-year-issued-to', 'select', '1956' ) . '>1956</option>
+	                            <option value="1957" ' . set_value( 'certificate-year-issued-to', 'select', '1957' ) . '>1957</option>
+	                            <option value="1958" ' . set_value( 'certificate-year-issued-to', 'select', '1958' ) . '>1958</option>
+	                            <option value="1959" ' . set_value( 'certificate-year-issued-to', 'select', '1959' ) . '>1959</option>
+	                            <option value="1960" ' . set_value( 'certificate-year-issued-to', 'select', '1960' ) . '>1960</option>
+	                            <option value="1961" ' . set_value( 'certificate-year-issued-to', 'select', '1961' ) . '>1961</option>
+	                            <option value="1962" ' . set_value( 'certificate-year-issued-to', 'select', '1962' ) . '>1962</option>
+	                            <option value="1963" ' . set_value( 'certificate-year-issued-to', 'select', '1963' ) . '>1963</option>
+	                            <option value="1964" ' . set_value( 'certificate-year-issued-to', 'select', '1964' ) . '>1964</option>
+	                            <option value="1965" ' . set_value( 'certificate-year-issued-to', 'select', '1965' ) . '>1965</option>
+	                            <option value="1966" ' . set_value( 'certificate-year-issued-to', 'select', '1966' ) . '>1966</option>
+	                            <option value="1967" ' . set_value( 'certificate-year-issued-to', 'select', '1967' ) . '>1967</option>
+	                            <option value="1968" ' . set_value( 'certificate-year-issued-to', 'select', '1968' ) . '>1968</option>
+	                            <option value="1969" ' . set_value( 'certificate-year-issued-to', 'select', '1969' ) . '>1969</option>
+	                            <option value="1970" ' . set_value( 'certificate-year-issued-to', 'select', '1970' ) . '>1970</option>
+	                            <option value="1971" ' . set_value( 'certificate-year-issued-to', 'select', '1971' ) . '>1971</option>
+	                            <option value="1972" ' . set_value( 'certificate-year-issued-to', 'select', '1972' ) . '>1972</option>
+	                            <option value="1973" ' . set_value( 'certificate-year-issued-to', 'select', '1973' ) . '>1973</option>
+	                            <option value="1974" ' . set_value( 'certificate-year-issued-to', 'select', '1974' ) . '>1974</option>
+	                            <option value="1975" ' . set_value( 'certificate-year-issued-to', 'select', '1975' ) . '>1975</option>
+	                            <option value="1976" ' . set_value( 'certificate-year-issued-to', 'select', '1976' ) . '>1976</option>
+	                            <option value="1977" ' . set_value( 'certificate-year-issued-to', 'select', '1977' ) . '>1977</option>
+	                            <option value="1978" ' . set_value( 'certificate-year-issued-to', 'select', '1978' ) . '>1978</option>
+	                            <option value="1979" ' . set_value( 'certificate-year-issued-to', 'select', '1979' ) . '>1979</option>
+	                            <option value="1980" ' . set_value( 'certificate-year-issued-to', 'select', '1980' ) . '>1980</option>
+	                            <option value="1981" ' . set_value( 'certificate-year-issued-to', 'select', '1981' ) . '>1981</option>
+	                            <option value="1982" ' . set_value( 'certificate-year-issued-to', 'select', '1982' ) . '>1982</option>
+	                            <option value="1983" ' . set_value( 'certificate-year-issued-to', 'select', '1983' ) . '>1983</option>
+	                            <option value="1984" ' . set_value( 'certificate-year-issued-to', 'select', '1984' ) . '>1984</option>
+	                            <option value="1985" ' . set_value( 'certificate-year-issued-to', 'select', '1985' ) . '>1985</option>
+								<option value="1986" ' . set_value( 'certificate-year-issued-to', 'select', '1986' ) . '>1986</option>
 	                        </select>
+	                        <p><span class="optional">(optional)</span></p>
 	                    </div>
-
 	                    <div class="form-row form-nav ">
 	                        <a href="#" title="continue" class="button">Continue</a>
 	                    </div>
 	                </fieldset>
 	                <fieldset class="form-step-3">
+	                    <legend>Contact details</legend>
 	                    <div class="form-row form-nav">
 	                        <a href="#" title="back" class="button-back">&#10094; Back</a>
 	                    </div>
-	                    <legend>Your details</legend>
-	                    <p class="mandatory">* mandatory field</p>
-
-	                    <p>Please provide your contact details so we can let you know the result of our check.</p>
 	                    <div class="form-row">
-	                        <label for="forename">First name *</label>
-	                        <input type="text" id="forename" name="forename" aria-required="true" required ' . set_value( 'forename' ) . '>
-	                        ' . field_error_message( 'forename', 'Forename' ) . '
+	                        <p>Please provide your details so we can let you know whether we\'ve found the certificate.</p>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="surname">Last name *</label>
-	                        <input type="text" id="surname" name="surname" aria-required="true" required ' . set_value( 'surname' ) . '>
-	                        ' . field_error_message( 'surname', 'Surname' ) . '
+	                        <label for="forename">Full name</label>
+	                        <input type="text" id="full_name" name="full-name" aria-required="true" required ' . set_value( 'full-name' ) . '>
+	                        ' . field_error_message( 'full-name', 'Full name' ) . '
 	                    </div>
-	                    <p class="form-warning-error">How would you prefer to be contacted? *</p>
-	                    ' . field_error_message( 'preferred-contact', 'Preferred contact', 'radio' ) . '
-	                    <div class="form-col">
-	                        <input id="contact_email" type="radio" name="preferred-contact" value="Email" ' . set_value( 'preferred-contact', 'radio', 'Email' ) . '>
-	                        <label for="contact_email">Email</label>
-	                    </div>
-	                    <div class="form-col">
-	                        <input id="contact_postal" type="radio" name="preferred-contact" value="Post" ' . set_value( 'preferred-contact', 'radio', 'Post' ) . '>
-	                        <label for="contact_postal">Post</label>
+	                    <div class="form-row">
+	                        <p class="form-warning-error">How would you prefer to be contacted?</p>
+		                    ' . field_error_message( 'preferred-contact', 'Preferred contact', 'radio' ) . '
+		                    <div class="form-col pref_contact">
+		                        <input id="contact_email" type="radio" name="preferred-contact" value="Email" ' . set_value( 'preferred-contact', 'radio', 'Email' ) . '>
+		                        <label for="contact_email">Email</label>
+		                    </div>
+		                    <div class="form-col pref_contact">
+		                        <input id="contact_postal" type="radio" name="preferred-contact" value="Post" ' . set_value( 'preferred-contact', 'radio', 'Post' ) . '>
+		                        <label for="contact_postal">Post</label>
+		                    </div>
 	                    </div>
 	                    <div class="email-wrapper">
 	                        <div class="form-row">
@@ -159,7 +218,7 @@ function return_form_british_citizenship() {
 	                        <textarea id="postal_address" name="postal-address">' . set_value( 'postal-address', 'textarea' ) . '</textarea>
 	                    </div>
 	                    <div class="form-row">
-	                        <input type="submit" alt="Submit" name="submit-tna-form" id="submit-tna-form" value="Submit" class="button">
+	                        <input type="submit" alt="Submit" name="submit-bc" id="submit-tna-form" value="Submit">
 	                    </div>
 	                </fieldset>
 	            </form>';
@@ -183,13 +242,18 @@ function return_form_british_citizenship() {
 }
 
 function process_form_british_citizenship() {
-	if ( ! is_admin() ) {
+	// The processing happens at form submission.
+	// If no form is submitted we stop here.
+	if ( ! is_admin() && isset( $_POST['submit-bc'] ) ) {
 
-		// The processing happens at form submission.
-		// If no form is submitted we stop here.
-		if ( ! isset( $_POST['submit-tna-form'] ) ) {
+		// Checks for token
+		// If the token exists then the form has been submitted so do nothing
+		/* $token = filter_input( INPUT_POST, 'token' );
+		if ( get_transient( 'token_' . $token ) ) {
+			$_POST = array();
 			return;
 		}
+		set_transient( 'token_' . $token, 'form-token', 360 ); */
 
 		// Global variables
 		global $tna_success_message,
@@ -203,23 +267,19 @@ function process_form_british_citizenship() {
 		// Error messages for individual form fields stored into an array
 		// IMPORTANT: $tna_error_messages array keys must match exactly the $form_fields array keys
 		$tna_error_messages  = array(
-			'Certificate holder forename' => 'Please enter the certificate holder’s first name',
-			'Certificate holder surname'  => 'Please enter the certificate holder’s last name',
-			'Country of birth'            => 'Please enter the certificate holder’s country of birth',
-			'Forename'                    => 'Please enter your first name',
-			'Surname'                     => 'Please enter your last name',
-			'Preferred contact'           => 'Please indicate your preferred method of contact',
-			'Email'                       => 'Please enter a valid email address',
-			'Confirm email'               => 'Please enter your email address again'
+			'Certificate holder name'   => 'Please enter the certificate holder’s name',
+			'Full name'                 => 'Please enter your full name',
+			'Preferred contact'         => 'Please indicate your preferred method of contact',
+			'Email'                     => 'Please enter a valid email address',
+			'Confirm email'             => 'Please enter your email address again'
 		);
 
 		// Get the form elements and store them into an array
 		// IMPORTANT: $form_fields array keys must match exactly the $tna_error_messages array keys
 		$form_fields = array(
-			'Certificate holder forename' => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-forename' ) ),
-			'Certificate holder surname'  => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-surname' ) ),
-			'Alternative surname'         => is_text_field_valid( filter_input( INPUT_POST, 'certificate-surname-alt' ) ),
-			'Country of birth'            => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-birth-country' ) ),
+			'Certificate holder name'     => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-name' ) ),
+			'Alternative name'            => is_text_field_valid( filter_input( INPUT_POST, 'certificate-name-alt' ) ),
+			'Country of birth'            => is_text_field_valid( filter_input( INPUT_POST, 'certificate-birth-country' ) ),
 			'DOB'                         => is_text_field_valid( filter_input( INPUT_POST, 'certificate-day' ) ) . '-' .
 			                                 is_text_field_valid( filter_input( INPUT_POST, 'certificate-month' ) ) . '-' .
 			                                 is_text_field_valid( filter_input( INPUT_POST, 'certificate-year' ) ),
@@ -229,8 +289,7 @@ function process_form_british_citizenship() {
 			'Certificate number'          => is_text_field_valid( filter_input( INPUT_POST, 'certificate-number' ) ),
 			'Issued from'                 => is_text_field_valid( filter_input( INPUT_POST, 'certificate-year-issued-from' ) ),
 			'Issued to'                   => is_text_field_valid( filter_input( INPUT_POST, 'certificate-year-issued-to' ) ),
-			'Forename'                    => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'forename' ) ),
-			'Surname'                     => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'surname' ) ),
+			'Full name'                    => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
 			'Preferred contact'           => ( isset( $_POST['preferred-contact'] ) ) ? is_checkbox_radio_valid( filter_input( INPUT_POST, 'preferred-contact' ) ) : false,
 			'Email'                       => is_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'               => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
@@ -243,7 +302,7 @@ function process_form_british_citizenship() {
 			// Oops! Error!
 
 			// Store error messages into the global variable
-			$tna_error_message = display_error_message( $form_fields );
+			$tna_error_message = display_error_message();
 
 		} else {
 
@@ -251,7 +310,7 @@ function process_form_british_citizenship() {
 
 			global $post;
 			// Generate reference number based on user's surname and timestamp
-			$ref_number = ref_number( $form_fields['Surname'], date_timestamp_get( date_create() ) );
+			$ref_number = ref_number( 'TNA', date_timestamp_get( date_create() ) );
 
 			// Store confirmation content into the global variable
 			$tna_success_message = success_message_header( 'Your reference number:', $ref_number );
@@ -275,7 +334,7 @@ function process_form_british_citizenship() {
 			$email_to_tna .= display_compiled_form_data( $form_fields );
 
 			// Send email to TNA
-			send_form_via_email( get_option( 'admin_email' ), $ref_number, 'Certificate of British citizenship request - Ref:',
+			send_form_via_email( get_tna_email( 'contactcentre' ), $ref_number, 'Certificate of British citizenship request - Ref:',
 				$email_to_tna );
 
 		}

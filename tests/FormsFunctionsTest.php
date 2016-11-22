@@ -43,7 +43,7 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	public function testFieldErrorMessageRequired()
 	{
 		global $tna_error_messages;
-		$_POST['submit-tna-form'] = 'submit';
+		$_POST['tna-form'] = 'form';
 		$_POST['surname'] = '';
 		$tna_error_messages['Surname'] = 'Please enter your surname';
 		$data = field_error_message( 'surname', 'Surname' );
@@ -52,7 +52,7 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	public function testFieldErrorMessageReconfirm()
 	{
 		global $tna_error_messages;
-		$_POST['submit-tna-form'] = 'submit';
+		$_POST['tna-form'] = 'form';
 		$_POST['email'] = 'info@domain.com';
 		$_POST['confirm-email'] = 'info@domain.net';
 		$tna_error_messages['Confirm email'] = 'Please re-type your email address';
@@ -62,16 +62,6 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	public function testRefNumber()
 	{
 		$this->assertTrue(function_exists('ref_number'));
-	}
-	public function testRefNumberOutput()
-	{
-		$data = ref_number( 'Smith', '1477476797' );
-		$this->assertEquals($data, 'TNA1477476797SMI');
-	}
-	public function testRefNumberOutputShortSurname()
-	{
-		$data = ref_number( 'Ho', '1477476797' );
-		$this->assertEquals($data, 'TNA1477476797HO');
 	}
 	public function testDisplayCompiledFormData()
 	{
@@ -92,6 +82,23 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 		$tna_error_messages['Name'] = 'Please enter your name';
 		$tna_error_messages['Email'] = 'Please enter your email address';
 		$data = display_error_message( array( 'Name' => false, 'Email' => 'info@domain.com'  ) );
-		$this->assertEquals($data, '<div class="emphasis-block error-message"><h3>Error</h3><ul><li>Please enter your name</li></ul></div>');
+		$this->assertEquals($data, '<div class="emphasis-block error-message"><h3>Sorry, there was a problem</h3><p>You will find more details highlighted below.</p></div>');
+	}
+	public function testFormToken()
+	{
+		$this->assertTrue(function_exists('form_token'));
+	}
+	public function testGetTnaEmail()
+	{
+		$this->assertTrue(function_exists('get_tna_email'));
+	}
+	public function testFormBuilder()
+	{
+		$this->assertTrue( class_exists('Form_Builder') );
+	}
+	public function testFormBuilderMethodFormBegins()
+	{
+		$myClass = new \Form_Builder();
+		$this->assertTrue( method_exists($myClass, 'form_begins') );
 	}
 }

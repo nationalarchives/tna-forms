@@ -19,10 +19,26 @@ function is_text_field_valid( $data ) {
 		return '-';
 	}
 }
+function is_mandatory_textarea_field_valid( $data ) {
+	if ( trim( $data ) === '' ) {
+		return false;
+	} else {
+		$data = trim( $data );
+		$newline = '--NEWLINE--';
+		$data = str_replace( "\n", $newline, $data );
+		$sanitize_data = sanitize_text_field( $data );
+		$sanitize_data = str_replace( $newline, '<br />', esc_html( $sanitize_data ) );
+		return $sanitize_data;
+	}
+}
 function is_textarea_field_valid( $data ) {
 	if ( trim( $data ) !== '' ) {
+		$data = trim( $data );
+		$newline = '--NEWLINE--';
+		$data = str_replace( "\n", $newline, $data );
 		$sanitize_data = sanitize_text_field( $data );
-		return esc_html( $sanitize_data );
+		$sanitize_data = str_replace( $newline, '<br />', esc_html( $sanitize_data ) );
+		return $sanitize_data;
 	} else {
 		return '-';
 	}

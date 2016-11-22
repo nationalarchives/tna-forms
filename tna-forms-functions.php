@@ -41,7 +41,7 @@ function set_value( $name, $type = 'text', $select_value = '' ) {
 function field_error_message( $input_name, $error_field_name, $type = 'required', $reconfirm_name = '' ) {
 	global $tna_error_messages;
 	$error_wrapper = '<span class="form-error form-hint">%s</span>';
-	if ( isset( $_POST[$input_name] ) && isset( $_POST['submit-tna-form'] ) ) {
+	if ( isset( $_POST[$input_name] ) && isset( $_POST['tna-form'] ) ) {
 		switch( $type ) {
 			case 'required': {
 				if ( trim( $_POST[$input_name] ) === '' ) {
@@ -56,18 +56,15 @@ function field_error_message( $input_name, $error_field_name, $type = 'required'
 				break;
 			}
 		}
-	} elseif ( !isset( $_POST[$input_name] ) && $type == 'radio' && isset( $_POST['submit-tna-form'] ) ) {
+	} elseif ( !isset( $_POST[$input_name] ) && $type == 'radio' && isset( $_POST['tna-form'] ) ) {
 		return sprintf( $error_wrapper, $tna_error_messages[$error_field_name] );
 	}
 }
 
-function ref_number( $name, $time_stamp ) {
-	$prefix = 'TNA';
-	if (strlen( $name ) > 3) {
-		$suffix = strtoupper( substr( $name, 0, 3 ) );
-	} else {
-		$suffix = strtoupper( $name );
-	}
+function ref_number( $prefix, $time_stamp ) {
+	$letter = chr(rand(65,90));
+	$suffix = $letter . rand(10, 99);
+
 	return $prefix . $time_stamp . $suffix;
 }
 
@@ -97,16 +94,9 @@ function display_compiled_form_data( $data ) {
 	}
 }
 
-function display_error_message( $data ) {
-	global $tna_error_messages;
-	$error_message = '<div class="emphasis-block error-message"><h3>Error</h3><ul>';
-	foreach ( $data as $field_name => $field_value ) {
-		if ( $field_value == false ) {
-			$error[$field_name] = $tna_error_messages[$field_name];
-			$error_message .= '<li>' . $error[$field_name] . '</li>';
-		}
-	}
-	$error_message .= '</ul></div>';
+function display_error_message() {
+	$error_message = '<div class="emphasis-block error-message"><h3>Sorry, there was a problem</h3>';
+	$error_message .= '<p>You will find more details highlighted below.</p></div>';
 
 	return $error_message;
 }
@@ -115,6 +105,7 @@ function confirmation_content( $id ) {
 
 	$child = get_pages(
 		array( 'child_of' => $id,
+		       'parent' => $id,
 		       'number' => '1',
 		       'sort_column' => 'post_date',
 		       'sort_order' => 'desc'
@@ -140,8 +131,25 @@ function send_form_via_email( $email, $ref_number, $subject, $content ) {
 		$email_message = $content;
 
 		// Email header
-		$email_headers = 'From: No reply <no-reply@nationalarchives.gov.uk>';
+		$email_headers = 'From: The National Archives (DO NOT REPLY) <no-reply@nationalarchives.gov.uk>';
 
 		wp_mail( $email, $email_subject, $email_message, $email_headers );
+	}
+}
+
+function form_token() {
+	return md5( uniqid( "", true ) );
+}
+
+function get_tna_email( $user = '' ) {
+	if ( $user ) {
+		$contact_user = get_user_by( 'login', $user );
+		if($contact_user){
+			$email = $contact_user->user_email;
+			return $email;
+		}
+	} else {
+		$email = get_option( 'admin_email' );
+		return $email;
 	}
 }

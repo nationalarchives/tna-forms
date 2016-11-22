@@ -26,6 +26,15 @@ class ValidationTest extends \PHPUnit_Framework_TestCase {
 		$data = is_text_field_valid('');
 		$this->assertEquals($data, '-');
 	}
+	public function testIsMandatoryTextareaFieldValid()
+	{
+		$this->assertTrue(function_exists('is_mandatory_textarea_field_valid'));
+	}
+	public function testIsMandatoryTextareaFieldValidFalse()
+	{
+		$data = is_mandatory_textarea_field_valid('');
+		$this->assertFalse( $data );
+	}
 	public function testIsMandatoryEmailFieldValid()
 	{
 		$this->assertTrue(function_exists('is_mandatory_email_field_valid'));
