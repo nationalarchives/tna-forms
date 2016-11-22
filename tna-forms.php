@@ -20,5 +20,5 @@ include 'tna-forms-shortcode.php';
 include 'forms/form-newsletter-signup.php';
 include 'forms/form-british-citizenship.php';
 include 'forms/form-records-research-enquiry.php';
-include 'forms/form-contact-us.php';
+include 'forms/form-your-views.php';
 include 'forms/form-default.php';

@@ -4,7 +4,7 @@
  *
  */
 
-function return_form_contact_us() {
+function return_form_your_views() {
 
 	// Global variables to determine if the form submission
 	// is successful or comes back with errors
@@ -13,7 +13,7 @@ function return_form_contact_us() {
 
 	// HTML form string
 	$html = new Form_Builder;
-	$form =  $html->form_begins( 'contact-us', 'contact-us' ) .
+	$form =  $html->form_begins( 'your-views', 'your-views' ) .
 	         $html->fieldset_begins( 'Your details' ) .
 	         $html->form_text_input( 'Full name', 'name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
@@ -27,7 +27,7 @@ function return_form_contact_us() {
 	         $html->help_text( 'Please enter an order number or Catalogue reference if either are relevant to this message.' ) .
 	         $html->form_text_input( 'Order number', 'order_number', 'order-number' ) .
 	         $html->form_text_input( 'Catalogue reference', 'catalogue_reference', 'catalogue-reference' ) .
-	         $html->submit_form( 'submit-cu', 'submit-tna-form' ) .
+	         $html->submit_form( 'submit-yv', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
 
@@ -49,10 +49,10 @@ function return_form_contact_us() {
 	}
 }
 
-function process_form_contact_us() {
+function process_form_your_views() {
 	// The processing happens at form submission.
 	// If no form is submitted we stop here.
-	if ( ! is_admin() && isset( $_POST['submit-cu'] ) ) {
+	if ( ! is_admin() && isset( $_POST['submit-yv'] ) ) {
 
 		// Checks for token
 		// If the token exists then the form has been submitted so do nothing
@@ -125,4 +125,4 @@ function process_form_contact_us() {
 		}
 	}
 }
-add_action('wp', 'process_form_contact_us');
+add_action('wp', 'process_form_your_views');

@@ -17,6 +17,10 @@ Add the shortcode to the desired page to display a form
 
 ```[tna-form name="Records and research enquiry"]```
 
+**Your views** form:
+
+```[tna-form name="Your views"]```
+
 ## Development setup
 
 ### 1.0 Clone the repository
