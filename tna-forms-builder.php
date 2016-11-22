@@ -107,6 +107,30 @@ class Form_Builder {
 		return sprintf( $form, $id, $name, $label );
 	}
 
+	public function form_select_input( $label, $id, $name, $options = array(), $error = '', $hint = '' ) {
+		$form = '<div class="form-row">';
+		$form .= '<label for="';
+		$form .= $id;
+		$form .= '">%s';
+		$form .= $this->is_optional( $error );
+		$form .= '</label>';
+		$form .= $this->hint_text( $hint );
+		$form .= '<select id="%s" name="%s" ';
+		$form .= $this->required_atts( $error );
+		$form .= $this->input_error_class( $name, $error );
+		$form .= '>';
+		foreach ( $options as $option ) {
+			$form .= '<option value="' . $option . '">';
+			$form .= $option;
+			$form .= '</option>';
+		}
+		$form .= '</select>';
+		$form .= $this->input_error_message( $name, $error );
+		$form .= '</div>';
+
+		return sprintf( $form, $label, $id, $name );
+	}
+
 	public function submit_form( $name, $id ) {
 		$form = '<div class="form-row">';
 		$form .= '<input type="submit" name="%s" id="%s" value="Submit" class="button">';
