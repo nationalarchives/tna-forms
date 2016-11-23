@@ -405,10 +405,7 @@ function naturalisationForm(){
 
         History.pushState({state:2},'Certificate details (optional)', '#step-2');
     });
-};
-
-
-;/**
+};;/**
  * @contact-form-name: Default form
  *
  * ----- Table of contents -------------------------------------
