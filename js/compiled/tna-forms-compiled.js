@@ -121,6 +121,7 @@ function naturalisationForm(){
      * */
     $(button,'.form-step-1,.form-step-2').css("display","block");
     $(buttonBack,'.form-step-2,.form-step-3').css("display","block");
+    $('.arrow-steps').css("display","block");
 
     History.pushState({state:1},'Certificate holder\'s details', '#step-1');
 
