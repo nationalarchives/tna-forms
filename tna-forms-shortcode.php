@@ -17,6 +17,9 @@ function tna_forms_shortcode( $atts ) {
 		case 'Records and research enquiry':
 			return return_form_rre();
 			break;
+		case 'Your views':
+			return return_form_your_views();
+			break;
 		default:
 			return return_form_default();
 			break;

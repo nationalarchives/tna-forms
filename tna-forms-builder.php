@@ -9,7 +9,7 @@ class Form_Builder {
 	}
 
 	public function form_begins( $id, $value, $no_validate = false ) {
-		$form = '<form action=""  id="%s" method="POST"' . $this->validate_for_testing( $no_validate ) . '>';
+		$form = '<form action=""  id="%s" method="POST"' . $this->novalidate_for_testing( $no_validate ) . '>';
 		$form .= '<input type="hidden" name="tna-form" value="%s">';
 		$form .= '<input type="hidden" name="token" value="' . form_token() . '">';
 
@@ -107,6 +107,33 @@ class Form_Builder {
 		return sprintf( $form, $id, $name, $label );
 	}
 
+	public function form_select_input( $label, $id, $name, $options = array(), $error = '', $hint = '' ) {
+		$form = '<div class="form-row">';
+		$form .= '<label for="';
+		$form .= $id;
+		$form .= '">%s';
+		$form .= $this->is_optional( $error );
+		$form .= '</label>';
+		$form .= $this->hint_text( $hint );
+		$form .= '<select id="%s" name="%s" ';
+		$form .= $this->required_atts( $error );
+		$form .= $this->input_error_class( $name, $error );
+		$form .= '>';
+		$form .= '<option value="">Please select</option>';
+		foreach ( $options as $option ) {
+			$form .= '<option value="' . $option . '" ';
+			$form .= set_value( $name, 'select', $option );
+			$form .= '>';
+			$form .= $option;
+			$form .= '</option>';
+		}
+		$form .= '</select>';
+		$form .= $this->input_error_message( $name, $error );
+		$form .= '</div>';
+
+		return sprintf( $form, $label, $id, $name );
+	}
+
 	public function submit_form( $name, $id ) {
 		$form = '<div class="form-row">';
 		$form .= '<input type="submit" name="%s" id="%s" value="Submit" class="button">';
@@ -183,7 +210,7 @@ class Form_Builder {
 		return '';
 	}
 
-	public function validate_for_testing( $no_validate ) {
+	public function novalidate_for_testing( $no_validate ) {
 		if ( $no_validate = true ) {
 			return 'novalidate';
 		}

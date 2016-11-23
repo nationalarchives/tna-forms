@@ -1,10 +1,10 @@
 <?php
 /**
- * Form template
+ * Form: contact us
  *
  */
 
-function return_form_default() {
+function return_form_your_views() {
 
 	// Global variables to determine if the form submission
 	// is successful or comes back with errors
@@ -13,15 +13,21 @@ function return_form_default() {
 
 	// HTML form string
 	$html = new Form_Builder;
-	$form =  $html->form_begins( 'default', 'default' ) .
-	         $html->fieldset_begins( 'Your enquiry' ) .
+	$form =  $html->form_begins( 'your-views', 'your-views' ) .
+	         $html->fieldset_begins( 'Your details' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
 	         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
-	         $html->form_text_input( 'Country', 'country', 'country', 'Please enter your country' ) .
-	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .
-	         $html->form_text_input( 'Provide the dates or years that you are interested in', 'dates', 'dates' ) .
-	         $html->submit_form( 'submit-default', 'submit-tna-form' ) .
+	         $html->fieldset_ends() .
+	         $html->fieldset_begins( 'Your message' ) .
+	         $html->form_select_input( 'Reason for contact', 'reason', 'reason', array('Compliment', 'Suggestion or comment', 'Criticism or concern', 'Complaint'), 'Please select an option' ) .
+	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry' ) .
+	         $html->fieldset_ends() .
+	         $html->fieldset_begins( 'Additional record information' ) .
+	         $html->help_text( 'Please enter an order number or Catalogue reference if either are relevant to this message.' ) .
+	         $html->form_text_input( 'Order number', 'order_number', 'order-number' ) .
+	         $html->form_text_input( 'Catalogue reference', 'catalogue_reference', 'catalogue-reference' ) .
+	         $html->submit_form( 'submit-yv', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
 
@@ -43,10 +49,10 @@ function return_form_default() {
 	}
 }
 
-function process_form_default() {
+function process_form_your_views() {
 	// The processing happens at form submission.
 	// If no form is submitted we stop here.
-	if ( ! is_admin() && isset( $_POST['submit-default'] ) ) {
+	if ( ! is_admin() && isset( $_POST['submit-yv'] ) ) {
 
 		// Checks for token
 		// If the token exists then the form has been submitted so do nothing
@@ -70,9 +76,10 @@ function process_form_default() {
 			'Name'                 => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
 			'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
-			'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
+			'Reason'               => is_mandatory_select_valid( filter_input( INPUT_POST, 'reason' ) ),
 			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
-			'Date(s)'              => is_text_field_valid( filter_input( INPUT_POST, 'dates' ) )
+			'Order number'         => is_text_field_valid( filter_input( INPUT_POST, 'order-number' ) ),
+			'Catalogue reference'  => is_text_field_valid( filter_input( INPUT_POST, 'catalogue-reference' ) )
 		);
 
 		// If any value inside the array is false then there is an error
@@ -119,4 +126,4 @@ function process_form_default() {
 		}
 	}
 }
-add_action('wp', 'process_form_default');
+add_action('wp', 'process_form_your_views');
