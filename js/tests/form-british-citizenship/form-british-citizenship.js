@@ -15,7 +15,7 @@
 /**
  * 1. Checking the DOM before plugin is applied
  */
-QUnit.module("Checking the DOM before plugin is applied", function () {
+QUnit.module("Checking the mandatory DOM elements before plugin is applied", function () {
     QUnit.test("Check required elements in fixture", function (assert) {
         assert.ok($('form', '.fixture').length == 1, "The form is present");
         assert.ok($('form#naturalisation', '.fixture').length == 1, "The form ID is present");
