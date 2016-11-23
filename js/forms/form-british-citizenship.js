@@ -334,5 +334,3 @@ function naturalisationForm(){
         History.pushState({state:2},'Certificate details (optional)', '#step-2');
     });
 };
-
-
