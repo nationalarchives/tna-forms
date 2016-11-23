@@ -185,7 +185,7 @@ function return_form_british_citizenship() {
 	                        <p>Please provide your details so we can let you know whether we\'ve found the certificate.</p>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="forename">Full name</label>
+	                        <label for="full_name">Full name</label>
 	                        <input type="text" id="full_name" name="full-name" aria-required="true" required ' . set_value( 'full-name' ) . '>
 	                        ' . field_error_message( 'full-name', 'Full name' ) . '
 	                    </div>

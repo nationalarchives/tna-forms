@@ -258,6 +258,10 @@ function naturalisationForm(){
                 },
 
                 /* Form Step Three */
+                "full-name": {
+                    required: true,
+                    noSpace: true
+                },
                 contact_email:{
                     required: function(element) {
                         return $("#contact-postal:checked").length <= 0;
@@ -306,6 +310,9 @@ function naturalisationForm(){
                     required:"Please enter the certificate holder’s name(s)"
                 },
                 /* Form Step Three */
+                "full-name": {
+                    required: "Please enter your full name"
+                },
                 "preferred-contact":{
                     required: "Please select one option"
                 }
