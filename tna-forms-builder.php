@@ -134,12 +134,12 @@ class Form_Builder {
 		return sprintf( $form, $label, $id, $name );
 	}
 
-	public function submit_form( $name, $id ) {
+	public function submit_form( $name, $id, $value = 'Submit' ) {
 		$form = '<div class="form-row">';
-		$form .= '<input type="submit" name="%s" id="%s" value="Submit" class="button">';
+		$form .= '<input type="submit" name="%s" id="%s" value="%s">';
 		$form .= '</div>';
 
-		return sprintf( $form, $name, $id );
+		return sprintf( $form, $name, $id, $value );
 	}
 
 	public function help_text( $text ) {

@@ -27,6 +27,7 @@ function return_form_your_views() {
 	         $html->help_text( 'Please enter an order number or Catalogue reference if either are relevant to this message.' ) .
 	         $html->form_text_input( 'Order number', 'order_number', 'order-number' ) .
 	         $html->form_text_input( 'Catalogue reference', 'catalogue_reference', 'catalogue-reference' ) .
+	         $html->form_checkbox_input( 'Tick here if you\'d like to receive our free monthly newsletter and email updates about news, products and services from The National Archives.', 'newsletter', 'newsletter' ) .
 	         $html->submit_form( 'submit-yv', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
@@ -79,7 +80,8 @@ function process_form_your_views() {
 			'Reason'               => is_mandatory_select_valid( filter_input( INPUT_POST, 'reason' ) ),
 			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
 			'Order number'         => is_text_field_valid( filter_input( INPUT_POST, 'order-number' ) ),
-			'Catalogue reference'  => is_text_field_valid( filter_input( INPUT_POST, 'catalogue-reference' ) )
+			'Catalogue reference'  => is_text_field_valid( filter_input( INPUT_POST, 'catalogue-reference' ) ),
+			'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) )
 		);
 
 		// If any value inside the array is false then there is an error

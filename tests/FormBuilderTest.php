@@ -115,7 +115,7 @@ class FormBuilderTest extends \PHPUnit_Framework_TestCase {
 	{
 		$class = new \Form_Builder();
 		$html = $class->submit_form( 'submit', 'submit' );
-		$this->assertEquals($html, '<div class="form-row"><input type="submit" name="submit" id="submit" value="Submit" class="button"></div>');
+		$this->assertEquals($html, '<div class="form-row"><input type="submit" name="submit" id="submit" value="Submit"></div>');
 	}
 	public function testFormBuilderMethodHelpText()
 	{

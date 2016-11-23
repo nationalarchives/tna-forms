@@ -49,6 +49,14 @@ function is_checkbox_radio_valid( $data ) {
 		return esc_html( $sanitize_data );
 	}
 }
+function is_checkbox_valid( $data ) {
+	if ( $data ) {
+		$sanitize_data = sanitize_text_field( $data );
+		return esc_html( $sanitize_data );
+	} else {
+		return 'No';
+	}
+}
 function is_mandatory_email_field_valid( $data ) {
 	if ( trim( $data ) === '' || !is_email( $data ) ) {
 		return false;
