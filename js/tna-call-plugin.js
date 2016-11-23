@@ -22,9 +22,14 @@ $(document).ready(function() {
             recordsResearchEnquiryForm();
         }
 
+        else if($('#your-views').is(':visible')){
+            yourViewsForm();
+        }
+
         else {
             defaultForm();
         }
+
     }());
 });
 
