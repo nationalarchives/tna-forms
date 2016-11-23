@@ -15,7 +15,7 @@ function return_form_default() {
 	$html = new Form_Builder;
 	$form =  $html->form_begins( 'default', 'default' ) .
 	         $html->fieldset_begins( 'Your enquiry' ) .
-	         $html->form_text_input( 'Full name', 'name', 'full-name', 'Please enter your full name' ) .
+	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
 	         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
 	         $html->form_text_input( 'Country', 'country', 'country', 'Please enter your country' ) .
@@ -36,7 +36,7 @@ function return_form_default() {
 		return $tna_success_message . print_page();
 	}
 
-	// If there no form submission, hence the user has
+	// If no form submission, hence the user has
 	// accessed the page for the first time, give us an empty form
 	else {
 		return $form;

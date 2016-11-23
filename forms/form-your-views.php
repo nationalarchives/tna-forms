@@ -15,7 +15,7 @@ function return_form_your_views() {
 	$html = new Form_Builder;
 	$form =  $html->form_begins( 'your-views', 'your-views' ) .
 	         $html->fieldset_begins( 'Your details' ) .
-	         $html->form_text_input( 'Full name', 'name', 'full-name', 'Please enter your full name' ) .
+	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
 	         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
 	         $html->fieldset_ends() .
@@ -42,7 +42,7 @@ function return_form_your_views() {
 		return $tna_success_message . print_page();
 	}
 
-	// If there no form submission, hence the user has
+	// If no form submission, hence the user has
 	// accessed the page for the first time, give us an empty form
 	else {
 		return $form;
@@ -76,9 +76,10 @@ function process_form_your_views() {
 			'Name'                 => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
 			'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
-			'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
+			'Reason'               => is_mandatory_select_valid( filter_input( INPUT_POST, 'reason' ) ),
 			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
-			'Date(s)'              => is_text_field_valid( filter_input( INPUT_POST, 'dates' ) )
+			'Order number'         => is_text_field_valid( filter_input( INPUT_POST, 'order-number' ) ),
+			'Catalogue reference'  => is_text_field_valid( filter_input( INPUT_POST, 'catalogue-reference' ) )
 		);
 
 		// If any value inside the array is false then there is an error

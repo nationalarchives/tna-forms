@@ -234,7 +234,7 @@ function return_form_british_citizenship() {
 		return $tna_success_message . print_page();
 	}
 
-	// If there no form submission, hence the user has
+	// If no form submission, hence the user has
 	// accessed the page for the first time, give us an empty form
 	else {
 		return $form;
