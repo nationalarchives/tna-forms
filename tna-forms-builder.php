@@ -9,7 +9,7 @@ class Form_Builder {
 	}
 
 	public function form_begins( $id, $value, $no_validate = false ) {
-		$form = '<form action=""  id="%s" method="POST"' . $this->validate_for_testing( $no_validate ) . '>';
+		$form = '<form action=""  id="%s" method="POST"' . $this->novalidate_for_testing( $no_validate ) . '>';
 		$form .= '<input type="hidden" name="tna-form" value="%s">';
 		$form .= '<input type="hidden" name="token" value="' . form_token() . '">';
 
@@ -210,7 +210,7 @@ class Form_Builder {
 		return '';
 	}
 
-	public function validate_for_testing( $no_validate ) {
+	public function novalidate_for_testing( $no_validate ) {
 		if ( $no_validate = true ) {
 			return 'novalidate';
 		}
