@@ -78,11 +78,24 @@ Any JavaScript written for this theme should be unit tested with QUnit. See the 
 
 ### Usage
 
-#### form_begins( $id, $value, $no_validate = false )
+#### ``` form_begins( $id, $value, $no_validate = false ) ```
 
 **$id** 
-Required - Form ID
+* Required - Form ID
 **$value** 
-Required - Hidden input form common identifier
+* Required - Hidden input form common identifier
 **$no_validate** 
-Optional, boolean - adds novalidate attribute to from for testing purposes
+* Optional, boolean - adds novalidate attribute to from for testing purposes
+
+#### ``` form_ends() ```
+
+* Outputs closing form tag
+
+#### ``` fieldset_begins( $legend ) ```
+
+**$legend**
+* Required - Fieldset legend title
+
+#### ``` fieldset_ends() ```
+
+* Outputs closing fieldset tag
