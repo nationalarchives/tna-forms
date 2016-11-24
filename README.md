@@ -73,3 +73,16 @@ Note: PhpStorm allows for PHPUnit integration - allowing your tests to be run au
 ### 6.0 QUnit
 
 Any JavaScript written for this theme should be unit tested with QUnit. See the ```js/tests/example``` directory for an example QUnit test and fixture.
+
+## Form Builder
+
+### Usage
+
+#### form_begins( $id, $value, $no_validate = false )
+
+**$id** 
+Required - Form ID
+**$value** 
+Required - Hidden input form common identifier
+**$no_validate** 
+Optional, boolean - adds novalidate attribute to from for testing purposes
