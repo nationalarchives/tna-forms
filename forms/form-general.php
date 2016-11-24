@@ -1,25 +1,6 @@
 <?php
 /**
- * Form template
- *
- * Checklist for new forms:
- *
- * 1. Change form function name, unique and descriptive. ie function return_form_*()
- * 2. Update shortcode function with new form function.
- * 3. Include newly created form file to tna-forms.php includes
- * 4. Change form ID, unique and descriptive. ie form_begins( $id, $value )
- * 5. Change hidden input named 'tna-form' value, unique and descriptive. ie form_begins( $id, $value )
- * 6. All input IDs with two or more words use underscore.
- * 7. Change submit input name using naming convention 'submit-*'. ie submit_form( $name, $id, $value )
- *
- * Checklist for processing form:
- *
- * 1. Change processing function name, unique and descriptive. ie function process_form_*()
- * 2. Change add_action to reflect new function name. ie add_action('wp', 'process_form_*');
- * 3. Change first if statement to reflect the submit input name.
- * 4. Change $form_fields array to reflect the form inputs
- * 5. Update email subject for user and tna. ie send_form_via_email( $email, $ref_number, $subject, $content )
- * 6. Update tna destination email. ie get_tna_email( 'contactcentre' )
+ * Form: General enquires
  *
  */
 
