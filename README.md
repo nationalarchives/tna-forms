@@ -82,8 +82,10 @@ Any JavaScript written for this theme should be unit tested with QUnit. See the 
 
 **$id** 
 - Required - Form ID
+
 **$value** 
 - Required - Hidden input form common identifier
+
 **$no_validate** 
 - Optional, boolean - adds novalidate attribute to from for testing purposes
 
@@ -104,12 +106,16 @@ Outputs closing fieldset tag
 
 **$label** 
 - Required - Input label
+
 **$id** 
 - Required - Input ID
+
 **$name** 
 - Required - Input name
+
 **$error** 
 - Optional - Input error message
+
 **$hint** 
 - Optional - Input hint text
 
@@ -117,12 +123,16 @@ Outputs closing fieldset tag
 
 **$label** 
 - Required - Input label
+
 **$id** 
 - Required - Input ID
+
 **$name** 
 - Required - Input name
+
 **$error** 
 - Optional - Input error message
+
 **$hint** 
 - Optional - Input hint text
 
@@ -130,12 +140,16 @@ Outputs closing fieldset tag
 
 **$label** 
 - Required - Input label
+
 **$id** 
 - Required - Input ID
+
 **$name** 
 - Required - Input name
+
 **$error** 
 - Optional - Input error message
+
 **$hint** 
 - Optional - Input hint text
 
@@ -143,10 +157,13 @@ Outputs closing fieldset tag
 
 **$label** 
 - Required - Checkbox label
+
 **$id** 
 - Required - Checkbox ID
+
 **$name** 
 - Required - Checkbox name
+
 **$error** 
 - Optional - Checkbox error message
 
@@ -154,14 +171,19 @@ Outputs closing fieldset tag
 
 **$label** 
 - Required - Select label
+
 **$id** 
 - Required - Select ID
+
 **$name** 
 - Required - Select name
+
 **$options** 
 - Required - Select options in an array
+
 **$error** 
 - Optional - Input error message
+
 **$hint** 
 - Optional - Input hint text
 
