@@ -291,9 +291,7 @@ function naturalisationForm(){
             next_fs.show();
             current_fs.hide();
 
-        } else if(form.valid() === false && window.location.hash === "#step-2" || form.valid() === false && window.location.hash === "#step-3"){
-            window.location.reload();
-        }
+        } 
 
 
 
