@@ -291,7 +291,7 @@ function naturalisationForm(){
             next_fs.show();
             current_fs.hide();
 
-        } 
+        }
 
 
 
