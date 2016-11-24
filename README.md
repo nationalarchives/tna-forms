@@ -169,8 +169,10 @@ Outputs closing fieldset tag
 
 **$name** 
 - Required - Input name
+
 **$id** 
 - Required - Input ID
+
 **$value** 
 - Optional - Input value
 
