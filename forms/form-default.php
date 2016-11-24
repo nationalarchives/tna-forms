@@ -4,11 +4,14 @@
  *
  * Checklist for new forms:
  *
- * 1. Change form function name, unique and descriptive. ie function return_form_*()
- * 2. Change form ID, unique and descriptive. ie form_begins( $id, $value )
- * 3. Change hidden input named 'tna-form' value, unique and descriptive. ie form_begins( $id, $value )
- * 4. All input IDs with two or more words use underscore.
- * 5. Change submit input name using naming convention 'submit-*'. ie submit_form( $name, $id, $value )
+ * 1. Create new form using form-default.php
+ * 2. Change form function name, unique and descriptive. ie function return_form_*()
+ * 3. Update shortcode function with new form function.
+ * 4. Include newly created form file to tna-forms.php includes
+ * 5. Change form ID, unique and descriptive. ie form_begins( $id, $value )
+ * 6. Change hidden input named 'tna-form' value, unique and descriptive. ie form_begins( $id, $value )
+ * 7. All input IDs with two or more words use underscore.
+ * 8. Change submit input name using naming convention 'submit-*'. ie submit_form( $name, $id, $value )
  *
  * Checklist for processing form:
  *
