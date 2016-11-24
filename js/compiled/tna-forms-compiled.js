@@ -416,6 +416,19 @@ function naturalisationForm(){
  * 3. Add the validation rules
  * */
 
+/**
+ * Template checklist
+ * --- Before creating a new form please make sure the the form was generated using the OOP PHP ---
+ *
+ * 1. Copy/Paste default.js and change the name to the new form
+ * 2. Include new form js file in Gruntfile.js under Concat plugin before tna-call-plugin.js
+ * 3. Change the function name to match the new form name e.g. generalForm() etc
+ * 4. Include the new function name inside the tna-call-plugin else if statement
+ * 5. Change the default form ID from #default to match the actual <form> ID generated in OOP
+ * 6. Add/Remove rules/messages to match the new form's fields by using their ID or name attribute
+ *
+ * */
+
 function defaultForm(){
     /**
      * 1. Declare variables
@@ -650,6 +663,107 @@ function yourViewsForm(){
         }
     });
 };/**
+ * @contact-form-name: Default form
+ *
+ * ----- Table of contents -------------------------------------
+ *
+ * 1. Define variables
+ * 2. Include custom form methods from methods.js
+ * 3. Add the validation rules
+ * */
+
+/**
+ * Template checklist
+ * --- Before creating a new form please make sure the the form was generated using the OOP PHP ---
+ *
+ * 1. Copy/Paste default.js and change the name to the new form
+ * 2. Include new form js file in Gruntfile.js under Concat plugin before tna-call-plugin.js
+ * 3. Change the function name to match the new form name e.g. generalForm() etc
+ * 4. Include the new function name inside the tna-call-plugin under else if statement
+ * 5. Change the default form ID from #default to match the actual <form> ID generated in OOP
+ * 6. Add/Remove rules/messages to match the new form's fields by using their ID or name attribute
+ *
+ * */
+
+function generalEnquiriesForm(){
+    /**
+     * 1. Declare variables
+     * */
+    var formName = "#general";
+    var form = $(formName);
+
+    /**
+     * 2. Included custom form validation methods from methods.js
+     * */
+    formMethods();
+
+    /**
+     * 3. Add the validation rules
+     * */
+    form.validate({
+        errorElement: 'span',
+        errorClass: 'form-error form-hint',
+        highlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').addClass("form-warning");
+            $(element).closest('input[type="email"]').addClass("form-warning");
+            $(element).closest('textarea').addClass("form-warning");
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').removeClass("form-warning");
+            $(element).closest('input[type="email"]').removeClass("form-warning");
+            $(element).closest('textarea').removeClass("form-warning");
+        },
+        rules: {
+            "full-name": {
+                required: true,
+                noSpace: true
+            },
+            email: {
+                required: true,
+                email:true,
+                advEmail:true
+            },
+            "confirm-email": {
+                equalTo: "#email"
+            },
+            country:{
+                required:true,
+                noSpace:true
+            },
+            reason:{
+                required:true,
+                noSpace:true
+            },
+            enquiry:{
+                required:true,
+                noSpace:true
+            }
+
+        },
+        /**
+         * Error messages
+         * */
+        messages: {
+            "full-name": {
+                required: "Please enter your first name"
+            },
+            email: "Please enter your email address",
+            "confirm-email": {
+                required:"Please enter your email address",
+                equalTo: "Please enter your email address again"
+            },
+            country:{
+                required:"Please enter your country"
+            },
+            reason:{
+                required:"Please select an option"
+            },
+            enquiry:{
+                required:"Please enter your enquiry"
+            }
+        }
+    });
+};/**
  * @name  : Newsletter and Contact forms Wordpress plugin
  * @author: TNA WebTeam
  * @owner : The National Archives
@@ -675,6 +789,11 @@ $(document).ready(function() {
 
         else if($('#your-views').is(':visible')){
             yourViewsForm();
+        }
+
+        else if ($('#general').is(':visible')){
+
+            generalEnquiriesForm();
         }
 
         else {

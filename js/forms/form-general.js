@@ -1,5 +1,5 @@
 /**
- * @contact-form-name: Your Views form
+ * @contact-form-name: General form
  *
  * ----- Table of contents -------------------------------------
  *
@@ -8,11 +8,11 @@
  * 3. Add the validation rules
  * */
 
-function yourViewsForm(){
+function generalEnquiriesForm(){
     /**
      * 1. Declare variables
      * */
-    var formName = "#your-views";
+    var formName = "#general";
     var form = $(formName);
 
     /**
@@ -49,8 +49,13 @@ function yourViewsForm(){
             "confirm-email": {
                 equalTo: "#email"
             },
+            country:{
+                required:true,
+                noSpace:true
+            },
             reason:{
-                required: true
+                required:true,
+                noSpace:true
             },
             enquiry:{
                 required:true,
@@ -63,15 +68,18 @@ function yourViewsForm(){
          * */
         messages: {
             "full-name": {
-                required: "Please enter your full name"
+                required: "Please enter your first name"
             },
             email: "Please enter your email address",
             "confirm-email": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
+            country:{
+                required:"Please enter your country"
+            },
             reason:{
-                required: "Please select an option"
+                required:"Please select an option"
             },
             enquiry:{
                 required:"Please enter your enquiry"

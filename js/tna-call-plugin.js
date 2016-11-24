@@ -26,6 +26,11 @@ $(document).ready(function() {
             yourViewsForm();
         }
 
+        else if ($('#general').is(':visible')){
+
+            generalEnquiriesForm();
+        }
+
         else {
             defaultForm();
         }
