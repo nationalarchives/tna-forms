@@ -14,14 +14,14 @@
 QUnit.module("Checking the mandatory DOM elements before plugin is applied", function () {
     QUnit.test("Check required elements in fixture", function (assert) {
         assert.ok($('form', '.fixture').length == 1, "The form is present");
-        assert.ok($('form#records-research-enquiry', '.fixture').length == 1, "The form ID is present");
+        assert.ok($('form#your-views', '.fixture').length == 1, "The form ID is present");
         assert.ok($('input[type=submit]', '.fixture').prop('disabled') == false, "The submit button is NOT disabled before the plugin has run");
         assert.equal($('input[type=hidden]', '.fixture').attr('name'), "tna-form", "The input type hidden field with the attribute name of tna-form is present");
     });
 });
 
 /**
- * 1. Checking the Fields before plugin is applied
+ * 2. Checking the Fields before plugin is applied
  */
 QUnit.module("Checking the fields before plugin is applied", function () {
     QUnit.test("Check required elements in fixture", function (assert) {
@@ -30,9 +30,11 @@ QUnit.module("Checking the fields before plugin is applied", function () {
         assert.equal($('#email', '.fixture').val(), "", "The email address is empty");
         assert.ok($('#confirm_email', '.fixture').length == 1, "The confirm email input is present");
         assert.equal($('#confirm_email', '.fixture').val(), "", "The confirm email address is empty");
+        assert.ok($('#reason', '.fixture').length == 1, "The reason select is present");
         assert.ok($('#enquiry', '.fixture').length == 1, "The enquiry textarea is present");
-        assert.ok($('#country', '.fixture').length == 1, "The country input is present");
-        assert.ok($('#dates', '.fixture').length == 1, "The dates input is present");
-        assert.equal($('#submit-tna-form', '.fixture').attr('name'), "submit-rre", "Name on input button is submit-rre");
+        assert.ok($('#order_number', '.fixture').length == 1, "The order_number input is present");
+        assert.ok($('#catalogue_reference', '.fixture').length == 1, "The catalogue_reference input is present");
+        assert.ok($('#newsletter', '.fixture').length == 1, "The newsletter check box is present");
+        assert.equal($('#submit-tna-form', '.fixture').attr('name'), "submit-yv", "Name on input button is submit-yv");
     });
 });

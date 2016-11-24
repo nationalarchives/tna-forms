@@ -4,11 +4,7 @@
  * Newsletter JQuery validation tests
  * ------------------------------------------------------------------------------
  * 1. Checking the DOM before plugin is applied
- * 2. Checking the custom utilities created for this plugin
- * 3. State of the DOM after the plugin has run
- * 4. State of the DOM in response to user interactions
- * 5. If an invalid string is provided, the submit button should be disabled again
- * 6. If an empty string is provided, the submit button should be disabled again
+ * 2. Checking the Fields before plugin is applied
  */
 
 
