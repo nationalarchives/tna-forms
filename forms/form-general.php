@@ -5,10 +5,12 @@
  * Checklist for new forms:
  *
  * 1. Change form function name, unique and descriptive. ie function return_form_*()
- * 2. Change form ID, unique and descriptive. ie form_begins( $id, $value )
- * 3. Change hidden input named 'tna-form' value, unique and descriptive. ie form_begins( $id, $value )
- * 4. All input IDs with two or more words use underscore.
- * 5. Change submit input name using naming convention 'submit-*'. ie submit_form( $name, $id, $value )
+ * 2. Update shortcode function with new form function.
+ * 3. Include newly created form file to tna-forms.php includes
+ * 4. Change form ID, unique and descriptive. ie form_begins( $id, $value )
+ * 5. Change hidden input named 'tna-form' value, unique and descriptive. ie form_begins( $id, $value )
+ * 6. All input IDs with two or more words use underscore.
+ * 7. Change submit input name using naming convention 'submit-*'. ie submit_form( $name, $id, $value )
  *
  * Checklist for processing form:
  *
@@ -21,7 +23,7 @@
  *
  */
 
-function return_form_default() {
+function return_form_general() {
 
 	// Global variables to determine if the form submission
 	// is successful or comes back with errors
@@ -30,15 +32,21 @@ function return_form_default() {
 
 	// HTML form string
 	$html = new Form_Builder;
-	$form =  $html->form_begins( 'default', 'default' ) .
-	         $html->fieldset_begins( 'Your enquiry' ) .
+	$form =  $html->form_begins( 'general', 'general' ) .
+	         $html->fieldset_begins( 'Your details' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
 	         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
 	         $html->form_text_input( 'Country', 'country', 'country', 'Please enter your country' ) .
-	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .
-	         $html->form_text_input( 'Provide the dates or years that you are interested in', 'dates', 'dates' ) .
-	         $html->submit_form( 'submit-default', 'submit-tna-form' ) .
+	         $html->fieldset_ends() .
+	         $html->fieldset_begins( 'Your enquiry' ) .
+	         $html->form_select_input( 'Reason for contact', 'reason', 'reason', array('Website enquiry or support', 'General enquiry'), 'Please select an option' ) .
+	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry' ) .
+	         $html->fieldset_ends() .
+	         $html->fieldset_begins( 'Additional information' ) .
+	         $html->form_text_input( 'Catalogue reference', 'catalogue_reference', 'catalogue-reference' ) .
+	         $html->form_checkbox_input( 'Tick here if you\'d like to receive our free monthly newsletter and email updates about news, products and services from The National Archives.', 'newsletter', 'newsletter' ) .
+	         $html->submit_form( 'submit-ge', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
 
@@ -60,10 +68,10 @@ function return_form_default() {
 	}
 }
 
-function process_form_default() {
+function process_form_general() {
 	// The processing happens at form submission.
 	// If no form is submitted we stop here.
-	if ( ! is_admin() && isset( $_POST['submit-default'] ) ) {
+	if ( ! is_admin() && isset( $_POST['submit-ge'] ) ) {
 
 		// Checks for token
 		// If the token exists then the form has been submitted so do nothing
@@ -88,8 +96,10 @@ function process_form_default() {
 			'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 			'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
+			'Reason'               => is_mandatory_select_valid( filter_input( INPUT_POST, 'reason' ) ),
 			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
-			'Date(s)'              => is_text_field_valid( filter_input( INPUT_POST, 'dates' ) )
+			'Catalogue reference'  => is_text_field_valid( filter_input( INPUT_POST, 'catalogue-reference' ) ),
+			'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) )
 		);
 
 		// If any value inside the array is false then there is an error
@@ -136,4 +146,4 @@ function process_form_default() {
 		}
 	}
 }
-add_action('wp', 'process_form_default');
+add_action('wp', 'process_form_general');

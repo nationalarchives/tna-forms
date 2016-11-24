@@ -20,6 +20,9 @@ function tna_forms_shortcode( $atts ) {
 		case 'Your views':
 			return return_form_your_views();
 			break;
+		case 'General enquiries':
+			return return_form_general();
+			break;
 		default:
 			return return_form_default();
 			break;
