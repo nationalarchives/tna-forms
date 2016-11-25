@@ -119,6 +119,21 @@ Outputs closing fieldset tag
 **$hint** 
 - Optional - Input hint text
 
+**Example**
+
+```
+$html = new Form_Builder;
+return $html->form_begins( 'my-form-id', 'my-new-form' )
+```
+
+Returns
+
+```
+<form action="" id="my-form-id" method="POST">
+    <input type="hidden" name="tna-form" value="my-new-form">
+    <input type="hidden" name="token" value="cec38fc30d24fb4ed9bcedee66de2c83">
+```
+
 #### ``` form_textarea_input( $label, $id, $name, $error = '', $hint = '' ) ```
 
 **$label** 
