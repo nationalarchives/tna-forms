@@ -21,6 +21,10 @@ Add the shortcode to the desired page to display a form
 
 ```[tna-form name="Your views"]```
 
+**General enquiries** form:
+
+```[tna-form name="General enquiries"]```
+
 ## Development setup
 
 ### 1.0 Clone the repository
@@ -278,7 +282,7 @@ Returns
 ```html
 <div class="form-row">
     <label for="reason">Reason for contact</label>
-    <select id="reason" name="reason" aria-required="true" required>
+    <select id="reason" name="reason">
         <option value="">Please select</option>
         <option value="Compliment">Compliment</option>
         <option value="Suggestion">Suggestion</option>
