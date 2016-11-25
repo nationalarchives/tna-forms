@@ -104,13 +104,56 @@ Returns
 
 * Outputs closing form tag
 
+Example
+
+```php
+<?php
+$html = new Form_Builder;
+return $html->form_ends()
+```
+
+Returns
+
+```html
+</form>
+```
+
 #### `fieldset_begins( $legend )`
 
 * `$legend` Required - Fieldset legend title
 
+Example
+
+```php
+<?php
+$html = new Form_Builder;
+return $html->fieldset_begins('Your details')
+```
+
+Returns
+
+```html
+<fieldset>
+    <legend>Your details</legend>
+```
+
 #### `fieldset_ends()`
 
 * Outputs closing fieldset tag
+
+Example
+
+```php
+<?php
+$html = new Form_Builder;
+return $html->fieldset_ends()
+```
+
+Returns
+
+```html
+</fieldset>
+```
 
 #### `form_text_input( $label, $id, $name, $error = '', $hint = '' )`
 
@@ -119,6 +162,22 @@ Returns
 * `$name` Required - Input name
 * `$error` Optional - Input error message
 * `$hint` Optional - Input hint text
+
+```php
+<?php
+$html = new Form_Builder;
+return $html->form_text_input('Full name', 'full_name', 'full-name', 'Please enter your full name', 'First and last name')
+```
+
+Returns
+
+```html
+<div class="form-row">
+    <label for="full_name">Full name</label>
+    <p class="form-hint">First and last name</p>
+    <input type="text" id="full_name" name="full-name" aria-required="true" required>
+</div>
+```
 
 #### `form_textarea_input( $label, $id, $name, $error = '', $hint = '' )`
 
