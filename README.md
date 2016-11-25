@@ -78,146 +78,89 @@ Any JavaScript written for this theme should be unit tested with QUnit. See the 
 
 ### Usage
 
-#### ``` form_begins( $id, $value, $no_validate = false ) ```
+#### `form_begins( $id, $value, $no_validate = false )`
 
-**$id** 
-- Required - Form ID
+* `$id` Required - Form ID
+* `$value` Required - Hidden input form common identifier
+* `$no_validate` Optional, boolean - adds novalidate attribute to from for testing purposes
 
-**$value** 
-- Required - Hidden input form common identifier
+Example
 
-**$no_validate** 
-- Optional, boolean - adds novalidate attribute to from for testing purposes
-
-#### ``` form_ends() ```
-
-Outputs closing form tag
-
-#### ``` fieldset_begins( $legend ) ```
-
-**$legend**
-- Required - Fieldset legend title
-
-#### ``` fieldset_ends() ```
-
-Outputs closing fieldset tag
-
-#### ``` form_text_input( $label, $id, $name, $error = '', $hint = '' ) ```
-
-**$label** 
-- Required - Input label
-
-**$id** 
-- Required - Input ID
-
-**$name** 
-- Required - Input name
-
-**$error** 
-- Optional - Input error message
-
-**$hint** 
-- Optional - Input hint text
-
-**Example**
-
-```
+```php
+<?php
 $html = new Form_Builder;
 return $html->form_begins( 'my-form-id', 'my-new-form' )
 ```
 
 Returns
 
-```
+```html
 <form action="" id="my-form-id" method="POST">
     <input type="hidden" name="tna-form" value="my-new-form">
     <input type="hidden" name="token" value="cec38fc30d24fb4ed9bcedee66de2c83">
 ```
 
-#### ``` form_textarea_input( $label, $id, $name, $error = '', $hint = '' ) ```
+#### `form_ends()`
 
-**$label** 
-- Required - Input label
+* Outputs closing form tag
 
-**$id** 
-- Required - Input ID
+#### `fieldset_begins( $legend )`
 
-**$name** 
-- Required - Input name
+* `$legend` Required - Fieldset legend title
 
-**$error** 
-- Optional - Input error message
+#### `fieldset_ends()`
 
-**$hint** 
-- Optional - Input hint text
+* Outputs closing fieldset tag
 
-#### ``` form_email_input( $label, $id, $name, $error = '', $match = '' ) ```
+#### `form_text_input( $label, $id, $name, $error = '', $hint = '' )`
 
-**$label** 
-- Required - Input label
+* `$label` Required - Input label
+* `$id` Required - Input ID
+* `$name` Required - Input name
+* `$error` Optional - Input error message
+* `$hint` Optional - Input hint text
 
-**$id** 
-- Required - Input ID
+#### `form_textarea_input( $label, $id, $name, $error = '', $hint = '' )`
 
-**$name** 
-- Required - Input name
+* `$label` Required - Input label
+* `$id` Required - Input ID
+* `$name` Required - Input name
+* `$error` Optional - Input error message
+* `$hint` Optional - Input hint text
 
-**$error** 
-- Optional - Input error message
+#### `form_email_input( $label, $id, $name, $error = '', $match = '' )`
 
-**$hint** 
-- Optional - Input hint text
+* `$label` Required - Input label
+* `$id` Required - Input ID
+* `$name` Required - Input name
+* `$error` Optional - Input error message
+* `$match` Optional - Input name of another input to match exactly
 
-#### ``` form_checkbox_input( $label, $id, $name, $error = '' ) ```
+#### `form_checkbox_input( $label, $id, $name, $error = '' )`
 
-**$label** 
-- Required - Checkbox label
+* `$label` Required - Checkbox label
+* `$id` Required - Checkbox ID
+* `$name` Required - Checkbox name
+* `$error` Optional - Checkbox error message
 
-**$id** 
-- Required - Checkbox ID
+#### `form_select_input( $label, $id, $name, $options = array(), $error = '', $hint = '' )`
 
-**$name** 
-- Required - Checkbox name
+* `$label` Required - Select label
+* `$id` Required - Select ID
+* `$name` Required - Select name
+* `$options` Required - Select options in an array
+* `$error` Optional - Select error message
+* `$hint` Optional - Select hint text
 
-**$error** 
-- Optional - Checkbox error message
+#### `submit_form( $name, $id, $value = 'Submit' )`
 
-#### ``` form_select_input( $label, $id, $name, $options = array(), $error = '', $hint = '' ) ```
+* `$name` Required - Input name
+* `$id` Required - Input ID
+* `$value` Optional - Input value
 
-**$label** 
-- Required - Select label
+#### `help_text( $text )`
 
-**$id** 
-- Required - Select ID
-
-**$name** 
-- Required - Select name
-
-**$options** 
-- Required - Select options in an array
-
-**$error** 
-- Optional - Input error message
-
-**$hint** 
-- Optional - Input hint text
-
-#### ``` submit_form( $name, $id, $value = 'Submit' ) ```
-
-**$name** 
-- Required - Input name
-
-**$id** 
-- Required - Input ID
-
-**$value** 
-- Optional - Input value
-
-
-#### ``` help_text( $text ) ```
-
-**$text** 
-- Required - Help text or instructions
+* `$text` Required - Help text or instructions
 
 
 
