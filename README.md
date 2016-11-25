@@ -86,7 +86,7 @@ Any JavaScript written for this theme should be unit tested with QUnit. See the 
 
 * `$id` Required - Form ID
 * `$value` Required - Hidden input form common identifier
-* `$no_validate` Optional, boolean - adds novalidate attribute to from for testing purposes
+* `$no_validate` Optional, boolean - adds novalidate attribute for testing purposes
 
 Example
 
