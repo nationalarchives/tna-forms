@@ -21,6 +21,10 @@ Add the shortcode to the desired page to display a form
 
 ```[tna-form name="Your views"]```
 
+**General enquiries** form:
+
+```[tna-form name="General enquiries"]```
+
 ## Development setup
 
 ### 1.0 Clone the repository
@@ -104,13 +108,56 @@ Returns
 
 * Outputs closing form tag
 
+Example
+
+```php
+<?php
+$html = new Form_Builder;
+return $html->form_ends()
+```
+
+Returns
+
+```html
+</form>
+```
+
 #### `fieldset_begins( $legend )`
 
 * `$legend` Required - Fieldset legend title
 
+Example
+
+```php
+<?php
+$html = new Form_Builder;
+return $html->fieldset_begins('Your details')
+```
+
+Returns
+
+```html
+<fieldset>
+    <legend>Your details</legend>
+```
+
 #### `fieldset_ends()`
 
 * Outputs closing fieldset tag
+
+Example
+
+```php
+<?php
+$html = new Form_Builder;
+return $html->fieldset_ends()
+```
+
+Returns
+
+```html
+</fieldset>
+```
 
 #### `form_text_input( $label, $id, $name, $error = '', $hint = '' )`
 
@@ -120,6 +167,24 @@ Returns
 * `$error` Optional - Input error message
 * `$hint` Optional - Input hint text
 
+Example
+
+```php
+<?php
+$html = new Form_Builder;
+return $html->form_text_input('Full name', 'full_name', 'full-name', 'Please enter your full name', 'First and last name')
+```
+
+Returns
+
+```html
+<div class="form-row">
+    <label for="full_name">Full name</label>
+    <p class="form-hint">First and last name</p>
+    <input type="text" id="full_name" name="full-name" aria-required="true" required>
+</div>
+```
+
 #### `form_textarea_input( $label, $id, $name, $error = '', $hint = '' )`
 
 * `$label` Required - Input label
@@ -127,6 +192,24 @@ Returns
 * `$name` Required - Input name
 * `$error` Optional - Input error message
 * `$hint` Optional - Input hint text
+
+Example
+
+```php
+<?php
+$html = new Form_Builder;
+return $html->form_textarea_input('Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for')
+```
+
+Returns
+
+```html
+<div class="form-row">
+    <label for="enquiry">Your enquiry</label>
+    <p class="form-hint">Please provide specific details of the information you are looking for</p>
+    <textarea id="enquiry" name="enquiry" aria-required="true" required></textarea>
+</div>
+```
 
 #### `form_email_input( $label, $id, $name, $error = '', $match = '' )`
 
@@ -136,12 +219,46 @@ Returns
 * `$error` Optional - Input error message
 * `$match` Optional - Input name of another input to match exactly
 
+Example
+
+```php
+<?php
+$html = new Form_Builder;
+return $html->form_email_input('Email address', 'email', 'email', 'Please enter your email address')
+```
+
+Returns
+
+```html
+<div class="form-row">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" aria-required="true" required>
+</div>
+```
+
 #### `form_checkbox_input( $label, $id, $name, $error = '' )`
 
 * `$label` Required - Checkbox label
 * `$id` Required - Checkbox ID
 * `$name` Required - Checkbox name
 * `$error` Optional - Checkbox error message
+
+Example
+
+```php
+<?php
+$html = new Form_Builder;
+return $html->form_checkbox_input('Tick here if you would like to receive our newsletter', 'newsletter', 'newsletter')
+```
+
+Returns
+
+```html
+<div class="form-row checkbox">
+    <input type="checkbox" id="newsletter" name="newsletter" value="Yes">
+    <label for="newsletter">Tick here if you would like to receive our newsletter</label>
+</div>
+```
 
 #### `form_select_input( $label, $id, $name, $options = array(), $error = '', $hint = '' )`
 
@@ -152,15 +269,70 @@ Returns
 * `$error` Optional - Select error message
 * `$hint` Optional - Select hint text
 
+Example
+
+```php
+<?php
+$html = new Form_Builder;
+return $html->form_select_input('Reason for contact', 'reason', 'reason', array('Compliment', 'Suggestion', 'Criticism', 'Complaint'))
+```
+
+Returns
+
+```html
+<div class="form-row">
+    <label for="reason">Reason for contact</label>
+    <select id="reason" name="reason">
+        <option value="">Please select</option>
+        <option value="Compliment">Compliment</option>
+        <option value="Suggestion">Suggestion</option>
+        <option value="Criticism">Criticism</option>
+        <option value="Complaint">Complaint</option>
+    </select>
+</div>
+```
+
 #### `submit_form( $name, $id, $value = 'Submit' )`
 
 * `$name` Required - Input name
 * `$id` Required - Input ID
 * `$value` Optional - Input value
 
+Example
+
+```php
+<?php
+$html = new Form_Builder;
+return $html->submit_form('submit', 'submit')
+```
+
+Returns
+
+```html
+<div class="form-row">
+    <input type="submit" name="submit" id="submit" value="Submit">
+</div>
+```
+
 #### `help_text( $text )`
 
 * `$text` Required - Help text or instructions
+
+Example
+
+```php
+<?php
+$html = new Form_Builder;
+return $html->help_text('Please enter an order number or Catalogue reference if either are relevant to this message.')
+```
+
+Returns
+
+```html
+<div class="form-row">
+    <p>Please enter an order number or Catalogue reference if either are relevant to this message.</p>
+</div>
+```
 
 
 
