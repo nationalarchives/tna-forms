@@ -84,6 +84,50 @@ Any JavaScript written for this theme should be unit tested with QUnit. See the 
 
 ## Form Builder
 
+This form builder is a simple object-oriented PHP framework developed for TNA's HTML forms.
+
+Below you'll find a sample enquiry form:
+
+```php
+<?php
+$html = new Form_Builder;
+return  $html->form_begins( 'enquiry-form', 'enquiry-form' ) .
+        $html->fieldset_begins( 'Your enquiry' ) .
+        $html->form_text_input( 'Full name', 'full_name', 'full-name' ) .
+        $html->form_email_input( 'Email address', 'email', 'email', 'Please provide your email address' ) .
+        $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry' ) .
+        $html->submit_form( 'submit', 'submit' ) .
+        $html->fieldset_ends() .
+        $html->form_ends();
+```
+
+And this is the HTML it will return:
+
+```html
+<form action="" id="enquiry-form" method="POST">
+    <input type="hidden" name="tna-form" value="enquiry-form">
+    <input type="hidden" name="token" value="e19c9f1992ebaaf63d4b6bc9fafa624f">
+    <fieldset>
+        <legend>Your enquiry</legend>
+        <div class="form-row">
+            <label for="full_name">Full name <span class="optional">(optional)</span></label>
+            <input type="text" id="full_name" name="full-name">
+        </div>
+        <div class="form-row">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" aria-required="true" required>
+        </div>
+        <div class="form-row">
+            <label for="enquiry">Your enquiry</label>
+            <textarea id="enquiry" name="enquiry" aria-required="true" required></textarea>
+        </div>
+        <div class="form-row">
+            <input type="submit" name="submit" id="submit" value="Submit">
+        </div>
+    </fieldset>
+</form>
+```
+
 ### Usage
 
 #### `form_begins( $id, $value, $no_validate = false )`
