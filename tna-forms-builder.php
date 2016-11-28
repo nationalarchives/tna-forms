@@ -107,6 +107,29 @@ class Form_Builder {
 		return sprintf( $form, $id, $name, $label );
 	}
 
+	public function form_radio_group( $title, $name, $radios = array() ) {
+		$counter = 0;
+		$form = '<div class="form-row radio">';
+		$form .= '<p>' . $title . '</p>';
+		foreach ( $radios as $radio ) {
+			$id = strtolower( str_replace(' ', '_', $radio) );
+			if ( $counter == 0 ) {
+				$checked = 'checked';
+			} else {
+				$checked = '';
+			}
+			$form .= '<div class="form-radio">';
+			$form .= '<input type="radio" id="' . $id . '" name="' . $name . '" value="' . $radio . '" ' . $checked . '>';
+			$form .= '<label for="' . $id . '">';
+			$form .= $radio;
+			$form .= '</label></div>';
+			$counter ++;
+		}
+		$form .= '</div>';
+
+		return $form;
+	}
+
 	public function form_select_input( $label, $id, $name, $options = array(), $error = '', $hint = '' ) {
 		$form = '<div class="form-row">';
 		$form .= '<label for="';

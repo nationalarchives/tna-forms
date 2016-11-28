@@ -95,6 +95,17 @@ class FormBuilderTest extends \PHPUnit_Framework_TestCase {
 		$html = $class->form_checkbox_input( 'Label', 'id', 'name' );
 		$this->assertEquals($html, '<div class="form-row checkbox"><input type="checkbox" id="id" name="name" value="Yes" ><label for="id">Label</label></div>');
 	}
+	public function testFormBuilderMethodFormRadioGroup()
+	{
+		$class = new \Form_Builder();
+		$this->assertTrue( method_exists($class, 'form_radio_group') );
+	}
+	public function testFormBuilderMethodFormRadioGroupReturns()
+	{
+		$class = new \Form_Builder();
+		$html = $class->form_radio_group( 'Title', 'name', array('Email', 'Post') );
+		$this->assertEquals($html, '<div class="form-row radio"><p>Title</p><div class="form-radio"><input type="radio" id="email" name="name" value="Email" checked><label for="email">Email</label></div><div class="form-radio"><input type="radio" id="post" name="name" value="Post" ><label for="post">Post</label></div></div>');
+	}
 	public function testFormBuilderMethodFormSelectInput()
 	{
 		$class = new \Form_Builder();
