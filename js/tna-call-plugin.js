@@ -27,8 +27,11 @@ $(document).ready(function() {
         }
 
         else if ($('#general').is(':visible')){
-
             generalEnquiriesForm();
+        }
+
+        else if ($('#public-sector').is(':visible')){
+            publicSectorForm();
         }
 
         else {

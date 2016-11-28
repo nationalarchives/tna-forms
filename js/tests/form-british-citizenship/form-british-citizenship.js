@@ -1,7 +1,7 @@
 /**
  * THE NATIONAL ARCHIVES
  * ------------------------------------------------------------------------------
- * Newsletter JQuery validation tests
+ * British citizenship qUnit tests
  * ------------------------------------------------------------------------------
  * 1. Checking the DOM before plugin is applied
  * 2. Checking the Fields before plugin is applied
