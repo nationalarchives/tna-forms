@@ -23,6 +23,9 @@ function tna_forms_shortcode( $atts ) {
 		case 'General enquiries':
 			return return_form_general();
 			break;
+		case 'Public sector':
+			return return_form_public_sector();
+			break;
 		default:
 			return return_form_default();
 			break;

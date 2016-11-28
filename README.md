@@ -11,19 +11,23 @@ Add the shortcode to the desired page to display a form
 
 **Check for a certificate of British citizenship** form:
 
-```[tna-form name="British citizenship"]```
+`[tna-form name="British citizenship"]`
 
 **Records and research enquiry** form:
 
-```[tna-form name="Records and research enquiry"]```
+`[tna-form name="Records and research enquiry"]`
 
 **Your views** form:
 
-```[tna-form name="Your views"]```
+`[tna-form name="Your views"]`
 
 **General enquiries** form:
 
-```[tna-form name="General enquiries"]```
+`[tna-form name="General enquiries"]`
+
+**Public sector information enquiry** form:
+
+`[tna-form name="Public sector"]`
 
 ## Development setup
 

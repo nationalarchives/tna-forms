@@ -22,4 +22,5 @@ include 'forms/form-british-citizenship.php';
 include 'forms/form-records-research-enquiry.php';
 include 'forms/form-your-views.php';
 include 'forms/form-general.php';
+include 'forms/form-public-sector.php';
 include 'forms/form-default.php';
