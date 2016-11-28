@@ -236,7 +236,7 @@ class Form_Builder {
 	}
 
 	public function novalidate_for_testing( $no_validate ) {
-		if ( $no_validate = true ) {
+		if ( $no_validate ) {
 			return 'novalidate';
 		}
 		return '';
