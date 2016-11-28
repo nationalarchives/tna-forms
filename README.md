@@ -260,6 +260,36 @@ Returns
 </div>
 ```
 
+#### `form_radio_group( $title, $name, $radios = array() )`
+
+* `$title` Optional - Radio group heading
+* `$name` Required - Radio group name
+* `$radios` Required - Radio elements
+
+Example
+
+```php
+<?php
+$html = new Form_Builder;
+return $html->form_radio_group('How would you like to be contacted?', 'contact', arrry('Email', 'Post'))
+```
+
+Returns
+
+```html
+<div class="form-row radio">
+    <p>How would you like to be contacted?</p>
+    <div class="form-radio">
+        <input type="radio" id="email" name="contact" value="Email" checked>
+        <label for="email">Email</label>
+    </div>
+    <div class="form-radio">
+        <input type="radio" id="post" name="contact" value="Post">
+        <label for="post">Post</label>
+    </div>
+</div>
+```
+
 #### `form_select_input( $label, $id, $name, $options = array(), $error = '', $hint = '' )`
 
 * `$label` Required - Select label
