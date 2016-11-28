@@ -113,13 +113,15 @@ class Form_Builder {
 		$form .= '<p>' . $title . '</p>';
 		foreach ( $radios as $radio ) {
 			$id = strtolower( str_replace(' ', '_', $radio) );
-			if ( $counter == 0 ) {
+			if ( $counter == 0 && !isset( $_POST['tna-form'] ) ) {
 				$checked = 'checked';
 			} else {
 				$checked = '';
 			}
 			$form .= '<div class="form-radio">';
-			$form .= '<input type="radio" id="' . $id . '" name="' . $name . '" value="' . $radio . '" ' . $checked . '>';
+			$form .= '<input type="radio" id="' . $id . '" name="' . $name . '" value="' . $radio . '" ' . $checked;
+			$form .= set_value( $name, 'radio', $radio );
+			$form .= '>';
 			$form .= '<label for="' . $id . '">';
 			$form .= $radio;
 			$form .= '</label></div>';
