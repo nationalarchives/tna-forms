@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Your views qUnit tests</title>
+    <title>General Enquiries</title>
     <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
 </head>
 <body>
@@ -14,9 +14,8 @@
 <br/>
 <br/>
 <div class="fixture">
-    <form action="" id="your-views" method="POST" novalidate><input type="hidden" name="tna-form"
-                                                                    value="your-views"><input type="hidden" name="token"
-                                                                                              value="bc922818489c10a01a16a1e66ef088ec">
+    <form action="" id="general" method="POST" novalidate><input type="hidden" name="tna-form" value="general"><input
+            type="hidden" name="token" value="19846be34cae228a4b792579a253b199">
         <fieldset>
             <legend>Your details</legend>
             <div class="form-row"><label for="full_name">Full name</label><input type="text" id="full_name"
@@ -26,41 +25,36 @@
                                                                                  aria-required="true" required></div>
             <div class="form-row"><label for="confirm_email">Please re-type your email address</label><input
                     type="email" id="confirm_email" name="confirm-email" aria-required="true" required></div>
+            <div class="form-row"><label for="country">Country</label><input type="text" id="country" name="country"
+                                                                             aria-required="true" required></div>
         </fieldset>
         <fieldset>
-            <legend>Your message</legend>
+            <legend>Your enquiry</legend>
             <div class="form-row"><label for="reason">Reason for contact</label><select id="reason" name="reason"
                                                                                         aria-required="true" required>
                 <option value="">Please select</option>
-                <option value="Compliment">Compliment</option>
-                <option value="Suggestion or comment">Suggestion or comment</option>
-                <option value="Criticism or concern">Criticism or concern</option>
-                <option value="Complaint">Complaint</option>
+                <option value="Website enquiry or support">Website enquiry or support</option>
+                <option value="General enquiry">General enquiry</option>
             </select></div>
             <div class="form-row"><label for="enquiry">Your enquiry</label><textarea id="enquiry" name="enquiry"
                                                                                      aria-required="true"
                                                                                      required></textarea></div>
         </fieldset>
         <fieldset>
-            <legend>Additional record information</legend>
-            <div class="form-row"><p>Please enter an order number or Catalogue reference if either are relevant to this
-                message.</p></div>
-            <div class="form-row"><label for="order_number">Order number <span
-                    class="optional">(optional)</span></label><input type="text" id="order_number" name="order-number">
-            </div>
+            <legend>Additional information</legend>
             <div class="form-row"><label for="catalogue_reference">Catalogue reference <span
                     class="optional">(optional)</span></label><input type="text" id="catalogue_reference"
                                                                      name="catalogue-reference"></div>
             <div class="form-row checkbox"><input type="checkbox" id="newsletter" name="newsletter" value="Yes"><label
                     for="newsletter">Tick here if you'd like to receive our free monthly newsletter and email updates
                 about news, products and services from The National Archives.</label></div>
-            <div class="form-row"><input type="submit" name="submit-yv" id="submit-tna-form" value="Submit"></div>
+            <div class="form-row"><input type="submit" name="submit-ge" id="submit-tna-form" value="Submit"></div>
         </fieldset>
     </form>
 </div>
 
 <script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
-<script src="form-your-views.js"></script>
+<script src="form-general.js"></script>
 </body>
 </html>
