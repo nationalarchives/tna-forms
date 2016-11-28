@@ -86,7 +86,13 @@ Any JavaScript written for this theme should be unit tested with QUnit. See the 
 
 This form builder is a simple object-oriented PHP framework developed for TNA's HTML forms.
 
-Below you'll find a sample enquiry form:
+* Consistent and rapid development of HTML forms
+* Reduces repetition of writing HTML
+* Reduces human error via unit tests
+
+Below you'll find a sample enquiry form.
+
+Code sample
 
 ```php
 <?php
