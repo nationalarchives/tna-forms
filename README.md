@@ -418,6 +418,22 @@ Returns
 </div>
 ```
 
+## Client-Side validation
+Jquery Validation plugin is used to validate all the contact forms
+
+## Credits
+
+### Jquery
+
+Website URL: https://jquery.com/
+
+### Jquery validation
+
+Website URL: https://jqueryvalidation.org/
+
+### PHP-unit
+Website URL: https://phpunit.de/
+
 
 
 
