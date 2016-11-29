@@ -421,6 +421,23 @@ Returns
 ## Client-Side validation
 Jquery Validation plugin is used to validate all the contact forms
 
+### Error representation
+
+Inside validate() function, error element used to represent the error is a <span> tag, followed by .form-error and .form-hint classes.
+
+Example
+
+```javascript
+        errorElement: 'span',
+        errorClass: 'form-error form-hint',
+```
+
+```html
+<span id="certificate_name-error" class="form-error form-hint">
+    Please enter the certificate holder’s name(s)
+</span>
+```
+
 ## Credits
 
 ### Jquery
