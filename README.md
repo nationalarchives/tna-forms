@@ -331,13 +331,13 @@ return $html->form_radio_group('How would you like to be contacted?', 'contact',
 Returns
 
 ```html
-<div class="form-row radio">
+<div class="form-row">
     <p>How would you like to be contacted?</p>
-    <div class="form-radio">
+    <div class="radio">
         <input type="radio" id="email" name="contact" value="Email" checked>
         <label for="email">Email</label>
     </div>
-    <div class="form-radio">
+    <div class="radio">
         <input type="radio" id="post" name="contact" value="Post">
         <label for="post">Post</label>
     </div>
