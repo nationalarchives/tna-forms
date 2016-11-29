@@ -465,6 +465,8 @@ Return
     </span>
 ```
 
+Example
+
 * 2. Advance email validation method
 * Checking for white space at the beginning of each input
 
@@ -484,6 +486,8 @@ Return
         Please enter a valid email address.
    </span>
 ```
+
+Example
 
 * 3. Exact length method
 * Checking for white space at the beginning of each input
