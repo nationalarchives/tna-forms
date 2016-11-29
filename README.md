@@ -423,19 +423,132 @@ Jquery Validation plugin is used to validate all the contact forms
 
 ### Error representation
 
-Inside validate() function, error element used to represent the error is a <span> tag, followed by .form-error and .form-hint classes.
+Inside validate() function, error element used to represent the error is a ```html <span>``` tag, followed by .form-error and .form-hint classes.
 
 Example
 
 ```javascript
-        errorElement: 'span',
-        errorClass: 'form-error form-hint',
+   errorElement: 'span',
+   errorClass: 'form-error form-hint',
 ```
+
+Return
 
 ```html
 <span id="certificate_name-error" class="form-error form-hint">
     Please enter the certificate holder’s name(s)
 </span>
+```
+
+### Methods
+
+Custom methods to handle some extra user validation.
+
+Example
+
+* 1. White space method
+* Checking for white space at the beginning of each input
+
+``` javascript
+    $.validator.addMethod("noSpace",
+        function(value, element) {
+            // allow any non-whitespace characters as the host part
+        return this.optional( element ) || /(?=\S)/.test( value );
+    }, 'Please complete the field'); // Global message if there's only white space for required fields
+```
+
+Return
+
+```html
+    <span id="certificate_name-error" class="form-error form-hint">
+        Please complete the field
+    </span>
+```
+
+* 2. Advance email validation method
+* Checking for white space at the beginning of each input
+
+``` javascript
+    $.validator.addMethod("advEmail",
+        function(value, element) {
+            return this.optional( element ) || /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value);
+        },
+        "Please insert a valid email address"
+    );
+```
+
+Return
+
+```html
+   <span id="confirm_email-error" class="form-error form-hint">
+        Please enter a valid email address.
+   </span>
+```
+
+* 3. Exact length method
+* Checking for white space at the beginning of each input
+
+``` javascript
+     $.validator.addMethod(
+            "exactLength",
+        function(value, element, parameter) {
+            return this.optional(element) || value.length === parameter;
+     });
+```
+
+Return
+
+```html
+   <span id="inputGroup-error" class="form-error form-hint">
+        Please enter a valid date
+   </span>
+```
+
+### Rules
+
+Field rules example using the custom methods.
+
+Example
+
+```javascript
+     "full-name": {
+        required: true,
+        noSpace: true
+     },
+      email: {
+         required: true,
+         email:true,
+         advEmail:true
+     },
+     "confirm-email": {
+         equalTo: "#email"
+     },
+     "certificate-year":{
+         digits:true,
+         exactLength:4
+     },
+```
+
+### Messages
+
+Example
+
+```javascript
+    messages: {
+        "full-name": {
+            required: "Please enter your full name"
+        },
+        email: "Please enter your email address",
+            "confirm-email": {
+                required:"Please enter your email address",
+                equalTo: "Please enter your email address again"
+            },
+        "certificate-year":{
+            required: "Year",
+            digits: "Only digits",
+            exactLength:"Please enter a valid date"
+        },
+    }
 ```
 
 ## Credits
