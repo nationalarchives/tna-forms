@@ -107,10 +107,12 @@ class Form_Builder {
 		return sprintf( $form, $id, $name, $label );
 	}
 
-	public function form_radio_group( $title, $name, $radios = array() ) {
+	public function form_radio_group( $title = '', $name, $radios = array() ) {
 		$counter = 0;
-		$form = '<div class="form-row radio">';
-		$form .= '<p>' . $title . '</p>';
+		$form = '<div class="form-row">';
+		if ( $title ) {
+			$form .= '<p>' . $title . '</p>';
+		}
 		foreach ( $radios as $radio ) {
 			$id = strtolower( str_replace(' ', '_', $radio) );
 			if ( $counter == 0 && !isset( $_POST['tna-form'] ) ) {
@@ -118,7 +120,7 @@ class Form_Builder {
 			} else {
 				$checked = '';
 			}
-			$form .= '<div class="form-radio">';
+			$form .= '<div class="radio">';
 			$form .= '<input type="radio" id="' . $id . '" name="' . $name . '" value="' . $radio . '" ' . $checked;
 			$form .= set_value( $name, 'radio', $radio );
 			$form .= '>';

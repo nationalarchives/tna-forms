@@ -39,7 +39,7 @@ function tnafb_shortcode( $atts ) {
 	$a = shortcode_atts( array(
 		'type' => 'text',
 		'name' => 'Full name',
-		'error' => 'Please enter your full name',
+		'error' => '',
 		'hint'  => ''
 	), $atts );
 
