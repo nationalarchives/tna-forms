@@ -419,7 +419,11 @@ Returns
 ```
 
 ## Client-Side validation
-Jquery Validation plugin is used to validate all the contact forms
+Jquery Validation plugin is used to validate all the contact forms.
+
+### How to add client-side validation
+
+Template checklist available inside form-default.js's header (js/forms/).
 
 ### Error representation
 
