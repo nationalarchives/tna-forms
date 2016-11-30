@@ -74,7 +74,6 @@ function process_form_your_views() {
 
 		// Get the form elements and store them into an array
 		$form_fields = array(
-			'Form'                 => is_text_field_valid( filter_input( INPUT_POST, 'tna-form' ) ),
 			'Name'                 => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
 			'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
@@ -126,7 +125,7 @@ function process_form_your_views() {
 			// eg, get_tna_email( 'contactcentre' )
 			send_form_via_email( get_tna_email(), $ref_number, 'Enquiry - Ref:', $email_to_tna );
 
-			subscribe_to_newsletter( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], $form_fields['Form'] );
+			subscribe_to_newsletter( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], 'Your views' );
 
 		}
 	}
