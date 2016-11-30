@@ -13,7 +13,7 @@ function return_form_your_views() {
 
 	// HTML form string
 	$html = new Form_Builder;
-	$form =  $html->form_begins( 'your-views', 'your-views' ) .
+	$form =  $html->form_begins( 'your-views', 'Your views' ) .
 	         $html->fieldset_begins( 'Your details' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
@@ -74,6 +74,7 @@ function process_form_your_views() {
 
 		// Get the form elements and store them into an array
 		$form_fields = array(
+			'Form'                 => is_text_field_valid( filter_input( INPUT_POST, 'tna-form' ) ),
 			'Name'                 => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
 			'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
@@ -124,6 +125,8 @@ function process_form_your_views() {
 			// Amend email address function with username to send email to desired destination.
 			// eg, get_tna_email( 'contactcentre' )
 			send_form_via_email( get_tna_email(), $ref_number, 'Enquiry - Ref:', $email_to_tna );
+
+			subscribe_to_newsletter( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], $form_fields['Form'] );
 
 		}
 	}
