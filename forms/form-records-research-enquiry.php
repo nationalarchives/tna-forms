@@ -73,7 +73,8 @@ function process_form_rre() {
 			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 			'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
 			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
-			'Date(s)'              => is_text_field_valid( filter_input( INPUT_POST, 'dates' ) )
+			'Date(s)'              => is_text_field_valid( filter_input( INPUT_POST, 'dates' ) ),
+			'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) )
 		);
 
 		// If any value inside the array is false then there is an error
@@ -114,6 +115,8 @@ function process_form_rre() {
 
 			// Send email to TNA
 			send_form_via_email( get_tna_email( 'contactcentre' ), $ref_number, 'Records and research enquiry - Ref:', $email_to_tna );
+
+			subscribe_to_newsletter( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], 'Records and research enquiry' );
 
 		}
 	}
