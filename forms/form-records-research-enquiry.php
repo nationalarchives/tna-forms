@@ -13,7 +13,7 @@ function return_form_rre() {
 
 	// HTML form string (I know, it's long!)
 	$html = new Form_Builder;
-	$form =  $html->form_begins( 'records-research-enquiry', 'rre' ) .
+	$form =  $html->form_begins( 'records-research-enquiry', 'Records and research enquiry' ) .
 	         $html->fieldset_begins( 'Your enquiry' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
@@ -21,6 +21,7 @@ function return_form_rre() {
 	         $html->form_text_input( 'Country', 'country', 'country', 'Please enter your country' ) .
 	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .
 	         $html->form_text_input( 'Provide the dates or years that you are interested in', 'dates', 'dates' ) .
+	         $html->form_newsletter_checkbox() .
 	         $html->submit_form( 'submit-rre', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
