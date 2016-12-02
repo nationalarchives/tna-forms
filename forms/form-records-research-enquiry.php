@@ -13,7 +13,7 @@ function return_form_rre() {
 
 	// HTML form string (I know, it's long!)
 	$html = new Form_Builder;
-	$form =  $html->form_begins( 'records-research-enquiry', 'rre' ) .
+	$form =  $html->form_begins( 'records-research-enquiry', 'Records and research enquiry' ) .
 	         $html->fieldset_begins( 'Your enquiry' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
@@ -21,6 +21,7 @@ function return_form_rre() {
 	         $html->form_text_input( 'Country', 'country', 'country', 'Please enter your country' ) .
 	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .
 	         $html->form_text_input( 'Provide the dates or years that you are interested in', 'dates', 'dates' ) .
+	         $html->form_newsletter_checkbox() .
 	         $html->submit_form( 'submit-rre', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
@@ -72,7 +73,8 @@ function process_form_rre() {
 			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 			'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
 			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
-			'Date(s)'              => is_text_field_valid( filter_input( INPUT_POST, 'dates' ) )
+			'Date(s)'              => is_text_field_valid( filter_input( INPUT_POST, 'dates' ) ),
+			'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) )
 		);
 
 		// If any value inside the array is false then there is an error
@@ -113,6 +115,8 @@ function process_form_rre() {
 
 			// Send email to TNA
 			send_form_via_email( get_tna_email( 'contactcentre' ), $ref_number, 'Records and research enquiry - Ref:', $email_to_tna );
+
+			subscribe_to_newsletter( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], 'Records and research enquiry' );
 
 		}
 	}

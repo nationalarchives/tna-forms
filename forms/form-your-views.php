@@ -27,7 +27,7 @@ function return_form_your_views() {
 	         $html->help_text( 'Please enter an order number or Catalogue reference if either are relevant to this message.' ) .
 	         $html->form_text_input( 'Order number', 'order_number', 'order-number' ) .
 	         $html->form_text_input( 'Catalogue reference', 'catalogue_reference', 'catalogue-reference' ) .
-	         $html->form_checkbox_input( 'Tick here if you\'d like to receive our free monthly newsletter and email updates about news, products and services from The National Archives.', 'newsletter', 'newsletter' ) .
+	         $html->form_newsletter_checkbox() .
 	         $html->submit_form( 'submit-yv', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();

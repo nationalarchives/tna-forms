@@ -41,6 +41,7 @@ function return_form_default() {
 	         $html->form_text_input( 'Country', 'country', 'country', 'Please enter your country' ) .
 	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .
 	         $html->form_text_input( 'Provide the dates or years that you are interested in', 'dates', 'dates' ) .
+	         $html->form_newsletter_checkbox() .
 	         $html->submit_form( 'submit-default', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
@@ -92,7 +93,8 @@ function process_form_default() {
 			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 			'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
 			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
-			'Date(s)'              => is_text_field_valid( filter_input( INPUT_POST, 'dates' ) )
+			'Date(s)'              => is_text_field_valid( filter_input( INPUT_POST, 'dates' ) ),
+			'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) )
 		);
 
 		// If any value inside the array is false then there is an error
@@ -135,6 +137,9 @@ function process_form_default() {
 			// Amend email address function with username to send email to desired destination.
 			// eg, get_tna_email( 'contactcentre' )
 			send_form_via_email( get_tna_email(), $ref_number, 'Enquiry - Ref:', $email_to_tna );
+
+			// Subscribe to newsletter
+			subscribe_to_newsletter( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], 'Default' );
 
 		}
 	}
