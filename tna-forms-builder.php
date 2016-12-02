@@ -244,4 +244,20 @@ class Form_Builder {
 		return '';
 	}
 
+	public function form_newsletter_checkbox() {
+		$form = '<div class="form-row checkbox">';
+		$form .= '<input type="checkbox" id="newsletter" name="newsletter" value="Yes" ';
+		$form .= set_value( 'newsletter', 'checkbox' );
+		$form .= '>';
+		$form .= '<label for="newsletter">';
+		$form .= 'Tick here to receive our free monthly newsletter and email updates about our news, products and services';
+		$form .= '</label>';
+		$form .= '<p><small>';
+		$form .= 'The National Archives only records personal information, including email addresses, for the purposes provided. We will not share your details with third parties. ';
+		$form .= 'For more information read our <a href="http://www.nationalarchives.gov.uk/legal/privacy.htm" target="_blank">privacy policy</a>.';
+		$form .= '</small></p></div>';
+
+		return $form;
+	}
+
 }
