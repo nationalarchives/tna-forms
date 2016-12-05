@@ -4,7 +4,7 @@
  *
  */
 
-function return_form_iacs_training() {
+function return_form_iacs_training( $session_title_1, $session_options_1, $session_title_2, $session_options_2 ) {
 
 	// Global variables to determine if the form submission
 	// is successful or comes back with errors
@@ -49,13 +49,9 @@ function return_form_iacs_training() {
 	         $html->form_text_input( 'How long have you held this role?', 'role_length', 'role-length' ) .
 	         $html->fieldset_ends() .
 	         $html->fieldset_begins( 'Session details' ) .
-	         $html->form_select_input( 'Session', 'session_first_choice', 'session-first-choice', array(
-		         'session'
-	         ), 'Please select an option', '(1st choice)' ) .
-	         $html->form_select_input( 'Session', 'session_second_choice', 'session-second-choice', array(
-		         'session'
-	         ), 'Please select an option', '(2nd choice)' ) .
-	         $html->form_radio_group( 'Have you previously done any IA training?', 'previous-training', array('Yes', 'No') ) .
+	         $html->form_select_input( 'Session (1st choice)', 'session_first_choice', 'session-first-choice', $session_options_1, 'Please select an option', $session_title_1 ) .
+	         $html->form_select_input( 'Session (2nd choice)', 'session_second_choice', 'session-second-choice', $session_options_2, 'Please select an option', $session_title_2 ) .
+	         $html->form_select_input( 'Have you previously done any IA training?', 'previous_training', 'previous-training', array('Yes', 'No') ) .
 	         $html->form_textarea_input( 'If yes, please provide details', 'previous_training_details', 'previous-training-details' ) .
 	         $html->submit_form( 'submit-iacs', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .

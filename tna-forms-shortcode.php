@@ -7,7 +7,11 @@
 function tna_forms_shortcode( $atts ) {
 
 	$a = shortcode_atts( array(
-		'name' => 'form'
+		'name' => 'form',
+		'session-title-1' => 'Training 1',
+		'session-options-1' => '25 Jan 09:30-16:30, 15 Feb 09:30-16:30',
+		'session-title-2' => 'Training 2',
+		'session-options-2' => '25 Jan 09:30-16:30, 15 Feb 09:30-16:30'
 	), $atts );
 
 	switch ( $a['name'] ) {
@@ -27,7 +31,12 @@ function tna_forms_shortcode( $atts ) {
 			return return_form_public_sector();
 			break;
 		case 'IACS training':
-			return return_form_iacs_training();
+			return return_form_iacs_training(
+				$a['session-title-1'],
+				explode(', ', $a['session-options-1']),
+				$a['session-title-2'],
+				explode(', ', $a['session-options-2'])
+			);
 			break;
 		default:
 			return return_form_default();
