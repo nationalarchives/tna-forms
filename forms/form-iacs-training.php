@@ -13,7 +13,7 @@ function return_form_iacs_training( $session_title_1, $session_options_1, $sessi
 
 	// HTML form string
 	$html = new Form_Builder;
-	$form =  $html->form_begins( 'iacs_training', 'Information Assurance and Cyber Security training', true ) .
+	$form =  $html->form_begins( 'iacs_training', 'Information Assurance and Cyber Security training' ) .
 	         $html->fieldset_begins( 'Your details' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
