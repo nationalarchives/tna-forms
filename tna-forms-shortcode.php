@@ -26,6 +26,9 @@ function tna_forms_shortcode( $atts ) {
 		case 'Public sector':
 			return return_form_public_sector();
 			break;
+		case 'IACS training':
+			return return_form_iacs_training();
+			break;
 		default:
 			return return_form_default();
 			break;
