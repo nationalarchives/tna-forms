@@ -29,6 +29,10 @@ Add the shortcode to the desired page to display a form
 
 `[tna-form name="Public sector"]`
 
+**Information Assurance and Cyber Security training** form:
+
+`[tna-form name="IA training" session-text="Training" session-options="session time 1, session time 2"]`
+
 ## Development setup
 
 ### 1.0 Clone the repository
