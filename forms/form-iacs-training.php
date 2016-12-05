@@ -1,6 +1,6 @@
 <?php
 /**
- * Form template
+ * Form: Information Assurance and Cyber Security training
  *
  */
 
@@ -13,7 +13,7 @@ function return_form_iacs_training( $session_title_1, $session_options_1, $sessi
 
 	// HTML form string
 	$html = new Form_Builder;
-	$form =  $html->form_begins( 'iacs_training', 'Information Assurance and Cyber Security training' ) .
+	$form =  $html->form_begins( 'iacs_training', 'Information Assurance and Cyber Security training', true ) .
 	         $html->fieldset_begins( 'Your details' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
@@ -45,7 +45,7 @@ function return_form_iacs_training( $session_title_1, $session_options_1, $sessi
 		         'IAO',
 		         'Other IA role - please specify below'
 	         ), 'Please select an option' ) .
-	         $html->form_text_input( 'Role, if \'Other\', please specify', 'other_role', 'other-role' ) .
+	         $html->form_text_input( 'Role, if \'Other\', please specify', 'role_other', 'role-other' ) .
 	         $html->form_text_input( 'How long have you held this role?', 'role_length', 'role-length' ) .
 	         $html->fieldset_ends() .
 	         $html->fieldset_begins( 'Session details' ) .
@@ -99,13 +99,22 @@ function process_form_iacs_training() {
 
 		// Get the form elements and store them into an array
 		$form_fields = array(
-			'Name'                 => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
-			'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
-			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
-			'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
-			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
-			'Date(s)'              => is_text_field_valid( filter_input( INPUT_POST, 'dates' ) ),
-			'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) )
+			'Name'                      => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
+			'Email'                     => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
+			'Confirm email'             => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
+			'Telephone'                 => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'telephone' ) ),
+			'Job title'                 => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'job-title' ) ),
+			'Organisation'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'organisation' ) ),
+			'Address'                   => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'address' ) ),
+			'Organisation description'  => is_mandatory_select_valid( filter_input( INPUT_POST, 'organisation-type' ) ),
+			'Organisation other'        => is_text_field_valid( filter_input( INPUT_POST, 'other-organisation' ) ),
+			'Role'                      => is_mandatory_select_valid( filter_input( INPUT_POST, 'your-role' ) ),
+			'Role other'                => is_text_field_valid( filter_input( INPUT_POST, 'role-other' ) ),
+			'Length in role'            => is_text_field_valid( filter_input( INPUT_POST, 'role-length' ) ),
+			'Session 1st choice'        => is_mandatory_select_valid( filter_input( INPUT_POST, 'session-first-choice' ) ),
+			'Session 2nd choice'        => is_mandatory_select_valid( filter_input( INPUT_POST, 'session-second-choice' ) ),
+			'Previous training'         => is_select_valid( filter_input( INPUT_POST, 'previous-training' ) ),
+			'Previous training details' => is_textarea_field_valid( filter_input( INPUT_POST, 'previous-training-details' ) )
 		);
 
 		// If any value inside the array is false then there is an error
@@ -138,7 +147,7 @@ function process_form_iacs_training() {
 			$email_to_user .= display_compiled_form_data( $form_fields );
 
 			// Send email to user
-			send_form_via_email( $form_fields['Email'], $ref_number, 'Your enquiry - Ref:', $email_to_user );
+			send_form_via_email( $form_fields['Email'], $ref_number, 'Your training - Ref:', $email_to_user );
 
 			// Store email content to TNA into a variable
 			$email_to_tna = success_message_header( 'Reference number:', $ref_number );
@@ -147,10 +156,7 @@ function process_form_iacs_training() {
 			// Send email to TNA
 			// Amend email address function with username to send email to desired destination.
 			// eg, get_tna_email( 'contactcentre' )
-			send_form_via_email( get_tna_email(), $ref_number, 'Enquiry - Ref:', $email_to_tna );
-
-			// Subscribe to newsletter
-			subscribe_to_newsletter( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], 'Default' );
+			send_form_via_email( get_tna_email(), $ref_number, 'IA training - Ref:', $email_to_tna );
 
 		}
 	}

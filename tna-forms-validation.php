@@ -89,6 +89,14 @@ function is_mandatory_select_valid( $data ) {
 		return esc_html( $sanitize_data );
 	}
 }
+function is_select_valid( $data ) {
+	if ( $data ) {
+		$sanitize_data = sanitize_text_field( $data );
+		return esc_html( $sanitize_data );
+	} else {
+		return '-';
+	}
+}
 function does_fields_match( $data, $reconfirm ) {
 	if ( trim( $data ) !== trim( $reconfirm ) ) {
 		return false;
