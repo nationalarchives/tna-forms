@@ -91,6 +91,25 @@ class Form_Builder {
 		return sprintf( $form, $label, $id, $name );
 	}
 
+	public function form_tel_input( $label, $id, $name, $error = '', $hint = '' ) {
+		$form = '<div class="form-row">';
+		$form .= '<label for="';
+		$form .= $id;
+		$form .= '">%s';
+		$form .= $this->is_optional( $error );
+		$form .= '</label>';
+		$form .= $this->hint_text( $hint );
+		$form .= '<input type="tel" id="%s" name="%s" ';
+		$form .= $this->required_atts( $error );
+		$form .= set_value( $name );
+		$form .= $this->input_error_class( $name, $error );
+		$form .= '>';
+		$form .= $this->input_error_message( $name, $error );
+		$form .= '</div>';
+
+		return sprintf( $form, $label, $id, $name );
+	}
+
 	public function form_checkbox_input( $label, $id, $name, $error = '' ) {
 		$form = '<div class="form-row checkbox">';
 		$form .= '<input type="checkbox" id="%s" name="%s" value="Yes" ';
