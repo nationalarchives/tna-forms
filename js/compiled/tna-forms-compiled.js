@@ -163,7 +163,7 @@ function naturalisationForm(){
 
 
 
-    $(submit).prop('disabled', true);
+    $(submit, formName).prop('disabled', true);
 
 
     /**
@@ -354,7 +354,7 @@ function naturalisationForm(){
 
                 /* Show progress bar */
                 $('.arrow-steps li:nth-child(3)').addClass("current");
-                $(submit).prop('disabled', false);
+                $(submit, formName).prop('disabled', false);
 
                 History.pushState({state:3},'Contact details', '#step-3');
 
