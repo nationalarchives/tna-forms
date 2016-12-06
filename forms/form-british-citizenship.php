@@ -86,7 +86,8 @@ function return_form_british_citizenship() {
 	                        <input type="text" id="certificate_number" name="certificate-number" ' . set_value( 'certificate-number' ) . '>
 	                    </div>
 	                    <div class="form-row registration-year">
-	                        <label class="form-label" for="certificate_year_issued_from">Year of registration between</label>
+	                    <p><label class="form-label" for="certificate_year_issued_from">Year of registration <span class="optional">(optional)</span></label></p>
+	                        <label class="form-label" for="certificate_year_issued_from">between</label>
 	                        <select id="certificate_year_issued_from" name="certificate-year-issued-from">
 	                            <option value="">Please select</option>
 	                            <option value="1949" ' . set_value( 'certificate-year-issued-from', 'select', '1949' ) . '>1949</option>
@@ -170,7 +171,6 @@ function return_form_british_citizenship() {
 	                            <option value="1985" ' . set_value( 'certificate-year-issued-to', 'select', '1985' ) . '>1985</option>
 								<option value="1986" ' . set_value( 'certificate-year-issued-to', 'select', '1986' ) . '>1986</option>
 	                        </select>
-	                        <p><span class="optional">(optional)</span></p>
 	                    </div>
 	                    <div class="form-row form-nav ">
 	                        <a href="#" title="continue" class="button">Continue</a>
