@@ -31,7 +31,9 @@ Add the shortcode to the desired page to display a form
 
 **Information Assurance and Cyber Security training** form:
 
-`[tna-form name="IA training" session-text="Training" session-options="session time 1, session time 2"]`
+`[tna-form name="IA training" sessions="(Training session 1, session time 1, session time 2), (Training session 2, session time 1, session time 2)"]`
+
+Each session group is defined by brackets. Each session title, session time and session group is delineated by a comma.
 
 ## Development setup
 
