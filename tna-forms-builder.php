@@ -180,6 +180,45 @@ class Form_Builder {
 		return sprintf( $form, $label, $id, $name );
 	}
 
+	public function form_select_input_training( $label, $id, $name, $options = array(), $error = '', $hint = '' ) {
+		$form = '<div class="form-row">';
+		$form .= '<label for="';
+		$form .= $id;
+		$form .= '">%s';
+		$form .= $this->is_optional( $error );
+		$form .= '</label>';
+		$form .= $this->hint_text( $hint );
+		$form .= '<select id="%s" name="%s" ';
+		$form .= $this->required_atts( $error );
+		$form .= $this->input_error_class( $name, $error );
+		$form .= '>';
+		$form .= '<option value="">Please select</option>';
+		foreach ( $options as $option ) {
+			if ( strpos($option, '(') !== false ) {
+				$option = str_replace('(', '', $option);
+				$form .= '<optgroup label="' . $option . '">';
+			} elseif ( strpos($option, ')') !== false ) {
+				$option = str_replace(')', '', $option);
+				$form .= '<option value="' . $option . '" ';
+				$form .= set_value( $name, 'select', $option );
+				$form .= '>';
+				$form .= $option;
+				$form .= '</option></optgroup>';
+			} else {
+				$form .= '<option value="' . $option . '" ';
+				$form .= set_value( $name, 'select', $option );
+				$form .= '>';
+				$form .= $option;
+				$form .= '</option>';
+			}
+		}
+		$form .= '</select>';
+		$form .= $this->input_error_message( $name, $error );
+		$form .= '</div>';
+
+		return sprintf( $form, $label, $id, $name );
+	}
+
 	public function submit_form( $name, $id, $value = 'Submit' ) {
 		$form = '<div class="form-row">';
 		$form .= '<input type="submit" name="%s" id="%s" value="%s">';

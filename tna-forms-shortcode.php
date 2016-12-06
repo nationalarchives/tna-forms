@@ -8,8 +8,7 @@ function tna_forms_shortcode( $atts ) {
 
 	$a = shortcode_atts( array(
 		'name' => 'form',
-		'session-text' => 'Training',
-		'session-options' => 'No session times'
+		'sessions' => '(Training, No session times)'
 	), $atts );
 
 	switch ( $a['name'] ) {
@@ -29,10 +28,7 @@ function tna_forms_shortcode( $atts ) {
 			return return_form_public_sector();
 			break;
 		case 'IA training':
-			return return_form_iacs_training(
-				$a['session-text'],
-				explode(', ', $a['session-options'])
-			);
+			return return_form_iacs_training( explode(', ', $a['sessions']) );
 			break;
 		default:
 			return return_form_default();
