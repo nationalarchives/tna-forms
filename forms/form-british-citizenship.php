@@ -332,7 +332,7 @@ function process_form_british_citizenship() {
 
 			// Send email to user
 			send_form_via_email( $form_fields['Email'], $ref_number, 'Check for a certificate of British citizenship - Ref:',
-				$email_to_user );
+				$email_to_user, $form_fields['Spam'] );
 
 			// Store email content to TNA into a variable
 			$email_to_tna = success_message_header( 'Reference number:', $ref_number );
@@ -340,7 +340,7 @@ function process_form_british_citizenship() {
 
 			// Send email to TNA
 			send_form_via_email( get_tna_email( 'contactcentre' ), $ref_number, 'Certificate of British citizenship request - Ref:',
-				$email_to_tna );
+				$email_to_tna, $form_fields['Spam'] );
 
 		}
 	}

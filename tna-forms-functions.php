@@ -123,8 +123,8 @@ function confirmation_content( $id ) {
 	return $content;
 }
 
-function send_form_via_email( $email, $ref_number, $subject, $content ) {
-	if ( is_email( $email ) ) {
+function send_form_via_email( $email, $ref_number, $subject, $content, $spam='' ) {
+	if ( is_email( $email ) && $spam !== 'yes' ) {
 
 		// Email Subject
 		$email_subject = $subject . ' ' . $ref_number;
