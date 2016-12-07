@@ -28,6 +28,7 @@ function return_form_your_views() {
 	         $html->form_text_input( 'Order number', 'order_number', 'order-number' ) .
 	         $html->form_text_input( 'Catalogue reference', 'catalogue_reference', 'catalogue-reference' ) .
 	         $html->form_newsletter_checkbox() .
+	         $html->form_spam_filter() .
 	         $html->submit_form( 'submit-yv', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();

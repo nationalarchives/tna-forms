@@ -53,6 +53,7 @@ function return_form_iacs_training( $sessions ) {
 	         $html->form_select_input_training( 'Session (2nd choice)', 'session_second_choice', 'session-second-choice', $sessions, 'Please select an option' ) .
 	         $html->form_select_input( 'Have you previously done any IA training?', 'previous_training', 'previous-training', array('Yes', 'No') ) .
 	         $html->form_textarea_input( 'If yes, please provide details', 'previous_training_details', 'previous-training-details' ) .
+	         $html->form_spam_filter() .
 	         $html->submit_form( 'submit-iacs', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();

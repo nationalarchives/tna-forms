@@ -34,6 +34,7 @@ function return_form_public_sector() {
 		         'UK Government Licensing Framework'
 	         ) ) .
 	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry' ) .
+	         $html->form_spam_filter() .
 	         $html->submit_form( 'submit-psi', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
