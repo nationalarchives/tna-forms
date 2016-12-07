@@ -104,3 +104,11 @@ function does_fields_match( $data, $reconfirm ) {
 		return true;
 	}
 }
+
+function is_this_spam( $data ) {
+	if ( $data ) {
+		return false;
+	} else {
+		return '-';
+	}
+}

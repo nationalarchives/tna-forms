@@ -217,6 +217,10 @@ function return_form_british_citizenship() {
 	                        <label for="postal_address">Postal address</label>
 	                        <textarea id="postal_address" name="postal-address">' . set_value( 'postal-address', 'textarea' ) . '</textarea>
 	                    </div>
+	                    <div class="form-row hidden">
+	                        <label for="skype_name">Skype name</label>
+	                        <input type="text" id="skype_name" name="skype-name" ' . set_value( 'skype-name' ) . '>
+	                    </div>
 	                    <div class="form-row">
 	                        <input type="submit" alt="Submit" name="submit-bc" id="submit-tna-form" value="Submit">
 	                    </div>
@@ -289,11 +293,12 @@ function process_form_british_citizenship() {
 			'Certificate number'          => is_text_field_valid( filter_input( INPUT_POST, 'certificate-number' ) ),
 			'Issued from'                 => is_text_field_valid( filter_input( INPUT_POST, 'certificate-year-issued-from' ) ),
 			'Issued to'                   => is_text_field_valid( filter_input( INPUT_POST, 'certificate-year-issued-to' ) ),
-			'Full name'                    => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
+			'Full name'                   => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
 			'Preferred contact'           => ( isset( $_POST['preferred-contact'] ) ) ? is_checkbox_radio_valid( filter_input( INPUT_POST, 'preferred-contact' ) ) : false,
 			'Email'                       => is_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'               => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
-			'Postal address'              => is_textarea_field_valid( filter_input( INPUT_POST, 'postal-address' ) )
+			'Postal address'              => is_textarea_field_valid( filter_input( INPUT_POST, 'postal-address' ) ),
+			'Spam'                        => is_this_spam( filter_input( INPUT_POST, 'skype-name' ) )
 		);
 
 		// If any value inside the array is false then there is an error

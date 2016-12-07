@@ -84,7 +84,9 @@ function display_compiled_form_data( $data ) {
 	if ( is_array( $data ) ) {
 		$display_data = '<div class="form-data"><ul>';
 		foreach ( $data as $field_name => $field_value ) {
-			if ( $field_value != '1' ) {
+			if ( $field_name == 'Spam' || $field_name == 'Confirm email') {
+				// do nothing
+			} else {
 				$display_data .= '<li>' . $field_name . ': ' . $field_value . '</li>';
 			}
 		}
