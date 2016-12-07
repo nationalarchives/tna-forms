@@ -95,7 +95,8 @@ function process_form_default() {
 			'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
 			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
 			'Date(s)'              => is_text_field_valid( filter_input( INPUT_POST, 'dates' ) ),
-			'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) )
+			'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) ),
+			'Spam'                 => is_this_spam( filter_input( INPUT_POST, 'skype-name' ) )
 		);
 
 		// If any value inside the array is false then there is an error

@@ -26,7 +26,8 @@ function return_form_general() {
 	         $html->fieldset_ends() .
 	         $html->fieldset_begins( 'Additional information' ) .
 	         $html->form_text_input( 'Catalogue reference', 'catalogue_reference', 'catalogue-reference' ) .
-	         $html->form_checkbox_input( 'Tick here if you\'d like to receive our free monthly newsletter and email updates about news, products and services from The National Archives.', 'newsletter', 'newsletter' ) .
+	         $html->form_newsletter_checkbox() .
+	         $html->form_spam_filter() .
 	         $html->submit_form( 'submit-ge', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
@@ -80,7 +81,8 @@ function process_form_general() {
 			'Reason'               => is_mandatory_select_valid( filter_input( INPUT_POST, 'reason' ) ),
 			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
 			'Catalogue reference'  => is_text_field_valid( filter_input( INPUT_POST, 'catalogue-reference' ) ),
-			'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) )
+			'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) ),
+			'Spam'                 => is_this_spam( filter_input( INPUT_POST, 'skype-name' ) )
 		);
 
 		// If any value inside the array is false then there is an error

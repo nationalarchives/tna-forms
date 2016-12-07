@@ -85,7 +85,8 @@ function process_form_public_sector() {
 			'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 			'Reason'               => is_mandatory_select_valid( filter_input( INPUT_POST, 'reason' ) ),
-			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) )
+			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
+			'Spam'                 => is_this_spam( filter_input( INPUT_POST, 'skype-name' ) )
 		);
 
 		// If any value inside the array is false then there is an error

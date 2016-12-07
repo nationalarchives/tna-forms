@@ -82,7 +82,8 @@ function process_form_your_views() {
 			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
 			'Order number'         => is_text_field_valid( filter_input( INPUT_POST, 'order-number' ) ),
 			'Catalogue reference'  => is_text_field_valid( filter_input( INPUT_POST, 'catalogue-reference' ) ),
-			'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) )
+			'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) ),
+			'Spam'                 => is_this_spam( filter_input( INPUT_POST, 'skype-name' ) )
 		);
 
 		// If any value inside the array is false then there is an error

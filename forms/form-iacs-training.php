@@ -115,7 +115,8 @@ function process_form_iacs_training() {
 			'Session 1st choice'        => is_mandatory_select_valid( filter_input( INPUT_POST, 'session-first-choice' ) ),
 			'Session 2nd choice'        => is_mandatory_select_valid( filter_input( INPUT_POST, 'session-second-choice' ) ),
 			'Previous training'         => is_select_valid( filter_input( INPUT_POST, 'previous-training' ) ),
-			'Previous training details' => is_textarea_field_valid( filter_input( INPUT_POST, 'previous-training-details' ) )
+			'Previous training details' => is_textarea_field_valid( filter_input( INPUT_POST, 'previous-training-details' ) ),
+			'Spam'                      => is_this_spam( filter_input( INPUT_POST, 'skype-name' ) )
 		);
 
 		// If any value inside the array is false then there is an error
