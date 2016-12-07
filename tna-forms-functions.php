@@ -165,3 +165,12 @@ function subscribe_to_newsletter( $subscribe, $name, $email, $form, $spam ) {
 		send_form_via_email( get_tna_email(), $name, 'Newsletter sign up by', $email_message, $spam );
 	}
 }
+
+function log_spam( $spam, $time, $email ) {
+	if ( $spam == 'yes' ) {
+		$file = plugin_dir_path( __FILE__ ) . 'spam_log.txt';
+		$log = $time . ' - ' . $email . PHP_EOL;
+		file_put_contents( $file, $log, FILE_APPEND );
+	}
+}
+

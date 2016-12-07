@@ -342,6 +342,8 @@ function process_form_british_citizenship() {
 			send_form_via_email( get_tna_email( 'contactcentre' ), 'Certificate of British citizenship request - Ref:', $ref_number,
 				$email_to_tna, $form_fields['Spam'] );
 
+			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
+
 		}
 	}
 }

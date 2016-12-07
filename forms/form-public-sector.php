@@ -130,6 +130,8 @@ function process_form_public_sector() {
 			// eg, get_tna_email( 'contactcentre' )
 			send_form_via_email( get_tna_email(), 'Enquiry - Ref:', $ref_number, $email_to_tna, $form_fields['Spam'] );
 
+			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
+
 		}
 	}
 }

@@ -143,6 +143,8 @@ function process_form_default() {
 			// Subscribe to newsletter
 			subscribe_to_newsletter( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], 'Default', $form_fields['Spam'] );
 
+			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
+
 		}
 	}
 }

@@ -129,6 +129,8 @@ function process_form_your_views() {
 
 			subscribe_to_newsletter( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], 'Your views', $form_fields['Spam'] );
 
+			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
+
 		}
 	}
 }
