@@ -39,8 +39,7 @@ legend {
     padding: 3px;
     background: #FFF8D0; }
     .form-row .form-error span {
-      font-size: 1.6em;
-      color: #EBAB2C; }
+      font-size: 1.6em; }
   .form-row .form-warning {
     border: 2px solid #EBAB2C !important; }
   .form-row .dob-col {
