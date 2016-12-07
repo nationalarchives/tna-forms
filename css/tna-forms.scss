@@ -38,10 +38,18 @@ legend {
     color: #6f777b;
   }
   .form-error {
-    color: #CB0D07;
+    color: #000;
     width: 100%;
+    max-width: 420px;
     display: block;
-    margin-top: 5px;
+    padding: 3px;
+    background: #FFF8D0;
+    span {
+      font-size: 1.6em;
+    }
+  }
+  .form-warning {
+    border: 2px solid #EBAB2C !important;
   }
   .dob-col {
     display: inline-block;
@@ -77,16 +85,13 @@ legend {
   width: 146px !important;
   margin-right: 2% !important;
 }
-.form-warning {
-  outline: 1px solid #CB0D07 !important;
-}
 .success-message {
   background-color: #D5EAEA !important;
   border-left: 4px solid #008484 !important;
 }
 .error-message {
-  background-color: #F8DFDD !important;
-  border-left: 4px solid #CB0D07 !important;
+  background-color: #FFF8D0 !important;
+  border-left: 4px solid #EBAB2C !important;
 }
 
 .button-back,
