@@ -13,7 +13,7 @@ function return_form_general() {
 
 	// HTML form string
 	$html = new Form_Builder;
-	$form =  $html->form_begins( 'general', 'general' ) .
+	$form =  $html->form_begins( 'general', 'General enquires' ) .
 	         $html->fieldset_begins( 'Your details' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .

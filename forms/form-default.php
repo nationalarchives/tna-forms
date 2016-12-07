@@ -33,7 +33,7 @@ function return_form_default() {
 
 	// HTML form string
 	$html = new Form_Builder;
-	$form =  $html->form_begins( 'default', 'default' ) .
+	$form =  $html->form_begins( 'default', 'Default' ) .
 	         $html->fieldset_begins( 'Your enquiry' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
