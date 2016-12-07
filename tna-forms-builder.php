@@ -318,4 +318,15 @@ class Form_Builder {
 		return $form;
 	}
 
+	public function form_spam_filter() {
+		$form = '<div class="form-row hidden">';
+		$form .= '<label for="skype_name">Skype name</label>';
+		$form .= '<input type="text" id="skype_name" name="skype-name" ';
+		$form .= set_value( 'skype-name' );
+		$form .= '>';
+		$form .= '</div>';
+
+		return $form;
+	}
+
 }
