@@ -106,7 +106,13 @@ function does_fields_match( $data, $reconfirm ) {
 }
 
 function is_this_spam( $data ) {
-	if ( $data ) {
+	$spam = false;
+	foreach( $data as $key => $value ) {
+		if ( strpos($key, 'skype-name') !== false && $value != false ) {
+			$spam = true;
+		}
+	}
+	if ( $spam ) {
 		return 'yes';
 	} else {
 		return '-';

@@ -83,7 +83,7 @@ function process_form_your_views() {
 			'Order number'         => is_text_field_valid( filter_input( INPUT_POST, 'order-number' ) ),
 			'Catalogue reference'  => is_text_field_valid( filter_input( INPUT_POST, 'catalogue-reference' ) ),
 			'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) ),
-			'Spam'                 => is_this_spam( filter_input( INPUT_POST, 'skype-name' ) )
+			'Spam'                 => is_this_spam( $_POST )
 		);
 
 		// If any value inside the array is false then there is an error
