@@ -318,12 +318,10 @@ class Form_Builder {
 		return $form;
 	}
 
-	public function form_spam_filter() {
+	public function form_spam_filter( $rand ) {
 		$form = '<div class="form-row hidden">';
 		$form .= '<label for="skype_name">Skype name</label>';
-		$form .= '<input type="text" id="skype_name" name="skype-name" ';
-		$form .= set_value( 'skype-name' );
-		$form .= '>';
+		$form .= '<input type="text" id="skype_name" name="skype-name-' . $rand . '">';
 		$form .= '</div>';
 
 		return $form;
