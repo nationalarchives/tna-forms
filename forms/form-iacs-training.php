@@ -147,7 +147,7 @@ function process_form_iacs_training() {
 			$email_to_user .= display_compiled_form_data( $form_fields );
 
 			// Send email to user
-			send_form_via_email( $form_fields['Email'], $ref_number, 'Your training - Ref:', $email_to_user );
+			send_form_via_email( $form_fields['Email'], 'Your training - Ref:', $ref_number, $email_to_user, $form_fields['Spam'] );
 
 			// Store email content to TNA into a variable
 			$email_to_tna = success_message_header( 'Reference number:', $ref_number );
@@ -156,7 +156,7 @@ function process_form_iacs_training() {
 			// Send email to TNA
 			// Amend email address function with username to send email to desired destination.
 			// eg, get_tna_email( 'contactcentre' )
-			send_form_via_email( get_tna_email(), $ref_number, 'IA training - Ref:', $email_to_tna );
+			send_form_via_email( get_tna_email(), 'IA training - Ref:', $ref_number, $email_to_tna, $form_fields['Spam'] );
 
 		}
 	}

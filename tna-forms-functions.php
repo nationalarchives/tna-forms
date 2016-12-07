@@ -123,7 +123,7 @@ function confirmation_content( $id ) {
 	return $content;
 }
 
-function send_form_via_email( $email, $ref_number, $subject, $content, $spam='' ) {
+function send_form_via_email( $email, $subject, $ref_number, $content, $spam ) {
 	if ( is_email( $email ) && $spam !== 'yes' ) {
 
 		// Email Subject
@@ -156,12 +156,12 @@ function get_tna_email( $user = '' ) {
 	}
 }
 
-function subscribe_to_newsletter( $subscribe, $name, $email, $form ) {
+function subscribe_to_newsletter( $subscribe, $name, $email, $form, $spam ) {
 	if ( $subscribe == 'Yes' ) {
 
 		$email_message = '<p>' . $name . ' has subscribed to the newsletter via ' . $form . ' form</p>';
 		$email_message .= '<p>Email address: ' . $email . '</p>';
 
-		send_form_via_email( get_tna_email(), $name, 'Newsletter sign up by', $email_message );
+		send_form_via_email( get_tna_email(), $name, 'Newsletter sign up by', $email_message, $spam );
 	}
 }

@@ -107,16 +107,16 @@ function process_form_rre() {
 			$email_to_user .= display_compiled_form_data( $form_fields );
 
 			// Send email to user
-			send_form_via_email( $form_fields['Email'], $ref_number, 'Your records and research enquiry - Ref:', $email_to_user );
+			send_form_via_email( $form_fields['Email'], 'Your records and research enquiry - Ref:', $ref_number, $email_to_user, $form_fields['Spam'] );
 
 			// Store email content to TNA into a variable
 			$email_to_tna = success_message_header( 'Reference number:', $ref_number );
 			$email_to_tna .= display_compiled_form_data( $form_fields );
 
 			// Send email to TNA
-			send_form_via_email( get_tna_email( 'contactcentre' ), $ref_number, 'Records and research enquiry - Ref:', $email_to_tna );
+			send_form_via_email( get_tna_email( 'contactcentre' ), 'Records and research enquiry - Ref:', $ref_number, $email_to_tna, $form_fields['Spam'] );
 
-			subscribe_to_newsletter( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], 'Records and research enquiry' );
+			subscribe_to_newsletter( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], 'Records and research enquiry', $form_fields['Spam'] );
 
 		}
 	}
