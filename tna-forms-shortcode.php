@@ -30,6 +30,9 @@ function tna_forms_shortcode( $atts ) {
 		case 'IA training':
 			return return_form_iacs_training( explode(', ', $a['sessions']) );
 			break;
+		case 'Apply to film':
+			return return_form_apply_to_film();
+			break;
 		default:
 			return return_form_default();
 			break;

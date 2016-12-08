@@ -24,4 +24,5 @@ include 'forms/form-your-views.php';
 include 'forms/form-general.php';
 include 'forms/form-public-sector.php';
 include 'forms/form-iacs-training.php';
+include 'forms/form-apply-to-film.php';
 include 'forms/form-default.php';
