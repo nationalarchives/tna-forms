@@ -111,12 +111,6 @@ function is_this_spam( $data ) {
 		if ( strpos($key, 'skype-name') !== false && $value !== false ) {
 			$spam = true;
 		}
-		if ( $key == 'timestamp' && ( time() - $value < 5 ) ) {
-			$spam = true;
-		}
-		if ( $key == 'timestamp' && ( time() - $value < 21600 ) ) {
-			$spam = true;
-		}
 	}
 	if ( $spam ) {
 		return 'yes';
