@@ -27,7 +27,7 @@ function return_form_general() {
 	         $html->fieldset_begins( 'Additional information' ) .
 	         $html->form_text_input( 'Catalogue reference', 'catalogue_reference', 'catalogue-reference' ) .
 	         $html->form_newsletter_checkbox() .
-	         $html->form_spam_filter() .
+	         $html->form_spam_filter( rand(10, 99) ) .
 	         $html->submit_form( 'submit-ge', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
@@ -82,7 +82,7 @@ function process_form_general() {
 			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
 			'Catalogue reference'  => is_text_field_valid( filter_input( INPUT_POST, 'catalogue-reference' ) ),
 			'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) ),
-			'Spam'                 => is_this_spam( filter_input( INPUT_POST, 'skype-name' ) )
+			'Spam'                 => is_this_spam( $_POST )
 		);
 
 		// If any value inside the array is false then there is an error
@@ -92,6 +92,8 @@ function process_form_general() {
 
 			// Store error message into the global variable
 			$tna_error_message = display_error_message();
+
+			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 
 		} else {
 

@@ -12,6 +12,7 @@ class Form_Builder {
 		$form = '<form action=""  id="%s" method="POST"' . $this->novalidate_for_testing( $no_validate ) . '>';
 		$form .= '<input type="hidden" name="tna-form" value="%s">';
 		$form .= '<input type="hidden" name="token" value="' . form_token() . '">';
+		$form .= '<input type="hidden" name="timestamp" value="' . time() . '">';
 
 		return sprintf( $form, $id, $value );
 	}
@@ -320,7 +321,7 @@ class Form_Builder {
 
 	public function form_spam_filter( $rand ) {
 		$form = '<div class="form-row hidden">';
-		$form .= '<label for="skype_name">Skype name</label>';
+		$form .= '<label for="skype_name">Skype name (please ignore this field)</label>';
 		$form .= '<input type="text" id="skype_name" name="skype-name-' . $rand . '">';
 		$form .= '</div>';
 

@@ -34,7 +34,7 @@ function return_form_public_sector() {
 		         'UK Government Licensing Framework'
 	         ) ) .
 	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry' ) .
-	         $html->form_spam_filter() .
+	         $html->form_spam_filter( rand(10, 99) ) .
 	         $html->submit_form( 'submit-psi', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
@@ -86,7 +86,7 @@ function process_form_public_sector() {
 			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 			'Reason'               => is_mandatory_select_valid( filter_input( INPUT_POST, 'reason' ) ),
 			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
-			'Spam'                 => is_this_spam( filter_input( INPUT_POST, 'skype-name' ) )
+			'Spam'                 => is_this_spam( $_POST )
 		);
 
 		// If any value inside the array is false then there is an error
@@ -96,6 +96,8 @@ function process_form_public_sector() {
 
 			// Store error message into the global variable
 			$tna_error_message = display_error_message();
+
+			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 
 		} else {
 

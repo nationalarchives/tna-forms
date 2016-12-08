@@ -28,7 +28,7 @@ function return_form_your_views() {
 	         $html->form_text_input( 'Order number', 'order_number', 'order-number' ) .
 	         $html->form_text_input( 'Catalogue reference', 'catalogue_reference', 'catalogue-reference' ) .
 	         $html->form_newsletter_checkbox() .
-	         $html->form_spam_filter( rand(5, 15) ) .
+	         $html->form_spam_filter( rand(10, 99) ) .
 	         $html->submit_form( 'submit-yv', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
@@ -93,6 +93,8 @@ function process_form_your_views() {
 
 			// Store error message into the global variable
 			$tna_error_message = display_error_message();
+
+			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 
 		} else {
 

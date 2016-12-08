@@ -42,7 +42,7 @@ function return_form_default() {
 	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .
 	         $html->form_text_input( 'Provide the dates or years that you are interested in', 'dates', 'dates' ) .
 	         $html->form_newsletter_checkbox() .
-	         $html->form_spam_filter() .
+	         $html->form_spam_filter( rand(10, 99) ) .
 	         $html->submit_form( 'submit-default', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
@@ -96,7 +96,7 @@ function process_form_default() {
 			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
 			'Date(s)'              => is_text_field_valid( filter_input( INPUT_POST, 'dates' ) ),
 			'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) ),
-			'Spam'                 => is_this_spam( filter_input( INPUT_POST, 'skype-name' ) )
+			'Spam'                 => is_this_spam( $_POST )
 		);
 
 		// If any value inside the array is false then there is an error
@@ -106,6 +106,8 @@ function process_form_default() {
 
 			// Store error message into the global variable
 			$tna_error_message = display_error_message();
+
+			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 
 		} else {
 

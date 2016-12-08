@@ -22,6 +22,7 @@ function return_form_british_citizenship() {
 	            <form action=""  id="naturalisation" method="POST">
 	            	<input type="hidden" name="tna-form" value="naturalisation">
 	            	<input type="hidden" name="token" value="' . form_token() . '">
+	            	<input type="hidden" name="timestamp" value="' . time() . '">
 	                <fieldset class="form-step-1">
 	                    <legend>Certificate holder\'s details</legend>
 	                    <div class="form-row">
@@ -218,8 +219,8 @@ function return_form_british_citizenship() {
 	                        <textarea id="postal_address" name="postal-address">' . set_value( 'postal-address', 'textarea' ) . '</textarea>
 	                    </div>
 	                    <div class="form-row hidden">
-	                        <label for="skype_name">Skype name</label>
-	                        <input type="text" id="skype_name" name="skype-name" ' . set_value( 'skype-name' ) . '>
+	                        <label for="skype_name">Skype name (please ignore this field)</label>
+	                        <input type="text" id="skype_name" name="skype-name-' . rand(10, 99) . '">
 	                    </div>
 	                    <div class="form-row">
 	                        <input type="submit" alt="Submit" name="submit-bc" id="submit-tna-form" value="Submit">
@@ -298,7 +299,7 @@ function process_form_british_citizenship() {
 			'Email'                       => is_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'               => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 			'Postal address'              => is_textarea_field_valid( filter_input( INPUT_POST, 'postal-address' ) ),
-			'Spam'                        => is_this_spam( filter_input( INPUT_POST, 'skype-name' ) )
+			'Spam'                        => is_this_spam( $_POST )
 		);
 
 		// If any value inside the array is false then there is an error
@@ -308,6 +309,8 @@ function process_form_british_citizenship() {
 
 			// Store error messages into the global variable
 			$tna_error_message = display_error_message();
+
+			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 
 		} else {
 

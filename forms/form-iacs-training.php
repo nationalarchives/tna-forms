@@ -53,7 +53,7 @@ function return_form_iacs_training( $sessions ) {
 	         $html->form_select_input_training( 'Session (2nd choice)', 'session_second_choice', 'session-second-choice', $sessions, 'Please select an option' ) .
 	         $html->form_select_input( 'Have you previously done any IA training?', 'previous_training', 'previous-training', array('Yes', 'No') ) .
 	         $html->form_textarea_input( 'If yes, please provide details', 'previous_training_details', 'previous-training-details' ) .
-	         $html->form_spam_filter() .
+	         $html->form_spam_filter( rand(10, 99) ) .
 	         $html->submit_form( 'submit-iacs', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
@@ -116,7 +116,7 @@ function process_form_iacs_training() {
 			'Session 2nd choice'        => is_mandatory_select_valid( filter_input( INPUT_POST, 'session-second-choice' ) ),
 			'Previous training'         => is_select_valid( filter_input( INPUT_POST, 'previous-training' ) ),
 			'Previous training details' => is_textarea_field_valid( filter_input( INPUT_POST, 'previous-training-details' ) ),
-			'Spam'                      => is_this_spam( filter_input( INPUT_POST, 'skype-name' ) )
+			'Spam'                      => is_this_spam( $_POST )
 		);
 
 		// If any value inside the array is false then there is an error
@@ -126,6 +126,8 @@ function process_form_iacs_training() {
 
 			// Store error message into the global variable
 			$tna_error_message = display_error_message();
+
+			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 
 		} else {
 
