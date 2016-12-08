@@ -12,6 +12,7 @@ class Form_Builder {
 		$form = '<form action=""  id="%s" method="POST"' . $this->novalidate_for_testing( $no_validate ) . '>';
 		$form .= '<input type="hidden" name="tna-form" value="%s">';
 		$form .= '<input type="hidden" name="token" value="' . form_token() . '">';
+		$form .= '<input type="hidden" name="timestamp" value="' . time() . '">';
 
 		return sprintf( $form, $id, $value );
 	}
@@ -314,6 +315,15 @@ class Form_Builder {
 		$form .= 'The National Archives only records personal information, including email addresses, for the purposes provided. We will not share your details with third parties. ';
 		$form .= 'For more information read our <a href="http://www.nationalarchives.gov.uk/legal/privacy.htm" target="_blank">privacy policy</a>.';
 		$form .= '</small></p></div>';
+
+		return $form;
+	}
+
+	public function form_spam_filter( $rand ) {
+		$form = '<div class="form-row hidden">';
+		$form .= '<label for="skype_name">Skype name (please ignore this field)</label>';
+		$form .= '<input type="text" id="skype_name" name="skype-name-' . $rand . '">';
+		$form .= '</div>';
 
 		return $form;
 	}

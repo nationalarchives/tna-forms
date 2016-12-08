@@ -53,6 +53,7 @@ function return_form_iacs_training( $sessions ) {
 	         $html->form_select_input_training( 'Session (2nd choice)', 'session_second_choice', 'session-second-choice', $sessions, 'Please select an option' ) .
 	         $html->form_select_input( 'Have you previously done any IA training?', 'previous_training', 'previous-training', array('Yes', 'No') ) .
 	         $html->form_textarea_input( 'If yes, please provide details', 'previous_training_details', 'previous-training-details' ) .
+	         $html->form_spam_filter( rand(10, 99) ) .
 	         $html->submit_form( 'submit-iacs', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
@@ -114,7 +115,8 @@ function process_form_iacs_training() {
 			'Session 1st choice'        => is_mandatory_select_valid( filter_input( INPUT_POST, 'session-first-choice' ) ),
 			'Session 2nd choice'        => is_mandatory_select_valid( filter_input( INPUT_POST, 'session-second-choice' ) ),
 			'Previous training'         => is_select_valid( filter_input( INPUT_POST, 'previous-training' ) ),
-			'Previous training details' => is_textarea_field_valid( filter_input( INPUT_POST, 'previous-training-details' ) )
+			'Previous training details' => is_textarea_field_valid( filter_input( INPUT_POST, 'previous-training-details' ) ),
+			'Spam'                      => is_this_spam( $_POST )
 		);
 
 		// If any value inside the array is false then there is an error
@@ -124,6 +126,8 @@ function process_form_iacs_training() {
 
 			// Store error message into the global variable
 			$tna_error_message = display_error_message();
+
+			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 
 		} else {
 
@@ -147,7 +151,7 @@ function process_form_iacs_training() {
 			$email_to_user .= display_compiled_form_data( $form_fields );
 
 			// Send email to user
-			send_form_via_email( $form_fields['Email'], $ref_number, 'Your training - Ref:', $email_to_user );
+			send_form_via_email( $form_fields['Email'], 'Your training - Ref:', $ref_number, $email_to_user, $form_fields['Spam'] );
 
 			// Store email content to TNA into a variable
 			$email_to_tna = success_message_header( 'Reference number:', $ref_number );
@@ -156,7 +160,9 @@ function process_form_iacs_training() {
 			// Send email to TNA
 			// Amend email address function with username to send email to desired destination.
 			// eg, get_tna_email( 'contactcentre' )
-			send_form_via_email( get_tna_email(), $ref_number, 'IA training - Ref:', $email_to_tna );
+			send_form_via_email( get_tna_email(), 'IA training - Ref:', $ref_number, $email_to_tna, $form_fields['Spam'] );
+
+			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 
 		}
 	}

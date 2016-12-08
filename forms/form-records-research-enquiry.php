@@ -22,6 +22,7 @@ function return_form_rre() {
 	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .
 	         $html->form_text_input( 'Provide the dates or years that you are interested in', 'dates', 'dates' ) .
 	         $html->form_newsletter_checkbox() .
+	         $html->form_spam_filter( rand(10, 99) ) .
 	         $html->submit_form( 'submit-rre', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
@@ -74,7 +75,8 @@ function process_form_rre() {
 			'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
 			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
 			'Date(s)'              => is_text_field_valid( filter_input( INPUT_POST, 'dates' ) ),
-			'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) )
+			'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) ),
+			'Spam'                 => is_this_spam( $_POST )
 		);
 
 		// If any value inside the array is false then there is an error
@@ -84,6 +86,8 @@ function process_form_rre() {
 
 			// Store error messages into the global variable
 			$tna_error_message = display_error_message();
+
+			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 
 		} else {
 
@@ -107,16 +111,18 @@ function process_form_rre() {
 			$email_to_user .= display_compiled_form_data( $form_fields );
 
 			// Send email to user
-			send_form_via_email( $form_fields['Email'], $ref_number, 'Your records and research enquiry - Ref:', $email_to_user );
+			send_form_via_email( $form_fields['Email'], 'Your records and research enquiry - Ref:', $ref_number, $email_to_user, $form_fields['Spam'] );
 
 			// Store email content to TNA into a variable
 			$email_to_tna = success_message_header( 'Reference number:', $ref_number );
 			$email_to_tna .= display_compiled_form_data( $form_fields );
 
 			// Send email to TNA
-			send_form_via_email( get_tna_email( 'contactcentre' ), $ref_number, 'Records and research enquiry - Ref:', $email_to_tna );
+			send_form_via_email( get_tna_email( 'contactcentre' ), 'Records and research enquiry - Ref:', $ref_number, $email_to_tna, $form_fields['Spam'] );
 
-			subscribe_to_newsletter( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], 'Records and research enquiry' );
+			subscribe_to_newsletter( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], 'Records and research enquiry', $form_fields['Spam'] );
+
+			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 
 		}
 	}
