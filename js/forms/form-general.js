@@ -68,7 +68,7 @@ function generalEnquiriesForm(){
          * */
         messages: {
             "full-name": {
-                required: "Please enter your first name"
+                required: "Please enter your full name"
             },
             email: "Please enter your email address",
             "confirm-email": {
