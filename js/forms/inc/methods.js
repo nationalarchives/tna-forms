@@ -27,5 +27,14 @@ function formMethods(){
         },
         "Please insert a valid email address"
     );
+
+    /*$.validator.addMethod("sessions_val_not_equal", function(value, element) {
+
+        firstSession = $('#session_first_choice').val();
+        secondSession = $('#session_second_choice').val();
+
+        return firstSession !== secondSession
+
+    }, "* Session choice should not match");*/
 }
 

@@ -14,26 +14,25 @@ $(document).ready(function() {
         /**
          * Contact forms
          * */
+
         if ($('#naturalisation').is(':visible')) {
             naturalisationForm();
         }
-
         else if($('#records-research-enquiry').is(':visible')){
             recordsResearchEnquiryForm();
         }
-
         else if($('#your-views').is(':visible')){
             yourViewsForm();
         }
-
         else if ($('#general').is(':visible')){
             generalEnquiriesForm();
         }
-
         else if ($('#public-sector').is(':visible')){
             publicSectorForm();
         }
-
+        else if ($('#iacs_training').is(':visible')){
+            iacsTrainingForm();
+        }
         else {
             defaultForm();
         }

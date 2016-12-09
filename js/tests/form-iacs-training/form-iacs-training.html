@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>IA Training qUnit tests</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="fixture">
+    <form action="" id="iacs_training" method="POST"><input type="hidden" name="tna-form"
+                                                            value="Information Assurance and Cyber Security training"><input
+            type="hidden" name="token" value="92bc202ccdd62b36fe42136189223bbe">
+        <fieldset>
+            <legend>Your details</legend>
+            <div class="form-row"><label for="full_name">Full name</label><input type="text" id="full_name"
+                                                                                 name="full-name" aria-required="true"
+                                                                                 required></div>
+            <div class="form-row"><label for="email">Email address</label><input type="email" id="email" name="email"
+                                                                                 aria-required="true" required></div>
+            <div class="form-row"><label for="confirm_email">Please re-type your email address</label><input
+                    type="email" id="confirm_email" name="confirm-email" aria-required="true" required></div>
+            <div class="form-row"><label for="telephone">Telephone</label>
+                <p class="form-hint">(include area code)</p><input type="tel" id="telephone" name="telephone"
+                                                                   aria-required="true" required></div>
+        </fieldset>
+        <fieldset>
+            <legend>Organisation details</legend>
+            <div class="form-row"><label for="job_title">Job title</label><input type="text" id="job_title"
+                                                                                 name="job-title" aria-required="true"
+                                                                                 required></div>
+            <div class="form-row"><label for="organisation">Department/agency/organisation</label><input type="text"
+                                                                                                         id="organisation"
+                                                                                                         name="organisation"
+                                                                                                         aria-required="true"
+                                                                                                         required></div>
+            <div class="form-row"><label for="address">Address</label><textarea id="address" name="address"
+                                                                                aria-required="true"
+                                                                                required></textarea></div>
+            <div class="form-row"><label for="organisation_type">Which of the following best describes your
+                organisation?</label><select id="organisation_type" name="organisation-type" aria-required="true"
+                                             required>
+                <option value="">Please select</option>
+                <option value="Ministerial Department">Ministerial Department</option>
+                <option value="Non-Ministerial Department">Non-Ministerial Department</option>
+                <option value="Executive Agency">Executive Agency</option>
+                <option value="Non-Departmental Public Body">Non-Departmental Public Body</option>
+                <option value="Local Government">Local Government</option>
+                <option value="Police/Fire">Police/Fire</option>
+                <option value="NHS">NHS</option>
+                <option value="Other - please specify below">Other - please specify below</option>
+            </select></div>
+            <div class="form-row"><label for="other_organisation">Organisation, if 'Other', please specify <span
+                    class="optional">(optional)</span></label><input type="text" id="other_organisation"
+                                                                     name="other-organisation"></div>
+        </fieldset>
+        <fieldset>
+            <legend>Role details</legend>
+            <div class="form-row"><label for="your_role">Which of the following best describes your role?</label><select
+                    id="your_role" name="your-role" aria-required="true" required>
+                <option value="">Please select</option>
+                <option value="SIRO">SIRO</option>
+                <option value="Audit Committee member">Audit Committee member</option>
+                <option value="Executive Agency">Executive Agency</option>
+                <option value="Board member">Board member</option>
+                <option value="IAO">IAO</option>
+                <option value="Other IA role - please specify below">Other IA role - please specify below</option>
+            </select></div>
+            <div class="form-row"><label for="role_other">Role, if 'Other', please specify <span class="optional">(optional)</span></label><input
+                    type="text" id="role_other" name="role-other"></div>
+            <div class="form-row"><label for="role_length">How long have you held this role? <span class="optional">(optional)</span></label><input
+                    type="text" id="role_length" name="role-length"></div>
+        </fieldset>
+        <fieldset>
+            <legend>Session details</legend>
+            <div class="form-row"><label for="session_first_choice">Session (1st choice)</label><select
+                    id="session_first_choice" name="session-first-choice" aria-required="true" required>
+                <option value="">Please select</option>
+                <optgroup label="Training session 1">
+                    <option value="session time 1">session time 1</option>
+                    <option value="session time 2">session time 2</option>
+                </optgroup>
+                <optgroup label="Training session 2">
+                    <option value="session time 3">session time 3</option>
+                    <option value="session time 4">session time 4</option>
+                </optgroup>
+            </select></div>
+            <div class="form-row"><label for="session_second_choice">Session (2nd choice)</label><select
+                    id="session_second_choice" name="session-second-choice" aria-required="true" required>
+                <option value="">Please select</option>
+                <optgroup label="Training session 1">
+                    <option value="session time 1">session time 1</option>
+                    <option value="session time 2">session time 2</option>
+                </optgroup>
+                <optgroup label="Training session 2">
+                    <option value="session time 3">session time 3</option>
+                    <option value="session time 4">session time 4</option>
+                </optgroup>
+            </select></div>
+            <div class="form-row"><label for="previous_training">Have you previously done any IA training? <span
+                    class="optional">(optional)</span></label><select id="previous_training" name="previous-training">
+                <option value="">Please select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select></div>
+            <div class="form-row"><label for="previous_training_details">If yes, please provide details <span
+                    class="optional">(optional)</span></label><textarea id="previous_training_details"
+                                                                        name="previous-training-details"></textarea>
+            </div>
+            <div class="form-row"><input type="submit" name="submit-iacs" id="submit-tna-form" value="Submit"></div>
+        </fieldset>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="form-iacs-training.js"></script>
+</body>
+</html>
