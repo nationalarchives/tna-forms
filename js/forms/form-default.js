@@ -81,21 +81,21 @@ function defaultForm(){
          * */
         messages: {
             forename: {
-                required: "Please enter your first name"
+                required: "<span>*</span>Please enter your first name"
             },
             surname: {
-                required: "Please enter your last name"
+                required: "<span>*</span>Please enter your last name"
             },
-            email: "Please enter your email address",
+            email: "<span>*</span>Please enter your email address",
             "confirm-email": {
-                required:"Please enter your email address",
-                equalTo: "Please enter your email address again"
+                required:"<span>*</span>Please enter your email address",
+                equalTo: "<span>*</span>Please enter your email address again"
             },
             country:{
-                required:"Please enter your country"
+                required:"<span>*</span>Please enter your country"
             },
             enquiry:{
-                required:"Please enter your enquiry"
+                required:"<span>*</span>Please enter your enquiry"
             }
         }
     });

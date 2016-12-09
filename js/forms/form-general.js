@@ -68,21 +68,21 @@ function generalEnquiriesForm(){
          * */
         messages: {
             "full-name": {
-                required: "Please enter your full name"
+                required: "<span>*</span>Please enter your full name"
             },
-            email: "Please enter your email address",
+            email: "<span>*</span>Please enter your email address",
             "confirm-email": {
-                required:"Please enter your email address",
-                equalTo: "Please enter your email address again"
+                required:"<span>*</span>Please enter your email address",
+                equalTo: "<span>*</span>Please enter your email address again"
             },
             country:{
-                required:"Please enter your country"
+                required:"<span>*</span>Please enter your country"
             },
             reason:{
-                required:"Please select an option"
+                required:"<span>*</span>Please select an option"
             },
             enquiry:{
-                required:"Please enter your enquiry"
+                required:"<span>*</span>Please enter your enquiry"
             }
         }
     });

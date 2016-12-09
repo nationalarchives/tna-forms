@@ -4,12 +4,12 @@
  *
  */
 function return_form_british_citizenship() {
-    // Global variables to determine if the form submission
-    // is successful or comes back with errors
-    global $tna_success_message,
-           $tna_error_message;
-    // HTML form string (I know, it's long!)
-    $form = '<div class="arrow-steps clearfix">
+	// Global variables to determine if the form submission
+	// is successful or comes back with errors
+	global $tna_success_message,
+	       $tna_error_message;
+	// HTML form string (I know, it's long!)
+	$form = '<div class="arrow-steps clearfix">
 	                <ul>
 	                    <li class="current"><span>1</span> Certificate holder\'s details</li>
 	                    <li><span>2</span> Certificate details</li>
@@ -224,104 +224,104 @@ function return_form_british_citizenship() {
 	                    </div>
 	                </fieldset>
 	            </form>';
-    // If the form submission comes with errors give us back
-    // the form populated with form data and error messages
-    if ( $tna_error_message ) {
-        return $tna_error_message . $form;
-    }
-    // If the form is successful give us the confirmation content
-    elseif ( $tna_success_message ) {
-        return $tna_success_message . print_page();
-    }
-    // If no form submission, hence the user has
-    // accessed the page for the first time, give us an empty form
-    else {
-        return $form;
-    }
+	// If the form submission comes with errors give us back
+	// the form populated with form data and error messages
+	if ( $tna_error_message ) {
+		return $tna_error_message . $form;
+	}
+	// If the form is successful give us the confirmation content
+	elseif ( $tna_success_message ) {
+		return $tna_success_message . print_page();
+	}
+	// If no form submission, hence the user has
+	// accessed the page for the first time, give us an empty form
+	else {
+		return $form;
+	}
 }
 function process_form_british_citizenship() {
-    // The processing happens at form submission.
-    // If no form is submitted we stop here.
-    if ( ! is_admin() && isset( $_POST['submit-bc'] ) ) {
-        // Checks for token
-        // If the token exists then the form has been submitted so do nothing
-        /* $token = filter_input( INPUT_POST, 'token' );
-        if ( get_transient( 'token_' . $token ) ) {
-            $_POST = array();
-            return;
-        }
-        set_transient( 'token_' . $token, 'form-token', 360 ); */
-        // Global variables
-        global $tna_success_message,
-               $tna_error_message,
-               $tna_error_messages;
-        // Setting global variables
-        $tna_success_message = '';
-        $tna_error_message   = '';
-        // Error messages for individual form fields stored into an array
-        // IMPORTANT: $tna_error_messages array keys must match exactly the $form_fields array keys
-        $tna_error_messages  = array(
-            'Certificate holder name'   => 'Please enter the certificate holder’s name',
-            'Full name'                 => 'Please enter your full name',
-            'Preferred contact'         => 'Please indicate your preferred method of contact',
-            'Email'                     => 'Please enter a valid email address',
-            'Confirm email'             => 'Please enter your email address again'
-        );
-        // Get the form elements and store them into an array
-        // IMPORTANT: $form_fields array keys must match exactly the $tna_error_messages array keys
-        $form_fields = array(
-            'Certificate holder name'     => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-name' ) ),
-            'Alternative name'            => is_text_field_valid( filter_input( INPUT_POST, 'certificate-name-alt' ) ),
-            'Country of birth'            => is_text_field_valid( filter_input( INPUT_POST, 'certificate-birth-country' ) ),
-            'DOB'                         => is_text_field_valid( filter_input( INPUT_POST, 'certificate-day' ) ) . '-' .
-                is_text_field_valid( filter_input( INPUT_POST, 'certificate-month' ) ) . '-' .
-                is_text_field_valid( filter_input( INPUT_POST, 'certificate-year' ) ),
-            'Approx DOB'                  => ( isset( $_POST['certificate-dob-approx'] ) ) ? is_checkbox_radio_valid( filter_input( INPUT_POST, 'certificate-dob-approx' ) ) : 'No',
-            'Certificate holder address'  => is_textarea_field_valid( filter_input( INPUT_POST, 'certificate-postal-address' ) ),
-            'Country of issue'            => is_text_field_valid( filter_input( INPUT_POST, 'certificate-issued-country' ) ),
-            'Certificate number'          => is_text_field_valid( filter_input( INPUT_POST, 'certificate-number' ) ),
-            'Issued from'                 => is_text_field_valid( filter_input( INPUT_POST, 'certificate-year-issued-from' ) ),
-            'Issued to'                   => is_text_field_valid( filter_input( INPUT_POST, 'certificate-year-issued-to' ) ),
-            'Full name'                   => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
-            'Preferred contact'           => ( isset( $_POST['preferred-contact'] ) ) ? is_checkbox_radio_valid( filter_input( INPUT_POST, 'preferred-contact' ) ) : false,
-            'Email'                       => is_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
-            'Confirm email'               => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
-            'Postal address'              => is_textarea_field_valid( filter_input( INPUT_POST, 'postal-address' ) ),
-            'Spam'                        => is_this_spam( $_POST )
-        );
-        // If any value inside the array is false then there is an error
-        if ( in_array( false, $form_fields ) ) {
-            // Oops! Error!
-            // Store error messages into the global variable
-            $tna_error_message = display_error_message();
-            log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
-        } else {
-            // Yay! Success!
-            global $post;
-            // Generate reference number based on user's surname and timestamp
-            $ref_number = ref_number( 'TNA', date_timestamp_get( date_create() ) );
-            // Store confirmation content into the global variable
-            $tna_success_message = success_message_header( 'Your reference number:', $ref_number );
-            $tna_success_message .= confirmation_content( $post->ID );
-            $tna_success_message .= '<p>If you provided your email address you will shortly receive an email confirming your application – please do not reply to this email</p>';
-            $tna_success_message .= '<h3>Your application details</h3>';
-            $tna_success_message .= display_compiled_form_data( $form_fields );
-            // Store email content to user into a variable
-            $email_to_user = success_message_header( 'Your reference number:', $ref_number );
-            $email_to_user .= confirmation_content( $post->ID );
-            $email_to_user .= '<h3>Your application details</h3>';
-            $email_to_user .= display_compiled_form_data( $form_fields );
-            // Send email to user
-            send_form_via_email( $form_fields['Email'], 'Check for a certificate of British citizenship - Ref:', $ref_number,
-                $email_to_user, $form_fields['Spam'] );
-            // Store email content to TNA into a variable
-            $email_to_tna = success_message_header( 'Reference number:', $ref_number );
-            $email_to_tna .= display_compiled_form_data( $form_fields );
-            // Send email to TNA
-            send_form_via_email( get_tna_email( 'contactcentre' ), 'Certificate of British citizenship request - Ref:', $ref_number,
-                $email_to_tna, $form_fields['Spam'] );
-            log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
-        }
-    }
+	// The processing happens at form submission.
+	// If no form is submitted we stop here.
+	if ( ! is_admin() && isset( $_POST['submit-bc'] ) ) {
+		// Checks for token
+		// If the token exists then the form has been submitted so do nothing
+		/* $token = filter_input( INPUT_POST, 'token' );
+		if ( get_transient( 'token_' . $token ) ) {
+			$_POST = array();
+			return;
+		}
+		set_transient( 'token_' . $token, 'form-token', 360 ); */
+		// Global variables
+		global $tna_success_message,
+		       $tna_error_message,
+		       $tna_error_messages;
+		// Setting global variables
+		$tna_success_message = '';
+		$tna_error_message   = '';
+		// Error messages for individual form fields stored into an array
+		// IMPORTANT: $tna_error_messages array keys must match exactly the $form_fields array keys
+		$tna_error_messages  = array(
+			'Certificate holder name'   => 'Please enter the certificate holder’s name',
+			'Full name'                 => 'Please enter your full name',
+			'Preferred contact'         => 'Please indicate your preferred method of contact',
+			'Email'                     => 'Please enter a valid email address',
+			'Confirm email'             => 'Please enter your email address again'
+		);
+		// Get the form elements and store them into an array
+		// IMPORTANT: $form_fields array keys must match exactly the $tna_error_messages array keys
+		$form_fields = array(
+			'Certificate holder name'     => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'certificate-name' ) ),
+			'Alternative name'            => is_text_field_valid( filter_input( INPUT_POST, 'certificate-name-alt' ) ),
+			'Country of birth'            => is_text_field_valid( filter_input( INPUT_POST, 'certificate-birth-country' ) ),
+			'DOB'                         => is_text_field_valid( filter_input( INPUT_POST, 'certificate-day' ) ) . '-' .
+			                                 is_text_field_valid( filter_input( INPUT_POST, 'certificate-month' ) ) . '-' .
+			                                 is_text_field_valid( filter_input( INPUT_POST, 'certificate-year' ) ),
+			'Approx DOB'                  => ( isset( $_POST['certificate-dob-approx'] ) ) ? is_checkbox_radio_valid( filter_input( INPUT_POST, 'certificate-dob-approx' ) ) : 'No',
+			'Certificate holder address'  => is_textarea_field_valid( filter_input( INPUT_POST, 'certificate-postal-address' ) ),
+			'Country of issue'            => is_text_field_valid( filter_input( INPUT_POST, 'certificate-issued-country' ) ),
+			'Certificate number'          => is_text_field_valid( filter_input( INPUT_POST, 'certificate-number' ) ),
+			'Issued from'                 => is_text_field_valid( filter_input( INPUT_POST, 'certificate-year-issued-from' ) ),
+			'Issued to'                   => is_text_field_valid( filter_input( INPUT_POST, 'certificate-year-issued-to' ) ),
+			'Full name'                   => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
+			'Preferred contact'           => ( isset( $_POST['preferred-contact'] ) ) ? is_checkbox_radio_valid( filter_input( INPUT_POST, 'preferred-contact' ) ) : false,
+			'Email'                       => is_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
+			'Confirm email'               => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
+			'Postal address'              => is_textarea_field_valid( filter_input( INPUT_POST, 'postal-address' ) ),
+			'Spam'                        => is_this_spam( $_POST )
+		);
+		// If any value inside the array is false then there is an error
+		if ( in_array( false, $form_fields ) ) {
+			// Oops! Error!
+			// Store error messages into the global variable
+			$tna_error_message = display_error_message();
+			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
+		} else {
+			// Yay! Success!
+			global $post;
+			// Generate reference number based on user's surname and timestamp
+			$ref_number = ref_number( 'TNA', date_timestamp_get( date_create() ) );
+			// Store confirmation content into the global variable
+			$tna_success_message = success_message_header( 'Your reference number:', $ref_number );
+			$tna_success_message .= confirmation_content( $post->ID );
+			$tna_success_message .= '<p>If you provided your email address you will shortly receive an email confirming your application – please do not reply to this email</p>';
+			$tna_success_message .= '<h3>Your application details</h3>';
+			$tna_success_message .= display_compiled_form_data( $form_fields );
+			// Store email content to user into a variable
+			$email_to_user = success_message_header( 'Your reference number:', $ref_number );
+			$email_to_user .= confirmation_content( $post->ID );
+			$email_to_user .= '<h3>Your application details</h3>';
+			$email_to_user .= display_compiled_form_data( $form_fields );
+			// Send email to user
+			send_form_via_email( $form_fields['Email'], 'Check for a certificate of British citizenship - Ref:', $ref_number,
+				$email_to_user, $form_fields['Spam'] );
+			// Store email content to TNA into a variable
+			$email_to_tna = success_message_header( 'Reference number:', $ref_number );
+			$email_to_tna .= display_compiled_form_data( $form_fields );
+			// Send email to TNA
+			send_form_via_email( get_tna_email( 'contactcentre' ), 'Certificate of British citizenship request - Ref:', $ref_number,
+				$email_to_tna, $form_fields['Spam'] );
+			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
+		}
+	}
 }
 add_action('wp', 'process_form_british_citizenship');
