@@ -33,6 +33,9 @@ $(document).ready(function() {
         else if ($('#iacs_training').is(':visible')){
             iacsTrainingForm();
         }
+        else if ($('#apply-to-film').is(':visible')){
+            applyToFilmForm();
+        }
         else {
             defaultForm();
         }

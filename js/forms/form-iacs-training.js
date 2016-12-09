@@ -81,29 +81,36 @@ function iacsTrainingForm(){
                 equalTo: "#email"
             },
             telephone:{
-                required: true
+                required: true,
+                noSpace: true
             },
             "job-title":{
-                required:true
+                required:true,
+                noSpace: true
             },
             organisation:{
-                required:true
+                required:true,
+                noSpace: true
             },
             address:{
                 required:true,
                 noSpace:true
             },
             "organisation-type":{
-                required:true
+                required:true,
+                noSpace: true
             },
             "your-role":{
-                required:true
+                required:true,
+                noSpace: true
             },
            "session-first-choice": {
-                required:true
+                required:true,
+                noSpace: true
             },
             "session-second-choice": {
-                required:true
+                required:true,
+                noSpace: true
             }
 
         },
@@ -112,36 +119,36 @@ function iacsTrainingForm(){
          * */
         messages: {
             "full-name": {
-                required: "Please enter your full name"
+                required: "<span>*</span>Please enter your full name"
             },
-            email: "Please enter your email address",
+            email: "<span>*</span>Please enter your email address",
             "confirm-email": {
-                required:"Please enter your email address",
-                equalTo: "Please enter your email address again"
+                required:"<span>*</span>Please enter your email address",
+                equalTo: "<span>*</span>Please enter your email address again"
             },
             telephone:{
-                required: "Please enter your telephone number"
+                required: "<span>*</span>Please enter your telephone number"
             },
             "job-title":{
-                required:"Please enter your job title"
+                required:"<span>*</span>Please enter your job title"
             },
             organisation:{
-                required:"Please enter a department/agency/organisation"
+                required:"<span>*</span>Please enter a department/agency/organisation"
             },
             address:{
-                required:"Please enter an address"
+                required:"<span>*</span>Please enter an address"
             },
             "organisation-type":{
-                required:"Please select an option"
+                required:"<span>*</span>Please select an option"
             },
             "your-role":{
-                required:"Please select an option"
+                required:"<span>*</span>Please select an option"
             },
             "session-first-choice": {
-                required:"Please select an option"
+                required:"<span>*</span>Please select an option"
             },
             "session-second-choice": {
-                required:"Please select an option"
+                required:"<span>*</span>Please select an option"
             }
         }
     });

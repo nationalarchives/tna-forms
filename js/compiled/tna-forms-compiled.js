@@ -287,45 +287,45 @@ function naturalisationForm(){
             },
             messages: {
                 "certificate-day":{
-                    required: "Day",
-                    digits: "Only digits",
-                    range:"Please enter a valid date"
+                    required: "<span>*</span>Day",
+                    digits: "<span>*</span>Only digits",
+                    range:"<span>*</span>Please enter a valid date"
                 },
                 "certificate-month":{
-                    required: "Month",
-                    digits: "Only digits",
-                    range: "Please enter a valid date"
+                    required: "<span>*</span>Month",
+                    digits: "<span>*</span>Only digits",
+                    range: "<span>*</span>Please enter a valid date"
 
                 },
                 "certificate-year":{
-                    required: "Year",
-                    digits: "Only digits",
-                    exactLength:"Please enter a valid date"
+                    required: "<span>*</span>Year",
+                    digits: "<span>*</span>Only digits",
+                    exactLength:"<span>*</span>Please enter a valid date"
                 },
                 forename: {
-                    required: "Please enter your first name"
+                    required: "<span>*</span>Please enter your first name"
                 },
                 surname: {
-                    required: "Please enter your last name"
+                    required: "<span>*</span>Please enter your last name"
                 },
-                email: "Please enter your email address",
+                email: "<span>*</span>Please enter your email address",
                 "confirm-email": {
-                    required:"Please enter your email address",
-                    equalTo: "Please enter your email address again"
+                    required:"<span>*</span>Please enter your email address",
+                    equalTo: "<span>*</span>Please enter your email address again"
                 },
                 "postal-address":{
-                    required:"Please enter your postal address"
+                    required:"<span>*</span>Please enter your postal address"
                 },
                 /* Form Step Two */
                 "certificate-name":{
-                    required:"Please enter the certificate holder’s name(s)"
+                    required:"<span>*</span>Please enter the certificate holder’s name(s)"
                 },
                 /* Form Step Three */
                 "full-name": {
-                    required: "Please enter your full name"
+                    required: "<span>*</span>Please enter your full name"
                 },
                 "preferred-contact":{
-                    required: "Please select one option"
+                    required: "<span>*</span>Please select one option"
                 }
             },
             groups: {
@@ -503,21 +503,21 @@ function defaultForm(){
          * */
         messages: {
             forename: {
-                required: "Please enter your first name"
+                required: "<span>*</span>Please enter your first name"
             },
             surname: {
-                required: "Please enter your last name"
+                required: "<span>*</span>Please enter your last name"
             },
-            email: "Please enter your email address",
+            email: "<span>*</span>Please enter your email address",
             "confirm-email": {
-                required:"Please enter your email address",
-                equalTo: "Please enter your email address again"
+                required:"<span>*</span>Please enter your email address",
+                equalTo: "<span>*</span>Please enter your email address again"
             },
             country:{
-                required:"Please enter your country"
+                required:"<span>*</span>Please enter your country"
             },
             enquiry:{
-                required:"Please enter your enquiry"
+                required:"<span>*</span>Please enter your enquiry"
             }
         }
     });
@@ -583,16 +583,16 @@ function recordsResearchEnquiryForm(){
          * Error messages
          * */
         messages: {
-            email: "Please enter your email address",
+            email: "<span>*</span>Please enter your email address",
             "confirm-email": {
-                required:"Please enter your email address",
-                equalTo: "Please enter your email address again"
+                required:"<span>*</span>Please enter your email address",
+                equalTo: "<span>*</span>Please enter your email address again"
             },
             country:{
-                required:"Please enter your country"
+                required:"<span>*</span>Please enter your country"
             },
             enquiry:{
-                required:"Please enter your enquiry"
+                required:"<span>*</span>Please enter your enquiry"
             }
         }
     });
@@ -661,18 +661,18 @@ function yourViewsForm(){
          * */
         messages: {
             "full-name": {
-                required: "Please enter your full name"
+                required: "<span>*</span>Please enter your full name"
             },
-            email: "Please enter your email address",
+            email: "<span>*</span>Please enter your email address",
             "confirm-email": {
-                required:"Please enter your email address",
-                equalTo: "Please enter your email address again"
+                required:"<span>*</span>Please enter your email address",
+                equalTo: "<span>*</span>Please enter your email address again"
             },
             reason:{
-                required: "Please select an option"
+                required: "<span>*</span>Please select an option"
             },
             enquiry:{
-                required:"Please enter your enquiry"
+                required:"<span>*</span>Please enter your enquiry"
             }
         }
     });
@@ -746,21 +746,21 @@ function generalEnquiriesForm(){
          * */
         messages: {
             "full-name": {
-                required: "Please enter your full name"
+                required: "<span>*</span>Please enter your full name"
             },
-            email: "Please enter your email address",
+            email: "<span>*</span>Please enter your email address",
             "confirm-email": {
-                required:"Please enter your email address",
-                equalTo: "Please enter your email address again"
+                required:"<span>*</span>Please enter your email address",
+                equalTo: "<span>*</span>Please enter your email address again"
             },
             country:{
-                required:"Please enter your country"
+                required:"<span>*</span>Please enter your country"
             },
             reason:{
-                required:"Please select an option"
+                required:"<span>*</span>Please select an option"
             },
             enquiry:{
-                required:"Please enter your enquiry"
+                required:"<span>*</span>Please enter your enquiry"
             }
         }
     });
@@ -826,15 +826,15 @@ function publicSectorForm(){
          * */
         messages: {
             "full-name": {
-                required: "Please enter your full name"
+                required: "<span>*</span>Please enter your full name"
             },
-            email: "Please enter your email address",
+            email: "<span>*</span>Please enter your email address",
             "confirm-email": {
-                required:"Please enter your email address",
-                equalTo: "Please enter your email address again"
+                required:"<span>*</span>Please enter your email address",
+                equalTo: "<span>*</span>Please enter your email address again"
             },
             enquiry:{
-                required:"Please enter your enquiry"
+                required:"<span>*</span>Please enter your enquiry"
             }
         }
     });
@@ -921,28 +921,132 @@ function iacsTrainingForm(){
                 equalTo: "#email"
             },
             telephone:{
-                required: true
+                required: true,
+                noSpace: true
             },
             "job-title":{
-                required:true
+                required:true,
+                noSpace: true
             },
             organisation:{
-                required:true
+                required:true,
+                noSpace: true
             },
             address:{
                 required:true,
                 noSpace:true
             },
             "organisation-type":{
-                required:true
+                required:true,
+                noSpace: true
             },
             "your-role":{
-                required:true
+                required:true,
+                noSpace: true
             },
            "session-first-choice": {
-                required:true
+                required:true,
+                noSpace: true
             },
             "session-second-choice": {
+                required:true,
+                noSpace: true
+            }
+
+        },
+        /**
+         * Error messages
+         * */
+        messages: {
+            "full-name": {
+                required: "<span>*</span>Please enter your full name"
+            },
+            email: "<span>*</span>Please enter your email address",
+            "confirm-email": {
+                required:"<span>*</span>Please enter your email address",
+                equalTo: "<span>*</span>Please enter your email address again"
+            },
+            telephone:{
+                required: "<span>*</span>Please enter your telephone number"
+            },
+            "job-title":{
+                required:"<span>*</span>Please enter your job title"
+            },
+            organisation:{
+                required:"<span>*</span>Please enter a department/agency/organisation"
+            },
+            address:{
+                required:"<span>*</span>Please enter an address"
+            },
+            "organisation-type":{
+                required:"<span>*</span>Please select an option"
+            },
+            "your-role":{
+                required:"<span>*</span>Please select an option"
+            },
+            "session-first-choice": {
+                required:"<span>*</span>Please select an option"
+            },
+            "session-second-choice": {
+                required:"<span>*</span>Please select an option"
+            }
+        }
+    });
+};/**
+ * @contact-form-name: Apply to film
+ *
+ * ----- Table of contents -------------------------------------
+ *
+ * 1. Define variables
+ * 2. Include custom form methods from methods.js
+ * 3. Add the validation rules
+ * */
+
+function applyToFilmForm(){
+    /**
+     * 1. Declare variables
+     * */
+    var formName = "#apply-to-film";
+    var form = $(formName);
+
+    /**
+     * 2. Included custom form validation methods from methods.js
+     * */
+    formMethods();
+
+    /**
+     * 3. Add the validation rules
+     * */
+    form.validate({
+        errorElement: 'span',
+        errorClass: 'form-error form-hint',
+        highlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').addClass("form-warning");
+            $(element).closest('input[type="email"]').addClass("form-warning");
+            $(element).closest('textarea').addClass("form-warning");
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').removeClass("form-warning");
+            $(element).closest('input[type="email"]').removeClass("form-warning");
+            $(element).closest('textarea').removeClass("form-warning");
+        },
+        rules: {
+            "full-name": {
+                required: true,
+                noSpace: true
+            },
+            email: {
+                required: true,
+                email:true,
+                advEmail:true
+            },
+            "confirm-email": {
+                equalTo: "#email"
+            },
+            "about_project":{
+                require:true
+            },
+            date:{
                 required:true
             }
 
@@ -952,36 +1056,18 @@ function iacsTrainingForm(){
          * */
         messages: {
             "full-name": {
-                required: "Please enter your full name"
+                required: "<span>*</span>Please enter your full name"
             },
-            email: "Please enter your email address",
+            email: "<span>*</span>Please enter your email address",
             "confirm-email": {
-                required:"Please enter your email address",
-                equalTo: "Please enter your email address again"
+                required:"<span>*</span>Please enter your email address",
+                equalTo: "<span>*</span>Please enter your email address again"
             },
-            telephone:{
-                required: "Please enter your telephone number"
+            "about-project":{
+                required:"<span>*</span>Please enter your project details"
             },
-            "job-title":{
-                required:"Please enter your job title"
-            },
-            organisation:{
-                required:"Please enter a department/agency/organisation"
-            },
-            address:{
-                required:"Please enter an address"
-            },
-            "organisation-type":{
-                required:"Please select an option"
-            },
-            "your-role":{
-                required:"Please select an option"
-            },
-            "session-first-choice": {
-                required:"Please select an option"
-            },
-            "session-second-choice": {
-                required:"Please select an option"
+            date:{
+                required:"<span>*</span>Please enter your filming date"
             }
         }
     });
@@ -1019,6 +1105,9 @@ $(document).ready(function() {
         }
         else if ($('#iacs_training').is(':visible')){
             iacsTrainingForm();
+        }
+        else if ($('#apply-to-film').is(':visible')){
+            applyToFilmForm();
         }
         else {
             defaultForm();

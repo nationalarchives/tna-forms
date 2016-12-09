@@ -1,19 +1,18 @@
 /**
- * @contact-form-name: Records Research Enquiry form
+ * @contact-form-name: Apply to film
  *
  * ----- Table of contents -------------------------------------
  *
  * 1. Define variables
  * 2. Include custom form methods from methods.js
  * 3. Add the validation rules
- *
  * */
 
-function recordsResearchEnquiryForm(){
+function applyToFilmForm(){
     /**
      * 1. Declare variables
      * */
-    var formName = "#records-research-enquiry";
+    var formName = "#apply-to-film";
     var form = $(formName);
 
     /**
@@ -38,6 +37,10 @@ function recordsResearchEnquiryForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
+            "full-name": {
+                required: true,
+                noSpace: true
+            },
             email: {
                 required: true,
                 email:true,
@@ -46,13 +49,11 @@ function recordsResearchEnquiryForm(){
             "confirm-email": {
                 equalTo: "#email"
             },
-            country:{
-                required:true,
-                noSpace:true
+            "about_project":{
+                require:true
             },
-            enquiry:{
-                required:true,
-                noSpace:true
+            date:{
+                required:true
             }
 
         },
@@ -60,16 +61,19 @@ function recordsResearchEnquiryForm(){
          * Error messages
          * */
         messages: {
+            "full-name": {
+                required: "<span>*</span>Please enter your full name"
+            },
             email: "<span>*</span>Please enter your email address",
             "confirm-email": {
                 required:"<span>*</span>Please enter your email address",
                 equalTo: "<span>*</span>Please enter your email address again"
             },
-            country:{
-                required:"<span>*</span>Please enter your country"
+            "about-project":{
+                required:"<span>*</span>Please enter your project details"
             },
-            enquiry:{
-                required:"<span>*</span>Please enter your enquiry"
+            date:{
+                required:"<span>*</span>Please enter your filming date"
             }
         }
     });
