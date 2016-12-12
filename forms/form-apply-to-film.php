@@ -42,7 +42,7 @@ function return_form_apply_to_film() {
 	         $html->form_text_input( 'Job title', 'job_title', 'job-title' ) .
 	         $html->form_tel_input( 'Telephone', 'telephone', 'telephone', '', 'Include the area code' ) .
 	         $html->form_textarea_input( 'About the project', 'about_project', 'about-project', 'Please enter your project details' ) .
-	         $html->form_text_input( 'Date of filming', 'date', 'date', 'Please enter your filming date' ) .
+	         $html->form_date_input( 'Date of filming', 'date', 'date', 'Please enter your filming date' ) .
 	         $html->form_spam_filter( rand(10, 99) ) .
 	         $html->submit_form( 'submit-atf', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
