@@ -46,7 +46,8 @@ function return_form_apply_to_film() {
 	         $html->form_text_input( 'Company', 'company', 'company' ) .
 	         $html->form_text_input( 'Job title', 'job_title', 'job-title' ) .
 	         $html->form_tel_input( 'Telephone', 'telephone', 'telephone', '', 'Include the area code' ) .
-	         $html->form_textarea_input( 'About the project', 'about_project', 'about-project', 'Please enter your project details' ) .
+	         $html->fieldset_ends() .
+	         $html->fieldset_begins( 'About the project' ) .
 	         $html->form_date_input( 'Preferred date of filming', 'date', 'date', 'Please enter your filming date' ) .
 	         $html->form_text_input( 'Preferred time of filming', 'time', 'time', '', 'Use the 24 hour clock format, e.g. 15:00') .
 	         $html->form_textarea_input( 'How will it be broadcast and when will it be transmitted? Is it part of a series?', 'broadcast', 'broadcast' ) .
@@ -95,8 +96,13 @@ function process_form_apply_to_film() {
 		'Company'           => is_text_field_valid( filter_input( INPUT_POST, 'company' ) ),
 		'Job title'         => is_text_field_valid( filter_input( INPUT_POST, 'job-title' ) ),
 		'Telephone'         => is_text_field_valid( filter_input( INPUT_POST, 'telephone' ) ),
-		'Project details'   => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'about-project' ) ),
-		'Date'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'date' ) ),
+		'Preferred date'    => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'date' ) ),
+		'Preferred time'    => is_text_field_valid( filter_input( INPUT_POST, 'time' ) ),
+		'Broadcast details' => is_textarea_field_valid( filter_input( INPUT_POST, 'broadcast' ) ),
+		'Documents'         => is_textarea_field_valid( filter_input( INPUT_POST, 'documents' ) ),
+		'Interview'         => is_checkbox_valid( filter_input( INPUT_POST, 'interview' ) ),
+		'Interviewee'       => is_text_field_valid( filter_input( INPUT_POST, 'interviewee' ) ),
+		'T&C agreed'        => is_checkbox_valid( filter_input( INPUT_POST, 'policy' ) ),
 		'Spam'              => is_this_spam( $_POST )
 	);
 
