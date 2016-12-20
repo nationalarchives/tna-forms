@@ -18,9 +18,9 @@ function return_form_rre() {
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
 	         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
-	         $html->form_text_input( 'Country', 'country', 'country', 'Please enter your country' ) .
+	         $html->form_text_input( 'Country', 'country', 'country' ) .
 	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .
-	         $html->form_text_input( 'Provide the dates or years that you are interested in', 'dates', 'dates' ) .
+	         $html->form_text_input( 'Provide specific details of the information you are looking for, including any relevant catalogue references', 'dates', 'dates' ) .
 	         $html->form_newsletter_checkbox() .
 	         $html->form_spam_filter( rand(10, 99) ) .
 	         $html->submit_form( 'submit-rre', 'submit-tna-form' ) .
