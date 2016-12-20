@@ -47,7 +47,13 @@ function return_form_apply_to_film() {
 	         $html->form_text_input( 'Job title', 'job_title', 'job-title' ) .
 	         $html->form_tel_input( 'Telephone', 'telephone', 'telephone', '', 'Include the area code' ) .
 	         $html->form_textarea_input( 'About the project', 'about_project', 'about-project', 'Please enter your project details' ) .
-	         $html->form_date_input( 'Date of filming', 'date', 'date', 'Please enter your filming date' ) .
+	         $html->form_date_input( 'Preferred date of filming', 'date', 'date', 'Please enter your filming date' ) .
+	         $html->form_text_input( 'Preferred time of filming', 'time', 'time', '', 'Use the 24 hour clock format, e.g. 15:00') .
+	         $html->form_textarea_input( 'How will it be broadcast and when will it be transmitted? Is it part of a series?', 'broadcast', 'broadcast' ) .
+	         $html->form_textarea_input( 'Please list the documents you would like to film, providing full references', 'documents', 'documents' ) .
+	         $html->form_checkbox_input( 'Tick this box if you want to interview a member of staff', 'interview', 'interview' ) .
+	         $html->form_text_input( 'If you know the name of the staff member you want to interview, enter it here', 'interviewee', 'interviewee' ) .
+	         $html->form_checkbox_input( 'I have read and agreed to the filming <a href="http://nationalarchives.gov.uk/documents/filming-terms-and-conditions.pdf" target="_blank">terms and conditions</a>, including the charges and cancellation policy', 'policy', 'policy', 'Please confirm you have read and agree to the terms and conditions' ) .
 	         $html->form_spam_filter( rand(10, 99) ) .
 	         $html->submit_form( 'submit-atf', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .

@@ -18,7 +18,7 @@ legend {
   .form-row label {
     width: 100% !important;
     margin-right: 0 !important; }
-  .form-row input[type=color], .form-row input[type=email], .form-row input[type=number], .form-row input[type=tel], .form-row input[type=text], .form-row input[type=url], .form-row select, .form-row textarea {
+  .form-row input[type=color], .form-row input[type=email], .form-row input[type=number], .form-row input[type=tel], .form-row input[type=text], .form-row input[type=date], .form-row input[type=url], .form-row select, .form-row textarea {
     width: 100% !important;
     max-width: 420px; }
   .form-row textarea {
