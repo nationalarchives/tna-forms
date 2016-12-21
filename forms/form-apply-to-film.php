@@ -49,7 +49,7 @@ function return_form_apply_to_film() {
 	         $html->fieldset_ends() .
 	         $html->fieldset_begins( 'About the project' ) .
 	         $html->form_date_input( 'Preferred date of filming', 'date', 'date', 'Please enter your filming date' ) .
-	         $html->form_text_input( 'Preferred time of filming', 'time', 'time', '', 'Use the 24 hour clock format, e.g. 15:00') .
+	         $html->form_text_input( 'Preferred time of filming', 'time', 'time', '', 'Use the 24 hour clock format, eg 15:00') .
 	         $html->form_textarea_input( 'How will it be broadcast and when will it be transmitted? Is it part of a series?', 'broadcast', 'broadcast' ) .
 	         $html->form_textarea_input( 'Please list the documents you would like to film, providing full references', 'documents', 'documents' ) .
 	         $html->form_checkbox_input( 'Tick this box if you want to interview a member of staff', 'interview', 'interview' ) .
