@@ -4,7 +4,7 @@
  *
  */
 
-function return_form_your_views() {
+function return_form_your_views( $content ) {
 
 	// Global variables to determine if the form submission
 	// is successful or comes back with errors
@@ -47,7 +47,7 @@ function return_form_your_views() {
 	// If no form submission, hence the user has
 	// accessed the page for the first time, give us an empty form
 	else {
-		return $form;
+		return $content . $form;
 	}
 }
 

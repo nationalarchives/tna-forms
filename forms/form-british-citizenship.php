@@ -3,7 +3,7 @@
  * Form: Check for a certificate of British citizenship
  *
  */
-function return_form_british_citizenship() {
+function return_form_british_citizenship( $content ) {
 	// Global variables to determine if the form submission
 	// is successful or comes back with errors
 	global $tna_success_message,
@@ -236,7 +236,7 @@ function return_form_british_citizenship() {
 	// If no form submission, hence the user has
 	// accessed the page for the first time, give us an empty form
 	else {
-		return $form;
+		return $content . $form;
 	}
 }
 function process_form_british_citizenship() {

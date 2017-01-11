@@ -4,7 +4,7 @@
  *
  */
 
-function return_form_public_sector() {
+function return_form_public_sector( $content ) {
 
 	// Global variables to determine if the form submission
 	// is successful or comes back with errors
@@ -53,7 +53,7 @@ function return_form_public_sector() {
 	// If no form submission, hence the user has
 	// accessed the page for the first time, give us an empty form
 	else {
-		return $form;
+		return $content . $form;
 	}
 }
 

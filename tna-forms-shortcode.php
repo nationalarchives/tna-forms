@@ -4,7 +4,7 @@
  *
  */
 
-function tna_forms_shortcode( $atts ) {
+function tna_forms_shortcode( $atts, $content = '' ) {
 
 	$a = shortcode_atts( array(
 		'name' => 'form',
@@ -13,28 +13,28 @@ function tna_forms_shortcode( $atts ) {
 
 	switch ( $a['name'] ) {
 		case 'British citizenship':
-			return return_form_british_citizenship();
+			return return_form_british_citizenship( $content );
 			break;
 		case 'Records and research enquiry':
-			return return_form_rre();
+			return return_form_rre( $content );
 			break;
 		case 'Your views':
-			return return_form_your_views();
+			return return_form_your_views( $content );
 			break;
 		case 'General enquiries':
-			return return_form_general();
+			return return_form_general( $content );
 			break;
 		case 'Public sector':
-			return return_form_public_sector();
+			return return_form_public_sector( $content );
 			break;
 		case 'IA training':
-			return return_form_iacs_training( explode(', ', $a['sessions']) );
+			return return_form_iacs_training( explode(', ', $a['sessions']), $content );
 			break;
 		case 'Apply to film':
-			return return_form_apply_to_film();
+			return return_form_apply_to_film( $content );
 			break;
 		default:
-			return return_form_default();
+			return return_form_default( $content );
 			break;
 	}
 }
