@@ -304,12 +304,12 @@ function process_form_british_citizenship() {
 			$tna_success_message = success_message_header( 'Your reference number:', $ref_number );
 			$tna_success_message .= confirmation_content( $post->ID );
 			$tna_success_message .= '<p>If you provided your email address you will shortly receive an email confirming your application – please do not reply to this email</p>';
-			$tna_success_message .= '<h3>Your application details</h3>';
+			$tna_success_message .= '<h3>Summary of your enquiry</h3>';
 			$tna_success_message .= display_compiled_form_data( $form_fields );
 			// Store email content to user into a variable
 			$email_to_user = success_message_header( 'Your reference number:', $ref_number );
 			$email_to_user .= confirmation_content( $post->ID );
-			$email_to_user .= '<h3>Your application details</h3>';
+			$email_to_user .= '<h3>Summary of your enquiry</h3>';
 			$email_to_user .= display_compiled_form_data( $form_fields );
 			// Send email to user
 			send_form_via_email( $form_fields['Email'], 'Check for a certificate of British citizenship - Ref:', $ref_number,
