@@ -13,7 +13,7 @@ class Form_Builder {
 		$form .= '<input type="hidden" name="tna-form" value="%s">';
 		$form .= '<input type="hidden" name="token" value="' . form_token() . '">';
 		$form .= '<input type="hidden" name="timestamp" value="' . time() . '">';
-		
+
 		return sprintf( $form, $id, $value );
 	}
 
