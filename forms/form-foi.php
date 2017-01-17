@@ -24,7 +24,7 @@
  *
  */
 
-function return_form_foi( $content ) {
+function return_form_foi() {
 
 	// HTML form string
 	$html = new Form_Builder;
@@ -43,6 +43,6 @@ function return_form_foi( $content ) {
 	         $html->fieldset_ends() .
 	         $html->form_ends();
 
-	return $content . $form;
+	return $form;
 }
 

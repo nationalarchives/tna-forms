@@ -34,7 +34,7 @@ function tna_forms_shortcode( $atts, $content = '' ) {
 			return return_form_apply_to_film( $content );
 			break;
 		case 'Freedom of information':
-			return return_form_foi( $content );
+			return return_form_foi();
 			break;
 		default:
 			return return_form_default( $content );
