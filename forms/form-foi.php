@@ -26,16 +26,6 @@
 
 function return_form_foi( $content ) {
 
-	// Global variables to determine if the form submission
-	// is successful or comes back with errors
-	global $tna_success_message,
-	       $tna_error_message;
-
-	// If the form is submitted the form data is processed
-	if ( isset( $_POST['submit-foi'] ) ) {
-		process_form_default();
-	}
-
 	// HTML form string
 	$html = new Form_Builder;
 	$form =  $html->form_foi_begins( 'https://test.nationalarchives.gov.uk/contact/contactform.asp', 'contactForm', 'contactForm' ) .
@@ -53,21 +43,6 @@ function return_form_foi( $content ) {
 	         $html->fieldset_ends() .
 	         $html->form_ends();
 
-	// If the form submission comes with errors give us back
-	// the form populated with form data and error messages
-	if ( $tna_error_message ) {
-		return $tna_error_message . $form;
-	}
-
-	// If the form is successful give us the confirmation content
-	elseif ( $tna_success_message ) {
-		return $tna_success_message . print_page();
-	}
-
-	// If no form submission, hence the user has
-	// accessed the page for the first time, give us an empty form
-	else {
-		return $content . $form;
-	}
+	return $content . $form;
 }
 
