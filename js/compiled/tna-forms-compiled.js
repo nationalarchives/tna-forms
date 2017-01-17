@@ -57,7 +57,7 @@
         function(value, element) {
             // allow any non-whitespace characters as the host part
             return this.optional( element ) || /(?=\S)/.test( value );
-        }, 'Please complete the field'); // Global message if there's only white space for required fields
+        }, '<span>*</span>Please complete the field'); // Global message if there's only white space for required fields
 
 
     /** Advance email validation method
@@ -561,6 +561,10 @@ function recordsResearchEnquiryForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
+            "full-name":{
+                required:true,
+                noSpace:true
+            },
             email: {
                 required: true,
                 email:true,
@@ -568,10 +572,6 @@ function recordsResearchEnquiryForm(){
             },
             "confirm-email": {
                 equalTo: "#email"
-            },
-            country:{
-                required:true,
-                noSpace:true
             },
             enquiry:{
                 required:true,
@@ -583,13 +583,13 @@ function recordsResearchEnquiryForm(){
          * Error messages
          * */
         messages: {
+            "full-name":{
+                required:"<span>*</span>Please insert your full name"
+            },
             email: "<span>*</span>Please enter your email address",
             "confirm-email": {
                 required:"<span>*</span>Please enter your email address",
                 equalTo: "<span>*</span>Please enter your email address again"
-            },
-            country:{
-                required:"<span>*</span>Please enter your country"
             },
             enquiry:{
                 required:"<span>*</span>Please enter your enquiry"
@@ -648,7 +648,8 @@ function yourViewsForm(){
                 equalTo: "#email"
             },
             reason:{
-                required: true
+                required: true,
+                noSpace: true
             },
             enquiry:{
                 required:true,
@@ -1044,10 +1045,12 @@ function applyToFilmForm(){
                 equalTo: "#email"
             },
             "about_project":{
-                require:true
+                require:true,
+                noSpace: true
             },
             date:{
-                required:true
+                required:true,
+                noSpace: true
             }
 
         },

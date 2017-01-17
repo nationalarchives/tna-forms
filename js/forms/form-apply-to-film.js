@@ -50,10 +50,12 @@ function applyToFilmForm(){
                 equalTo: "#email"
             },
             "about_project":{
-                require:true
+                require:true,
+                noSpace: true
             },
             date:{
-                required:true
+                required:true,
+                noSpace: true
             }
 
         },

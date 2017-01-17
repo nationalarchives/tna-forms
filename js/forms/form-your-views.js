@@ -50,7 +50,8 @@ function yourViewsForm(){
                 equalTo: "#email"
             },
             reason:{
-                required: true
+                required: true,
+                noSpace: true
             },
             enquiry:{
                 required:true,
