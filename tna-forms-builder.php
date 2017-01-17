@@ -8,8 +8,8 @@ class Form_Builder {
 
 	}
 
-	public function form_begins( $id, $value, $no_validate = false ) {
-		$form = '<form action=""  id="%s" method="POST"' . $this->novalidate_for_testing( $no_validate ) . '>';
+	public function form_begins( $id, $value, $action = '', $no_validate = false ) {
+		$form = '<form action="' . $action . '"  id="%s" method="POST"' . $this->novalidate_for_testing( $no_validate ) . '>';
 		$form .= '<input type="hidden" name="tna-form" value="%s">';
 		$form .= '<input type="hidden" name="token" value="' . form_token() . '">';
 		$form .= '<input type="hidden" name="timestamp" value="' . time() . '">';
@@ -33,6 +33,12 @@ class Form_Builder {
 		$form = '</fieldset>';
 
 		return $form;
+	}
+
+	public function form_hidden_input( $name, $value ) {
+		$form = '<input type="hidden" name="%s" value="%s">';
+
+		return sprintf( $form, $name, $value );
 	}
 
 	public function form_text_input( $label, $id, $name, $error = '', $hint = '' ) {
