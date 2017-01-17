@@ -15,6 +15,8 @@ legend {
   max-width: 92%;
   margin: 0 auto;
   margin-bottom: 1.5em !important; }
+  .form-row #groupErrorPlacement {
+    MARGIN-TOP: 20px; }
   .form-row label {
     width: 100% !important;
     margin-right: 0 !important; }
@@ -183,10 +185,7 @@ legend {
 
 #preferred-contact-error {
   position: absolute;
-  margin-top: -60px; }
-
-#contact_email {
-  margin-top: 40px; }
+  margin-top: 32px; }
 
 .form-data ul {
   list-style-type: none;
