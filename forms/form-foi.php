@@ -32,24 +32,26 @@ function return_form_foi( $content ) {
 	       $tna_error_message;
 
 	// If the form is submitted the form data is processed
-	if ( isset( $_POST['submit-default'] ) ) {
+	if ( isset( $_POST['submit-foi'] ) ) {
 		process_form_default();
 	}
 
 	// HTML form string
 	$html = new Form_Builder;
-	$form =  $html->form_begins( 'foi', 'Freedom of information', 'https://test.nationalarchives.gov.uk/contact/contactform.asp' ) .
+	$form =  $html->form_foi_begins( 'https://test.nationalarchives.gov.uk/contact/contactform.asp', 'contactForm', 'contactForm' ) .
 	         $html->form_hidden_input( 'formID', '10') .
+	         $html->form_hidden_input( 'formType', '1') .
+	         $html->form_hidden_input( 'formTitle', 'Freedom of Information enquiry') .
+	         $html->form_hidden_input( 'formResponseTarget', '20 working days') .
+	         $html->fieldset_begins( 'Your details' ) .
+	         $html->form_text_input( 'Title', 'title', 'title' ) .
+	         $html->form_text_input( 'First name', 'forename', 'forename' ) .
+	         $html->form_text_input( 'Last name', 'mandatory_surname', 'mandatory_surname', 'Please enter your last name' ) .
+	         $html->form_email_input( 'Email address', 'mandatory_email', 'mandatory_email', 'Please enter a valid email address' ) .
+	         $html->fieldset_ends() .
 	         $html->fieldset_begins( 'Your enquiry' ) .
-	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
-	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
-	         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
-	         $html->form_text_input( 'Country', 'country', 'country', 'Please enter your country' ) .
-	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .
-	         $html->form_text_input( 'Provide the dates or years that you are interested in', 'dates', 'dates' ) .
-	         $html->form_newsletter_checkbox() .
-	         $html->form_spam_filter( rand(10, 99) ) .
-	         $html->submit_form( 'submit-default', 'submit-tna-form' ) .
+	         $html->form_textarea_input( 'Your enquiry', 'mandatory_enquiry', 'mandatory_enquiry', 'Please enter your enquiry' ) .
+	         $html->submit_form( 'send-message', 'send-message' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
 
