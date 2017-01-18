@@ -65,7 +65,7 @@ function process_form_rre() {
 		'Name'                 => is_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
 		'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 		'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
-		'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
+		'Country'              => is_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
 		'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
 		'Date(s)'              => is_text_field_valid( filter_input( INPUT_POST, 'dates' ) ),
 		'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) ),
