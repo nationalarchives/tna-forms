@@ -36,6 +36,9 @@ $(document).ready(function() {
         else if ($('#apply-to-film').is(':visible')){
             applyToFilmForm();
         }
+        else if ($('#foi').is(':visible')){
+            foiForm();
+        }
         else {
             defaultForm();
         }

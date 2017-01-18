@@ -8,7 +8,7 @@ function return_form_foi() {
 
 	// HTML form string
 	$html = new Form_Builder;
-	$form =  $html->form_foi_begins( 'https://test.nationalarchives.gov.uk/contact/contactform.asp', 'contactForm', 'contactForm' ) .
+	$form =  $html->form_foi_begins( 'https://test.nationalarchives.gov.uk/contact/contactform.asp', 'foi', 'contactForm' ) .
 	         $html->form_hidden_input( 'formID', '10' ) .
 	         $html->form_hidden_input( 'formType', '1' ) .
 	         $html->form_hidden_input( 'formTitle', 'Freedom of Information enquiry' ) .
