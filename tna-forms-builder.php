@@ -17,6 +17,12 @@ class Form_Builder {
 		return sprintf( $form, $id, $value );
 	}
 
+	public function form_foi_begins( $action = '', $id, $name ) {
+		$form = '<form action="%s"  id="%s" name="%s" method="POST">';
+
+		return sprintf( $form, $action, $id, $name );
+	}
+
 	public function form_ends() {
 		$form = '</form>';
 
@@ -33,6 +39,12 @@ class Form_Builder {
 		$form = '</fieldset>';
 
 		return $form;
+	}
+
+	public function form_hidden_input( $name, $value ) {
+		$form = '<input type="hidden" name="%s" value="%s">';
+
+		return sprintf( $form, $name, $value );
 	}
 
 	public function form_text_input( $label, $id, $name, $error = '', $hint = '' ) {
