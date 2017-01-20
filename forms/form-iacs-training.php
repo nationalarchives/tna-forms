@@ -140,7 +140,6 @@ function process_form_iacs_training() {
 			// Store confirmation content into the global variable
 			$tna_success_message = success_message_header( 'Your reference number:', $ref_number );
 			$tna_success_message .= confirmation_content( $post->ID );
-			$tna_success_message .= '<p>If you provided your email address you will shortly receive an email confirming your application – please do not reply to this email</p>';
 			$tna_success_message .= '<h3>Summary of your enquiry</h3>';
 			$tna_success_message .= display_compiled_form_data( $form_fields );
 
