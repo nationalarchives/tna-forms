@@ -39,6 +39,9 @@ $(document).ready(function() {
         else if ($('#foi').is(':visible')){
             foiForm();
         }
+        else if ($('#pronom').is(':visible')){
+            pronomForm();
+        }
         else {
             defaultForm();
         }
