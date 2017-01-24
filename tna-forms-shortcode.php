@@ -36,6 +36,9 @@ function tna_forms_shortcode( $atts, $content = '' ) {
 		case 'Freedom of information':
 			return return_form_foi();
 			break;
+		case 'PRONOM':
+			return return_form_pronom( $content );
+			break;
 		default:
 			return return_form_default( $content );
 			break;
