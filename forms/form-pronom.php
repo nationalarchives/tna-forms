@@ -33,7 +33,7 @@ function return_form_pronom( $content ) {
 
 	// If the form is submitted the form data is processed
 	if ( isset( $_POST['submit-pr'] ) ) {
-		process_form_default();
+		process_form_pronom();
 	}
 
 	// HTML form string
@@ -51,14 +51,14 @@ function return_form_pronom( $content ) {
 	         $html->help_text( 'Please suggest particular file formats you would like more information on. These can be formats which are not currently listed in the PRONOM database, or formats which have an incomplete entry in PRONOM.' ) .
 	         $html->form_text_input( 'File format to investigate', 'file_format', 'file-format', 'Please enter the file format' ) .
 	         $html->form_checkbox_input( 'Tick here if you have an example of the file format', 'file_example', 'file-example' ) .
-	         $html->form_checkbox_input( 'Tick here if we can contact you for more information', 'file_example', 'file-example' ) .
+	         $html->form_checkbox_input( 'Tick here if we can contact you for more information', 'contact', 'contact' ) .
 	         $html->fieldset_ends() .
 	         $html->fieldset_begins( 'Your submission' ) .
 	         $html->help_text( 'Additional information' ) .
 	         $html->help_text( 'If you have specific technical information about the file format concerned, please provide it here.' ) .
 	         $html->form_text_input( 'PUID', 'puid', 'puid' ) .
 	         $html->form_textarea_input( 'References', 'references', 'references', '', 'To provide validity / authenticity to the entry' ) .
-	         $html->form_textarea_input( 'Other information you can tell us about the format', 'references', 'references', '', 'e.g. version; vendor / developer; file extension' ) .
+	         $html->form_textarea_input( 'Other information you can tell us about the format', 'other_information', 'other-information', '', 'e.g. version; vendor / developer; file extension' ) .
 	         $html->form_spam_filter( rand(10, 99) ) .
 	         $html->submit_form( 'submit-pr', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
@@ -94,14 +94,18 @@ function process_form_pronom() {
 
 	// Get the form elements and store them into an array
 	$form_fields = array(
-		'Name'                 => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
-		'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
-		'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
-		'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
-		'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
-		'Date(s)'              => is_text_field_valid( filter_input( INPUT_POST, 'dates' ) ),
-		'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) ),
-		'Spam'                 => is_this_spam( $_POST )
+		'Name'                                      => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
+		'Email'                                     => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
+		'Confirm email'                             => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
+		'Organisation'                              => is_text_field_valid( filter_input( INPUT_POST, 'organisation' ) ),
+		'How did you find out about PRONOM?'        => is_textarea_field_valid( filter_input( INPUT_POST, 'find-out' ) ),
+		'File Format'                               => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'file-format' ) ),
+		'File format example'                       => is_checkbox_valid( filter_input( INPUT_POST, 'file-example' ) ),
+		'We can contact you for more information'   => is_checkbox_valid( filter_input( INPUT_POST, 'contact' ) ),
+		'PUID'                                      => is_text_field_valid( filter_input( INPUT_POST, 'puid' ) ),
+		'References'                                => is_textarea_field_valid( filter_input( INPUT_POST, 'references' ) ),
+		'Other information'                         => is_textarea_field_valid( filter_input( INPUT_POST, 'other-information' ) ),
+		'Spam'                                      => is_this_spam( $_POST )
 	);
 
 	// If any value inside the array is false then there is an error
@@ -145,9 +149,6 @@ function process_form_pronom() {
 		// Amend email address function with username to send email to desired destination.
 		// eg, get_tna_email( 'contactcentre' )
 		send_form_via_email( get_tna_email(), 'Enquiry - Ref:', $ref_number, $email_to_tna, $form_fields['Spam'] );
-
-		// Subscribe to newsletter
-		subscribe_to_newsletter( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], 'Default', $form_fields['Spam'] );
 
 		log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 
