@@ -44,8 +44,7 @@ function foiForm(){
             },
             "mandatory_email": {
                 required: true,
-                email:true,
-                advEmail:true
+                email:true
             },
             "mandatory_enquiry":{
                 required:true,

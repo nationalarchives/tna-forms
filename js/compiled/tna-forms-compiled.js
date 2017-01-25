@@ -62,12 +62,9 @@
 
     /** Advance email validation method
      * */
-    $.validator.addMethod("advEmail",
-        function(value, element) {
-            return this.optional( element ) || /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value);
-        },
-        "Please insert a valid email address"
-    );
+    $.extend($.validator.messages, {
+        email: "<span>*</span>Please enter a valid email address",
+    });
 
     /*$.validator.addMethod("sessions_val_not_equal", function(value, element) {
 
@@ -250,8 +247,7 @@ function naturalisationForm(){
                 },
                 email: {
                     required: true,
-                    email:true,
-                    advEmail:true
+                    email:true
                 },
                 "confirm-email": {
                     equalTo: "#email"
@@ -482,8 +478,7 @@ function defaultForm(){
             },
             email: {
                 required: true,
-                email:true,
-                advEmail:true
+                email:true
             },
             "confirm-email": {
                 equalTo: "#email"
@@ -567,8 +562,7 @@ function recordsResearchEnquiryForm(){
             },
             email: {
                 required: true,
-                email:true,
-                advEmail:true
+                email:true
             },
             "confirm-email": {
                 equalTo: "#email"
@@ -641,8 +635,7 @@ function yourViewsForm(){
             },
             email: {
                 required: true,
-                email:true,
-                advEmail:true
+                email:true
             },
             "confirm-email": {
                 equalTo: "#email"
@@ -722,8 +715,7 @@ function generalEnquiriesForm(){
             },
             email: {
                 required: true,
-                email:true,
-                advEmail:true
+                email:true
             },
             "confirm-email": {
                 equalTo: "#email"
@@ -810,8 +802,7 @@ function publicSectorForm(){
             },
             email: {
                 required: true,
-                email:true,
-                advEmail:true
+                email:true
             },
             "confirm-email": {
                 equalTo: "#email"
@@ -915,8 +906,7 @@ function iacsTrainingForm(){
             },
             email: {
                 required: true,
-                email:true,
-                advEmail:true
+                email:true
             },
             "confirm-email": {
                 equalTo: "#email"
@@ -1038,8 +1028,7 @@ function applyToFilmForm(){
             },
             email: {
                 required: true,
-                email:true,
-                advEmail:true
+                email:true
             },
             "confirm-email": {
                 equalTo: "#email"
@@ -1120,8 +1109,7 @@ function foiForm(){
             },
             "mandatory_email": {
                 required: true,
-                email:true,
-                advEmail:true
+                email:true
             },
             "mandatory_enquiry":{
                 required:true,
@@ -1187,8 +1175,7 @@ function pronomForm(){
             },
             email: {
                 required: true,
-                email:true,
-                advEmail:true
+                email:true
             },
             "confirm-email": {
                 equalTo: "#email"

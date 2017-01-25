@@ -43,8 +43,7 @@ function applyToFilmForm(){
             },
             email: {
                 required: true,
-                email:true,
-                advEmail:true
+                email:true
             },
             "confirm-email": {
                 equalTo: "#email"
