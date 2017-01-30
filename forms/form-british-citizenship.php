@@ -26,33 +26,33 @@ function return_form_british_citizenship( $content ) {
 	                        <p>Enter the details of the certificate holder at the time the certificate was issued.</p>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="certificate_forename">Full name</label>
+	                        <label for="certificate_name">Full name</label>
 	                        <input type="text" id="certificate_name" name="certificate-name" aria-required="true" required ' . set_value( 'certificate-name' ) . '>
 	                        ' . field_error_message( 'certificate-name', 'Certificate holder name' ) . '
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="certificate_surname_alt">Alternative name(s) <span class="optional">(optional)</span></label>
-	                        <p class="form-hint">For example: married or maiden names</p>
-	                        <input type="text" id="certificate_name_alt" name="certificate-name-alt" ' . set_value( 'certificate-name-alt' ) . '>
+	                        <label for="certificate_name_alt">Alternative name(s) <span class="optional">(optional)</span></label>
+	                        <p id="name-alt" class="form-hint">For example: married or maiden names</p>
+	                        <input type="text" aria-describedby="name-alt" id="certificate_name_alt" name="certificate-name-alt" ' . set_value( 'certificate-name-alt' ) . '>
 	                    </div>
 	                    <div class="form-row">
 	                        <label for="certificate_birth_country">Country of birth <span class="optional">(optional)</span></label>
 	                        <input type="text" id="certificate_birth_country" name="certificate-birth-country" ' . set_value( 'certificate-birth-country' ) . '>
 	                    </div>
 	                    <div class="form-row">
-	                    <p>Date of birth <span class="optional">(optional)</span></p>
+	                    <p id="dob">Date of birth <span class="optional">(optional)</span></p>
 	                    <p class="form-hint">For example: 8 3 1955</p>
 	                        <span class="dob-col day">
-	                            <label for="certificate_day">Day</label>
-	                            <input type="number" id="certificate_day" name="certificate-day" ' . set_value( 'certificate-day' ) . '>
+	                            <label id="day" for="certificate_day">Day</label>
+	                            <input type="number" aria-labelledby="dob day" id="certificate_day" name="certificate-day" ' . set_value( 'certificate-day' ) . '>
 	                        </span>
 	                        <span class="dob-col month">
-	                            <label for="certificate_month">Month</label>
-	                            <input type="number" id="certificate_month" name="certificate-month" ' . set_value( 'certificate-month' ) . '>
+	                            <label id="month" for="certificate_month">Month</label>
+	                            <input type="number" aria-labelledby="dob month" id="certificate_month" name="certificate-month" ' . set_value( 'certificate-month' ) . '>
 	                        </span>
 	                        <span class="dob-col year">
-	                            <label for="certificate_year">Year</label>
-	                            <input type="number" id="certificate_year" name="certificate-year" ' . set_value( 'certificate-year' ) . '>
+	                            <label id="year" for="certificate_year">Year</label>
+	                            <input type="number" aria-labelledby="dob year" id="certificate_year" name="certificate-year" ' . set_value( 'certificate-year' ) . '>
 	                        </span>
 	                    </div>
 	                    <div class="form-row dob-approx">
