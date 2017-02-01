@@ -84,10 +84,10 @@ function return_form_british_citizenship( $content ) {
 	                        <input type="text" id="certificate_number" name="certificate-number" ' . set_value( 'certificate-number' ) . '>
 	                    </div>
 	                    <div class="form-row registration-year">
-	                    <p><label class="form-label" for="certificate_year_issued_from">Year of registration <span class="optional">(optional)</span></label></p>
-	                        <label class="form-label" for="certificate_year_issued_from">between</label>
+	                    <p><label id="year-of-registration" class="form-label" for="certificate_year_issued_from">Year of registration <span class="optional">(optional)</span></label></p>
+	                        <label id="from" class="form-label" for="certificate_year_issued_from">from</label>
 	                        <select id="certificate_year_issued_from" name="certificate-year-issued-from">
-	                            <option value="">Please select</option>
+	                            <option value="" aria-label="Certificate year of registration from (optional). Please select a year.">Please select</option>
 	                            <option value="1949" ' . set_value( 'certificate-year-issued-from', 'select', '1949' ) . '>1949</option>
 	                            <option value="1950" ' . set_value( 'certificate-year-issued-from', 'select', '1950' ) . '>1950</option>
 	                            <option value="1951" ' . set_value( 'certificate-year-issued-from', 'select', '1951' ) . '>1951</option>
@@ -127,9 +127,9 @@ function return_form_british_citizenship( $content ) {
 	                            <option value="1985" ' . set_value( 'certificate-year-issued-from', 'select', '1985' ) . '>1985</option>
 								<option value="1986" ' . set_value( 'certificate-year-issued-from', 'select', '1986' ) . '>1986</option>
 	                        </select>
-	                        <label class="form-label" for="certificate_year_issued_to">and</label>
+	                        <label id="to" class="form-label" for="certificate_year_issued_to">to</label>
 	                        <select id="certificate_year_issued_to" name="certificate-year-issued-to">
-	                            <option value="">Please select</option>
+	                            <option value="" aria-label="Certificate year of registration to (optional). Please select a year.">Please select</option>
 	                            <option value="1949" ' . set_value( 'certificate-year-issued-to', 'select', '1949' ) . '>1949</option>
 	                            <option value="1950" ' . set_value( 'certificate-year-issued-to', 'select', '1950' ) . '>1950</option>
 	                            <option value="1951" ' . set_value( 'certificate-year-issued-to', 'select', '1951' ) . '>1951</option>
@@ -188,15 +188,15 @@ function return_form_british_citizenship( $content ) {
 	                        ' . field_error_message( 'full-name', 'Full name' ) . '
 	                    </div>
 	                    <div class="form-row">
-	                        <p class="form-warning-error">How would you prefer to be contacted?</p>
+	                        <p id="prefer-contact" class="form-warning-error">How would you prefer to be contacted?</p>
 		                    ' . field_error_message( 'preferred-contact', 'Preferred contact', 'radio' ) . '
 		                    <div class="form-col pref_contact">
-		                        <input id="contact_email" type="radio" name="preferred-contact" value="Email" ' . set_value( 'preferred-contact', 'radio', 'Email' ) . '>
-		                        <label for="contact_email">Email</label>
+		                        <input id="contact_email" aria-labelledby="prefer-contact email-label" type="radio" name="preferred-contact" value="Email" ' . set_value( 'preferred-contact', 'radio', 'Email' ) . '>
+		                        <label id="email-label" for="contact_email">Email</label>
 		                    </div>
 		                    <div class="form-col pref_contact">
-		                        <input id="contact_postal" type="radio" name="preferred-contact" value="Post" ' . set_value( 'preferred-contact', 'radio', 'Post' ) . '>
-		                        <label for="contact_postal">Post</label>
+		                        <input id="contact_postal" aria-labelledby="prefer-contact post-label" type="radio" name="preferred-contact" value="Post" ' . set_value( 'preferred-contact', 'radio', 'Post' ) . '>
+		                        <label id="post-label" for="contact_postal">Post</label>
 		                    </div>
 	                    </div>
 	                    <div class="email-wrapper">
