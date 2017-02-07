@@ -9,7 +9,7 @@ class Form_Builder {
 	}
 
 	public function form_begins( $id, $value, $no_validate = false ) {
-		$form = '<form action=""  id="%s" method="POST"' . $this->novalidate_for_testing( $no_validate ) . '>';
+		$form = '<form action=""  id="%s" class="form-abandonment" method="POST" ' . $this->novalidate_for_testing( $no_validate ) . '>';
 		$form .= '<input type="hidden" name="tna-form" value="%s">';
 		$form .= '<input type="hidden" name="token" value="' . form_token() . '">';
 		$form .= '<input type="hidden" name="timestamp" value="' . time() . '">';
@@ -18,7 +18,7 @@ class Form_Builder {
 	}
 
 	public function form_foi_begins( $action = '', $id, $name ) {
-		$form = '<form action="%s"  id="%s" name="%s" method="POST">';
+		$form = '<form action="%s"  id="%s" class="form-abandonment" name="%s" method="POST">';
 
 		return sprintf( $form, $action, $id, $name );
 	}

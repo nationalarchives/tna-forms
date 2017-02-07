@@ -16,7 +16,7 @@ function return_form_british_citizenship( $content ) {
 	                    <li><span>3</span> Contact details</li>
 	                </ul>
 	            </div>
-	            <form action=""  id="naturalisation" method="POST">
+	            <form action=""  id="naturalisation" class="form-abandonment" method="POST">
 	            	<input type="hidden" name="tna-form" value="naturalisation">
 	            	<input type="hidden" name="token" value="' . form_token() . '">
 	            	<input type="hidden" name="timestamp" value="' . time() . '">
