@@ -33,5 +33,6 @@ function formMethods(){
         return firstSession !== secondSession
 
     }, "* Session choice should not match");*/
+
 }
 
