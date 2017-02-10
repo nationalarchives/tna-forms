@@ -32,9 +32,7 @@ QUnit.module("Checking the fields before plugin is applied", function () {
         assert.equal($('#confirm_email', '.fixture').val(), "", "The confirm email address is empty");
         assert.ok($('#reason', '.fixture').length == 1, "The reason select is present");
         assert.ok($('#enquiry', '.fixture').length == 1, "The enquiry textarea is present");
-        assert.ok($('#order_number', '.fixture').length == 1, "The order_number input is present");
-        assert.ok($('#catalogue_reference', '.fixture').length == 1, "The catalogue_reference input is present");
-        assert.ok($('#newsletter', '.fixture').length == 1, "The newsletter check box is present");
+        assert.ok($('#order_number_cat_ref', '.fixture').length == 1, "The order_number input is present");
         assert.equal($('#submit-tna-form', '.fixture').attr('name'), "submit-yv", "Name on input button is submit-yv");
     });
 });

@@ -630,11 +630,9 @@ function yourViewsForm(){
         },
         rules: {
             "full-name": {
-                required: true,
                 noSpace: true
             },
             email: {
-                required: true,
                 email:true
             },
             "confirm-email": {
@@ -654,12 +652,7 @@ function yourViewsForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
-                required: "<span>*</span>Please enter your full name"
-            },
-            email: "<span>*</span>Please enter your email address",
             "confirm-email": {
-                required:"<span>*</span>Please enter your email address",
                 equalTo: "<span>*</span>Please enter your email address again"
             },
             reason:{

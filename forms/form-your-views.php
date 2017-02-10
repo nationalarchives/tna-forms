@@ -15,9 +15,9 @@ function return_form_your_views( $content ) {
 	$html = new Form_Builder;
 	$form =  $html->form_begins( 'your-views', 'Your views' ) .
 	         $html->fieldset_begins( 'Your details' ) .
-	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
-	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
-	         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
+	         $html->form_text_input( 'Full name', 'full_name', 'full-name' ) .
+	         $html->form_email_input( 'Email address', 'email', 'email' ) .
+	         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', '', 'email' ) .
 	         $html->fieldset_ends() .
 	         $html->fieldset_begins( 'Your message' ) .
 	         $html->form_select_input( 'Reason for contact', 'reason', 'reason', array('Compliment', 'Suggestion or comment', 'Criticism or concern', 'Complaint'), 'Please select an option' ) .
@@ -25,9 +25,7 @@ function return_form_your_views( $content ) {
 	         $html->fieldset_ends() .
 	         $html->fieldset_begins( 'Additional record information' ) .
 	         $html->help_text( 'Please enter an order number or Catalogue reference if either are relevant to this message.' ) .
-	         $html->form_text_input( 'Order number', 'order_number', 'order-number' ) .
-	         $html->form_text_input( 'Catalogue reference', 'catalogue_reference', 'catalogue-reference' ) .
-	         $html->form_newsletter_checkbox() .
+	         $html->form_text_input( 'Order number or catalogue reference', 'order_number_cat_ref', 'order-number-cat-ref' ) .
 	         $html->form_spam_filter( rand(10, 99) ) .
 	         $html->submit_form( 'submit-yv', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
@@ -75,15 +73,13 @@ function process_form_your_views() {
 
 		// Get the form elements and store them into an array
 		$form_fields = array(
-			'Name'                 => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
-			'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
-			'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
-			'Reason'               => is_mandatory_select_valid( filter_input( INPUT_POST, 'reason' ) ),
-			'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
-			'Order number'         => is_text_field_valid( filter_input( INPUT_POST, 'order-number' ) ),
-			'Catalogue reference'  => is_text_field_valid( filter_input( INPUT_POST, 'catalogue-reference' ) ),
-			'Newsletter'           => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) ),
-			'Spam'                 => is_this_spam( $_POST )
+			'Name'              				  => is_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
+			'Email'              				  => is_text_field_valid( filter_input( INPUT_POST, 'email' ) ),
+			'Confirm email'    				      => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
+			'Reason'          				      => is_mandatory_select_valid( filter_input( INPUT_POST, 'reason' ) ),
+			'Enquiry'           			      => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
+			'Order number or catalogue reference' => is_text_field_valid( filter_input( INPUT_POST, 'order-number' ) ),
+			'Spam'                 				  => is_this_spam( $_POST )
 		);
 
 		// If any value inside the array is false then there is an error
@@ -127,9 +123,6 @@ function process_form_your_views() {
 			// Amend email address function with username to send email to desired destination.
 			// eg, get_tna_email( 'contactcentre' )
 			send_form_via_email( get_tna_email(), 'Enquiry - Ref:', $ref_number, $email_to_tna, $form_fields['Spam'] );
-
-			subscribe_to_newsletter( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], 'Your views', $form_fields['Spam'] );
-
 			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 
 		}
