@@ -39,6 +39,9 @@ function tna_forms_shortcode( $atts, $content = '' ) {
 		case 'PRONOM':
 			return return_form_pronom( $content );
 			break;
+		case 'Document condition feedback':
+			return return_form_dcf( $content );
+			break;
 		default:
 			return return_form_default( $content );
 			break;

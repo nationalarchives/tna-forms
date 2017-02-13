@@ -42,6 +42,9 @@ $(document).ready(function() {
         else if ($('#pronom').is(':visible')){
             pronomForm();
         }
+        else if ($('#dcf').is(':visible')) {
+            dcfForm();
+        }
         else {
             defaultForm();
         }

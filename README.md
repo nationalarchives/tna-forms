@@ -47,6 +47,10 @@ Each session group is defined by brackets. Each session title, session time and 
 
 `[tna-form name="PRONOM"]`
 
+**Document condition feedback ** form:
+
+`[tna-form name="Document condition feedback"]`
+
 ## Development setup
 
 ### 1.0 Clone the repository
