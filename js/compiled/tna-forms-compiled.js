@@ -1205,8 +1205,8 @@ function pronomForm(){
  * 1. Define variables
  * 2. Include custom form methods from methods.js
  * 3. Add the validation rules
+ *
  * */
-
 function dcfForm(){
     /**
      * 1. Declare variables
@@ -1274,10 +1274,7 @@ function dcfForm(){
 $(document).ready(function() {
     (function() {
 
-        /**
-         * Call the Newsletter validation plugin
-         * */
-        $('#signup').newsletterValidation();
+
 
         /**
          * Contact forms
@@ -1316,6 +1313,11 @@ $(document).ready(function() {
         else {
             defaultForm();
         }
+
+        /**
+         * Call the Newsletter validation plugin
+         * */
+        $('#signup').newsletterValidation();
     }());
 });
 
