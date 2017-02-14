@@ -97,7 +97,7 @@ function naturalisationForm(){
     /**
      * 5. Form validation
      * */
-    $(".button,input[type='submit']").on('click',function(){
+    $(".button,input[name='submit-bc']").on('click',function(){
         var form = $(formName);
         /**
          * Included custom form validation methods from methods.js
@@ -283,7 +283,6 @@ function naturalisationForm(){
 
             next_fs.show();
             current_fs.hide();
-            $(".emphasis-block").hide();
 
         } else {
             // Scroll back to top

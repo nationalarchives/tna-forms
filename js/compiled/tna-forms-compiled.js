@@ -176,7 +176,7 @@ function naturalisationForm(){
     /**
      * 5. Form validation
      * */
-    $(".button,input[type='submit']").on('click',function(){
+    $(".button,input[name='submit-bc']").on('click',function(){
         var form = $(formName);
         /**
          * Included custom form validation methods from methods.js
@@ -362,7 +362,6 @@ function naturalisationForm(){
 
             next_fs.show();
             current_fs.hide();
-            $(".emphasis-block").hide();
 
         } else {
             // Scroll back to top
@@ -517,6 +516,17 @@ function defaultForm(){
             }
         }
     });
+
+    $("input[name='submit-default']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
 };/**
  * @contact-form-name: Records Research Enquiry form
  *
@@ -591,6 +601,18 @@ function recordsResearchEnquiryForm(){
             }
         }
     });
+
+    $("input[name='submit-rre']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
+
 };/**
  * @contact-form-name: Your Views form
  *
@@ -661,6 +683,17 @@ function yourViewsForm(){
             },
             enquiry:{
                 required:"<span>*</span>Please enter your enquiry"
+            }
+        }
+    });
+
+    $("input[name='submit-yv']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
             }
         }
     });
@@ -751,6 +784,17 @@ function generalEnquiriesForm(){
             }
         }
     });
+
+    $("input[name='submit-ge']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
 };/**
  * @contact-form-name: Public sector form
  *
@@ -824,6 +868,18 @@ function publicSectorForm(){
             }
         }
     });
+
+    $("input[name='submit-psi']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
+
 };/**
  * @contact-form-name: IACS Training form
  *
@@ -977,6 +1033,17 @@ function iacsTrainingForm(){
             }
         }
     });
+
+    $("input[name='submit-iacs']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
 };/**
  * @contact-form-name: Apply to film
  *
@@ -1057,6 +1124,17 @@ function applyToFilmForm(){
             }
         }
     });
+
+    $("input[name='submit-atf']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
 };/**
  * @contact-form-name: Records Research Enquiry form
  *
@@ -1121,6 +1199,17 @@ function foiForm(){
             "mandatory_email": "<span>*</span>Please enter your email address",
             "mandatory_enquiry":{
                 required:"<span>*</span>Please enter your enquiry"
+            }
+        }
+    });
+
+    $("input[name='send-message']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
             }
         }
     });
@@ -1197,6 +1286,17 @@ function pronomForm(){
             }
         }
     });
+
+    $("input[name='submit-pr']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
 };/**
  * @contact-form-name: Your Views form
  *
@@ -1266,6 +1366,19 @@ function dcfForm(){
             },
         }
     });
+
+    $("input[name='submit-dcf']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
+
+
 };/**
  * @name  : Newsletter and Contact forms Wordpress plugin
  * @author: TNA WebTeam
@@ -1274,7 +1387,10 @@ function dcfForm(){
 $(document).ready(function() {
     (function() {
 
-
+        /**
+         * Call the Newsletter validation plugin
+         * */
+        $('#signup').newsletterValidation();
 
         /**
          * Contact forms
@@ -1313,11 +1429,6 @@ $(document).ready(function() {
         else {
             defaultForm();
         }
-
-        /**
-         * Call the Newsletter validation plugin
-         * */
-        $('#signup').newsletterValidation();
     }());
 });
 

@@ -6,7 +6,10 @@
 $(document).ready(function() {
     (function() {
 
-
+        /**
+         * Call the Newsletter validation plugin
+         * */
+        $('#signup').newsletterValidation();
 
         /**
          * Contact forms
@@ -45,11 +48,6 @@ $(document).ready(function() {
         else {
             defaultForm();
         }
-
-        /**
-         * Call the Newsletter validation plugin
-         * */
-        $('#signup').newsletterValidation();
     }());
 });
 

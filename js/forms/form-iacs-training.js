@@ -151,4 +151,15 @@ function iacsTrainingForm(){
             }
         }
     });
+
+    $("input[name='submit-iacs']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
 }
