@@ -8,7 +8,7 @@ function tna_forms_shortcode( $atts, $content = '' ) {
 
 	$a = shortcode_atts( array(
 		'name' => 'form',
-		'sessions' => '(Training, No session times)'
+		'sessions' => '(Training, No session time 1, No session time 2)'
 	), $atts );
 
 	switch ( $a['name'] ) {

@@ -53,6 +53,9 @@ function return_form_iacs_training( $sessions, $content ) {
 	         $html->form_select_input_training( 'Session (2nd choice)', 'session_second_choice', 'session-second-choice', $sessions, 'Please select an option' ) .
 	         $html->form_select_input( 'Have you previously done any IA training?', 'previous_training', 'previous-training', array('Yes', 'No') ) .
 	         $html->form_textarea_input( 'If yes, please provide details', 'previous_training_details', 'previous-training-details' ) .
+	         $html->fieldset_ends() .
+	         $html->fieldset_begins( 'Notify me' ) .
+	         $html->form_checkbox_input( 'Do you want to receive our monthly SIRO newsletter or be updated about upcoming events?', 'newsletter', 'newsletter' ) .
 	         $html->form_spam_filter( rand(10, 99) ) .
 	         $html->submit_form( 'submit-iacs', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
@@ -116,6 +119,7 @@ function process_form_iacs_training() {
 			'Session 2nd choice'        => is_mandatory_select_valid( filter_input( INPUT_POST, 'session-second-choice' ) ),
 			'Previous training'         => is_select_valid( filter_input( INPUT_POST, 'previous-training' ) ),
 			'Previous training details' => is_textarea_field_valid( filter_input( INPUT_POST, 'previous-training-details' ) ),
+			'Newsletter'                => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) ),
 			'Spam'                      => is_this_spam( $_POST )
 		);
 
