@@ -11,6 +11,11 @@ function return_form_your_views( $content ) {
 	global $tna_success_message,
 	       $tna_error_message;
 
+	// If the form is submitted the form data is processed
+	if ( isset( $_POST['submit-yv'] ) ) {
+		process_form_your_views();
+	}
+
 	// HTML form string
 	$html = new Form_Builder;
 	$form =  $html->form_begins( 'your-views', 'Your views' ) .
@@ -50,83 +55,69 @@ function return_form_your_views( $content ) {
 }
 
 function process_form_your_views() {
-	// The processing happens at form submission.
-	// If no form is submitted we stop here.
-	if ( ! is_admin() && isset( $_POST['submit-yv'] ) ) {
 
-		// Checks for token
-		// If the token exists then the form has been submitted so do nothing
-		/* $token = filter_input( INPUT_POST, 'token' );
-		if ( get_transient( 'token_' . $token ) ) {
-			$_POST = array();
-			return;
-		}
-		set_transient( 'token_' . $token, 'form-token', 360 ); */
+	// Global variables
+	global $tna_success_message,
+	       $tna_error_message;
 
-		// Global variables
-		global $tna_success_message,
-		       $tna_error_message;
+	// Setting global variables
+	$tna_success_message = '';
+	$tna_error_message   = '';
 
-		// Setting global variables
-		$tna_success_message = '';
-		$tna_error_message   = '';
+	// Get the form elements and store them into an array
+	$form_fields = array(
+		'Name'              				  => is_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
+		'Email'              				  => is_text_field_valid( filter_input( INPUT_POST, 'email' ) ),
+		'Confirm email'    				      => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
+		'Reason'          				      => is_mandatory_select_valid( filter_input( INPUT_POST, 'reason' ) ),
+		'Enquiry'           			      => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
+		'Order number or catalogue reference' => is_text_field_valid( filter_input( INPUT_POST, 'order-number' ) ),
+		'Spam'                 				  => is_this_spam( $_POST )
+	);
 
-		// Get the form elements and store them into an array
-		$form_fields = array(
-			'Name'              				  => is_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
-			'Email'              				  => is_text_field_valid( filter_input( INPUT_POST, 'email' ) ),
-			'Confirm email'    				      => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
-			'Reason'          				      => is_mandatory_select_valid( filter_input( INPUT_POST, 'reason' ) ),
-			'Enquiry'           			      => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
-			'Order number or catalogue reference' => is_text_field_valid( filter_input( INPUT_POST, 'order-number' ) ),
-			'Spam'                 				  => is_this_spam( $_POST )
-		);
+	// If any value inside the array is false then there is an error
+	if ( in_array( false, $form_fields ) ) {
 
-		// If any value inside the array is false then there is an error
-		if ( in_array( false, $form_fields ) ) {
+		// Oops! Error!
 
-			// Oops! Error!
+		// Store error message into the global variable
+		$tna_error_message = display_error_message();
 
-			// Store error message into the global variable
-			$tna_error_message = display_error_message();
+		log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 
-			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
+	} else {
 
-		} else {
+		// Yay! Success!
 
-			// Yay! Success!
+		global $post;
+		// Generate reference number based on user's surname and timestamp
+		$ref_number = ref_number( 'TNA', date_timestamp_get( date_create() ) );
 
-			global $post;
-			// Generate reference number based on user's surname and timestamp
-			$ref_number = ref_number( 'TNA', date_timestamp_get( date_create() ) );
+		// Store confirmation content into the global variable
+		$tna_success_message = success_message_header( 'Your reference number:', $ref_number );
+		$tna_success_message .= confirmation_content( $post->ID );
+		$tna_success_message .= '<h3>Summary of your enquiry</h3>';
+		$tna_success_message .= display_compiled_form_data( $form_fields );
 
-			// Store confirmation content into the global variable
-			$tna_success_message = success_message_header( 'Your reference number:', $ref_number );
-			$tna_success_message .= confirmation_content( $post->ID );
-			$tna_success_message .= '<h3>Summary of your enquiry</h3>';
-			$tna_success_message .= display_compiled_form_data( $form_fields );
+		// Store email content to user into a variable
+		$email_to_user = success_message_header( 'Your reference number:', $ref_number );
+		$email_to_user .= confirmation_content( $post->ID );
+		$email_to_user .= '<h3>Summary of your enquiry</h3>';
+		$email_to_user .= display_compiled_form_data( $form_fields );
 
-			// Store email content to user into a variable
-			$email_to_user = success_message_header( 'Your reference number:', $ref_number );
-			$email_to_user .= confirmation_content( $post->ID );
-			$email_to_user .= '<h3>Summary of your enquiry</h3>';
-			$email_to_user .= display_compiled_form_data( $form_fields );
+		// Send email to user
+		send_form_via_email( $form_fields['Email'], 'Your enquiry - Ref:', $ref_number, $email_to_user, $form_fields['Spam'] );
 
-			// Send email to user
-			send_form_via_email( $form_fields['Email'], 'Your enquiry - Ref:', $ref_number, $email_to_user, $form_fields['Spam'] );
+		// Store email content to TNA into a variable
+		$email_to_tna = success_message_header( 'Reference number:', $ref_number );
+		$email_to_tna .= display_compiled_form_data( $form_fields );
 
-			// Store email content to TNA into a variable
-			$email_to_tna = success_message_header( 'Reference number:', $ref_number );
-			$email_to_tna .= display_compiled_form_data( $form_fields );
+		// Send email to TNA
+		// Amend email address function with username to send email to desired destination.
+		// eg, get_tna_email( 'contactcentre' )
+		send_form_via_email( get_tna_email(), 'Enquiry, reason for contact: ' . $form_fields['Reason'] . ' - Ref:', $ref_number, $email_to_tna, $form_fields['Spam'] );
 
-			// Send email to TNA
-			// Amend email address function with username to send email to desired destination.
-			// eg, get_tna_email( 'contactcentre' )
-			send_form_via_email( get_tna_email(), 'Enquiry, reason for contact: ' . $form_fields['Reason'] . ' - Ref:', $ref_number, $email_to_tna, $form_fields['Spam'] );
+		log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 
-			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
-
-		}
 	}
 }
-add_action('wp', 'process_form_your_views');
