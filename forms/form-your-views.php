@@ -122,7 +122,8 @@ function process_form_your_views() {
 			// Send email to TNA
 			// Amend email address function with username to send email to desired destination.
 			// eg, get_tna_email( 'contactcentre' )
-			send_form_via_email( get_tna_email(), 'Enquiry - Ref:', $ref_number, $email_to_tna, $form_fields['Spam'] );
+			send_form_via_email( get_tna_email(), 'Enquiry, reason for contact: ' . $form_fields['Reason'] . ' - Ref:', $ref_number, $email_to_tna, $form_fields['Spam'] );
+
 			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 
 		}
