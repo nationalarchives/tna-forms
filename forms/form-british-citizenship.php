@@ -180,18 +180,19 @@ function return_form_british_citizenship( $content ) {
 	                        <a href="#" title="back" class="button-back">&#10094; Back</a>
 	                    </div>
 	                    <div class="form-row">
-	                        <p>Please provide your details so we can let you know whether we\'ve found the certificate.</p>
+	                        <p id="provide_details">Please provide your details so we can let you know whether we\'ve found the certificate.</p>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="full_name">Full name</label>
-	                        <input type="text" id="full_name" name="full-name" aria-required="true" required ' . set_value( 'full-name' ) . '>
+	                        <label id="full_name_label" for="full_name">Full name</label>
+	                        <input type="text" aria-labelledby="provide_details full_name_label" id="full_name" name="full-name" aria-required="true" required ' . set_value( 'full-name' ) . '>
 	                        ' . field_error_message( 'full-name', 'Full name' ) . '
 	                    </div>
 	                    <div class="form-row">
-	                        <p id="prefer-contact" class="form-warning-error">How would you prefer to be contacted?</p>
+	                        <p id="we-can-let" class="form-warning-error">We can let you know whether we\'ve found the certificate via email or post. The certificate will not automatically be sent to you.</p>
+	                        <p id="prefer-contact">How would you prefer to know whether we have found the certificate?</p>
 		                    ' . field_error_message( 'preferred-contact', 'Preferred contact', 'radio' ) . '
 		                    <div class="form-col pref_contact">
-		                        <input id="contact_email" aria-labelledby="prefer-contact email-label" type="radio" name="preferred-contact" value="Email" ' . set_value( 'preferred-contact', 'radio', 'Email' ) . '>
+		                        <input id="contact_email" aria-labelledby="we-can-let prefer-contact email-label" type="radio" name="preferred-contact" value="Email" ' . set_value( 'preferred-contact', 'radio', 'Email' ) . '>
 		                        <label id="email-label" for="contact_email">Email</label>
 		                    </div>
 		                    <div class="form-col pref_contact">
