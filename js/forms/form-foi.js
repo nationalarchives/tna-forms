@@ -57,11 +57,11 @@ function foiForm(){
          * */
         messages: {
             "mandatory_surname":{
-                required:"<span>*</span>Please insert your last name"
+                required:"Please insert your last name"
             },
-            "mandatory_email": "<span>*</span>Please enter your email address",
+            "mandatory_email": "Please enter your email address",
             "mandatory_enquiry":{
-                required:"<span>*</span>Please enter your enquiry"
+                required:"Please enter your enquiry"
             }
         }
     });

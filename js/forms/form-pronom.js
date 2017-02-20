@@ -59,15 +59,15 @@ function pronomForm(){
          * */
         messages: {
             "full-name": {
-                required: "<span>*</span>Please enter your full name"
+                required:"Please enter your full name"
             },
-            email: "<span>*</span>Please enter your email address",
+            email: "Please enter your email address",
             "confirm-email": {
-                required:"<span>*</span>Please enter your email address",
-                equalTo: "<span>*</span>Please enter your email address again"
+                required:"Please enter your email address",
+                equalTo: "Please enter your email address again"
             },
             "file-format":{
-                required:"<span>*</span>Please enter the file format"
+                required:"Please enter the file format"
             }
         }
     });

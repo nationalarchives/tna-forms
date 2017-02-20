@@ -60,10 +60,10 @@ function dcfForm(){
          * */
         messages: {
             "confirm-email": {
-                equalTo: "<span>*</span>Please enter your email address again"
+                equalTo: "Please enter your email address again"
             },
             "catalogue-reference":{
-                required: "<span>*</span>Please enter your catalogue reference number"
+                required: "Please enter your catalogue reference number"
             },
         }
     });

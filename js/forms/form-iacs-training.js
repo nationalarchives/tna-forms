@@ -118,36 +118,36 @@ function iacsTrainingForm(){
          * */
         messages: {
             "full-name": {
-                required: "<span>*</span>Please enter your full name"
+                required: "Please enter your full name"
             },
-            email: "<span>*</span>Please enter your email address",
+            email: "Please enter your email address",
             "confirm-email": {
-                required:"<span>*</span>Please enter your email address",
-                equalTo: "<span>*</span>Please enter your email address again"
+                required:"Please enter your email address",
+                equalTo: "Please enter your email address again"
             },
             telephone:{
-                required: "<span>*</span>Please enter your telephone number"
+                required: "Please enter your telephone number"
             },
             "job-title":{
-                required:"<span>*</span>Please enter your job title"
+                required:"Please enter your job title"
             },
             organisation:{
-                required:"<span>*</span>Please enter a department/agency/organisation"
+                required:"Please enter a department/agency/organisation"
             },
             address:{
-                required:"<span>*</span>Please enter an address"
+                required:"Please enter an address"
             },
             "organisation-type":{
-                required:"<span>*</span>Please select an option"
+                required:"Please select an option"
             },
             "your-role":{
-                required:"<span>*</span>Please select an option"
+                required:"Please select an option"
             },
             "session-first-choice": {
-                required:"<span>*</span>Please select an option"
+                required:"Please select an option"
             },
             "session-second-choice": {
-                required:"<span>*</span>Please select an option"
+                required:"Please select an option"
             }
         }
     });

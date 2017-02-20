@@ -200,45 +200,45 @@ function naturalisationForm(){
             },
             messages: {
                 "certificate-day":{
-                    required: "<span>*</span>Day",
-                    digits: "<span>*</span>Only digits",
-                    range:"<span>*</span>Please enter a valid date"
+                    required: "Day",
+                    digits: "Only digits",
+                    range:"Please enter a valid date"
                 },
                 "certificate-month":{
-                    required: "<span>*</span>Month",
-                    digits: "<span>*</span>Only digits",
-                    range: "<span>*</span>Please enter a valid date"
+                    required: "Month",
+                    digits: "Only digits",
+                    range: "Please enter a valid date"
 
                 },
                 "certificate-year":{
-                    required: "<span>*</span>Year",
-                    digits: "<span>*</span>Only digits",
-                    exactLength:"<span>*</span>Please enter a valid date"
+                    required: "Year",
+                    digits: "Only digits",
+                    exactLength:"Please enter a valid date"
                 },
                 forename: {
-                    required: "<span>*</span>Please enter your first name"
+                    required: "Please enter your first name"
                 },
                 surname: {
-                    required: "<span>*</span>Please enter your last name"
+                    required: "Please enter your last name"
                 },
-                email: "<span>*</span>Please enter your email address",
+                email: "Please enter your email address",
                 "confirm-email": {
-                    required:"<span>*</span>Please enter your email address",
-                    equalTo: "<span>*</span>Please enter your email address again"
+                    required:"Please enter your email address",
+                    equalTo: "Please enter your email address again"
                 },
                 "postal-address":{
-                    required:"<span>*</span>Please enter your postal address"
+                    required:"Please enter your postal address"
                 },
                 /* Form Step Two */
                 "certificate-name":{
-                    required:"<span>*</span>Please enter the certificate holder’s name(s)"
+                    required:"Please enter the certificate holder’s name(s)"
                 },
                 /* Form Step Three */
                 "full-name": {
-                    required: "<span>*</span>Please enter your full name"
+                    required: "Please enter your full name"
                 },
                 "preferred-contact":{
-                    required: "<span>*</span>Please select one option"
+                    required: "Please select one option"
                 }
             },
             groups: {

@@ -61,13 +61,13 @@ function yourViewsForm(){
          * */
         messages: {
             "confirm-email": {
-                equalTo: "<span>*</span>Please enter your email address again"
+                equalTo: "Please enter your email address again"
             },
             reason:{
-                required: "<span>*</span>Please select an option"
+                required: "Please select an option"
             },
             enquiry:{
-                required:"<span>*</span>Please enter your enquiry"
+                required:"Please enter your enquiry"
             }
         }
     });

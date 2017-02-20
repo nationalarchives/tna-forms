@@ -29,7 +29,7 @@ function return_form_your_views( $content ) {
 	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry' ) .
 	         $html->fieldset_ends() .
 	         $html->fieldset_begins( 'Additional record information' ) .
-	         $html->help_text( 'Please enter an order number or Catalogue reference if either are relevant to this message.' ) .
+	         $html->help_text( 'Please enter an order number or catalogue reference if either are relevant to this message.' ) .
 	         $html->form_text_input( 'Order number or catalogue reference', 'order_number_cat_ref', 'order-number-cat-ref' ) .
 	         $html->form_spam_filter( rand(10, 99) ) .
 	         $html->submit_form( 'submit-yv', 'submit-tna-form' ) .
