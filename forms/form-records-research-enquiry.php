@@ -110,7 +110,7 @@ function process_form_rre() {
 		$email_to_tna .= display_compiled_form_data( $form_fields );
 
 		// Send email to TNA
-		send_form_via_email( get_tna_email( 'contactcentre' ), 'Records and research enquiry - Ref:', $ref_number, $email_to_tna, $form_fields['Spam'] );
+		send_form_via_email( get_tna_email(), 'Records and research enquiry - Ref:', $ref_number, $email_to_tna, $form_fields['Spam'] );
 
 		subscribe_to_newsletter( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], 'Records and research enquiry', $form_fields['Spam'] );
 

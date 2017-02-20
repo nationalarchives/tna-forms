@@ -259,6 +259,7 @@ function process_form_british_citizenship() {
 		// Setting global variables
 		$tna_success_message = '';
 		$tna_error_message   = '';
+
 		// Error messages for individual form fields stored into an array
 		// IMPORTANT: $tna_error_messages array keys must match exactly the $form_fields array keys
 		$tna_error_messages  = array(
@@ -268,6 +269,7 @@ function process_form_british_citizenship() {
 			'Email'                     => 'Please enter a valid email address',
 			'Confirm email'             => 'Please enter your email address again'
 		);
+
 		// Get the form elements and store them into an array
 		// IMPORTANT: $form_fields array keys must match exactly the $tna_error_messages array keys
 		$form_fields = array(
@@ -292,13 +294,18 @@ function process_form_british_citizenship() {
 		);
 		// If any value inside the array is false then there is an error
 		if ( in_array( false, $form_fields ) ) {
+
 			// Oops! Error!
+
 			// Store error messages into the global variable
 			$tna_error_message = display_error_message();
+
 			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 		} else {
+
 			// Yay! Success!
 			global $post;
+
 			// Generate reference number based on user's surname and timestamp
 			$ref_number = ref_number( 'TNA', date_timestamp_get( date_create() ) );
 			// Store confirmation content into the global variable
@@ -307,19 +314,23 @@ function process_form_british_citizenship() {
 			$tna_success_message .= '<p>If you provided your email address you will shortly receive an email confirming your application – please do not reply to this email</p>';
 			$tna_success_message .= '<h3>Summary of your enquiry</h3>';
 			$tna_success_message .= display_compiled_form_data( $form_fields );
+
 			// Store email content to user into a variable
 			$email_to_user = success_message_header( 'Your reference number:', $ref_number );
 			$email_to_user .= confirmation_content( $post->ID );
 			$email_to_user .= '<h3>Summary of your enquiry</h3>';
 			$email_to_user .= display_compiled_form_data( $form_fields );
+
 			// Send email to user
 			send_form_via_email( $form_fields['Email'], 'Check for a certificate of British citizenship - Ref:', $ref_number,
 				$email_to_user, $form_fields['Spam'] );
+
 			// Store email content to TNA into a variable
 			$email_to_tna = success_message_header( 'Reference number:', $ref_number );
 			$email_to_tna .= display_compiled_form_data( $form_fields );
+
 			// Send email to TNA
-			send_form_via_email( get_tna_email( 'contactcentre' ), 'Certificate of British citizenship request - Ref:', $ref_number,
+			send_form_via_email( get_tna_email(), 'Certificate of British citizenship request - Ref:', $ref_number,
 				$email_to_tna, $form_fields['Spam'] );
 			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 		}
