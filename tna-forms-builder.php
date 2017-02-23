@@ -289,7 +289,7 @@ class Form_Builder {
 	}
 
 	public function input_error_message( $name, $error, $match = '' ) {
-		$error_wrapper = '<span class="form-error form-hint"><span>*</span> %s</span>';
+		$error_wrapper = '<span class="form-error form-hint">%s</span>';
 		if ( $error && isset( $_POST['tna-form'] ) ) {
 			if ( isset( $_POST[$name] ) && isset( $_POST[$match] ) ) {
 				if ( trim( $_POST[$name] ) !== trim( $_POST[$match] ) ) {

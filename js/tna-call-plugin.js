@@ -36,14 +36,14 @@ $(document).ready(function() {
         else if ($('#apply-to-film').is(':visible')){
             applyToFilmForm();
         }
-        else if ($('#foi').is(':visible')){
-            foiForm();
-        }
         else if ($('#pronom').is(':visible')){
             pronomForm();
         }
         else if ($('#dcf').is(':visible')) {
             dcfForm();
+        }
+        else if ($('#foi_corporate').is(':visible')) {
+            foiCorporateForm();
         }
         else {
             defaultForm();

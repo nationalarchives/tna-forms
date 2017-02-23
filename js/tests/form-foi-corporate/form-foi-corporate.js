@@ -14,9 +14,9 @@
 QUnit.module("Checking the mandatory DOM elements before plugin is applied", function () {
     QUnit.test("Check required elements in fixture", function (assert) {
         assert.ok($('form', '.fixture').length == 1, "The form is present");
-        assert.ok($('form#foi', '.fixture').length == 1, "The form ID is present");
+        assert.ok($('form#foi_corporate', '.fixture').length == 1, "The form ID is present");
         assert.ok($('input[type=submit]', '.fixture').prop('disabled') == false, "The submit button is NOT disabled before the plugin has run");
-        assert.equal($('input[type=hidden]', '.fixture').attr('name'), "formID", "The input type hidden field with the attribute name of tna-form is present");
+        assert.equal($('input[type=hidden]', '.fixture').attr('name'), "tna-form", "The input type hidden field with the attribute name of tna-form is present");
     });
 });
 
@@ -25,11 +25,12 @@ QUnit.module("Checking the mandatory DOM elements before plugin is applied", fun
  */
 QUnit.module("Checking the fields before plugin is applied", function () {
     QUnit.test("Check required elements in fixture", function (assert) {
-        assert.ok($('#title', '.fixture').length == 1, "The title input is present");
-        assert.ok($('#forename', '.fixture').length == 1, "The forename input is present");
-        assert.equal($('#mandatory_surname', '.fixture').val(), "", "The mandatory_surname is empty");
-        assert.ok($('#mandatory_email', '.fixture').length == 1, "The mandatory_email input is present");
-        assert.equal($('#mandatory_enquiry', '.fixture').val(), "", "The mandatory_enquiry address is empty");
-        assert.equal($('#send-message', '.fixture').attr('name'), "send-message", "Name on input button is send-message");
+        assert.ok($('#full_name', '.fixture').length == 1, "The full_name input is present");
+        assert.ok($('#email', '.fixture').length == 1, "The email input is present");
+        assert.equal($('#email', '.fixture').val(), "", "The email address is empty");
+        assert.ok($('#confirm_email', '.fixture').length == 1, "The confirm email input is present");
+        assert.equal($('#confirm_email', '.fixture').val(), "", "The confirm email address is empty");
+        assert.ok($('#enquiry', '.fixture').length == 1, "The enquiry textarea is present");
+        assert.equal($('#submit-tna-form', '.fixture').attr('name'), "submit-foi-corporate", "Name on input button is submit-foi-corporate");
     });
 });

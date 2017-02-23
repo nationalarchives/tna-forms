@@ -33,14 +33,14 @@ function tna_forms_shortcode( $atts, $content = '' ) {
 		case 'Apply to film':
 			return return_form_apply_to_film( $content );
 			break;
-		case 'Freedom of information':
-			return return_form_foi();
-			break;
 		case 'PRONOM':
 			return return_form_pronom( $content );
 			break;
 		case 'Document condition feedback':
 			return return_form_dcf( $content );
+			break;
+		case 'Freedom of information corporate':
+			return return_form_foi_corporate( $content);
 			break;
 		default:
 			return return_form_default( $content );

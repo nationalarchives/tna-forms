@@ -50,13 +50,8 @@ function defaultForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            forename: {
-                required: true,
+            "full-name": {
                 noSpace: true
-            },
-            surname: {
-                required: true,
-                noSpace:true
             },
             email: {
                 required: true,
@@ -79,11 +74,8 @@ function defaultForm(){
          * Error messages
          * */
         messages: {
-            forename: {
-                required: "Please enter your first name"
-            },
-            surname: {
-                required: "Please enter your last name"
+            "full-name": {
+                required: "Please enter your full name"
             },
             email: "Please enter your email address",
             "confirm-email": {

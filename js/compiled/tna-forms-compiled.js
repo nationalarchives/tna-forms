@@ -57,13 +57,13 @@
         function(value, element) {
             // allow any non-whitespace characters as the host part
             return this.optional( element ) || /(?=\S)/.test( value );
-        }, '<span>*</span>Please complete the field'); // Global message if there's only white space for required fields
+        }, 'Please complete the field'); // Global message if there's only white space for required fields
 
 
     /** Advance email validation method
      * */
     $.extend($.validator.messages, {
-        email: "<span>*</span>Please enter a valid email address",
+        email: "Please enter a valid email address",
     });
 
     /*$.validator.addMethod("sessions_val_not_equal", function(value, element) {
@@ -468,13 +468,8 @@ function defaultForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            forename: {
-                required: true,
+            "full-name": {
                 noSpace: true
-            },
-            surname: {
-                required: true,
-                noSpace:true
             },
             email: {
                 required: true,
@@ -497,11 +492,8 @@ function defaultForm(){
          * Error messages
          * */
         messages: {
-            forename: {
-                required: "Please enter your first name"
-            },
-            surname: {
-                required: "Please enter your last name"
+            "full-name": {
+                required: "Please enter your full name"
             },
             email: "Please enter your email address",
             "confirm-email": {
@@ -1136,84 +1128,6 @@ function applyToFilmForm(){
         }
     });
 };/**
- * @contact-form-name: Records Research Enquiry form
- *
- * ----- Table of contents -------------------------------------
- *
- * 1. Define variables
- * 2. Include custom form methods from methods.js
- * 3. Add the validation rules
- *
- * */
-
-function foiForm(){
-    /**
-     * 1. Declare variables
-     * */
-    var formName = "#foi";
-    var form = $(formName);
-
-    /**
-     * 2. Included custom form validation methods from methods.js
-     * */
-    formMethods();
-
-    /**
-     * 3. Add the validation rules
-     * */
-    form.validate({
-        errorElement: 'span',
-        errorClass: 'form-error form-hint',
-        highlight: function(element, errorClass, validClass) {
-            $(element).closest('input[type="text"]').addClass("form-warning");
-            $(element).closest('input[type="email"]').addClass("form-warning");
-            $(element).closest('textarea').addClass("form-warning");
-        },
-        unhighlight: function(element, errorClass, validClass) {
-            $(element).closest('input[type="text"]').removeClass("form-warning");
-            $(element).closest('input[type="email"]').removeClass("form-warning");
-            $(element).closest('textarea').removeClass("form-warning");
-        },
-        rules: {
-            "mandatory_surname":{
-                required:true,
-                noSpace:true
-            },
-            "mandatory_email": {
-                required: true,
-                email:true
-            },
-            "mandatory_enquiry":{
-                required:true,
-                noSpace:true
-            }
-
-        },
-        /**
-         * Error messages
-         * */
-        messages: {
-            "mandatory_surname":{
-                required:"Please insert your last name"
-            },
-            "mandatory_email": "Please enter your email address",
-            "mandatory_enquiry":{
-                required:"Please enter your enquiry"
-            }
-        }
-    });
-
-    $("input[name='send-message']").on('click', function(){
-        var emphAlert = ($('.emphasis-block.error-message').length === 1);
-        if(form.valid() !== true) {
-            if(emphAlert) {
-                $('.emphasis-block.error-message').show();
-            } else {
-                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
-            }
-        }
-    });
-};/**
  * @contact-form-name: Apply to film
  *
  * ----- Table of contents -------------------------------------
@@ -1380,6 +1294,103 @@ function dcfForm(){
 
 
 };/**
+ * @contact-form-name: FOI corporate form
+ *
+ * ----- Table of contents -------------------------------------
+ *
+ * 1. Define variables
+ * 2. Include custom form methods from methods.js
+ * 3. Add the validation rules
+ * */
+
+/**
+ * Template checklist
+ * --- Before creating a new form please make sure the the form was generated using the OOP PHP ---
+ *
+ * 1. Copy/Paste default.js and change the name to the new form
+ * 2. Include new form js file in Gruntfile.js under Concat plugin before tna-call-plugin.js
+ * 3. Change the function name to match the new form name e.g. generalForm() etc
+ * 4. Grab/Copy the ID of the form generated by the OOP
+ * 5. Include the new function name inside the tna-call-plugin under else if(THE NEW ID).is(':visible') statement
+ * 6. Change the default form ID from #default to match the actual <form> ID generated in OOP
+ * 7. Add/Remove rules/messages to match the new form's fields by using their ID or name attribute
+ * */
+
+function foiCorporateForm(){
+    /**
+     * 1. Declare variables
+     * */
+    var formName = "#foi_corporate";
+    var form = $(formName);
+
+    /**
+     * 2. Included custom form validation methods from methods.js
+     * */
+    formMethods();
+
+    /**
+     * 3. Add the validation rules
+     * */
+    form.validate({
+        errorElement: 'span',
+        errorClass: 'form-error form-hint',
+        highlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').addClass("form-warning");
+            $(element).closest('input[type="email"]').addClass("form-warning");
+            $(element).closest('textarea').addClass("form-warning");
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').removeClass("form-warning");
+            $(element).closest('input[type="email"]').removeClass("form-warning");
+            $(element).closest('textarea').removeClass("form-warning");
+        },
+        rules: {
+            "full-name": {
+                required: true,
+                noSpace: true
+            },
+            email: {
+                required: true,
+                email:true
+            },
+            "confirm-email": {
+                equalTo: "#email"
+            },
+            enquiry:{
+                required:true,
+                noSpace:true
+            }
+
+        },
+        /**
+         * Error messages
+         * */
+        messages: {
+            "full-name": {
+                required: "Please enter your full name"
+            },
+            email: "Please enter your email address",
+            "confirm-email": {
+                required:"Please enter your email address",
+                equalTo: "Please enter your email address again"
+            },
+            enquiry:{
+                required:"Please enter your enquiry"
+            }
+        }
+    });
+
+    $("input[name='submit-foi-corporate']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
+};/**
  * @name  : Newsletter and Contact forms Wordpress plugin
  * @author: TNA WebTeam
  * @owner : The National Archives
@@ -1417,14 +1428,14 @@ $(document).ready(function() {
         else if ($('#apply-to-film').is(':visible')){
             applyToFilmForm();
         }
-        else if ($('#foi').is(':visible')){
-            foiForm();
-        }
         else if ($('#pronom').is(':visible')){
             pronomForm();
         }
         else if ($('#dcf').is(':visible')) {
             dcfForm();
+        }
+        else if ($('#foi_corporate').is(':visible')) {
+            foiCorporateForm();
         }
         else {
             defaultForm();
