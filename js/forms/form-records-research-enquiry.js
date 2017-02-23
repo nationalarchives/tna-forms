@@ -38,17 +38,16 @@ function recordsResearchEnquiryForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
+            "full-name":{
+                required:true,
+                noSpace:true
+            },
             email: {
                 required: true,
-                email:true,
-                advEmail:true
+                email:true
             },
             "confirm-email": {
                 equalTo: "#email"
-            },
-            country:{
-                required:true,
-                noSpace:true
             },
             enquiry:{
                 required:true,
@@ -60,17 +59,29 @@ function recordsResearchEnquiryForm(){
          * Error messages
          * */
         messages: {
+            "full-name":{
+                required:"Please insert your full name"
+            },
             email: "Please enter your email address",
             "confirm-email": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
-            },
-            country:{
-                required:"Please enter your country"
             },
             enquiry:{
                 required:"Please enter your enquiry"
             }
         }
     });
+
+    $("input[name='submit-rre']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
+
 }

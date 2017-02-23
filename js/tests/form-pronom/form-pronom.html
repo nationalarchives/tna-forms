@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply to film</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="fixture">
+    <form action="" id="pronom" method="POST" novalidate="novalidate"><input type="hidden" name="tna-form"
+                                                                             value="PRONOM"><input type="hidden"
+                                                                                                   name="token"
+                                                                                                   value="81b27ec39e705bba45caf2b874498f7b"><input
+            type="hidden" name="timestamp" value="1485274341">
+        <fieldset>
+            <legend>Your details</legend>
+            <div class="form-row"><label for="full_name">Full name</label><input type="text" id="full_name"
+                                                                                 name="full-name" aria-required="true"
+                                                                                 required=""></div>
+            <div class="form-row"><label for="email">Email address</label><input type="email" id="email" name="email"
+                                                                                 aria-required="true" required=""></div>
+            <div class="form-row"><label for="confirm_email">Please re-type your email address</label><input
+                    type="email" id="confirm_email" name="confirm-email" aria-required="true" required=""></div>
+            <div class="form-row"><label for="organisation">Organisation <span
+                    class="optional">(optional)</span></label><input type="text" id="organisation" name="organisation">
+            </div>
+            <div class="form-row"><label for="find_out">How did you find out about PRONOM? <span class="optional">(optional)</span></label><textarea
+                    id="find_out" name="find-out"></textarea>
+                <grammarly-btn>
+                    <div style="visibility: hidden; z-index: 2;"
+                         class="_e725ae-textarea_btn _e725ae-anonymous _e725ae-not_focused" data-grammarly-reactid=".0">
+                        <div class="_e725ae-transform_wrap" data-grammarly-reactid=".0.0">
+                            <div title="Protected by Grammarly" class="_e725ae-status" data-grammarly-reactid=".0.0.0">
+                                &nbsp;</div>
+                        </div>
+                        <span class="_e725ae-btn_text" data-grammarly-reactid=".0.1">Not signed in</span></div>
+                </grammarly-btn>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Your request</legend>
+            <div class="form-row"><p>New entry / update to existing entry</p></div>
+            <div class="form-row"><p>Please suggest particular file formats you would like more information on. These
+                can be formats which are not currently listed in the PRONOM database, or formats which have an
+                incomplete entry in PRONOM.</p></div>
+            <div class="form-row"><label for="file_format">File format to investigate</label><input type="text"
+                                                                                                    id="file_format"
+                                                                                                    name="file-format"
+                                                                                                    aria-required="true"
+                                                                                                    required=""></div>
+            <div class="form-row checkbox"><input type="checkbox" id="file_example" name="file-example"
+                                                  value="Yes"><label for="file_example">Tick here if you have an example
+                of the file format</label></div>
+            <div class="form-row checkbox"><input type="checkbox" id="contact" name="contact" value="Yes"><label
+                    for="contact">Tick here if we can contact you for more information</label></div>
+        </fieldset>
+        <fieldset>
+            <legend>Your submission</legend>
+            <div class="form-row"><p>Additional information</p></div>
+            <div class="form-row"><p>If you have specific technical information about the file format concerned, please
+                provide it here.</p></div>
+            <div class="form-row"><label for="puid">PUID <span class="optional">(optional)</span></label><input
+                    type="text" id="puid" name="puid"></div>
+            <div class="form-row"><label for="references">References <span class="optional">(optional)</span></label>
+                <p class="form-hint">To provide validity / authenticity to the entry</p><textarea id="references"
+                                                                                                  name="references"></textarea>
+                <grammarly-btn>
+                    <div style="visibility: hidden; z-index: 2;"
+                         class="_e725ae-textarea_btn _e725ae-anonymous _e725ae-not_focused" data-grammarly-reactid=".3">
+                        <div class="_e725ae-transform_wrap" data-grammarly-reactid=".3.0">
+                            <div title="Protected by Grammarly" class="_e725ae-status" data-grammarly-reactid=".3.0.0">
+                                &nbsp;</div>
+                        </div>
+                        <span class="_e725ae-btn_text" data-grammarly-reactid=".3.1">Not signed in</span></div>
+                </grammarly-btn>
+            </div>
+            <div class="form-row"><label for="other_information">Other information you can tell us about the format
+                <span class="optional">(optional)</span></label>
+                <p class="form-hint">e.g. version; vendor / developer; file extension</p><textarea
+                        id="other_information" name="other-information"></textarea>
+                <grammarly-btn>
+                    <div style="visibility: hidden; z-index: 2;"
+                         class="_e725ae-textarea_btn _e725ae-anonymous _e725ae-not_focused" data-grammarly-reactid=".6">
+                        <div class="_e725ae-transform_wrap" data-grammarly-reactid=".6.0">
+                            <div title="Protected by Grammarly" class="_e725ae-status" data-grammarly-reactid=".6.0.0">
+                                &nbsp;</div>
+                        </div>
+                        <span class="_e725ae-btn_text" data-grammarly-reactid=".6.1">Not signed in</span></div>
+                </grammarly-btn>
+            </div>
+            <div class="form-row hidden"><label for="skype_name">Skype name (please ignore this field)</label><input
+                    type="text" id="skype_name" name="skype-name-66"></div>
+            <div class="form-row"><input type="submit" name="submit-pr" id="submit-tna-form" value="Submit"></div>
+        </fieldset>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="form-pronom.js"></script>
+</body>
+</html>

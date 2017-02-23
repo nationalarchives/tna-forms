@@ -49,6 +49,7 @@ function naturalisationForm(){
      * */
     $(button,'.form-step-1,.form-step-2').css("display","block");
     $(buttonBack,'.form-step-2,.form-step-3').css("display","block");
+    $('.arrow-steps').css("display","block");
 
     History.pushState({state:1},'Certificate holder\'s details', '#step-1');
 
@@ -77,6 +78,7 @@ function naturalisationForm(){
             $('.arrow-steps li:nth-child(3)').removeClass("current");
 
         }
+
     });
 
 
@@ -89,19 +91,14 @@ function naturalisationForm(){
 
 
 
-    $(submit).prop('disabled', true);
+    $(submit, formName).prop('disabled', true);
 
 
     /**
      * 5. Form validation
      * */
-    $(button).on('click',function(e){
-        e.preventDefault();
+    $(".button,input[name='submit-bc']").on('click',function(){
         var form = $(formName);
-
-        // Scroll back to top
-        $("html, body").animate({ scrollTop: 0 }, "slow");
-
         /**
          * Included custom form validation methods from methods.js
          * */
@@ -167,8 +164,7 @@ function naturalisationForm(){
                 },
                 email: {
                     required: true,
-                    email:true,
-                    advEmail:true
+                    email:true
                 },
                 "confirm-email": {
                     equalTo: "#email"
@@ -186,6 +182,10 @@ function naturalisationForm(){
                 },
 
                 /* Form Step Three */
+                "full-name": {
+                    required: true,
+                    noSpace: true
+                },
                 contact_email:{
                     required: function(element) {
                         return $("#contact-postal:checked").length <= 0;
@@ -234,6 +234,9 @@ function naturalisationForm(){
                     required:"Please enter the certificate holder’s name(s)"
                 },
                 /* Form Step Three */
+                "full-name": {
+                    required: "Please enter your full name"
+                },
                 "preferred-contact":{
                     required: "Please select one option"
                 }
@@ -246,7 +249,6 @@ function naturalisationForm(){
         /**
          * 5.3 If form is valid do following things
          * */
-
         if (form.valid() === true){
 
             /**
@@ -258,7 +260,7 @@ function naturalisationForm(){
 
                 /* Show progress bar */
                 $('.arrow-steps li:nth-child(2)').addClass("current");
-
+                $("html, body").animate({ scrollTop: 0 }, "slow");
                 History.pushState({state:2},'Certificate details (optional)', '#step-2');
 
                 $(submit).prop('disabled', true);
@@ -273,8 +275,8 @@ function naturalisationForm(){
 
                 /* Show progress bar */
                 $('.arrow-steps li:nth-child(3)').addClass("current");
-                $(submit).prop('disabled', false);
-
+                $(submit, formName).prop('disabled', false);
+                $("html, body").animate({ scrollTop: 0 }, "slow");
                 History.pushState({state:3},'Contact details', '#step-3');
 
             }
@@ -282,9 +284,19 @@ function naturalisationForm(){
             next_fs.show();
             current_fs.hide();
 
+        } else {
+            // Scroll back to top
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+            if ($('.form-error').is(':visible')) {
+                var emphAlert = ($('.emphasis-block.error-message').length === 1);
+                if(emphAlert) {
+                    $('.emphasis-block.error-message').show();
+                } else {
+                    $('.arrow-steps').before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+                }
+            }
         }
     });
-
 
     /**
      * 6. Show / hide Email / address
@@ -301,7 +313,6 @@ function naturalisationForm(){
 
         }
     });
-
 
     /**
      * 7. Back button on step two
@@ -327,5 +338,3 @@ function naturalisationForm(){
         History.pushState({state:2},'Certificate details (optional)', '#step-2');
     });
 };
-
-

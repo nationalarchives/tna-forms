@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply to film</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="fixture">
+    <form action="" id="apply-to-film" method="POST"><input type="hidden" name="tna-form"
+                                                            value="Apply to film at The National Archives"><input
+            type="hidden" name="token" value="143c1d54dd6e4e4297f6871f84291ab8"><input type="hidden" name="timestamp"
+                                                                                       value="1481302909">
+        <fieldset>
+            <legend>Your details</legend>
+            <div class="form-row"><label for="full_name">Full name</label><input type="text" id="full_name"
+                                                                                 name="full-name" aria-required="true"
+                                                                                 required></div>
+            <div class="form-row"><label for="email">Email address</label><input type="email" id="email" name="email"
+                                                                                 aria-required="true" required></div>
+            <div class="form-row"><label for="confirm_email">Please re-type your email address</label><input
+                    type="email" id="confirm_email" name="confirm-email" aria-required="true" required></div>
+            <div class="form-row"><label for="company">Company <span class="optional">(optional)</span></label><input
+                    type="text" id="company" name="company"></div>
+            <div class="form-row"><label for="job_title">Job title <span
+                    class="optional">(optional)</span></label><input type="text" id="job_title" name="job-title"></div>
+            <div class="form-row"><label for="telephone">Telephone <span class="optional">(optional)</span></label>
+                <p class="form-hint">Include the area code</p><input type="tel" id="telephone" name="telephone"></div>
+            <div class="form-row"><label for="about_project">About the project</label><textarea id="about_project"
+                                                                                                name="about-project"
+                                                                                                aria-required="true"
+                                                                                                required></textarea>
+            </div>
+            <div class="form-row"><label for="date">Date of filming</label><input type="text" id="date" name="date"
+                                                                                  aria-required="true" required></div>
+            <div class="form-row hidden"><label for="skype_name">Skype name (please ignore this field)</label><input
+                    type="text" id="skype_name" name="skype-name-25"></div>
+            <div class="form-row"><input type="submit" name="submit-atf" id="submit-tna-form" value="Submit"></div>
+        </fieldset>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="form-apply-to-film.js"></script>
+</body>
+</html>

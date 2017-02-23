@@ -62,12 +62,19 @@
 
     /** Advance email validation method
      * */
-    $.validator.addMethod("advEmail",
-        function(value, element) {
-            return this.optional( element ) || /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value);
-        },
-        "Please insert a valid email address"
-    );
+    $.extend($.validator.messages, {
+        email: "Please enter a valid email address",
+    });
+
+    /*$.validator.addMethod("sessions_val_not_equal", function(value, element) {
+
+        firstSession = $('#session_first_choice').val();
+        secondSession = $('#session_second_choice').val();
+
+        return firstSession !== secondSession
+
+    }, "* Session choice should not match");*/
+
 }
 
 ;/**
@@ -121,6 +128,7 @@ function naturalisationForm(){
      * */
     $(button,'.form-step-1,.form-step-2').css("display","block");
     $(buttonBack,'.form-step-2,.form-step-3').css("display","block");
+    $('.arrow-steps').css("display","block");
 
     History.pushState({state:1},'Certificate holder\'s details', '#step-1');
 
@@ -149,6 +157,7 @@ function naturalisationForm(){
             $('.arrow-steps li:nth-child(3)').removeClass("current");
 
         }
+
     });
 
 
@@ -161,19 +170,14 @@ function naturalisationForm(){
 
 
 
-    $(submit).prop('disabled', true);
+    $(submit, formName).prop('disabled', true);
 
 
     /**
      * 5. Form validation
      * */
-    $(button).on('click',function(e){
-        e.preventDefault();
+    $(".button,input[name='submit-bc']").on('click',function(){
         var form = $(formName);
-
-        // Scroll back to top
-        $("html, body").animate({ scrollTop: 0 }, "slow");
-
         /**
          * Included custom form validation methods from methods.js
          * */
@@ -239,8 +243,7 @@ function naturalisationForm(){
                 },
                 email: {
                     required: true,
-                    email:true,
-                    advEmail:true
+                    email:true
                 },
                 "confirm-email": {
                     equalTo: "#email"
@@ -258,6 +261,10 @@ function naturalisationForm(){
                 },
 
                 /* Form Step Three */
+                "full-name": {
+                    required: true,
+                    noSpace: true
+                },
                 contact_email:{
                     required: function(element) {
                         return $("#contact-postal:checked").length <= 0;
@@ -306,6 +313,9 @@ function naturalisationForm(){
                     required:"Please enter the certificate holder’s name(s)"
                 },
                 /* Form Step Three */
+                "full-name": {
+                    required: "Please enter your full name"
+                },
                 "preferred-contact":{
                     required: "Please select one option"
                 }
@@ -318,7 +328,6 @@ function naturalisationForm(){
         /**
          * 5.3 If form is valid do following things
          * */
-
         if (form.valid() === true){
 
             /**
@@ -330,7 +339,7 @@ function naturalisationForm(){
 
                 /* Show progress bar */
                 $('.arrow-steps li:nth-child(2)').addClass("current");
-
+                $("html, body").animate({ scrollTop: 0 }, "slow");
                 History.pushState({state:2},'Certificate details (optional)', '#step-2');
 
                 $(submit).prop('disabled', true);
@@ -345,8 +354,8 @@ function naturalisationForm(){
 
                 /* Show progress bar */
                 $('.arrow-steps li:nth-child(3)').addClass("current");
-                $(submit).prop('disabled', false);
-
+                $(submit, formName).prop('disabled', false);
+                $("html, body").animate({ scrollTop: 0 }, "slow");
                 History.pushState({state:3},'Contact details', '#step-3');
 
             }
@@ -354,9 +363,19 @@ function naturalisationForm(){
             next_fs.show();
             current_fs.hide();
 
+        } else {
+            // Scroll back to top
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+            if ($('.form-error').is(':visible')) {
+                var emphAlert = ($('.emphasis-block.error-message').length === 1);
+                if(emphAlert) {
+                    $('.emphasis-block.error-message').show();
+                } else {
+                    $('.arrow-steps').before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+                }
+            }
         }
     });
-
 
     /**
      * 6. Show / hide Email / address
@@ -373,7 +392,6 @@ function naturalisationForm(){
 
         }
     });
-
 
     /**
      * 7. Back button on step two
@@ -398,10 +416,7 @@ function naturalisationForm(){
 
         History.pushState({state:2},'Certificate details (optional)', '#step-2');
     });
-};
-
-
-;/**
+};;/**
  * @contact-form-name: Default form
  *
  * ----- Table of contents -------------------------------------
@@ -409,6 +424,19 @@ function naturalisationForm(){
  * 1. Define variables
  * 2. Include custom form methods from methods.js
  * 3. Add the validation rules
+ * */
+
+/**
+ * Template checklist
+ * --- Before creating a new form please make sure the the form was generated using the OOP PHP ---
+ *
+ * 1. Copy/Paste default.js and change the name to the new form
+ * 2. Include new form js file in Gruntfile.js under Concat plugin before tna-call-plugin.js
+ * 3. Change the function name to match the new form name e.g. generalForm() etc
+ * 4. Grab/Copy the ID of the form generated by the OOP
+ * 5. Include the new function name inside the tna-call-plugin under else if(THE NEW ID).is(':visible') statement
+ * 6. Change the default form ID from #default to match the actual <form> ID generated in OOP
+ * 7. Add/Remove rules/messages to match the new form's fields by using their ID or name attribute
  * */
 
 function defaultForm(){
@@ -440,18 +468,12 @@ function defaultForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            forename: {
-                required: true,
+            "full-name": {
                 noSpace: true
-            },
-            surname: {
-                required: true,
-                noSpace:true
             },
             email: {
                 required: true,
-                email:true,
-                advEmail:true
+                email:true
             },
             "confirm-email": {
                 equalTo: "#email"
@@ -470,11 +492,8 @@ function defaultForm(){
          * Error messages
          * */
         messages: {
-            forename: {
-                required: "Please enter your first name"
-            },
-            surname: {
-                required: "Please enter your last name"
+            "full-name": {
+                required: "Please enter your full name"
             },
             email: "Please enter your email address",
             "confirm-email": {
@@ -486,6 +505,17 @@ function defaultForm(){
             },
             enquiry:{
                 required:"Please enter your enquiry"
+            }
+        }
+    });
+
+    $("input[name='submit-default']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
             }
         }
     });
@@ -529,15 +559,191 @@ function recordsResearchEnquiryForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
+            "full-name":{
+                required:true,
+                noSpace:true
+            },
             email: {
                 required: true,
-                email:true,
-                advEmail:true
+                email:true
+            },
+            "confirm-email": {
+                equalTo: "#email"
+            },
+            enquiry:{
+                required:true,
+                noSpace:true
+            }
+
+        },
+        /**
+         * Error messages
+         * */
+        messages: {
+            "full-name":{
+                required:"Please insert your full name"
+            },
+            email: "Please enter your email address",
+            "confirm-email": {
+                required:"Please enter your email address",
+                equalTo: "Please enter your email address again"
+            },
+            enquiry:{
+                required:"Please enter your enquiry"
+            }
+        }
+    });
+
+    $("input[name='submit-rre']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
+
+};/**
+ * @contact-form-name: Your Views form
+ *
+ * ----- Table of contents -------------------------------------
+ *
+ * 1. Define variables
+ * 2. Include custom form methods from methods.js
+ * 3. Add the validation rules
+ * */
+
+function yourViewsForm(){
+    /**
+     * 1. Declare variables
+     * */
+    var formName = "#your-views";
+    var form = $(formName);
+
+    /**
+     * 2. Included custom form validation methods from methods.js
+     * */
+    formMethods();
+
+    /**
+     * 3. Add the validation rules
+     * */
+    form.validate({
+        errorElement: 'span',
+        errorClass: 'form-error form-hint',
+        highlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').addClass("form-warning");
+            $(element).closest('input[type="email"]').addClass("form-warning");
+            $(element).closest('textarea').addClass("form-warning");
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').removeClass("form-warning");
+            $(element).closest('input[type="email"]').removeClass("form-warning");
+            $(element).closest('textarea').removeClass("form-warning");
+        },
+        rules: {
+            "full-name": {
+                noSpace: true
+            },
+            email: {
+                email:true
+            },
+            "confirm-email": {
+                equalTo: "#email"
+            },
+            reason:{
+                required: true,
+                noSpace: true
+            },
+            enquiry:{
+                required:true,
+                noSpace:true
+            }
+
+        },
+        /**
+         * Error messages
+         * */
+        messages: {
+            "confirm-email": {
+                equalTo: "Please enter your email address again"
+            },
+            reason:{
+                required: "Please select an option"
+            },
+            enquiry:{
+                required:"Please enter your enquiry"
+            }
+        }
+    });
+
+    $("input[name='submit-yv']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
+};/**
+ * @contact-form-name: General form
+ *
+ * ----- Table of contents -------------------------------------
+ *
+ * 1. Define variables
+ * 2. Include custom form methods from methods.js
+ * 3. Add the validation rules
+ * */
+
+function generalEnquiriesForm(){
+    /**
+     * 1. Declare variables
+     * */
+    var formName = "#general";
+    var form = $(formName);
+
+    /**
+     * 2. Included custom form validation methods from methods.js
+     * */
+    formMethods();
+
+    /**
+     * 3. Add the validation rules
+     * */
+    form.validate({
+        errorElement: 'span',
+        errorClass: 'form-error form-hint',
+        highlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').addClass("form-warning");
+            $(element).closest('input[type="email"]').addClass("form-warning");
+            $(element).closest('textarea').addClass("form-warning");
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').removeClass("form-warning");
+            $(element).closest('input[type="email"]').removeClass("form-warning");
+            $(element).closest('textarea').removeClass("form-warning");
+        },
+        rules: {
+            "full-name": {
+                required: true,
+                noSpace: true
+            },
+            email: {
+                required: true,
+                email:true
             },
             "confirm-email": {
                 equalTo: "#email"
             },
             country:{
+                required:true,
+                noSpace:true
+            },
+            reason:{
                 required:true,
                 noSpace:true
             },
@@ -551,6 +757,9 @@ function recordsResearchEnquiryForm(){
          * Error messages
          * */
         messages: {
+            "full-name": {
+                required: "Please enter your full name"
+            },
             email: "Please enter your email address",
             "confirm-email": {
                 required:"Please enter your email address",
@@ -559,8 +768,625 @@ function recordsResearchEnquiryForm(){
             country:{
                 required:"Please enter your country"
             },
+            reason:{
+                required:"Please select an option"
+            },
             enquiry:{
                 required:"Please enter your enquiry"
+            }
+        }
+    });
+
+    $("input[name='submit-ge']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
+};/**
+ * @contact-form-name: Public sector form
+ *
+ * ----- Table of contents -------------------------------------
+ *
+ * 1. Define variables
+ * 2. Include custom form methods from methods.js
+ * 3. Add the validation rules
+ * */
+
+function publicSectorForm(){
+    /**
+     * 1. Declare variables
+     * */
+    var formName = "#public-sector";
+    var form = $(formName);
+
+    /**
+     * 2. Included custom form validation methods from methods.js
+     * */
+    formMethods();
+
+    /**
+     * 3. Add the validation rules
+     * */
+    form.validate({
+        errorElement: 'span',
+        errorClass: 'form-error form-hint',
+        highlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').addClass("form-warning");
+            $(element).closest('input[type="email"]').addClass("form-warning");
+            $(element).closest('textarea').addClass("form-warning");
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').removeClass("form-warning");
+            $(element).closest('input[type="email"]').removeClass("form-warning");
+            $(element).closest('textarea').removeClass("form-warning");
+        },
+        rules: {
+            "full-name": {
+                required: true,
+                noSpace: true
+            },
+            email: {
+                required: true,
+                email:true
+            },
+            "confirm-email": {
+                equalTo: "#email"
+            },
+            enquiry:{
+                required:true,
+                noSpace:true
+            }
+
+        },
+        /**
+         * Error messages
+         * */
+        messages: {
+            "full-name": {
+                required: "Please enter your full name"
+            },
+            email: "Please enter your email address",
+            "confirm-email": {
+                required:"Please enter your email address",
+                equalTo: "Please enter your email address again"
+            },
+            enquiry:{
+                required:"Please enter your enquiry"
+            }
+        }
+    });
+
+    $("input[name='submit-psi']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
+
+};/**
+ * @contact-form-name: IACS Training form
+ *
+ * ----- Table of contents -------------------------------------
+ *
+ * 1. Define variables
+ * 2. Include custom form methods from methods.js
+ * 3. Check if value in drop down sessions does not match
+ * 4. Add the validation rules
+ * */
+
+function iacsTrainingForm(){
+    /**
+     * 1. Declare variables
+     * */
+    var formName = "#iacs_training";
+    var form = $(formName);
+
+    /**
+     * 2. Included custom form validation methods from methods.js
+     * */
+    formMethods();
+
+    /**
+     * 3. Check if value in drop down sessions does not match
+     * */
+
+    // Declare self executing function and keep all my variables inside this scope
+    (function(){
+
+        // Declare variables
+        var $firstSession = $('#session_first_choice');
+        var $secondSession = $('#session_second_choice');
+
+        // Declare anonymous function
+        var compareSessions = function (sessionOne, sessionTwo){
+            sessionOne.change(function() {
+                sessionTwo.find('option').prop("disabled", false);
+                var selectedItem = $(this).val();
+                if (selectedItem) {
+                    sessionTwo.find('option[value="' + selectedItem + '"]').prop("disabled", true);
+                }
+            });
+        }
+
+        // Compare session 1 with 2
+        compareSessions($firstSession,$secondSession);
+        // Compare session 2 with 1
+        compareSessions($secondSession,$firstSession);
+    })();
+
+    /**
+     * 4. Add the validation rules
+     * */
+    form.validate({
+        errorElement: 'span',
+        errorClass: 'form-error form-hint',
+        highlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').addClass("form-warning");
+            $(element).closest('input[type="email"]').addClass("form-warning");
+            $(element).closest('input[type="tel"]').addClass("form-warning");
+            $(element).closest('textarea').addClass("form-warning");
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').removeClass("form-warning");
+            $(element).closest('input[type="email"]').removeClass("form-warning");
+            $(element).closest('input[type="tel"]').removeClass("form-warning");
+            $(element).closest('textarea').removeClass("form-warning");
+        },
+        rules: {
+            "full-name": {
+                required: true,
+                noSpace: true
+            },
+            email: {
+                required: true,
+                email:true
+            },
+            "confirm-email": {
+                equalTo: "#email"
+            },
+            telephone:{
+                required: true,
+                noSpace: true
+            },
+            "job-title":{
+                required:true,
+                noSpace: true
+            },
+            organisation:{
+                required:true,
+                noSpace: true
+            },
+            address:{
+                required:true,
+                noSpace:true
+            },
+            "organisation-type":{
+                required:true,
+                noSpace: true
+            },
+            "your-role":{
+                required:true,
+                noSpace: true
+            },
+           "session-first-choice": {
+                required:true,
+                noSpace: true
+            },
+            "session-second-choice": {
+                required:true,
+                noSpace: true
+            }
+
+        },
+        /**
+         * Error messages
+         * */
+        messages: {
+            "full-name": {
+                required: "Please enter your full name"
+            },
+            email: "Please enter your email address",
+            "confirm-email": {
+                required:"Please enter your email address",
+                equalTo: "Please enter your email address again"
+            },
+            telephone:{
+                required: "Please enter your telephone number"
+            },
+            "job-title":{
+                required:"Please enter your job title"
+            },
+            organisation:{
+                required:"Please enter a department/agency/organisation"
+            },
+            address:{
+                required:"Please enter an address"
+            },
+            "organisation-type":{
+                required:"Please select an option"
+            },
+            "your-role":{
+                required:"Please select an option"
+            },
+            "session-first-choice": {
+                required:"Please select an option"
+            },
+            "session-second-choice": {
+                required:"Please select an option"
+            }
+        }
+    });
+
+    $("input[name='submit-iacs']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
+};/**
+ * @contact-form-name: Apply to film
+ *
+ * ----- Table of contents -------------------------------------
+ *
+ * 1. Define variables
+ * 2. Include custom form methods from methods.js
+ * 3. Add the validation rules
+ * */
+
+function applyToFilmForm(){
+    /**
+     * 1. Declare variables
+     * */
+    var formName = "#apply-to-film";
+    var form = $(formName);
+
+    /**
+     * 2. Included custom form validation methods from methods.js
+     * */
+    formMethods();
+
+    /**
+     * 3. Add the validation rules
+     * */
+    form.validate({
+        errorElement: 'span',
+        errorClass: 'form-error form-hint',
+        highlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').addClass("form-warning");
+            $(element).closest('input[type="email"]').addClass("form-warning");
+            $(element).closest('textarea').addClass("form-warning");
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').removeClass("form-warning");
+            $(element).closest('input[type="email"]').removeClass("form-warning");
+            $(element).closest('textarea').removeClass("form-warning");
+        },
+        rules: {
+            "full-name": {
+                required: true,
+                noSpace: true
+            },
+            email: {
+                required: true,
+                email:true
+            },
+            "confirm-email": {
+                equalTo: "#email"
+            },
+            "about_project":{
+                require:true,
+                noSpace: true
+            },
+            date:{
+                required:true,
+                noSpace: true
+            }
+
+        },
+        /**
+         * Error messages
+         * */
+        messages: {
+            "full-name": {
+                required: "Please enter your full name"
+            },
+            email: "Please enter your email address",
+            "confirm-email": {
+                required:"Please enter your email address",
+                equalTo: "Please enter your email address again"
+            },
+            "about-project":{
+                required:"Please enter your project details"
+            },
+            date:{
+                required:"Please enter your filming date"
+            }
+        }
+    });
+
+    $("input[name='submit-atf']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
+};/**
+ * @contact-form-name: Apply to film
+ *
+ * ----- Table of contents -------------------------------------
+ *
+ * 1. Define variables
+ * 2. Include custom form methods from methods.js
+ * 3. Add the validation rules
+ * */
+
+function pronomForm(){
+    /**
+     * 1. Declare variables
+     * */
+    var formName = "#pronom";
+    var form = $(formName);
+
+    /**
+     * 2. Included custom form validation methods from methods.js
+     * */
+    formMethods();
+
+    /**
+     * 3. Add the validation rules
+     * */
+    form.validate({
+        errorElement: 'span',
+        errorClass: 'form-error form-hint',
+        highlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').addClass("form-warning");
+            $(element).closest('input[type="email"]').addClass("form-warning");
+            $(element).closest('textarea').addClass("form-warning");
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').removeClass("form-warning");
+            $(element).closest('input[type="email"]').removeClass("form-warning");
+            $(element).closest('textarea').removeClass("form-warning");
+        },
+        rules: {
+            "full-name": {
+                required: true,
+                noSpace: true
+            },
+            email: {
+                required: true,
+                email:true
+            },
+            "confirm-email": {
+                equalTo: "#email"
+            },
+            "file-format":{
+                required: true,
+                noSpace: true
+            }
+
+        },
+        /**
+         * Error messages
+         * */
+        messages: {
+            "full-name": {
+                required:"Please enter your full name"
+            },
+            email: "Please enter your email address",
+            "confirm-email": {
+                required:"Please enter your email address",
+                equalTo: "Please enter your email address again"
+            },
+            "file-format":{
+                required:"Please enter the file format"
+            }
+        }
+    });
+
+    $("input[name='submit-pr']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
+};/**
+ * @contact-form-name: Your Views form
+ *
+ * ----- Table of contents -------------------------------------
+ *
+ * 1. Define variables
+ * 2. Include custom form methods from methods.js
+ * 3. Add the validation rules
+ *
+ * */
+function dcfForm(){
+    /**
+     * 1. Declare variables
+     * */
+    var formName = "#dcf";
+    var form = $(formName);
+
+    /**
+     * 2. Included custom form validation methods from methods.js
+     * */
+    formMethods();
+
+    /**
+     * 3. Add the validation rules
+     * */
+    form.validate({
+        errorElement: 'span',
+        errorClass: 'form-error form-hint',
+        highlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').addClass("form-warning");
+            $(element).closest('input[type="email"]').addClass("form-warning");
+            $(element).closest('textarea').addClass("form-warning");
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').removeClass("form-warning");
+            $(element).closest('input[type="email"]').removeClass("form-warning");
+            $(element).closest('textarea').removeClass("form-warning");
+        },
+        rules: {
+            "full-name": {
+                noSpace: true
+            },
+            email: {
+                email:true
+            },
+            "confirm-email": {
+                equalTo: "#email"
+            },
+            "catalogue-reference":{
+                required: true,
+                noSpace: true
+            },
+            enquiry:{
+                noSpace:true
+            }
+
+        },
+        /**
+         * Error messages
+         * */
+        messages: {
+            "confirm-email": {
+                equalTo: "Please enter your email address again"
+            },
+            "catalogue-reference":{
+                required: "Please enter your catalogue reference number"
+            },
+        }
+    });
+
+    $("input[name='submit-dcf']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
+
+
+};/**
+ * @contact-form-name: FOI corporate form
+ *
+ * ----- Table of contents -------------------------------------
+ *
+ * 1. Define variables
+ * 2. Include custom form methods from methods.js
+ * 3. Add the validation rules
+ * */
+
+/**
+ * Template checklist
+ * --- Before creating a new form please make sure the the form was generated using the OOP PHP ---
+ *
+ * 1. Copy/Paste default.js and change the name to the new form
+ * 2. Include new form js file in Gruntfile.js under Concat plugin before tna-call-plugin.js
+ * 3. Change the function name to match the new form name e.g. generalForm() etc
+ * 4. Grab/Copy the ID of the form generated by the OOP
+ * 5. Include the new function name inside the tna-call-plugin under else if(THE NEW ID).is(':visible') statement
+ * 6. Change the default form ID from #default to match the actual <form> ID generated in OOP
+ * 7. Add/Remove rules/messages to match the new form's fields by using their ID or name attribute
+ * */
+
+function foiCorporateForm(){
+    /**
+     * 1. Declare variables
+     * */
+    var formName = "#foi_corporate";
+    var form = $(formName);
+
+    /**
+     * 2. Included custom form validation methods from methods.js
+     * */
+    formMethods();
+
+    /**
+     * 3. Add the validation rules
+     * */
+    form.validate({
+        errorElement: 'span',
+        errorClass: 'form-error form-hint',
+        highlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').addClass("form-warning");
+            $(element).closest('input[type="email"]').addClass("form-warning");
+            $(element).closest('textarea').addClass("form-warning");
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').removeClass("form-warning");
+            $(element).closest('input[type="email"]').removeClass("form-warning");
+            $(element).closest('textarea').removeClass("form-warning");
+        },
+        rules: {
+            "full-name": {
+                required: true,
+                noSpace: true
+            },
+            email: {
+                required: true,
+                email:true
+            },
+            "confirm-email": {
+                equalTo: "#email"
+            },
+            enquiry:{
+                required:true,
+                noSpace:true
+            }
+
+        },
+        /**
+         * Error messages
+         * */
+        messages: {
+            "full-name": {
+                required: "Please enter your full name"
+            },
+            email: "Please enter your email address",
+            "confirm-email": {
+                required:"Please enter your email address",
+                equalTo: "Please enter your email address again"
+            },
+            enquiry:{
+                required:"Please enter your enquiry"
+            }
+        }
+    });
+
+    $("input[name='submit-foi-corporate']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
             }
         }
     });
@@ -580,14 +1406,37 @@ $(document).ready(function() {
         /**
          * Contact forms
          * */
+
         if ($('#naturalisation').is(':visible')) {
             naturalisationForm();
         }
-
         else if($('#records-research-enquiry').is(':visible')){
             recordsResearchEnquiryForm();
         }
-
+        else if($('#your-views').is(':visible')){
+            yourViewsForm();
+        }
+        else if ($('#general').is(':visible')){
+            generalEnquiriesForm();
+        }
+        else if ($('#public-sector').is(':visible')){
+            publicSectorForm();
+        }
+        else if ($('#iacs_training').is(':visible')){
+            iacsTrainingForm();
+        }
+        else if ($('#apply-to-film').is(':visible')){
+            applyToFilmForm();
+        }
+        else if ($('#pronom').is(':visible')){
+            pronomForm();
+        }
+        else if ($('#dcf').is(':visible')) {
+            dcfForm();
+        }
+        else if ($('#foi_corporate').is(':visible')) {
+            foiCorporateForm();
+        }
         else {
             defaultForm();
         }

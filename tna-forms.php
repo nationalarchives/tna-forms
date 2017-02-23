@@ -3,8 +3,8 @@
  * Plugin Name: TNA Forms validation
  * Plugin URI: https://github.com/nationalarchives/tna-forms
  * Description: The National Archives forms validation Wordpress plugin.
- * Version: 1.0beta
- * Author: Mihai Diaconita
+ * Version: 1.1
+ * Author: The National Archives
  * Author URI: https://github.com/nationalarchives
  * License: GPL2
  */
@@ -20,4 +20,12 @@ include 'tna-forms-shortcode.php';
 include 'forms/form-newsletter-signup.php';
 include 'forms/form-british-citizenship.php';
 include 'forms/form-records-research-enquiry.php';
+include 'forms/form-your-views.php';
+include 'forms/form-general.php';
+include 'forms/form-public-sector.php';
+include 'forms/form-iacs-training.php';
+include 'forms/form-apply-to-film.php';
+include 'forms/form-pronom.php';
+include 'forms/form-document-condition-feedback.php';
+include 'forms/form-foi-corporate.php';
 include 'forms/form-default.php';

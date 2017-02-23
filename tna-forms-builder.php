@@ -9,11 +9,18 @@ class Form_Builder {
 	}
 
 	public function form_begins( $id, $value, $no_validate = false ) {
-		$form = '<form action=""  id="%s" method="POST"' . $this->validate_for_testing( $no_validate ) . '>';
+		$form = '<form action=""  id="%s" class="form-abandonment" method="POST" ' . $this->novalidate_for_testing( $no_validate ) . '>';
 		$form .= '<input type="hidden" name="tna-form" value="%s">';
 		$form .= '<input type="hidden" name="token" value="' . form_token() . '">';
+		$form .= '<input type="hidden" name="timestamp" value="' . time() . '">';
 
 		return sprintf( $form, $id, $value );
+	}
+
+	public function form_foi_begins( $action = '', $id, $name ) {
+		$form = '<form action="%s"  id="%s" class="form-abandonment" name="%s" method="POST">';
+
+		return sprintf( $form, $action, $id, $name );
 	}
 
 	public function form_ends() {
@@ -32,6 +39,12 @@ class Form_Builder {
 		$form = '</fieldset>';
 
 		return $form;
+	}
+
+	public function form_hidden_input( $name, $value ) {
+		$form = '<input type="hidden" name="%s" value="%s">';
+
+		return sprintf( $form, $name, $value );
 	}
 
 	public function form_text_input( $label, $id, $name, $error = '', $hint = '' ) {
@@ -91,6 +104,44 @@ class Form_Builder {
 		return sprintf( $form, $label, $id, $name );
 	}
 
+	public function form_tel_input( $label, $id, $name, $error = '', $hint = '' ) {
+		$form = '<div class="form-row">';
+		$form .= '<label for="';
+		$form .= $id;
+		$form .= '">%s';
+		$form .= $this->is_optional( $error );
+		$form .= '</label>';
+		$form .= $this->hint_text( $hint );
+		$form .= '<input type="tel" id="%s" name="%s" ';
+		$form .= $this->required_atts( $error );
+		$form .= set_value( $name );
+		$form .= $this->input_error_class( $name, $error );
+		$form .= '>';
+		$form .= $this->input_error_message( $name, $error );
+		$form .= '</div>';
+
+		return sprintf( $form, $label, $id, $name );
+	}
+
+	public function form_date_input( $label, $id, $name, $error = '', $hint = '' ) {
+		$form = '<div class="form-row">';
+		$form .= '<label for="';
+		$form .= $id;
+		$form .= '">%s';
+		$form .= $this->is_optional( $error );
+		$form .= '</label>';
+		$form .= $this->hint_text( $hint );
+		$form .= '<input type="date" id="%s" name="%s" ';
+		$form .= $this->required_atts( $error );
+		$form .= set_value( $name );
+		$form .= $this->input_error_class( $name, $error );
+		$form .= '>';
+		$form .= $this->input_error_message( $name, $error );
+		$form .= '</div>';
+
+		return sprintf( $form, $label, $id, $name );
+	}
+
 	public function form_checkbox_input( $label, $id, $name, $error = '' ) {
 		$form = '<div class="form-row checkbox">';
 		$form .= '<input type="checkbox" id="%s" name="%s" value="Yes" ';
@@ -107,12 +158,105 @@ class Form_Builder {
 		return sprintf( $form, $id, $name, $label );
 	}
 
-	public function submit_form( $name, $id ) {
+	public function form_radio_group( $title = '', $name, $radios = array() ) {
+		$counter = 0;
 		$form = '<div class="form-row">';
-		$form .= '<input type="submit" name="%s" id="%s" value="Submit" class="button">';
+		if ( $title ) {
+			$form .= '<p>' . $title . '</p>';
+		}
+		foreach ( $radios as $radio ) {
+			$id = strtolower( str_replace(' ', '_', $radio) );
+			if ( $counter == 0 && !isset( $_POST['tna-form'] ) ) {
+				$checked = 'checked';
+			} else {
+				$checked = '';
+			}
+			$form .= '<div class="radio">';
+			$form .= '<input type="radio" id="' . $id . '" name="' . $name . '" value="' . $radio . '" ' . $checked;
+			$form .= set_value( $name, 'radio', $radio );
+			$form .= '>';
+			$form .= '<label for="' . $id . '">';
+			$form .= $radio;
+			$form .= '</label></div>';
+			$counter ++;
+		}
 		$form .= '</div>';
 
-		return sprintf( $form, $name, $id );
+		return $form;
+	}
+
+	public function form_select_input( $label, $id, $name, $options = array(), $error = '', $hint = '' ) {
+		$form = '<div class="form-row">';
+		$form .= '<label for="';
+		$form .= $id;
+		$form .= '">%s';
+		$form .= $this->is_optional( $error );
+		$form .= '</label>';
+		$form .= $this->hint_text( $hint );
+		$form .= '<select id="%s" name="%s" ';
+		$form .= $this->required_atts( $error );
+		$form .= $this->input_error_class( $name, $error );
+		$form .= '>';
+		$form .= '<option value="">Please select</option>';
+		foreach ( $options as $option ) {
+			$form .= '<option value="' . $option . '" ';
+			$form .= set_value( $name, 'select', $option );
+			$form .= '>';
+			$form .= $option;
+			$form .= '</option>';
+		}
+		$form .= '</select>';
+		$form .= $this->input_error_message( $name, $error );
+		$form .= '</div>';
+
+		return sprintf( $form, $label, $id, $name );
+	}
+
+	public function form_select_input_training( $label, $id, $name, $options = array(), $error = '', $hint = '' ) {
+		$form = '<div class="form-row">';
+		$form .= '<label for="';
+		$form .= $id;
+		$form .= '">%s';
+		$form .= $this->is_optional( $error );
+		$form .= '</label>';
+		$form .= $this->hint_text( $hint );
+		$form .= '<select id="%s" name="%s" ';
+		$form .= $this->required_atts( $error );
+		$form .= $this->input_error_class( $name, $error );
+		$form .= '>';
+		$form .= '<option value="">Please select</option>';
+		foreach ( $options as $option ) {
+			if ( strpos($option, '(') !== false ) {
+				$option = str_replace('(', '', $option);
+				$form .= '<optgroup label="' . $option . '">';
+			} elseif ( strpos($option, ')') !== false ) {
+				$option = str_replace(')', '', $option);
+				$form .= '<option value="' . $option . '" ';
+				$form .= set_value( $name, 'select', $option );
+				$form .= '>';
+				$form .= $option;
+				$form .= '</option></optgroup>';
+			} else {
+				$form .= '<option value="' . $option . '" ';
+				$form .= set_value( $name, 'select', $option );
+				$form .= '>';
+				$form .= $option;
+				$form .= '</option>';
+			}
+		}
+		$form .= '</select>';
+		$form .= $this->input_error_message( $name, $error );
+		$form .= '</div>';
+
+		return sprintf( $form, $label, $id, $name );
+	}
+
+	public function submit_form( $name, $id, $value = 'Submit' ) {
+		$form = '<div class="form-row">';
+		$form .= '<input type="submit" name="%s" id="%s" value="%s">';
+		$form .= '</div>';
+
+		return sprintf( $form, $name, $id, $value );
 	}
 
 	public function help_text( $text ) {
@@ -183,11 +327,36 @@ class Form_Builder {
 		return '';
 	}
 
-	public function validate_for_testing( $no_validate ) {
-		if ( $no_validate = true ) {
+	public function novalidate_for_testing( $no_validate ) {
+		if ( $no_validate ) {
 			return 'novalidate';
 		}
 		return '';
+	}
+
+	public function form_newsletter_checkbox() {
+		$form = '<div class="form-row checkbox">';
+		$form .= '<input type="checkbox" id="newsletter" name="newsletter" value="Yes" ';
+		$form .= set_value( 'newsletter', 'checkbox' );
+		$form .= '>';
+		$form .= '<label for="newsletter">';
+		$form .= 'Tick here to receive our free monthly newsletter and email updates about our news, products and services';
+		$form .= '</label>';
+		$form .= '<p><small>';
+		$form .= 'The National Archives only records personal information, including email addresses, for the purposes provided. We will not share your details with third parties. ';
+		$form .= 'For more information read our <a href="http://www.nationalarchives.gov.uk/legal/privacy.htm" target="_blank">privacy policy</a>.';
+		$form .= '</small></p></div>';
+
+		return $form;
+	}
+
+	public function form_spam_filter( $rand ) {
+		$form = '<div class="form-row hidden">';
+		$form .= '<label for="skype_name">Skype name (please ignore this field)</label>';
+		$form .= '<input type="text" id="skype_name" name="skype-name-' . $rand . '">';
+		$form .= '</div>';
+
+		return $form;
 	}
 
 }

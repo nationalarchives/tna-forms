@@ -3,14 +3,11 @@
  * Form: Check for a certificate of British citizenship
  *
  */
-
-function return_form_british_citizenship() {
-
+function return_form_british_citizenship( $content ) {
 	// Global variables to determine if the form submission
 	// is successful or comes back with errors
 	global $tna_success_message,
 	       $tna_error_message;
-
 	// HTML form string (I know, it's long!)
 	$form = '<div class="arrow-steps clearfix">
 	                <ul>
@@ -19,42 +16,43 @@ function return_form_british_citizenship() {
 	                    <li><span>3</span> Contact details</li>
 	                </ul>
 	            </div>
-	            <form action=""  id="naturalisation" method="POST">
+	            <form action=""  id="naturalisation" class="form-abandonment" method="POST">
 	            	<input type="hidden" name="tna-form" value="naturalisation">
 	            	<input type="hidden" name="token" value="' . form_token() . '">
+	            	<input type="hidden" name="timestamp" value="' . time() . '">
 	                <fieldset class="form-step-1">
 	                    <legend>Certificate holder\'s details</legend>
 	                    <div class="form-row">
 	                        <p>Enter the details of the certificate holder at the time the certificate was issued.</p>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="certificate_forename">Full name</label>
+	                        <label for="certificate_name">Full name</label>
 	                        <input type="text" id="certificate_name" name="certificate-name" aria-required="true" required ' . set_value( 'certificate-name' ) . '>
 	                        ' . field_error_message( 'certificate-name', 'Certificate holder name' ) . '
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="certificate_surname_alt">Alternative name(s) <span class="optional">(optional)</span></label>
-	                        <p class="form-hint">For example: married or maiden names</p>
-	                        <input type="text" id="certificate_name_alt" name="certificate-name-alt" ' . set_value( 'certificate-name-alt' ) . '>
+	                        <label for="certificate_name_alt">Alternative name(s) <span class="optional">(optional)</span></label>
+	                        <p id="name-alt" class="form-hint">For example: married or maiden names</p>
+	                        <input type="text" aria-describedby="name-alt" id="certificate_name_alt" name="certificate-name-alt" ' . set_value( 'certificate-name-alt' ) . '>
 	                    </div>
 	                    <div class="form-row">
 	                        <label for="certificate_birth_country">Country of birth <span class="optional">(optional)</span></label>
 	                        <input type="text" id="certificate_birth_country" name="certificate-birth-country" ' . set_value( 'certificate-birth-country' ) . '>
 	                    </div>
 	                    <div class="form-row">
-	                    <p>Date of birth <span class="optional">(optional)</span></p>
+	                    <p id="dob">Date of birth <span class="optional">(optional)</span></p>
 	                    <p class="form-hint">For example: 8 3 1955</p>
 	                        <span class="dob-col day">
-	                            <label for="certificate_day">Day</label>
-	                            <input type="number" id="certificate_day" name="certificate-day" ' . set_value( 'certificate-day' ) . '>
+	                            <label id="day" for="certificate_day">Day</label>
+	                            <input type="number" aria-labelledby="dob day" id="certificate_day" name="certificate-day" ' . set_value( 'certificate-day' ) . '>
 	                        </span>
 	                        <span class="dob-col month">
-	                            <label for="certificate_month">Month</label>
-	                            <input type="number" id="certificate_month" name="certificate-month" ' . set_value( 'certificate-month' ) . '>
+	                            <label id="month" for="certificate_month">Month</label>
+	                            <input type="number" aria-labelledby="dob month" id="certificate_month" name="certificate-month" ' . set_value( 'certificate-month' ) . '>
 	                        </span>
 	                        <span class="dob-col year">
-	                            <label for="certificate_year">Year</label>
-	                            <input type="number" id="certificate_year" name="certificate-year" ' . set_value( 'certificate-year' ) . '>
+	                            <label id="year" for="certificate_year">Year</label>
+	                            <input type="number" aria-labelledby="dob year" id="certificate_year" name="certificate-year" ' . set_value( 'certificate-year' ) . '>
 	                        </span>
 	                    </div>
 	                    <div class="form-row dob-approx">
@@ -86,9 +84,10 @@ function return_form_british_citizenship() {
 	                        <input type="text" id="certificate_number" name="certificate-number" ' . set_value( 'certificate-number' ) . '>
 	                    </div>
 	                    <div class="form-row registration-year">
-	                        <label class="form-label" for="certificate_year_issued_from">Year of registration between</label>
+	                    <p><label id="year-of-registration" class="form-label" for="certificate_year_issued_from">Year of registration <span class="optional">(optional)</span></label></p>
+	                        <label id="from" class="form-label" for="certificate_year_issued_from">from</label>
 	                        <select id="certificate_year_issued_from" name="certificate-year-issued-from">
-	                            <option value="">Please select</option>
+	                            <option value="" aria-label="Certificate year of registration from (optional). Please select a year.">Please select</option>
 	                            <option value="1949" ' . set_value( 'certificate-year-issued-from', 'select', '1949' ) . '>1949</option>
 	                            <option value="1950" ' . set_value( 'certificate-year-issued-from', 'select', '1950' ) . '>1950</option>
 	                            <option value="1951" ' . set_value( 'certificate-year-issued-from', 'select', '1951' ) . '>1951</option>
@@ -128,9 +127,9 @@ function return_form_british_citizenship() {
 	                            <option value="1985" ' . set_value( 'certificate-year-issued-from', 'select', '1985' ) . '>1985</option>
 								<option value="1986" ' . set_value( 'certificate-year-issued-from', 'select', '1986' ) . '>1986</option>
 	                        </select>
-	                        <label class="form-label" for="certificate_year_issued_to">and</label>
+	                        <label id="to" class="form-label" for="certificate_year_issued_to">to</label>
 	                        <select id="certificate_year_issued_to" name="certificate-year-issued-to">
-	                            <option value="">Please select</option>
+	                            <option value="" aria-label="Certificate year of registration to (optional). Please select a year.">Please select</option>
 	                            <option value="1949" ' . set_value( 'certificate-year-issued-to', 'select', '1949' ) . '>1949</option>
 	                            <option value="1950" ' . set_value( 'certificate-year-issued-to', 'select', '1950' ) . '>1950</option>
 	                            <option value="1951" ' . set_value( 'certificate-year-issued-to', 'select', '1951' ) . '>1951</option>
@@ -170,7 +169,6 @@ function return_form_british_citizenship() {
 	                            <option value="1985" ' . set_value( 'certificate-year-issued-to', 'select', '1985' ) . '>1985</option>
 								<option value="1986" ' . set_value( 'certificate-year-issued-to', 'select', '1986' ) . '>1986</option>
 	                        </select>
-	                        <p><span class="optional">(optional)</span></p>
 	                    </div>
 	                    <div class="form-row form-nav ">
 	                        <a href="#" title="continue" class="button">Continue</a>
@@ -182,23 +180,24 @@ function return_form_british_citizenship() {
 	                        <a href="#" title="back" class="button-back">&#10094; Back</a>
 	                    </div>
 	                    <div class="form-row">
-	                        <p>Please provide your details so we can let you know whether we\'ve found the certificate.</p>
+	                        <p id="provide_details">Please provide your details so we can let you know whether we\'ve found the certificate.</p>
 	                    </div>
 	                    <div class="form-row">
-	                        <label for="forename">Full name</label>
-	                        <input type="text" id="full_name" name="full-name" aria-required="true" required ' . set_value( 'full-name' ) . '>
+	                        <label id="full_name_label" for="full_name">Full name</label>
+	                        <input type="text" aria-labelledby="provide_details full_name_label" id="full_name" name="full-name" aria-required="true" required ' . set_value( 'full-name' ) . '>
 	                        ' . field_error_message( 'full-name', 'Full name' ) . '
 	                    </div>
 	                    <div class="form-row">
-	                        <p class="form-warning-error">How would you prefer to be contacted?</p>
+	                        <p id="prefer-contact">How would you prefer to know whether we have found the certificate?</p>
+	                        <p id="we-can-let" class="form-hint">We can let you know whether we\'ve found the certificate via email or post. The certificate will not automatically be sent to you.</p>
 		                    ' . field_error_message( 'preferred-contact', 'Preferred contact', 'radio' ) . '
 		                    <div class="form-col pref_contact">
-		                        <input id="contact_email" type="radio" name="preferred-contact" value="Email" ' . set_value( 'preferred-contact', 'radio', 'Email' ) . '>
-		                        <label for="contact_email">Email</label>
+		                        <input id="contact_email" aria-labelledby="we-can-let prefer-contact email-label" type="radio" name="preferred-contact" value="Email" ' . set_value( 'preferred-contact', 'radio', 'Email' ) . '>
+		                        <label id="email-label" for="contact_email">Email</label>
 		                    </div>
 		                    <div class="form-col pref_contact">
-		                        <input id="contact_postal" type="radio" name="preferred-contact" value="Post" ' . set_value( 'preferred-contact', 'radio', 'Post' ) . '>
-		                        <label for="contact_postal">Post</label>
+		                        <input id="contact_postal" aria-labelledby="prefer-contact post-label" type="radio" name="preferred-contact" value="Post" ' . set_value( 'preferred-contact', 'radio', 'Post' ) . '>
+		                        <label id="post-label" for="contact_postal">Post</label>
 		                    </div>
 	                    </div>
 	                    <div class="email-wrapper">
@@ -217,35 +216,34 @@ function return_form_british_citizenship() {
 	                        <label for="postal_address">Postal address</label>
 	                        <textarea id="postal_address" name="postal-address">' . set_value( 'postal-address', 'textarea' ) . '</textarea>
 	                    </div>
+	                    <div class="form-row hidden">
+	                        <label for="skype_name">Skype name (please ignore this field)</label>
+	                        <input type="text" id="skype_name" name="skype-name-' . rand(10, 99) . '">
+	                    </div>
 	                    <div class="form-row">
 	                        <input type="submit" alt="Submit" name="submit-bc" id="submit-tna-form" value="Submit">
 	                    </div>
 	                </fieldset>
 	            </form>';
-
 	// If the form submission comes with errors give us back
 	// the form populated with form data and error messages
 	if ( $tna_error_message ) {
 		return $tna_error_message . $form;
 	}
-
 	// If the form is successful give us the confirmation content
 	elseif ( $tna_success_message ) {
 		return $tna_success_message . print_page();
 	}
-
-	// If there no form submission, hence the user has
+	// If no form submission, hence the user has
 	// accessed the page for the first time, give us an empty form
 	else {
-		return $form;
+		return $content . $form;
 	}
 }
-
 function process_form_british_citizenship() {
 	// The processing happens at form submission.
 	// If no form is submitted we stop here.
 	if ( ! is_admin() && isset( $_POST['submit-bc'] ) ) {
-
 		// Checks for token
 		// If the token exists then the form has been submitted so do nothing
 		/* $token = filter_input( INPUT_POST, 'token' );
@@ -254,12 +252,10 @@ function process_form_british_citizenship() {
 			return;
 		}
 		set_transient( 'token_' . $token, 'form-token', 360 ); */
-
 		// Global variables
 		global $tna_success_message,
 		       $tna_error_message,
 		       $tna_error_messages;
-
 		// Setting global variables
 		$tna_success_message = '';
 		$tna_error_message   = '';
@@ -289,13 +285,13 @@ function process_form_british_citizenship() {
 			'Certificate number'          => is_text_field_valid( filter_input( INPUT_POST, 'certificate-number' ) ),
 			'Issued from'                 => is_text_field_valid( filter_input( INPUT_POST, 'certificate-year-issued-from' ) ),
 			'Issued to'                   => is_text_field_valid( filter_input( INPUT_POST, 'certificate-year-issued-to' ) ),
-			'Full name'                    => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
+			'Full name'                   => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
 			'Preferred contact'           => ( isset( $_POST['preferred-contact'] ) ) ? is_checkbox_radio_valid( filter_input( INPUT_POST, 'preferred-contact' ) ) : false,
 			'Email'                       => is_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'               => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
-			'Postal address'              => is_textarea_field_valid( filter_input( INPUT_POST, 'postal-address' ) )
+			'Postal address'              => is_textarea_field_valid( filter_input( INPUT_POST, 'postal-address' ) ),
+			'Spam'                        => is_this_spam( $_POST )
 		);
-
 		// If any value inside the array is false then there is an error
 		if ( in_array( false, $form_fields ) ) {
 
@@ -304,39 +300,39 @@ function process_form_british_citizenship() {
 			// Store error messages into the global variable
 			$tna_error_message = display_error_message();
 
+			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 		} else {
 
 			// Yay! Success!
-
 			global $post;
+
 			// Generate reference number based on user's surname and timestamp
 			$ref_number = ref_number( 'TNA', date_timestamp_get( date_create() ) );
-
 			// Store confirmation content into the global variable
 			$tna_success_message = success_message_header( 'Your reference number:', $ref_number );
 			$tna_success_message .= confirmation_content( $post->ID );
 			$tna_success_message .= '<p>If you provided your email address you will shortly receive an email confirming your application – please do not reply to this email</p>';
-			$tna_success_message .= '<h3>Your application details</h3>';
+			$tna_success_message .= '<h3>Summary of your enquiry</h3>';
 			$tna_success_message .= display_compiled_form_data( $form_fields );
 
 			// Store email content to user into a variable
 			$email_to_user = success_message_header( 'Your reference number:', $ref_number );
 			$email_to_user .= confirmation_content( $post->ID );
-			$email_to_user .= '<h3>Your application details</h3>';
+			$email_to_user .= '<h3>Summary of your enquiry</h3>';
 			$email_to_user .= display_compiled_form_data( $form_fields );
 
 			// Send email to user
-			send_form_via_email( $form_fields['Email'], $ref_number, 'Check for a certificate of British citizenship - Ref:',
-				$email_to_user );
+			send_form_via_email( $form_fields['Email'], 'Check for a certificate of British citizenship - Ref:', $ref_number,
+				$email_to_user, $form_fields['Spam'] );
 
 			// Store email content to TNA into a variable
 			$email_to_tna = success_message_header( 'Reference number:', $ref_number );
 			$email_to_tna .= display_compiled_form_data( $form_fields );
 
 			// Send email to TNA
-			send_form_via_email( get_tna_email( 'contactcentre' ), $ref_number, 'Certificate of British citizenship request - Ref:',
-				$email_to_tna );
-
+			send_form_via_email( get_tna_email(), 'Certificate of British citizenship request - Ref:', $ref_number,
+				$email_to_tna, $form_fields['Spam'] );
+			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 		}
 	}
 }

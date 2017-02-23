@@ -84,7 +84,9 @@ function display_compiled_form_data( $data ) {
 	if ( is_array( $data ) ) {
 		$display_data = '<div class="form-data"><ul>';
 		foreach ( $data as $field_name => $field_value ) {
-			if ( $field_value != '1' ) {
+			if ( $field_name == 'Spam' || $field_name == 'Confirm email') {
+				// do nothing
+			} else {
 				$display_data .= '<li>' . $field_name . ': ' . $field_value . '</li>';
 			}
 		}
@@ -121,8 +123,8 @@ function confirmation_content( $id ) {
 	return $content;
 }
 
-function send_form_via_email( $email, $ref_number, $subject, $content ) {
-	if ( is_email( $email ) ) {
+function send_form_via_email( $email, $subject, $ref_number, $content, $spam ) {
+	if ( is_email( $email ) && $spam !== 'yes' ) {
 
 		// Email Subject
 		$email_subject = $subject . ' ' . $ref_number;
@@ -153,3 +155,22 @@ function get_tna_email( $user = '' ) {
 		return $email;
 	}
 }
+
+function subscribe_to_newsletter( $subscribe, $name, $email, $form, $spam ) {
+	if ( $subscribe == 'Yes' ) {
+
+		$email_message = '<p>' . $name . ' has subscribed to the newsletter via ' . $form . ' form</p>';
+		$email_message .= '<p>Email address: ' . $email . '</p>';
+
+		send_form_via_email( get_tna_email(), $name, 'Newsletter sign up by', $email_message, $spam );
+	}
+}
+
+function log_spam( $spam, $time, $email ) {
+	if ( $spam == 'yes' ) {
+		$file = plugin_dir_path( __FILE__ ) . 'spam_log.txt';
+		$log = $time . ' - ' . $email . PHP_EOL;
+		file_put_contents( $file, $log, FILE_APPEND );
+	}
+}
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Public sector qUnit testse</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="fixture">
+    <form action="" id="public-sector" method="POST" novalidate><input type="hidden" name="tna-form"
+                                                                       value="public-sector"><input type="hidden"
+                                                                                                    name="token"
+                                                                                                    value="4c724bae08ab31562c534a1e44ef7483">
+        <fieldset>
+            <legend>Your details</legend>
+            <div class="form-row"><label for="full_name">Full name</label><input type="text" id="full_name"
+                                                                                 name="full-name" aria-required="true"
+                                                                                 required></div>
+            <div class="form-row"><label for="email">Email address</label><input type="email" id="email" name="email"
+                                                                                 aria-required="true" required></div>
+            <div class="form-row"><label for="confirm_email">Please re-type your email address</label><input
+                    type="email" id="confirm_email" name="confirm-email" aria-required="true" required></div>
+        </fieldset>
+        <fieldset>
+            <legend>Your enquiry</legend>
+            <div class="form-row"><label for="reason">Nature of your enquiry <span
+                    class="optional">(optional)</span></label><select id="reason" name="reason">
+                <option value="">Please select</option>
+                <option value="Click-Use Licencing Process">Click-Use Licencing Process</option>
+                <option value="Reusing Crown Copyright material">Reusing Crown Copyright material</option>
+                <option value="The EU Directive and PSI Regulations">The EU Directive and PSI Regulations</option>
+                <option value="Supplying publications to MEPs">Supplying publications to MEPs</option>
+                <option value="The Public Library Access Scheme">The Public Library Access Scheme</option>
+                <option value="The Information Fair Trader Scheme">The Information Fair Trader Scheme</option>
+                <option value="Publishing Command Papers">Publishing Command Papers</option>
+                <option value="Obtaining an official publication">Obtaining an official publication</option>
+                <option value="Using the Information Asset Register">Using the Information Asset Register</option>
+                <option value="Open Government Licence">Open Government Licence</option>
+                <option value="UK Government Licensing Framework">UK Government Licensing Framework</option>
+            </select></div>
+            <div class="form-row"><label for="enquiry">Your enquiry</label><textarea id="enquiry" name="enquiry"
+                                                                                     aria-required="true"
+                                                                                     required></textarea></div>
+            <div class="form-row"><input type="submit" name="submit-psi" id="submit-tna-form" value="Submit"></div>
+        </fieldset>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="form-public-sector.js"></script>
+</body>
+</html>
