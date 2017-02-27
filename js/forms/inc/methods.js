@@ -25,6 +25,11 @@ function formMethods(){
         email: "Please enter a valid email address",
     });
 
+    $.validator.addMethod("telNumber", function(value, element) {
+        return this.optional(element) || /(\d)\w+/i.test(value);
+    }, "Please enter a valid telephone number");
+
+
     /*$.validator.addMethod("sessions_val_not_equal", function(value, element) {
 
         firstSession = $('#session_first_choice').val();

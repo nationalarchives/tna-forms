@@ -17,6 +17,17 @@ class FormBuilderTest extends \PHPUnit_Framework_TestCase {
 		$class = new \Form_Builder();
 		$this->assertTrue( method_exists($class, 'form_begins') );
 	}
+	public function testFormBuilderMethodSetGetValueExists(){
+		$class = new \Form_Builder();
+		$this->assertTrue( method_exists($class, 'set_get_value'));
+	}
+	public function testFormBuilderMethodSetGetValue()
+	{
+		$class = new \Form_Builder();
+		$_GET['DOCREF'] = 'J 132/103';
+		$data_class = $class->set_get_value( 'DOCREF' );
+		$this->assertEquals($data_class, ' value="J 132/103" ');
+	}
 	public function testFormBuilderMethodFormEnds()
 	{
 		$class = new \Form_Builder();

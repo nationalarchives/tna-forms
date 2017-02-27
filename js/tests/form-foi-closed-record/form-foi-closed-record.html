@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply to film</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="fixture">
+    <form action="" id="foi_closed_record" class="form-abandonment" method="POST" novalidate="novalidate"><input
+            type="hidden" name="tna-form" value="FOI closed record"><input type="hidden" name="token"
+                                                                           value="3876a746d1e8a7a32befc127c26970f7"><input
+            type="hidden" name="timestamp" value="1488207789">
+        <fieldset>
+            <legend>Your details</legend>
+            <div class="form-row"><label for="full_name">Full name</label><input type="text" id="full_name"
+                                                                                 name="full-name" aria-required="true"
+                                                                                 required=""></div>
+            <div class="form-row"><label for="email">Email address</label><input type="email" id="email" name="email"
+                                                                                 aria-required="true" required=""></div>
+            <div class="form-row"><label for="confirm_email">Please re-type your email address</label><input
+                    type="email" id="confirm_email" name="confirm-email" aria-required="true" required=""></div>
+            <div class="form-row"><label for="telephone_number">Telephone number <span
+                    class="optional">(optional)</span></label><input type="text" id="telephone_number"
+                                                                     name="telephone-number"></div>
+            <div class="form-row"><label for="postal_address">Postal address</label><textarea id="postal_address"
+                                                                                              name="postal-address"
+                                                                                              aria-required="true"
+                                                                                              required=""></textarea>
+                <grammarly-btn>
+                    <div style="visibility: hidden; z-index: 2;" class="_e725ae-textarea_btn _e725ae-not_focused"
+                         data-grammarly-reactid=".0">
+                        <div class="_e725ae-transform_wrap" data-grammarly-reactid=".0.0">
+                            <div title="Protected by Grammarly" class="_e725ae-status" data-grammarly-reactid=".0.0.0">
+                                &nbsp;</div>
+                        </div>
+                    </div>
+                </grammarly-btn>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Record details</legend>
+            <div class="form-row"><label for="DOCREF">Catalogue reference <span
+                    class="optional">(optional)</span></label><input type="text" id="DOCREF" name="DOCREF"></div>
+        </fieldset>
+        <fieldset>
+            <legend>Your enquiry</legend>
+            <div class="form-row"><label for="enquiry">Enquiry details</label>
+                <p class="form-hint">Please provide specific details of the information you are looking for.</p>
+                <textarea id="enquiry" name="enquiry" aria-required="true" required=""></textarea>
+                <grammarly-btn>
+                    <div style="visibility: hidden; z-index: 2;" class="_e725ae-textarea_btn _e725ae-not_focused"
+                         data-grammarly-reactid=".3">
+                        <div class="_e725ae-transform_wrap" data-grammarly-reactid=".3.0">
+                            <div title="Protected by Grammarly" class="_e725ae-status" data-grammarly-reactid=".3.0.0">
+                                &nbsp;</div>
+                        </div>
+                    </div>
+                </grammarly-btn>
+            </div>
+            <div class="form-row hidden"><label for="skype_name">Skype name (please ignore this field)</label><input
+                    type="text" id="skype_name" name="skype-name-63"></div>
+            <div class="form-row"><input type="submit" name="submit-foi-closed-record" id="submit-tna-form"
+                                         value="Submit"></div>
+        </fieldset>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="form-foi-closed-record.js"></script>
+</body>
+</html>

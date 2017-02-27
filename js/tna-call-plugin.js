@@ -45,6 +45,9 @@ $(document).ready(function() {
         else if ($('#foi_corporate').is(':visible')) {
             foiCorporateForm();
         }
+        else if ($('#foi_closed_record').is(':visible')){
+            foiClosedRecordForm();
+        }
         else {
             defaultForm();
         }

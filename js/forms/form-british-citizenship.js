@@ -251,6 +251,8 @@ function naturalisationForm(){
          * */
         if (form.valid() === true){
 
+            $('.emphasis-block.error-message').hide();
+
             /**
              * 5.3.1 If form step 1 is visible
              * */

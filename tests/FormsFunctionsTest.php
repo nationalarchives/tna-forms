@@ -6,6 +6,8 @@
 namespace FormsFunctionsTest;
 
 
+use FormBuilderTest\FormBuilderTest;
+
 class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 
 	public function testSetValue()

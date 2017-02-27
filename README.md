@@ -39,17 +39,21 @@ Each session group is defined by brackets. Each session title, session time and 
 
 `[tna-form name="Apply to film"]`
 
-**Freedom of information** form:
-
-`[tna-form name="Freedom of information"]`
-
 **PRONOM** form:
 
 `[tna-form name="PRONOM"]`
 
-**Document condition feedback ** form:
+**Document condition feedback** form:
 
 `[tna-form name="Document condition feedback"]`
+
+**Freedom of information corporate** form:
+
+`[tna-form name="Freedom of information corporate"]`
+
+**Freedom of information closed record** form:
+
+`[tna-form name="Freedom of information closed record"]`
 
 ## Development setup
 
