@@ -44,6 +44,7 @@ function return_form_dcf( $content ) {
         $html->form_checkbox_input('Document is damaged', 'document_is_damaged', 'document-is-damaged') .
         $html->form_checkbox_input('Box/folder contains wrong document', 'contains_wrong_document', 'contains-wrong-document') .
         $html->form_checkbox_input('Pages not in correct order', 'no_in_correct_order', 'not-in-correct-order') .
+        $html->form_textarea_input( 'Additional details', 'additional_details', 'additional-details' ) .
         $html->fieldset_ends() .
         $html->fieldset_begins( 'Your details' ) .
         $html->form_radio_group('Do you need someone from the team to email you a response to your feedback?','email-a-response', array('No','Yes')) .
@@ -92,7 +93,7 @@ function process_form_dcf() {
         'Document is damaged'                 => is_checkbox_valid( filter_input( INPUT_POST, 'document-is-damaged')),
         'Box/folder contains wrong document'  => is_checkbox_valid( filter_input( INPUT_POST, 'contains-wrong-document')),
         'Pages not in correct order'          => is_checkbox_valid( filter_input( INPUT_POST, 'not-in-correct-order')),
-        'Enquiry'                             => is_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
+        'Additional details'                  => is_textarea_field_valid( filter_input( INPUT_POST, 'additional-details' ) ),
         'Response to your feedback'           => is_radio_valid( filter_input( INPUT_POST, 'email-a-response')),
         'Spam'                                => is_this_spam( $_POST )
     );

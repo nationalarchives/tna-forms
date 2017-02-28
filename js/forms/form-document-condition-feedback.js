@@ -50,10 +50,9 @@ function dcfForm(){
                 required: true,
                 noSpace: true
             },
-            enquiry:{
+            "additional-details":{
                 noSpace:true
             }
-
         },
         /**
          * Error messages
