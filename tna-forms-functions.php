@@ -123,6 +123,26 @@ function confirmation_content( $id ) {
 	return $content;
 }
 
+function confirmation_email_content( $id ) {
+
+	$child = get_pages(
+		array( 'child_of' => $id,
+		       'parent' => $id,
+		       'number' => '1',
+		       'sort_column' => 'post_date',
+		       'sort_order' => 'desc'
+		));
+
+	$content = '';
+	if ( $child ) {
+		foreach( $child as $page ) {
+			$content .= apply_filters( 'the_content', $page->post_content );
+		}
+	}
+
+	return $content;
+}
+
 function send_form_via_email( $email, $subject, $ref_number, $content, $spam ) {
 	if ( is_email( $email ) && $spam !== 'yes' ) {
 
@@ -174,3 +194,42 @@ function log_spam( $spam, $time, $email ) {
 	}
 }
 
+function receipt_email_markup( $post ) {
+	$value = get_post_meta($post->ID, 'cf_receipt_email_content', true);
+	$args = array(
+		'media_buttons' => false,
+		'textarea_rows' => 8,
+		'tinymce'       => false,
+		'quicktags'     => array( 'buttons' => 'strong,em,ul,ol,li,link' ),
+		'wpautop'       => false
+	);
+	wp_nonce_field(basename(__FILE__), 'cf_receipt_email_nonce');
+	?>
+	<table class="form-table">
+		<tbody>
+		<tr>
+			<th style="width:20%"><label for="cf_receipt_email_content">Content</label></th>
+			<td>
+				<?php wp_editor( $value, 'cf_receipt_email_content', $args ); ?>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	<?php
+}
+
+function cf_receipt_email_save( $post_id ) {
+	$is_autosave = wp_is_post_autosave( $post_id );
+	$is_revision = wp_is_post_revision( $post_id );
+	$is_valid_nonce = ( isset( $_POST[ 'cf_receipt_email_nonce' ] ) && wp_verify_nonce( $_POST[ 'cf_receipt_email_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
+	if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
+		return;
+	}
+	if( isset( $_POST[ 'cf_receipt_email_content' ] ) ) {
+		update_post_meta( $post_id, 'cf_receipt_email_content', sanitize_text_field( $_POST[ 'cf_receipt_email_content' ] ) );
+	}
+}
+
+function add_contact_forms_meta_box() {
+	add_meta_box('cf-receipt-email', 'Receipt email', 'receipt_email_markup', 'page', 'normal', 'high', null);
+}
