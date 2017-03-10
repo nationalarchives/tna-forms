@@ -125,20 +125,7 @@ function confirmation_content( $id ) {
 
 function confirmation_email_content( $id ) {
 
-	$child = get_pages(
-		array( 'child_of' => $id,
-		       'parent' => $id,
-		       'number' => '1',
-		       'sort_column' => 'post_date',
-		       'sort_order' => 'desc'
-		));
-
-	$content = '';
-	if ( $child ) {
-		foreach( $child as $page ) {
-			$content .= apply_filters( 'the_content', $page->post_content );
-		}
-	}
+	$content = get_post_meta($id, 'cf_receipt_email_content', true);
 
 	return $content;
 }
@@ -226,7 +213,7 @@ function cf_receipt_email_save( $post_id ) {
 		return;
 	}
 	if( isset( $_POST[ 'cf_receipt_email_content' ] ) ) {
-		update_post_meta( $post_id, 'cf_receipt_email_content', sanitize_text_field( $_POST[ 'cf_receipt_email_content' ] ) );
+		update_post_meta( $post_id, 'cf_receipt_email_content', esc_html( $_POST[ 'cf_receipt_email_content' ] ) );
 	}
 }
 
