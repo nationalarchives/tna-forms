@@ -166,6 +166,54 @@ function subscribe_to_newsletter( $subscribe, $name, $email, $form, $spam ) {
 	}
 }
 
+function subscribe_to_newsletter_post( $subscribe, $name, $email, $source ) {
+	if ( $subscribe == 'Yes' ) {
+
+		$parts = explode(' ', $name);
+		$last_name = array_pop($parts);
+		$first_name = implode(' ', $parts);
+
+		// set POST variables
+		$url = 'https://r1-t.trackedlink.net/signup.ashx';
+		$fields = array(
+			'cd_FIRSTNAME' => $first_name,
+			'cd_LASTNAME' => $last_name,
+			'Email' => $email,
+			'addressbookid' => '636353',
+			'userid' => '173459',
+			'cd_SOURCE' => $source
+		);
+
+		$fields_string = '';
+
+		// url-ify the data for the POST
+		foreach($fields as $key=>$value) {
+			$fields_string .= $key.'='.$value.'&';
+		}
+		rtrim($fields_string, '&');
+
+		// open connection
+		$ch = curl_init($url);
+
+		// set proxy, timeout, number of POST vars, POST data
+		curl_setopt($ch, CURLOPT_PROXY, WP_PROXY_HOST . ':' . WP_PROXY_PORT);
+		curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, 1);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+		curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)");
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		curl_setopt($ch, CURLOPT_POST, count($fields));
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+
+		// execute post
+		$result = curl_exec($ch);
+
+		// close connection
+		curl_close($ch);
+	}
+}
+
 function log_spam( $spam, $time, $email ) {
 	if ( $spam == 'yes' ) {
 		$file = plugin_dir_path( __FILE__ ) . 'spam_log.txt';
