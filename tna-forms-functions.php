@@ -195,7 +195,9 @@ function receipt_email_markup( $post ) {
 	<table class="form-table">
 		<tbody>
 		<tr>
-			<th style="width:20%"><label for="cf_receipt_email_content">Content</label></th>
+			<th style="width:20%">
+				<label for="cf_receipt_email_content">Content</label>
+			</th>
 			<td>
 				<?php wp_editor( $value, 'cf_receipt_email_content', $args ); ?>
 			</td>
