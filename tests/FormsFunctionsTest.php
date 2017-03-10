@@ -98,4 +98,20 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	{
 		$this->assertTrue(function_exists('subscribe_to_newsletter'));
 	}
+	public function testConfirmationEmailContent()
+	{
+		$this->assertTrue(function_exists('confirmation_email_content'));
+	}
+	public function testReceiptEmailMarkup()
+	{
+		$this->assertTrue(function_exists('receipt_email_markup'));
+	}
+	public function testCFReceiptEmailSave()
+	{
+		$this->assertTrue(function_exists('cf_receipt_email_save'));
+	}
+	public function testAddContactFormsMetaBox()
+	{
+		$this->assertTrue(function_exists('add_contact_forms_meta_box'));
+	}
 }
