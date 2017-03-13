@@ -37,4 +37,4 @@ if ( !function_exists('wp_mail_set_text_body') ) :
 endif;
 
 add_action('add_meta_boxes', 'add_contact_forms_meta_box');
-add_action( 'save_post', 'cf_receipt_email_save' );
+add_action( 'save_post', 'cf_meta_box_save' );
