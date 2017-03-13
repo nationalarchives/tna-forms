@@ -123,6 +123,13 @@ function confirmation_content( $id ) {
 	return $content;
 }
 
+function confirmation_email_content( $id ) {
+
+	$content = get_post_meta($id, 'cf_receipt_email_content', true);
+
+	return $content;
+}
+
 function send_form_via_email( $email, $subject, $ref_number, $content, $spam ) {
 	if ( is_email( $email ) && $spam !== 'yes' ) {
 
@@ -144,9 +151,14 @@ function form_token() {
 }
 
 function get_tna_email( $user = '' ) {
+	global $post;
+	$meta_user = get_post_meta($post->ID, 'cf_get_tna_email', true);
+	if ( $meta_user ) {
+		$user = $meta_user;
+	}
 	if ( $user ) {
 		$contact_user = get_user_by( 'login', $user );
-		if($contact_user){
+		if( $contact_user ) {
 			$email = $contact_user->user_email;
 			return $email;
 		}
@@ -222,3 +234,62 @@ function log_spam( $spam, $time, $email ) {
 	}
 }
 
+function cf_receipt_email_markup( $post ) {
+	$value = get_post_meta($post->ID, 'cf_receipt_email_content', true);
+	$args = array(
+		'media_buttons' => false,
+		'textarea_rows' => 8,
+		'tinymce'       => false,
+		'quicktags'     => array( 'buttons' => 'strong,em,ul,ol,li,link' ),
+		'wpautop'       => false
+	);
+	wp_nonce_field(basename(__FILE__), 'cf_receipt_email_nonce');
+	?>
+	<table class="form-table">
+		<tbody>
+		<tr>
+			<th style="width:20%">
+				<label for="cf_receipt_email_content">Content</label>
+			</th>
+			<td>
+				<?php wp_editor( $value, 'cf_receipt_email_content', $args ); ?>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	<?php
+}
+
+function cf_get_tna_email_markup( $post ) {
+	$value = get_post_meta($post->ID, 'cf_get_tna_email', true);
+	wp_nonce_field(basename(__FILE__), 'cf_get_tna_email_nonce');
+	?>
+	<div class="form-row">
+		<label for="cf_get_tna_email">Username</label>
+	</div>
+	<div class="form-row">
+		<input type="text" id="cf_get_tna_email" name="cf_get_tna_email" value="<?php echo $value; ?>">
+	</div>
+	<?php
+}
+
+function cf_meta_box_save( $post_id ) {
+	$is_autosave = wp_is_post_autosave( $post_id );
+	$is_revision = wp_is_post_revision( $post_id );
+	$is_valid_cf_receipt_email_nonce = ( isset( $_POST[ 'cf_receipt_email_nonce' ] ) && wp_verify_nonce( $_POST[ 'cf_receipt_email_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
+	$is_valid_cf_get_tna_email_nonce = ( isset( $_POST[ 'cf_get_tna_email_nonce' ] ) && wp_verify_nonce( $_POST[ 'cf_get_tna_email_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
+	if ( $is_autosave || $is_revision || !$is_valid_cf_receipt_email_nonce || !$is_valid_cf_get_tna_email_nonce ) {
+		return;
+	}
+	if( isset( $_POST[ 'cf_receipt_email_content' ] ) ) {
+		update_post_meta( $post_id, 'cf_receipt_email_content', esc_html( $_POST[ 'cf_receipt_email_content' ] ) );
+	}
+	if( isset( $_POST[ 'cf_get_tna_email' ] ) ) {
+		update_post_meta( $post_id, 'cf_get_tna_email', esc_html( $_POST[ 'cf_get_tna_email' ] ) );
+	}
+}
+
+function cf_add_contact_forms_meta_box() {
+	add_meta_box('cf-receipt-email', 'Contact form user receipt email', 'cf_receipt_email_markup', 'page', 'normal', 'high', null);
+	add_meta_box('cf-get-tna-email', 'Contact form TNA recipient', 'cf_get_tna_email_markup', 'page', 'side', 'low', null);
+}
