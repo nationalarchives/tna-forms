@@ -104,7 +104,11 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	}
 	public function testReceiptEmailMarkup()
 	{
-		$this->assertTrue(function_exists('receipt_email_markup'));
+		$this->assertTrue(function_exists('cf_receipt_email_markup'));
+	}
+	public function testGetTnaEmailMarkup()
+	{
+		$this->assertTrue(function_exists('cf_get_tna_email_markup'));
 	}
 	public function testCFMetaBoxSave()
 	{
@@ -112,6 +116,6 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	}
 	public function testAddContactFormsMetaBox()
 	{
-		$this->assertTrue(function_exists('add_contact_forms_meta_box'));
+		$this->assertTrue(function_exists('cf_add_contact_forms_meta_box'));
 	}
 }
