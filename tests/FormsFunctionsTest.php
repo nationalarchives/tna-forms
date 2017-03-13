@@ -106,9 +106,9 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	{
 		$this->assertTrue(function_exists('receipt_email_markup'));
 	}
-	public function testCFReceiptEmailSave()
+	public function testCFMetaBoxSave()
 	{
-		$this->assertTrue(function_exists('cf_receipt_email_save'));
+		$this->assertTrue(function_exists('cf_meta_box_save'));
 	}
 	public function testAddContactFormsMetaBox()
 	{
