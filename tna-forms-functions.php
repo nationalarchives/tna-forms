@@ -256,6 +256,7 @@ function cf_receipt_email_markup( $post ) {
 			</th>
 			<td>
 				<?php wp_editor( $value, 'cf_receipt_email_content', $args ); ?>
+				<p>The text entered here will appear in between the reference number (at the top) and the form input summary (at the bottom).</p>
 			</td>
 		</tr>
 		</tbody>
