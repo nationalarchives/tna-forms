@@ -153,11 +153,14 @@ function form_token() {
 function get_tna_email( $user = '' ) {
 	global $post;
 	$meta_user = get_post_meta($post->ID, 'cf_get_tna_email', true);
-	if ( $meta_user ) {
-		$user = $meta_user;
-	}
 	if ( $user ) {
 		$contact_user = get_user_by( 'login', $user );
+		if( $contact_user ) {
+			$email = $contact_user->user_email;
+			return $email;
+		}
+	} elseif ( $meta_user ) {
+		$contact_user = get_user_by( 'login', $meta_user );
 		if( $contact_user ) {
 			$email = $contact_user->user_email;
 			return $email;
