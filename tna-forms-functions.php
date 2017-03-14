@@ -158,11 +158,17 @@ function get_tna_email( $user = '' ) {
 		if( $contact_user ) {
 			$email = $contact_user->user_email;
 			return $email;
+		} else {
+			$email = get_option( 'admin_email' );
+			return $email;
 		}
 	} elseif ( $meta_user ) {
 		$contact_user = get_user_by( 'login', $meta_user );
 		if( $contact_user ) {
 			$email = $contact_user->user_email;
+			return $email;
+		} else {
+			$email = get_option( 'admin_email' );
 			return $email;
 		}
 	} else {
