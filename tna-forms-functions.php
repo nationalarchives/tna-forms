@@ -153,13 +153,22 @@ function form_token() {
 function get_tna_email( $user = '' ) {
 	global $post;
 	$meta_user = get_post_meta($post->ID, 'cf_get_tna_email', true);
-	if ( $meta_user ) {
-		$user = $meta_user;
-	}
 	if ( $user ) {
 		$contact_user = get_user_by( 'login', $user );
 		if( $contact_user ) {
 			$email = $contact_user->user_email;
+			return $email;
+		} else {
+			$email = get_option( 'admin_email' );
+			return $email;
+		}
+	} elseif ( $meta_user ) {
+		$contact_user = get_user_by( 'login', $meta_user );
+		if( $contact_user ) {
+			$email = $contact_user->user_email;
+			return $email;
+		} else {
+			$email = get_option( 'admin_email' );
 			return $email;
 		}
 	} else {
@@ -253,6 +262,7 @@ function cf_receipt_email_markup( $post ) {
 			</th>
 			<td>
 				<?php wp_editor( $value, 'cf_receipt_email_content', $args ); ?>
+				<p>The text entered here will appear in between the reference number (at the top) and the form input summary (at the bottom).</p>
 			</td>
 		</tr>
 		</tbody>
