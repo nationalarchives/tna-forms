@@ -58,6 +58,7 @@ class Form_Builder {
 		$form .= '<input type="text" id="%s" name="%s" ';
 		$form .= $this->required_atts( $error );
 		$form .= set_value( $name );
+		$form .= $this->set_get_value( $name );
 		$form .= $this->input_error_class( $name, $error );
 		$form .= '>';
 		$form .= $this->input_error_message( $name, $error );
@@ -357,6 +358,13 @@ class Form_Builder {
 		$form .= '</div>';
 
 		return $form;
+	}
+
+	public function set_get_value( $name ) {
+		if ( isset( $_GET[$name] ) ) {
+			return ' value="' . htmlspecialchars( trim( $_GET[$name] ) ) . '" ';
+		}
+		return '';
 	}
 
 }

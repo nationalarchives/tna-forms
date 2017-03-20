@@ -24,7 +24,7 @@
  *
  */
 
-function return_form_dcf( $content ) {
+function return_form_foi_closed_record( $content ) {
 
     // Global variables to determine if the form submission
     // is successful or comes back with errors
@@ -32,28 +32,28 @@ function return_form_dcf( $content ) {
            $tna_error_message;
 
     // If the form is submitted the form data is processed
-    if ( isset( $_POST['submit-dcf'] ) ) {
-        process_form_dcf();
+    if ( isset( $_POST['submit-foi-closed-record'] ) ) {
+        process_form_foi_closed_record();
     }
 
     // HTML form string
     $html = new Form_Builder;
-    $form =  $html->form_begins( 'dcf', 'Document condition feedback' ) .
-        $html->fieldset_begins( 'Document details' ) .
-        $html->form_text_input( 'Catalogue reference', 'catalogue_reference', 'catalogue-reference', 'Please enter your catalogue reference number' ) .
-        $html->form_checkbox_input('Document is damaged', 'document_is_damaged', 'document-is-damaged') .
-        $html->form_checkbox_input('Box/folder contains wrong document', 'contains_wrong_document', 'contains-wrong-document') .
-        $html->form_checkbox_input('Pages not in correct order', 'no_in_correct_order', 'not-in-correct-order') .
-        $html->form_textarea_input( 'Additional details', 'additional_details', 'additional-details' ) .
-        $html->fieldset_ends() .
+    $form =  $html->form_begins( 'foi_closed_record', 'FOI closed record' ) .
         $html->fieldset_begins( 'Your details' ) .
-        $html->form_radio_group('Do you need someone from the team to email you a response to your feedback?','email-a-response', array('No','Yes')) .
-        $html->form_text_input( 'Full name', 'full_name', 'full-name' ) .
-        $html->form_email_input( 'Email address', 'email', 'email' ) .
-        $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', '', 'email' ) .
+        $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
+        $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
+        $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
+        $html->form_text_input( 'Telephone number', 'telephone_number', 'telephone-number' ) .
+        $html->form_textarea_input( 'Postal address', 'postal_address', 'postal-address', 'Please enter your postal address' ) .
         $html->fieldset_ends() .
+        $html->fieldset_begins( 'Record details' ) .
+        $html->form_text_input( 'Catalogue reference', 'DOCREF', 'DOCREF') .
+        $html->fieldset_ends() .
+        $html->fieldset_begins( 'Your enquiry' ) .
+        $html->form_textarea_input( 'Enquiry details', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .
         $html->form_spam_filter( rand(10, 99) ) .
-        $html->submit_form( 'submit-dcf', 'submit-tna-form' ) .
+        $html->submit_form( 'submit-foi-closed-record', 'submit-tna-form' ) .
+        $html->fieldset_ends() .
         $html->form_ends();
 
     // If the form submission comes with errors give us back
@@ -74,7 +74,7 @@ function return_form_dcf( $content ) {
     }
 }
 
-function process_form_dcf() {
+function process_form_foi_closed_record() {
 
     // Global variables
     global $tna_success_message,
@@ -86,16 +86,14 @@ function process_form_dcf() {
 
     // Get the form elements and store them into an array
     $form_fields = array(
-        'Name'                                => is_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
-        'Email'                               => is_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
-        'Confirm email'                       => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
-        'Catalogue reference'                 => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'catalogue-reference')),
-        'Document is damaged'                 => is_checkbox_valid( filter_input( INPUT_POST, 'document-is-damaged')),
-        'Box/folder contains wrong document'  => is_checkbox_valid( filter_input( INPUT_POST, 'contains-wrong-document')),
-        'Pages not in correct order'          => is_checkbox_valid( filter_input( INPUT_POST, 'not-in-correct-order')),
-        'Additional details'                  => is_textarea_field_valid( filter_input( INPUT_POST, 'additional-details' ) ),
-        'Response to your feedback'           => is_radio_valid( filter_input( INPUT_POST, 'email-a-response')),
-        'Spam'                                => is_this_spam( $_POST )
+        'Name'                 => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
+        'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
+        'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
+        'Postal address'       => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'postal_address' ) ),
+        'Telephone number'     => is_text_field_valid( filter_input( INPUT_POST, 'telephone-number') ),
+        'Catalogue reference'  => is_text_field_valid( filter_input( INPUT_POST, 'catalogue-reference' ) ),
+        'Enquiry'              => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'enquiry' ) ),
+        'Spam'                 => is_this_spam( $_POST )
     );
 
     // If any value inside the array is false then there is an error
@@ -139,9 +137,6 @@ function process_form_dcf() {
         // Amend email address function with username to send email to desired destination.
         // eg, get_tna_email( 'contactcentre' )
         send_form_via_email( get_tna_email(), 'Enquiry - Ref:', $ref_number, $email_to_tna, $form_fields['Spam'] );
-
-        // Subscribe to newsletter
-        subscribe_to_newsletter( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], 'Default', $form_fields['Spam'] );
 
         log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 

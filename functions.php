@@ -5,7 +5,7 @@
  */
 
 function enqueue_form_styles() {
-	wp_register_style( 'tna-form-styles', plugin_dir_url(__FILE__) . 'css/tna-forms.css', array(), '1.0.0'  );
+	wp_register_style( 'tna-form-styles', plugin_dir_url(__FILE__) . 'css/tna-forms.css', array(), '1.2.0'  );
 	global $post;
 	if (has_shortcode($post->post_content, 'tna-form') || has_shortcode($post->post_content, 'form-builder')) {
 		wp_enqueue_style('tna-form-styles');
@@ -36,5 +36,5 @@ if ( !function_exists('wp_mail_set_text_body') ) :
 	add_action( 'phpmailer_init', 'wp_mail_set_text_body' );
 endif;
 
-
-
+add_action( 'add_meta_boxes', 'cf_add_contact_forms_meta_box' );
+add_action( 'save_post', 'cf_meta_box_save' );

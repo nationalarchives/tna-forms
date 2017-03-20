@@ -98,7 +98,7 @@ function process_form_rre() {
 
 		// Store email content to user into a variable
 		$email_to_user = success_message_header( 'Your reference number:', $ref_number );
-		$email_to_user .= confirmation_content( $post->ID );
+		$email_to_user .= confirmation_email_content( $post->ID );
 		$email_to_user .= '<h3>Summary of your enquiry</h3>';
 		$email_to_user .= display_compiled_form_data( $form_fields );
 
@@ -112,7 +112,7 @@ function process_form_rre() {
 		// Send email to TNA
 		send_form_via_email( get_tna_email(), 'Records and research enquiry - Ref:', $ref_number, $email_to_tna, $form_fields['Spam'] );
 
-		subscribe_to_newsletter( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], 'Records and research enquiry', $form_fields['Spam'] );
+		subscribe_to_newsletter_post( $form_fields['Newsletter'], $form_fields['Name'], $form_fields['Email'], 'contact-form-records-and-research' );
 
 		log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 
