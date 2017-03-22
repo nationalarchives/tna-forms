@@ -97,8 +97,8 @@ function display_compiled_form_data( $data ) {
 }
 
 function display_error_message() {
-	$error_message = '<div class="emphasis-block error-message"><h3>Sorry, there was a problem</h3>';
-	$error_message .= '<p>You will find more details highlighted below.</p></div>';
+	$error_message = '<div class="emphasis-block error-message" role="alert"><h3>Sorry, there was a problem</h3>';
+	$error_message .= '<p>Please check the highlighted fields to proceed.</p></div>';
 
 	return $error_message;
 }
