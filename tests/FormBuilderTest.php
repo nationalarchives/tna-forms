@@ -194,7 +194,7 @@ class FormBuilderTest extends \PHPUnit_Framework_TestCase {
 		$_POST['tna-form'] = 'form';
 		$_POST['full-name'] = '';
 		$html = $class->input_error_message( 'full-name', 'Please enter your full name' );
-		$this->assertEquals($html, '<span class="form-error form-hint">Please enter your full name</span>');
+		$this->assertEquals($html, '<span id="full-name-error" class="form-error form-hint">Please enter your full name</span>');
 	}
 	public function testFormBuilderMethodInputErrorMessageMatchReturns()
 	{
@@ -203,7 +203,7 @@ class FormBuilderTest extends \PHPUnit_Framework_TestCase {
 		$_POST['email'] = 'test@test.com';
 		$_POST['confirm-email'] = 'test@nomatch.com';
 		$html = $class->input_error_message( 'email', 'Please retype your email', 'confirm-email' );
-		$this->assertEquals($html, '<span class="form-error form-hint">Please retype your email</span>');
+		$this->assertEquals($html, '<span id="email-error" class="form-error form-hint">Please retype your email</span>');
 	}
 	public function testFormBuilderMethodInputErrorClass()
 	{
@@ -216,7 +216,7 @@ class FormBuilderTest extends \PHPUnit_Framework_TestCase {
 		$_POST['tna-form'] = 'form';
 		$_POST['full-name'] = '';
 		$html = $class->input_error_class( 'full-name', 'Please enter your full name' );
-		$this->assertEquals($html, ' class="form-warning" ');
+		$this->assertEquals($html, ' class="form-warning" aria-describedby="full-name-error" ');
 	}
 	public function testFormBuilderMethodNoValidateForTesting()
 	{
