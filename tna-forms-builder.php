@@ -360,6 +360,41 @@ class Form_Builder {
 		return $form;
 	}
 
+	public function set_value( $name, $type = 'text', $select_value = '' ) {
+		if ( isset( $_POST[$name] ) ) {
+			switch( $type ) {
+				case 'text': {
+					return ' value="' . htmlspecialchars( trim( $_POST[$name] ) ) . '" ';
+					break;
+				}
+				case 'textarea': {
+					if ( trim( $_POST[$name] ) !== '' ) {
+						return htmlspecialchars( $_POST[$name] );
+					}
+					return '';
+					break;
+				}
+				case 'checkbox': {
+					return ' checked="checked" ';
+					break;
+				}
+				case 'radio': {
+					if( $_POST[$name] == $select_value ){
+						return ' checked="checked" ';
+					}
+					break;
+				}
+				case 'select': {
+					if ( $_POST[$name] == $select_value ) {
+						return ' selected="selected" ';
+					}
+					break;
+				}
+			}
+		}
+		return '';
+	}
+
 	public function set_get_value( $name ) {
 		if ( isset( $_GET[$name] ) ) {
 			return ' value="' . htmlspecialchars( trim( $_GET[$name] ) ) . '" ';
