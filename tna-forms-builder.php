@@ -57,7 +57,7 @@ class Form_Builder {
 		$form .= $this->hint_text( $hint );
 		$form .= '<input type="text" id="%s" name="%s" ';
 		$form .= $this->required_atts( $error );
-		$form .= set_value( $name );
+		$form .= $this->set_value( $name );
 		$form .= $this->set_get_value( $name );
 		$form .= $this->input_error_class( $name, $error );
 		$form .= '>';
@@ -79,7 +79,7 @@ class Form_Builder {
 		$form .= $this->required_atts( $error );
 		$form .= $this->input_error_class( $name, $error );
 		$form .= '>';
-		$form .= set_value( $name, 'textarea' );
+		$form .= $this->set_value( $name, 'textarea' );
 		$form .= '</textarea>';
 		$form .= $this->input_error_message( $name, $error );
 		$form .= '</div>';
@@ -96,7 +96,7 @@ class Form_Builder {
 		$form .= '</label>';
 		$form .= '<input type="email" id="%s" name="%s" ';
 		$form .= $this->required_atts( $error );
-		$form .= set_value( $name );
+		$form .= $this->set_value( $name );
 		$form .= $this->input_error_class( $name, $error, $match );
 		$form .= '>';
 		$form .= $this->input_error_message( $name, $error, $match );
@@ -115,7 +115,7 @@ class Form_Builder {
 		$form .= $this->hint_text( $hint );
 		$form .= '<input type="tel" id="%s" name="%s" ';
 		$form .= $this->required_atts( $error );
-		$form .= set_value( $name );
+		$form .= $this->set_value( $name );
 		$form .= $this->input_error_class( $name, $error );
 		$form .= '>';
 		$form .= $this->input_error_message( $name, $error );
@@ -134,7 +134,7 @@ class Form_Builder {
 		$form .= $this->hint_text( $hint );
 		$form .= '<input type="date" id="%s" name="%s" ';
 		$form .= $this->required_atts( $error );
-		$form .= set_value( $name );
+		$form .= $this->set_value( $name );
 		$form .= $this->input_error_class( $name, $error );
 		$form .= '>';
 		$form .= $this->input_error_message( $name, $error );
@@ -147,7 +147,7 @@ class Form_Builder {
 		$form = '<div class="form-row checkbox">';
 		$form .= '<input type="checkbox" id="%s" name="%s" value="Yes" ';
 		$form .= $this->required_atts( $error );
-		$form .= set_value( $name, 'checkbox' );
+		$form .= $this->set_value( $name, 'checkbox' );
 		$form .= '>';
 		$form .= '<label for="';
 		$form .= $id;
@@ -174,7 +174,7 @@ class Form_Builder {
 			}
 			$form .= '<div class="radio">';
 			$form .= '<input type="radio" id="' . $id . '" name="' . $name . '" value="' . $radio . '" ' . $checked;
-			$form .= set_value( $name, 'radio', $radio );
+			$form .= $this->set_value( $name, 'radio', $radio );
 			$form .= '>';
 			$form .= '<label for="' . $id . '">';
 			$form .= $radio;
@@ -201,7 +201,7 @@ class Form_Builder {
 		$form .= '<option value="">Please select</option>';
 		foreach ( $options as $option ) {
 			$form .= '<option value="' . $option . '" ';
-			$form .= set_value( $name, 'select', $option );
+			$form .= $this->set_value( $name, 'select', $option );
 			$form .= '>';
 			$form .= $option;
 			$form .= '</option>';
@@ -233,13 +233,13 @@ class Form_Builder {
 			} elseif ( strpos($option, ')') !== false ) {
 				$option = str_replace(')', '', $option);
 				$form .= '<option value="' . $option . '" ';
-				$form .= set_value( $name, 'select', $option );
+				$form .= $this->set_value( $name, 'select', $option );
 				$form .= '>';
 				$form .= $option;
 				$form .= '</option></optgroup>';
 			} else {
 				$form .= '<option value="' . $option . '" ';
-				$form .= set_value( $name, 'select', $option );
+				$form .= $this->set_value( $name, 'select', $option );
 				$form .= '>';
 				$form .= $option;
 				$form .= '</option>';
