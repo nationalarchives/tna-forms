@@ -290,20 +290,20 @@ class Form_Builder {
 	}
 
 	public function input_error_message( $name, $error, $match = '' ) {
-		$error_wrapper = '<span class="form-error form-hint">%s</span>';
+		$error_wrapper = '<span id="%s-error" class="form-error form-hint">%s</span>';
 		if ( $error && isset( $_POST['tna-form'] ) ) {
 			if ( isset( $_POST[$name] ) && isset( $_POST[$match] ) ) {
 				if ( trim( $_POST[$name] ) !== trim( $_POST[$match] ) ) {
-					return sprintf( $error_wrapper, $error );
+					return sprintf( $error_wrapper, $name, $error );
 				}
 			}
 			if ( isset( $_POST[$name] ) ) {
 				if ( trim( $_POST[$name] ) === '' ) {
-					return sprintf( $error_wrapper, $error );
+					return sprintf( $error_wrapper, $name, $error );
 				}
 			}
 			if ( !isset( $_POST[$name] ) ) {
-				return sprintf( $error_wrapper, $error );
+				return sprintf( $error_wrapper, $name, $error );
 			}
 		}
 		return '';
@@ -313,16 +313,16 @@ class Form_Builder {
 		if ( $error && isset( $_POST['tna-form'] ) ) {
 			if ( isset( $_POST[$name] ) && isset( $_POST[$match] ) ) {
 				if ( trim( $_POST[$name] ) !== trim( $_POST[$match] ) ) {
-					return ' class="form-warning" ';
+					return ' class="form-warning" aria-describedby="' . $name . '-error" ';
 				}
 			}
 			if ( isset( $_POST[$name] ) ) {
 				if ( trim( $_POST[$name] ) === '' ) {
-					return ' class="form-warning" ';
+					return ' class="form-warning" aria-describedby="' . $name . '-error" ';
 				}
 			}
 			if ( !isset( $_POST[$name] ) ) {
-				return ' class="form-warning" ';
+				return ' class="form-warning" aria-describedby="' . $name . '-error" ';
 			}
 		}
 		return '';
