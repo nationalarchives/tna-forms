@@ -303,7 +303,6 @@ function cf_meta_box_save( $post_id ) {
 		'ul' => array(),
 		'li' => array(),
 		'ol' => array()
-
 	);
 	if( isset( $_POST[ 'cf_receipt_email_content' ] ) ) {
 		update_post_meta( $post_id, 'cf_receipt_email_content', wp_kses( $_POST[ 'cf_receipt_email_content' ], $allowed ) );
