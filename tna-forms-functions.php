@@ -97,8 +97,8 @@ function display_compiled_form_data( $data ) {
 }
 
 function display_error_message() {
-	$error_message = '<div class="emphasis-block error-message"><h3>Sorry, there was a problem</h3>';
-	$error_message .= '<p>You will find more details highlighted below.</p></div>';
+	$error_message = '<div class="emphasis-block error-message" role="alert"><h3>Sorry, there was a problem</h3>';
+	$error_message .= '<p>Please check the highlighted fields to proceed.</p></div>';
 
 	return $error_message;
 }
@@ -291,8 +291,21 @@ function cf_meta_box_save( $post_id ) {
 	if ( $is_autosave || $is_revision || !$is_valid_cf_receipt_email_nonce || !$is_valid_cf_get_tna_email_nonce ) {
 		return;
 	}
+	$allowed = array(
+		'a' => array(
+			'href' => array(),
+			'title' => array()
+		),
+		'br' => array(),
+		'em' => array(),
+		'strong' => array(),
+		'p' => array(),
+		'ul' => array(),
+		'li' => array(),
+		'ol' => array()
+	);
 	if( isset( $_POST[ 'cf_receipt_email_content' ] ) ) {
-		update_post_meta( $post_id, 'cf_receipt_email_content', esc_html( $_POST[ 'cf_receipt_email_content' ] ) );
+		update_post_meta( $post_id, 'cf_receipt_email_content', wp_kses( $_POST[ 'cf_receipt_email_content' ], $allowed ) );
 	}
 	if( isset( $_POST[ 'cf_get_tna_email' ] ) ) {
 		update_post_meta( $post_id, 'cf_get_tna_email', esc_html( $_POST[ 'cf_get_tna_email' ] ) );
