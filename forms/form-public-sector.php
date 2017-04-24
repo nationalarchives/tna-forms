@@ -21,15 +21,9 @@ function return_form_public_sector( $content ) {
 	         $html->fieldset_ends() .
 	         $html->fieldset_begins( 'Your enquiry' ) .
 	         $html->form_select_input( 'Nature of your enquiry', 'reason', 'reason', array(
-		         'Click-Use Licencing Process',
 		         'Reusing Crown Copyright material',
 		         'The EU Directive and PSI Regulations',
-		         'Supplying publications to MEPs',
-		         'The Public Library Access Scheme',
 		         'The Information Fair Trader Scheme',
-		         'Publishing Command Papers',
-		         'Obtaining an official publication',
-		         'Using the Information Asset Register',
 		         'Open Government Licence',
 		         'UK Government Licensing Framework'
 	         ) ) .
