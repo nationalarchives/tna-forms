@@ -29,4 +29,5 @@ include 'forms/form-pronom.php';
 include 'forms/form-document-condition-feedback.php';
 include 'forms/form-foi-corporate.php';
 include 'forms/form-foi-closed-record.php';
+include 'forms/form-archive-update.php';
 include 'forms/form-default.php';
