@@ -57,7 +57,7 @@ function return_form_pronom( $content ) {
 	         $html->help_text( 'If you have specific technical information about the file format concerned, please provide it here.' ) .
 	         $html->form_text_input( 'PUID', 'puid', 'puid' ) .
 	         $html->form_textarea_input( 'References', 'references', 'references', '', 'To provide validity / authenticity to the entry' ) .
-	         $html->form_textarea_input( 'Other information you can tell us about the format', 'other_information', 'other-information', '', 'e.g. version; vendor / developer; file extension' ) .
+	         $html->form_textarea_input( 'Other information you can tell us about the format', 'other_information', 'other-information', '', 'For example, version; vendor / developer; file extension' ) .
 	         $html->form_spam_filter( rand(10, 99) ) .
 	         $html->submit_form( 'submit-pr', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .

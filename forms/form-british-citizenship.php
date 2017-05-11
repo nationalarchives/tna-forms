@@ -32,7 +32,7 @@ function return_form_british_citizenship( $content ) {
 	                    </div>
 	                    <div class="form-row">
 	                        <label for="certificate_name_alt">Alternative name(s) <span class="optional">(optional)</span></label>
-	                        <p id="name-alt" class="form-hint">For example: married or maiden names</p>
+	                        <p id="name-alt" class="form-hint">For example, married or maiden names</p>
 	                        <input type="text" aria-describedby="name-alt" id="certificate_name_alt" name="certificate-name-alt" ' . set_value( 'certificate-name-alt' ) . '>
 	                    </div>
 	                    <div class="form-row">
@@ -41,7 +41,7 @@ function return_form_british_citizenship( $content ) {
 	                    </div>
 	                    <div class="form-row">
 	                    <p id="dob">Date of birth <span class="optional">(optional)</span></p>
-	                    <p class="form-hint">For example: 8 3 1955</p>
+	                    <p class="form-hint">For example, 8 3 1955</p>
 	                        <span class="dob-col day">
 	                            <label id="day" for="certificate_day">Day</label>
 	                            <input type="number" aria-labelledby="dob day" id="certificate_day" name="certificate-day" ' . set_value( 'certificate-day' ) . '>
