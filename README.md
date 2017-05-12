@@ -55,6 +55,11 @@ Each session group is defined by brackets. Each session title, session time and 
 
 `[tna-form name="Freedom of information closed record"]`
 
+**Update or add an archive** form:
+
+`[tna-form name="Archive update"]`
+`If query string [archon-code] exists in the URL it will automatically populate the field [Archon code] with its value`
+
 ## Development setup
 
 ### 1.0 Clone the repository
