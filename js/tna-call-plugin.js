@@ -51,6 +51,9 @@ $(document).ready(function() {
         else if ($('#archive_update').is(':visible')) {
             archiveUpdateForm();
         }
+        else if ($('#paid_search').is(':visible')) {
+            paidSearchForm();
+        }
         else {
             defaultForm();
         }
