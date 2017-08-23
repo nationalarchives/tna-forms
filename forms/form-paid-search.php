@@ -25,8 +25,8 @@ function return_form_paid_search( $content ) {
         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
         $html->form_text_input( 'Country', 'country', 'country' ) .
         $html->fieldset_ends() .
-        $html->fieldset_begins( 'Details of what you are searching for ' ) .
-        $html->form_textarea_input( 'Your details', 'your_details', 'your-details', 'Please provide specific details of the information you are looking for, including any relevant catalogue references.', 'Be as specific as possible. For example, if you are looking for a person, include their full name including alternative spellings, place or date of birth. Please avoid very broad requests such as "anything you can find" on a person or subject.') .
+        $html->fieldset_begins( 'Details of your search enquiry' ) .
+        $html->form_textarea_input( 'Your enquiry', 'your_enquiry', 'your-enquiry', 'Please provide specific details of the information you are looking for, including any relevant catalogue references.', 'Be as specific as possible. For example, if you are looking for a person, include their full name including alternative spellings, place or date of birth. Please avoid very broad requests such as "anything you can find" on a person or subject.') .
         $html->fieldset_ends() .
         $html->form_spam_filter( rand(10, 99) ) .
         $html->submit_form( 'submit-paid-search', 'submit-tna-form' ) .
@@ -79,7 +79,7 @@ function process_form_paid_search() {
             'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
             'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
             'Country'              => is_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
-            'Your details'         => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'your-details' ) ),
+            'Your enquiry'         => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'your-enquiry' ) ),
             'Spam'                 => is_this_spam( $_POST )
         );
 
