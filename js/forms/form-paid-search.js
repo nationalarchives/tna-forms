@@ -72,7 +72,7 @@ function paidSearchForm(){
         }
     });
 
-    $("input[name='submit-psi']").on('click', function(){
+    $("input[name='submit-paid-search']").on('click', function(){
         var emphAlert = ($('.emphasis-block.error-message').length === 1);
         if(form.valid() !== true) {
             if(emphAlert) {
@@ -82,5 +82,4 @@ function paidSearchForm(){
             }
         }
     });
-
 }

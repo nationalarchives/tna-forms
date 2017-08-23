@@ -1669,11 +1669,11 @@ function paidSearchForm(){
             },
             "your-details": {
                 required:"Please provide specific details of the information you are looking for, including any relevant catalogue references."
-            }
+            }   
         }
     });
 
-    $("input[name='submit-psi']").on('click', function(){
+    $("input[name='submit-paid-search']").on('click', function(){
         var emphAlert = ($('.emphasis-block.error-message').length === 1);
         if(form.valid() !== true) {
             if(emphAlert) {
@@ -1683,7 +1683,6 @@ function paidSearchForm(){
             }
         }
     });
-
 };/**
  * @name  : Newsletter and Contact forms Wordpress plugin
  * @author: TNA WebTeam

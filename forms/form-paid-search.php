@@ -78,7 +78,7 @@ function process_form_paid_search() {
             'Name'                 => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
             'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
             'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
-            'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
+            'Country'              => is_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
             'Your details'         => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'your-details' ) ),
             'Spam'                 => is_this_spam( $_POST )
         );
