@@ -1649,6 +1649,10 @@ function paidSearchForm(){
             "confirm-email": {
                 equalTo: "#email"
             },
+            country:{
+                required:true,
+                noSpace:true
+            },
             "your-enquiry":{
                 required:true,
                 noSpace:true
@@ -1666,6 +1670,9 @@ function paidSearchForm(){
             "confirm-email": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
+            },
+            country:{
+                required:"Please enter your country"
             },
             "your-enquiry": {
                 required:"Please provide specific details of the information you are looking for, including any relevant catalogue references."

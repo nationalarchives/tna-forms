@@ -23,7 +23,7 @@ function return_form_paid_search( $content ) {
         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
-        $html->form_text_input( 'Country', 'country', 'country' ) .
+        $html->form_text_input( 'Country', 'country', 'country', 'Please enter your country') .
         $html->fieldset_ends() .
         $html->fieldset_begins( 'Details of your search enquiry' ) .
         $html->form_textarea_input( 'Your enquiry', 'your_enquiry', 'your-enquiry', 'Please provide specific details of the information you are looking for, including any relevant catalogue references.', 'Be as specific as possible. For example, if you are looking for a person, include their full name including alternative spellings, place or date of birth. Please avoid very broad requests such as "anything you can find" on a person or subject.') .
@@ -78,7 +78,7 @@ function process_form_paid_search() {
             'Name'                 => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
             'Email'                => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
             'Confirm email'        => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
-            'Country'              => is_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
+            'Country'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'country' ) ),
             'Your enquiry'         => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'your-enquiry' ) ),
             'Spam'                 => is_this_spam( $_POST )
         );
