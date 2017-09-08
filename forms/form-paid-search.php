@@ -26,7 +26,8 @@ function return_form_paid_search( $content ) {
         $html->form_text_input( 'Country', 'country', 'country', 'Please enter your country') .
         $html->fieldset_ends() .
         $html->fieldset_begins( 'Details of your search enquiry' ) .
-        $html->form_textarea_input( 'Your enquiry', 'your_enquiry', 'your-enquiry', 'Please provide specific details of the information you are looking for, including any relevant catalogue references.', 'Be as specific as possible. For example, if you are looking for a person, include their full name including alternative spellings, place or date of birth. Please avoid very broad requests such as "anything you can find" on a person or subject.') .
+        $html->help_text("Be as specific as possible about the person or subject you are looking for. Please avoid asking us for 'anything you can find. <br />If you are looking for records of a person, please include their full name, place of birth, and date of birth. <br /> If you are not looking for records of a person, please include a range of dates or years to search within, and relevant record series references.") .
+        $html->form_textarea_input( 'Your enquiry', 'your_enquiry', 'your-enquiry', 'Please provide specific details of the information you are looking for, including any relevant catalogue references.') .
         $html->fieldset_ends() .
         $html->form_spam_filter( rand(10, 99) ) .
         $html->submit_form( 'submit-paid-search', 'submit-tna-form' ) .
