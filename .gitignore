@@ -15,3 +15,5 @@ node_modules
 composer.phar
 /vendor/
 
+### SASS cache
+.sass-cache
