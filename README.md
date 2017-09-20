@@ -60,6 +60,10 @@ Each session group is defined by brackets. Each session title, session time and 
 `[tna-form name="Archive update"]`
 `If query string [archon-code] exists in the URL it will automatically populate the field [Archon code] with its value`
 
+**Request a paid search** form:
+
+`[tna-form name="Request a paid search"]`
+
 ## Development setup
 
 ### 1.0 Clone the repository

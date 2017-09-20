@@ -48,6 +48,9 @@ function tna_forms_shortcode( $atts, $content = '' ) {
         case 'Archive update':
             return return_form_archive_update ($content);
             break;
+        case 'Request a paid search':
+            return return_form_paid_search ($content);
+            break;
 		default:
 			return return_form_default( $content );
 			break;

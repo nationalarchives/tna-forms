@@ -17,10 +17,9 @@
  *
  * 1. Change processing function name, unique and descriptive. ie function process_form_*()
  * 2. Change add_action to reflect new function name. ie add_action('wp', 'process_form_*');
- * 3. Change first if statement to reflect the submit input name.
- * 4. Change $form_fields array to reflect the form inputs
- * 5. Update email subject for user and tna. ie send_form_via_email( $email, $ref_number, $subject, $content )
- * 6. Update tna destination email. ie get_tna_email( 'contactcentre' )
+ * 3. Change $form_fields array to reflect the form inputs
+ * 4. Update email subject for user and tna. ie send_form_via_email( $email, $ref_number, $subject, $content )
+ * 5. Update tna destination email. ie get_tna_email( 'contactcentre' )
  *
  */
 
@@ -30,11 +29,6 @@ function return_form_default( $content ) {
 	// is successful or comes back with errors
 	global $tna_success_message,
 	       $tna_error_message;
-
-	// If the form is submitted the form data is processed
-	if ( isset( $_POST['submit-default'] ) ) {
-		process_form_default();
-	}
 
 	// HTML form string
 	$html = new Form_Builder;
@@ -141,3 +135,4 @@ function process_form_default() {
 
 	}
 }
+add_action('wp', 'process_form_default');
