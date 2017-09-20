@@ -1,7 +1,6 @@
 <?php
 /**
  * Form: Request a paid search
- *
  */
 
 function return_form_paid_search( $content ) {
@@ -10,11 +9,6 @@ function return_form_paid_search( $content ) {
     // is successful or comes back with errors
     global $tna_success_message,
            $tna_error_message;
-
-    // If the form is submitted the form data is processed
-    if ( isset( $_POST['submit-paid-search'] ) ) {
-        process_form_paid_search();
-    }
 
     // HTML form string
     $html = new Form_Builder;
@@ -115,7 +109,7 @@ function process_form_paid_search() {
             $email_to_user .= display_compiled_form_data( $form_fields );
 
             // Send email to user
-            send_form_via_email( $form_fields['Email'], 'Your enquiry - Ref:', $ref_number, $email_to_user, $form_fields['Spam'] );
+            send_form_via_email( $form_fields['Email'], 'Your paid search enquiry - Ref:', $ref_number, $email_to_user, $form_fields['Spam'] );
 
             // Store email content to TNA into a variable
             $email_to_tna = success_message_header( 'Reference number:', $ref_number );
@@ -124,7 +118,7 @@ function process_form_paid_search() {
             // Send email to TNA
             // Amend email address function with username to send email to desired destination.
             // eg, get_tna_email( 'contactcentre' )
-            send_form_via_email( get_tna_email(), 'Enquiry - Ref:', $ref_number, $email_to_tna, $form_fields['Spam'] );
+            send_form_via_email( get_tna_email(), 'Paid search enquiry - Ref:', $ref_number, $email_to_tna, $form_fields['Spam'] );
 
             log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 
