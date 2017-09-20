@@ -48,6 +48,12 @@ $(document).ready(function() {
         else if ($('#foi_closed_record').is(':visible')){
             foiClosedRecordForm();
         }
+        else if ($('#archive_update').is(':visible')) {
+            archiveUpdateForm();
+        }
+        else if ($('#paid_search').is(':visible')) {
+            paidSearchForm();
+        }
         else {
             defaultForm();
         }

@@ -34,7 +34,6 @@ QUnit.module("Checking the fields before plugin is applied", function () {
         assert.ok($('#find_out').length == 1, "The find_out textarea is present");
         assert.ok($('#file_format').length == 1, "The file_format input is present");
         assert.ok($('#file_example').length == 1, "The file_example checkbox is present");
-        assert.ok($('#contact').length == 1, "The contact checkbox is present");
         assert.ok($('#puid').length == 1, "The puid input is present");
         assert.ok($('#references').length == 1, "The references textarea is present");
         assert.ok($('#other_information').length == 1, "The other_information textarea is present");
