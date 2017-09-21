@@ -30,6 +30,11 @@ function return_form_default( $content ) {
 	global $tna_success_message,
 	       $tna_error_message;
 
+	// If the form is submitted the form data is processed
+	if ( isset( $_POST['submit-default'] ) ) {
+		process_form_default();
+	}
+
 	// HTML form string
 	$html = new Form_Builder;
 	$form =  $html->form_begins( 'default', 'Default' ) .
@@ -135,4 +140,3 @@ function process_form_default() {
 
 	}
 }
-add_action('wp', 'process_form_default');
