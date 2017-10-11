@@ -43,13 +43,13 @@ function return_form_archive_update( $content ) {
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
 	         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
-             $html->form_select_input('Type of entry: new/update', 'type_of_entry', 'type-of-entry', array('New','Update'), 'Please select from the dropdown') .
+             $html->form_select_input('Type of entry', 'type_of_entry', 'type-of-entry', array('New','Update'), 'Please select from the dropdown') .
              $html->fieldset_ends() .
              $html->fieldset_begins('Repository details').
              $html->form_text_input('Name of repository', 'name_of_repository','name-of-repository', 'Please enter your name of repository').
              $html->form_text_input('Archon code', 'archon_code', 'archon-code').
              $html->form_textarea_input('Address','address_of_repository','address-of-repository').
-             $html->form_textarea_input('Address for correspondence (if different from above)','address_for_correspondence','address-for-correspondence').
+             $html->form_textarea_input('Address for correspondence if different from above','address_for_correspondence','address-for-correspondence').
              $html->form_tel_input('Telephone/fax number for general enquiries', 'telephone_number_for_general_enquiries', 'telephone-number-for-general-enquiries') .
              $html->form_email_input( 'Email address for general enquiries', 'email_general_enquiries', 'email-general-enquiries' ) .
              $html->form_text_input('Repository website', 'repository_website_url','repository-website-url') .
@@ -61,20 +61,20 @@ function return_form_archive_update( $content ) {
              $html->form_text_input('Job title','job_title','job-title') .
 	         $html->fieldset_ends() .
 	         $html->fieldset_begins( 'Repository visiting details' ) .
-             $html->form_text_input('Usual opening hours (for example, Mon-Thurs 9am-5pm; Fri 9am-12pm)','usual_opening_hours', 'usual-opening-hours','','For example, Mon-Thurs 9am-5pm; Fri 9am-12pm') .
+             $html->form_text_input('Usual opening hours','usual_opening_hours', 'usual-opening-hours','','For example, Mon-Thurs 9am-5pm; Fri 9am-12pm') .
              $html->form_text_input('Dates of annual closure','dates_of_annual_closure','dates-of-annual-closure') .
-             $html->form_select_input('Booking in advance? Yes/No','booking_in_advance','booking-in-advance', array('Yes','No')) .
-             $html->form_text_input('Requirements for public access to MSS eg CARN ticket, letter of introduction or proof of identity','requirements_for_public_access_to_mss', 'requirements-for-public-access-to-mss','','For example, CARN ticket, letter of introduction or proof of identity') .
-             $html->form_select_input('Is a reader ticket required? Yes/No','is_a_reader_ticket_required', 'is-a-reader-ticket-required',array('Yes','No')) .
-             $html->form_select_input('Is a fee payable? Yes/No','is_a_fee_payable', 'is-a-fee-payable',array('Yes','No')) .
-             $html->form_select_input('Is there disability access? Yes/No','is_there_disability_access', 'is-there-disability-access',array('Yes','No')) .
-             $html->form_text_input('Is there a copy service? If so, in what format eg photographs, microfilm, etc','copy_service','copy-service') .
-             $html->form_select_input('Do you provide a fee based research service? Yes/No','fee_based_research_service', 'fee-based-research-service',array('Yes','No'),'','For example, photographs, microfilm') .
-             $html->form_text_input('Details of finding aids available on website eg catalogue URL','aids_available_on_website','aids-available-on-website','','For example, catalogue URL ') .
-             $html->form_textarea_input('Is there a published guide to the repository? If so give details', 'published_guide', 'published-guide') .
+             $html->form_select_input('Do visitors need to book in advance?','booking_in_advance','booking-in-advance', array('Yes','No')) .
+             $html->form_text_input('Requirements for public access to MSS','requirements_for_public_access_to_mss', 'requirements-for-public-access-to-mss','','For example, CARN ticket, letter of introduction or proof of identity') .
+             $html->form_select_input('Is a reader ticket required?','is_a_reader_ticket_required', 'is-a-reader-ticket-required',array('Yes','No')) .
+             $html->form_select_input('Is a fee payable?','is_a_fee_payable', 'is-a-fee-payable',array('Yes','No')) .
+             $html->form_select_input('Is there disability access?','is_there_disability_access', 'is-there-disability-access',array('Yes','No')) .
+             $html->form_text_input('Is there a copy service?','copy_service','copy-service', '', 'For example, photographs, microfilm') .
+             $html->form_select_input('Do you provide a fee based research service?','fee_based_research_service', 'fee-based-research-service',array('Yes','No')) .
+             $html->form_text_input('Details of finding aids available on website','aids_available_on_website','aids-available-on-website','','For example, catalogue URL ') .
+             $html->form_textarea_input('Is there a published guide to the repository? If so, give details', 'published_guide', 'published-guide') .
 	         $html->fieldset_ends() .
 	         $html->fieldset_begins( 'Additional information' ) .
-	         $html->form_textarea_input( 'Please supply any additional information here, eg fields to be deleted.', 'additional_information', 'additional-information', '', 'For example, fields to be deleted' ) .
+	         $html->form_textarea_input( 'Please supply any additional information here', 'additional_information', 'additional-information', '', 'For example, fields to be deleted' ) .
 	         $html->form_spam_filter( rand(10, 99) ) .
 	         $html->submit_form( 'submit-aup', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
