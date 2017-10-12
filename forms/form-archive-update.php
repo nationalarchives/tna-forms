@@ -43,7 +43,7 @@ function return_form_archive_update( $content ) {
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
 	         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
-             $html->form_select_input('Type of entry', 'type_of_entry', 'type-of-entry', array('New','Update'), 'Please select from the dropdown') .
+             $html->form_select_input('Are you submitting a new entry or updating an existing entry?', 'type_of_entry', 'type-of-entry', array('New','Update'), 'Please select from the dropdown') .
              $html->fieldset_ends() .
              $html->fieldset_begins('Repository details').
              $html->form_text_input('Name of repository', 'name_of_repository','name-of-repository', 'Please enter your name of repository').
