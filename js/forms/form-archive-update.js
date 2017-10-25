@@ -59,7 +59,6 @@ function archiveUpdateForm(){
                 required:true,
                 noSpace:true
             }
-
         },
         /**
          * Error messages
@@ -96,3 +95,4 @@ function archiveUpdateForm(){
         }
     });
 }
+
