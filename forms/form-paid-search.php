@@ -13,7 +13,7 @@ function return_form_paid_search($content)
 
     // If the form is submitted the form data is processed
     if (isset($_POST['submit-paid-search'])) {
-        process_form_archive_update();
+        process_form_paid_search();
     }
 
     // HTML form string
