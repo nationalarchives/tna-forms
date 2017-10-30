@@ -91,7 +91,7 @@ function process_form( $form_name, $form_data, $form_tna_recipient ) {
 		$email_to_user .= display_compiled_form_data( $form_data );
 
 		// Send email to user
-		send_form_via_email( $form_data['Email'], 'Your enquiry - Ref:', $ref_number, $email_to_user, $form_data['Spam'] );
+		send_form_via_email( $form_data['Email'], $form_name.' - Ref:', $ref_number, $email_to_user, $form_data['Spam'] );
 
 		// Store email content to TNA into a variable
 		$email_to_tna = success_message_header( 'Reference number:', $ref_number );
@@ -100,13 +100,12 @@ function process_form( $form_name, $form_data, $form_tna_recipient ) {
 		// Send email to TNA
 		// Amend email address function with username to send email to desired destination.
 		// eg, get_tna_email( 'contactcentre' )
-		send_form_via_email( get_tna_email( $form_tna_recipient ), 'Enquiry - Ref:', $ref_number, $email_to_tna, $form_data['Spam'] );
+		send_form_via_email( get_tna_email( $form_tna_recipient ), $form_name.' - Ref:', $ref_number, $email_to_tna, $form_data['Spam'] );
 
 		// Subscribe to newsletter
 		subscribe_to_newsletter( $form_data['Newsletter'], $form_data['Name'], $form_data['Email'], $form_name, $form_data['Spam'] );
 
 		log_spam( $form_data['Spam'], date_timestamp_get( date_create() ), $form_data['Email'] );
-
 	}
 }
 
