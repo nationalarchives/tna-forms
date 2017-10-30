@@ -10,6 +10,27 @@ function sanitize_value( $key ) {
 	return $sanitize_value;
 }
 
+function display_form_data( $data ) {
+	if ( is_array( $data ) ) {
+		$display_data = '<div class="form-data"><ul>';
+		foreach ( $data as $field_name => $field_value ) {
+			if ( strpos($field_name, 'skype-name') !== false || $field_name == 'confirm_email') {
+
+				// do nothing
+
+			} else {
+
+				$field_name = ucfirst( str_replace('-', ' ', $field_name) );
+
+				$display_data .= '<li>' . $field_name . ': ' . $field_value . '</li>';
+			}
+		}
+		$display_data .= '</ul></div>';
+
+		return $display_data;
+	}
+}
+
 function get_form_data( $data ) {
 	$form_data = array();
 
@@ -94,13 +115,13 @@ function process_form( $form_name, $form_data, $form_tna_recipient = '' ) {
 		$tna_success_message = success_message_header( 'Your reference number:', $ref_number );
 		$tna_success_message .= confirmation_content( $post->ID );
 		$tna_success_message .= '<h3>Summary of your enquiry</h3>';
-		$tna_success_message .= display_compiled_form_data( $form_data );
+		$tna_success_message .= display_form_data( $form_data );
 
 		// Store email content to user into a variable
 		$email_to_user = success_message_header( 'Your reference number:', $ref_number );
 		$email_to_user .= confirmation_email_content( $post->ID );
 		$email_to_user .= '<h3>Summary of your enquiry</h3>';
-		$email_to_user .= display_compiled_form_data( $form_data );
+		$email_to_user .= display_form_data( $form_data );
 
 		// Send email to user
 		send_form_via_email( $form_data['email'], $form_name.' - Ref:', $ref_number, $email_to_user, '' );
