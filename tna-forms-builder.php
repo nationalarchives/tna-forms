@@ -105,6 +105,29 @@ class Form_Builder {
 		return sprintf( $form, $label, $id, $name );
 	}
 
+	public function form_email_required_input() {
+		$form = '<div class="form-row">';
+		$form .= '<label for="email_required">Email address';
+		$form .= '</label>';
+		$form .= '<input type="email" id="email_required" name="email" aria-required="true" required';
+		$form .= $this->set_value( 'email-required' );
+		$form .= $this->input_error_class( 'email-required', 'Please enter a valid email address', '' );
+		$form .= '>';
+		$form .= $this->input_error_message( 'email-required', 'Please enter a valid email address', '' );
+		$form .= '</div>';
+		$form .= '<div class="form-row">';
+		$form .= '<label for="confirm_email_required">Please re-type your email address';
+		$form .= '</label>';
+		$form .= '<input type="email" id="confirm_email_required" name="confirm_email" aria-required="true" required';
+		$form .= $this->set_value( 'confirm-email-required' );
+		$form .= $this->input_error_class( 'confirm-email-required', 'Please enter your email address again', 'Email address' );
+		$form .= '>';
+		$form .= $this->input_error_message( 'confirm-email-required', 'Please enter your email address again', 'Email address' );
+		$form .= '</div>';
+
+		return $form;
+	}
+
 	public function form_tel_input( $label, $id, $name, $error = '', $hint = '' ) {
 		$form = '<div class="form-row">';
 		$form .= '<label for="';

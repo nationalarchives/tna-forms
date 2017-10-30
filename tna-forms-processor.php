@@ -12,16 +12,20 @@ function sanitize_value( $key ) {
 
 function get_form_data( $data ) {
 	$form_data = array();
+
 	foreach( $data as $key => $value ) {
 		if ( $key == 'tna-form' || $key == 'token' ||  $key == 'timestamp' || strpos($key, 'submit') !== false ) {
 			// do nothing
 		} else {
+			if ( strpos($key, 'skype-name') !== false && trim( $value ) !== '' ) {
+				$form_data['spam'] = 'yes';
+			}
 			if ( strpos($key, 'required') !== false ) {
 				if ( ( strpos($key, 'email') !== false ) ) {
 					if ( trim( $value ) === '' || is_email( $value ) == false ) {
 						$form_data[$key] = false;
 					} elseif ( $key == 'confirm-email-required') {
-						if ( trim( $_POST['email-required'] ) !== trim( $_POST['confirm-email-required'] ) ) {
+						if ( trim( $_POST['email'] ) !== trim( $_POST['confirm_email'] ) ) {
 							$form_data[$key] = false;
 						} else {
 							$form_data[$key] = true;
@@ -50,7 +54,9 @@ function get_form_data( $data ) {
 	return $form_data;
 }
 
-function process_form( $form_name, $form_data, $form_tna_recipient ) {
+function process_form( $form_name, $form_data, $form_tna_recipient = '' ) {
+
+	var_dump($form_data);
 
 	// Global variables
 	global $tna_success_message,
@@ -91,7 +97,7 @@ function process_form( $form_name, $form_data, $form_tna_recipient ) {
 		$email_to_user .= display_compiled_form_data( $form_data );
 
 		// Send email to user
-		send_form_via_email( $form_data['Email'], $form_name.' - Ref:', $ref_number, $email_to_user, $form_data['Spam'] );
+		send_form_via_email( $form_data['email'], $form_name.' - Ref:', $ref_number, $email_to_user, $form_data['Spam'] );
 
 		// Store email content to TNA into a variable
 		$email_to_tna = success_message_header( 'Reference number:', $ref_number );
@@ -100,12 +106,14 @@ function process_form( $form_name, $form_data, $form_tna_recipient ) {
 		// Send email to TNA
 		// Amend email address function with username to send email to desired destination.
 		// eg, get_tna_email( 'contactcentre' )
-		send_form_via_email( get_tna_email( $form_tna_recipient ), $form_name.' - Ref:', $ref_number, $email_to_tna, $form_data['Spam'] );
+		send_form_via_email( get_tna_email( $form_tna_recipient ), $form_name.' - Ref:', $ref_number, $email_to_tna, $form_data['spam'] );
 
 		// Subscribe to newsletter
-		subscribe_to_newsletter( $form_data['Newsletter'], $form_data['Name'], $form_data['Email'], $form_name, $form_data['Spam'] );
+		if (isset($form_data['newsletter'])) {
+			subscribe_to_newsletter( $form_data['newsletter'], $form_data['name'], $form_data['email'], $form_name, $form_data['spam'] );
+		}
 
-		log_spam( $form_data['Spam'], date_timestamp_get( date_create() ), $form_data['Email'] );
+		log_spam( $form_data['spam'], date_timestamp_get( date_create() ), $form_data['email'] );
 	}
 }
 

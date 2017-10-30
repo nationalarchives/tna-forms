@@ -32,7 +32,9 @@ function return_form_default( $content ) {
 
 	// If the form is submitted the form data is processed
 	if ( isset( $_POST['submit-default'] ) ) {
-		process_form_default();
+
+		$form_data = get_form_data( $_POST );
+		process_form( 'Default', $form_data );
 	}
 
 	// HTML form string
@@ -40,8 +42,7 @@ function return_form_default( $content ) {
 	$form =  $html->form_begins( 'default', 'Default' ) .
 	         $html->fieldset_begins( 'Your enquiry' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
-	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
-	         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
+	         $html->form_email_required_input() .
 	         $html->form_text_input( 'Country', 'country', 'country', 'Please enter your country' ) .
 	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .
 	         $html->form_text_input( 'Provide the dates or years that you are interested in', 'dates', 'dates' ) .
