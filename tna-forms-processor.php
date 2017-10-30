@@ -79,7 +79,7 @@ function get_form_data( $data ) {
 	return $form_data;
 }
 
-function process_form( $form_name, $form_data, $form_tna_recipient = '' ) {
+function process_form( $form_name, $form_data, $tna_recipient = '' ) {
 
 	var_dump($form_data);
 
@@ -133,11 +133,11 @@ function process_form( $form_name, $form_data, $form_tna_recipient = '' ) {
 		// Send email to TNA
 		// Amend email address function with username to send email to desired destination.
 		// eg, get_tna_email( 'contactcentre' )
-		send_form_via_email( get_tna_email( $form_tna_recipient ), $form_name.' - Ref:', $ref_number, $email_to_tna, '' );
+		send_form_via_email( get_tna_email( $tna_recipient ), $form_name.' - Ref:', $ref_number, $email_to_tna, '' );
 
 		// Subscribe to newsletter
 		if (isset($form_data['newsletter'])) {
-			subscribe_to_newsletter( $form_data['newsletter'], $form_data['name'], $form_data['email'], $form_name, '' );
+			subscribe_to_newsletter( $form_data['newsletter'], $form_data['full-name'], $form_data['email'], $form_name, '' );
 		}
 	}
 }
