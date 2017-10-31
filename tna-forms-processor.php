@@ -14,12 +14,13 @@ function display_form_data( $data ) {
 	if ( is_array( $data ) ) {
 		$display_data = '<div class="form-data"><ul>';
 		foreach ( $data as $field_name => $field_value ) {
-			if ( strpos($field_name, 'skype-name') !== false || $field_name == 'confirm_email') {
+			if ( strpos($field_name, 'skype-name') !== false || $field_name == 'confirm-email-required') {
 
 				// do nothing
 
 			} else {
 
+				$field_name = ucfirst( str_replace('-required', '', $field_name) );
 				$field_name = ucfirst( str_replace('-', ' ', $field_name) );
 
 				$display_data .= '<li>' . $field_name . ': ' . $field_value . '</li>';
