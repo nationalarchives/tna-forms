@@ -21,7 +21,7 @@ function enqueue_form_scripts() {
 	global $post;
 	if (has_shortcode($post->post_content, 'tna-form') || has_shortcode($post->post_content, 'form-builder')) {
 		wp_enqueue_script('tna-form-scripts');
-		// wp_enqueue_script('jquery-validate');
+		wp_enqueue_script('jquery-validate');
 		wp_enqueue_script('additional-methods');
 	}
 }

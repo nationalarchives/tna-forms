@@ -76,8 +76,6 @@ function get_form_data( $data ) {
 
 function process_form( $form_name, $form_data, $tna_recipient = '' ) {
 
-	var_dump($form_data);
-
 	// Global variables
 	global $tna_success_message,
 	       $tna_error_message;
@@ -90,7 +88,7 @@ function process_form( $form_name, $form_data, $tna_recipient = '' ) {
 	if ( isset( $form_data['spam'] ) ) {
 
 		// Oops! Spam!
-		log_spam( 'yes', date_timestamp_get( date_create() ), $form_data['email'] );
+		log_spam( 'yes', date_timestamp_get( date_create() ), $form_data['email-required'] );
 
 	} elseif ( in_array( false, $form_data ) ) {
 

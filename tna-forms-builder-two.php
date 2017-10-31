@@ -364,9 +364,6 @@ class Form_Builder_Two {
 			if ( !isset( $_POST[$name] ) ) {
 				return sprintf( $error_wrapper, $name, $error );
 			}
-			if ( !is_email( $_POST[$name] ) ) {
-				return sprintf( $error_wrapper, $name, $error );
-			}
 		}
 		return '';
 	}
@@ -384,9 +381,6 @@ class Form_Builder_Two {
 				}
 			}
 			if ( !isset( $_POST[$name] ) ) {
-				return ' class="form-warning" aria-describedby="' . $name . '-error" ';
-			}
-			if ( !is_email( $_POST[$name] ) ) {
 				return ' class="form-warning" aria-describedby="' . $name . '-error" ';
 			}
 		}
