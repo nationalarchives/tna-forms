@@ -22,10 +22,10 @@ function return_form_default( $content ) {
 	       $tna_error_message;
 
 	$form_name = 'Default';
-	$form_id = strtolower( str_replace(' ', '_', $form_name) );
+	$form_id = strtolower( str_replace(' ', '-', $form_name) );
 
 	// If the form is submitted the form data is processed
-	if ( isset( $_POST['submit_'.$form_id] ) ) {
+	if ( isset( $_POST['submit-'.$form_id] ) ) {
 
 		$form_data = get_form_data( $_POST );
 		process_form( $form_name, $form_data );
@@ -42,7 +42,7 @@ function return_form_default( $content ) {
 	         $html->form_text_input( 'Provide the dates or years that you are interested in', 'dates', 'dates' ) .
 	         $html->form_newsletter_checkbox() .
 	         $html->form_spam_filter( rand(10, 99) ) .
-	         $html->submit_form( 'submit_'.$form_id, 'submit-tna-form' ) .
+	         $html->submit_form( 'submit-'.$form_id, 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
 
