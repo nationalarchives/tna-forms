@@ -33,24 +33,18 @@ function display_form_data( $data ) {
 
 function get_form_data( $data ) {
 	$form_data = array();
-
 	foreach( $data as $key => $value ) {
 		if ( $key == 'tna-form' || $key == 'token' ||  $key == 'timestamp' || strpos($key, 'submit') !== false ) {
-
 			// do nothing
-
 		} elseif ( strpos($key, 'skype-name') !== false && trim( $value ) !== '' ) {
-
 			$form_data['spam'] = true;
-
 		} else {
-
 			if ( strpos($key, 'required') !== false ) {
 				if ( ( strpos($key, 'email') !== false ) ) {
 					if ( trim( $value ) === '' || is_email( $value ) == false ) {
 						$form_data[$key] = false;
 					} elseif ( $key == 'confirm-email-required') {
-						if ( trim( $_POST['email'] ) !== trim( $_POST['confirm_email'] ) ) {
+						if ( trim( $_POST['email-required'] ) !== trim( $_POST['confirm-email-required'] ) ) {
 							$form_data[$key] = false;
 						} else {
 							$form_data[$key] = true;
@@ -124,7 +118,7 @@ function process_form( $form_name, $form_data, $tna_recipient = '' ) {
 		$email_to_user .= display_form_data( $form_data );
 
 		// Send email to user
-		send_form_via_email( $form_data['email'], $form_name.' - Ref:', $ref_number, $email_to_user, '' );
+		send_form_via_email( $form_data['email-required'], $form_name.' - Ref:', $ref_number, $email_to_user, '' );
 
 		// Store email content to TNA into a variable
 		$email_to_tna = success_message_header( 'Reference number:', $ref_number );
@@ -137,7 +131,7 @@ function process_form( $form_name, $form_data, $tna_recipient = '' ) {
 
 		// Subscribe to newsletter
 		if (isset($form_data['newsletter'])) {
-			subscribe_to_newsletter( $form_data['newsletter'], $form_data['full-name'], $form_data['email'], $form_name, '' );
+			subscribe_to_newsletter( $form_data['newsletter'], $form_data['full-name'], $form_data['email-required'], $form_name, '' );
 		}
 	}
 }

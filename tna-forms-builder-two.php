@@ -2,11 +2,7 @@
 /**
  * Form builder
  */
-class Form_Builder {
-
-	public function __construct() {
-
-	}
+class Form_Builder_Two {
 
 	public function form_begins( $id, $value, $no_validate = false ) {
 		$form = '<form action=""  id="%s" class="form-abandonment" method="POST" ' . $this->novalidate_for_testing( $no_validate ) . '>';
@@ -48,6 +44,11 @@ class Form_Builder {
 	}
 
 	public function form_text_input( $label, $id, $name, $error = '', $hint = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -68,6 +69,11 @@ class Form_Builder {
 	}
 
 	public function form_textarea_input( $label, $id, $name, $error = '', $hint = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -328,6 +334,9 @@ class Form_Builder {
 			if ( !isset( $_POST[$name] ) ) {
 				return sprintf( $error_wrapper, $name, $error );
 			}
+			if ( !is_email( $_POST[$name] ) ) {
+				return sprintf( $error_wrapper, $name, $error );
+			}
 		}
 		return '';
 	}
@@ -345,6 +354,9 @@ class Form_Builder {
 				}
 			}
 			if ( !isset( $_POST[$name] ) ) {
+				return ' class="form-warning" aria-describedby="' . $name . '-error" ';
+			}
+			if ( !is_email( $_POST[$name] ) ) {
 				return ' class="form-warning" aria-describedby="' . $name . '-error" ';
 			}
 		}

@@ -12,6 +12,7 @@
 /* Included functions */
 include 'functions.php';
 include 'tna-forms-builder.php';
+include 'tna-forms-builder-two.php';
 include 'tna-forms-processor.php';
 include 'tna-forms-functions.php';
 include 'tna-forms-validation.php';
