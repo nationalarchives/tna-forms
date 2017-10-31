@@ -84,11 +84,19 @@ function process_form( $form_name, $form_data, $tna_recipient = '' ) {
 	$tna_success_message = '';
 	$tna_error_message   = '';
 
+	if (isset($form_data['email-required'])) {
+		$user_email = $form_data['email-required'];
+	} elseif ( $form_data['email'] ) {
+		$user_email = $form_data['email'];
+	} else {
+		$user_email = '';
+	}
+
 	// If any value inside the array is false then there is an error
 	if ( isset( $form_data['spam'] ) ) {
 
 		// Oops! Spam!
-		log_spam( 'yes', date_timestamp_get( date_create() ), $form_data['email-required'] );
+		log_spam( 'yes', date_timestamp_get( date_create() ), $user_email );
 
 	} elseif ( in_array( false, $form_data ) ) {
 
@@ -117,7 +125,7 @@ function process_form( $form_name, $form_data, $tna_recipient = '' ) {
 		$email_to_user .= display_form_data( $form_data );
 
 		// Send email to user
-		send_form_via_email( $form_data['email-required'], $form_name.' - Ref:', $ref_number, $email_to_user, '' );
+		send_form_via_email( $user_email, $form_name.' - Ref:', $ref_number, $email_to_user, '' );
 
 		// Store email content to TNA into a variable
 		$email_to_tna = success_message_header( 'Reference number:', $ref_number );
@@ -130,7 +138,7 @@ function process_form( $form_name, $form_data, $tna_recipient = '' ) {
 
 		// Subscribe to newsletter
 		if (isset($form_data['newsletter'])) {
-			subscribe_to_newsletter( $form_data['newsletter'], $form_data['full-name'], $form_data['email-required'], $form_name, '' );
+			subscribe_to_newsletter( $form_data['newsletter'], $form_data['full-name'], $user_email, $form_name, '' );
 		}
 	}
 }
