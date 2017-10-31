@@ -94,6 +94,11 @@ class Form_Builder_Two {
 	}
 
 	public function form_email_input( $label, $id, $name, $error = '', $match = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -135,6 +140,11 @@ class Form_Builder_Two {
 	}
 
 	public function form_tel_input( $label, $id, $name, $error = '', $hint = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -154,6 +164,11 @@ class Form_Builder_Two {
 	}
 
 	public function form_date_input( $label, $id, $name, $error = '', $hint = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -173,6 +188,11 @@ class Form_Builder_Two {
 	}
 
 	public function form_checkbox_input( $label, $id, $name, $error = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row checkbox">';
 		$form .= '<input type="checkbox" id="%s" name="%s" value="Yes" ';
 		$form .= $this->required_atts( $error );
@@ -216,6 +236,11 @@ class Form_Builder_Two {
 	}
 
 	public function form_select_input( $label, $id, $name, $options = array(), $error = '', $hint = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -243,6 +268,11 @@ class Form_Builder_Two {
 	}
 
 	public function form_select_input_training( $label, $id, $name, $options = array(), $error = '', $hint = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
