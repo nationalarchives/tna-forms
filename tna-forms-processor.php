@@ -2,6 +2,11 @@
 
 class Form_Processor {
 
+	/**
+	 * @param $key
+	 *
+	 * @return mixed
+	 */
 	public function sanitize_value( $key ) {
 		$value          = filter_input( INPUT_POST, $key, FILTER_SANITIZE_STRING );
 		$value          = trim( $value );
@@ -12,6 +17,11 @@ class Form_Processor {
 		return $sanitize_value;
 	}
 
+	/**
+	 * @param $data
+	 *
+	 * @return string
+	 */
 	public function display_data( $data ) {
 		if ( is_array( $data ) ) {
 			$display_data = '<div class="form-data"><ul>';
@@ -36,6 +46,11 @@ class Form_Processor {
 		}
 	}
 
+	/**
+	 * @param $data
+	 *
+	 * @return array
+	 */
 	public function get_data( $data ) {
 		$form_data = array();
 		foreach ( $data as $key => $value ) {
@@ -78,6 +93,11 @@ class Form_Processor {
 		return $form_data;
 	}
 
+	/**
+	 * @param $form_name
+	 * @param $form_data
+	 * @param string $tna_recipient
+	 */
 	public function process_data( $form_name, $form_data, $tna_recipient = '' ) {
 
 		// Global variables
@@ -134,6 +154,12 @@ class Form_Processor {
 		}
 	}
 
+	/**
+	 * @param $prefix
+	 * @param $time_stamp
+	 *
+	 * @return string
+	 */
 	public function ref_number( $prefix, $time_stamp ) {
 		$letter = chr( rand( 65, 90 ) );
 		$suffix = $letter . rand( 10, 99 );
@@ -141,6 +167,9 @@ class Form_Processor {
 		return $prefix . $time_stamp . $suffix;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function error_message() {
 		$error_message = '<div class="emphasis-block error-message" role="alert">';
 		$error_message .= '<h3>Sorry, there was a problem</h3>';
@@ -149,6 +178,15 @@ class Form_Processor {
 		return $error_message;
 	}
 
+	/**
+	 * @param $form_name
+	 * @param $form_content
+	 * @param $ref_number
+	 * @param $id
+	 * @param string $type
+	 *
+	 * @return string
+	 */
 	public function message( $form_name, $form_content, $ref_number, $id, $type = '' ) {
 		if ( $type ) {
 			$subject = 'Your reference number:';
@@ -172,6 +210,12 @@ class Form_Processor {
 		return $content;
 	}
 
+	/**
+	 * @param $email
+	 * @param $subject
+	 * @param $ref_number
+	 * @param $content
+	 */
 	public function send_email( $email, $subject, $ref_number, $content ) {
 		if ( is_email( $email ) ) {
 
@@ -188,6 +232,11 @@ class Form_Processor {
 		}
 	}
 
+	/**
+	 * @param string $user
+	 *
+	 * @return mixed
+	 */
 	public function get_tna_email( $user = '' ) {
 		global $post;
 		$meta_user = get_post_meta( $post->ID, 'cf_get_tna_email', true );
@@ -220,6 +269,11 @@ class Form_Processor {
 		}
 	}
 
+	/**
+	 * @param $spam
+	 * @param $time
+	 * @param $email
+	 */
 	public function log_spam( $spam, $time, $email ) {
 		if ( $spam == 'yes' ) {
 			$file = plugin_dir_path( __FILE__ ) . 'spam_log.txt';
