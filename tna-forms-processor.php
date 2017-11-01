@@ -113,18 +113,19 @@ class Form_Processor {
 			global $post;
 			// Generate reference number based on user's surname and timestamp
 			$ref_number = ref_number( 'TNA', date_timestamp_get( date_create() ) );
+			$form_content = $this->display_data( $form_data );
 
 			// Store confirmation content into the global variable
-			$tna_success_message = $this->message( $form_name, $form_data, $ref_number, $post->ID, 'confirm' );
+			$tna_success_message = $this->message( $form_name, $form_content, $ref_number, $post->ID, 'success' );
 
 			// Store email content to user into a variable
-			$use_email_content = $this->message( $form_name, $form_data, $ref_number, $post->ID, 'user' );
+			$user_email_content = $this->message( $form_name, $form_content, $ref_number, $post->ID, 'user' );
 
 			// Send email to user
-			send_form_via_email( $user_email, $form_name.' - Ref:', $ref_number, $use_email_content, '' );
+			send_form_via_email( $user_email, $form_name.' - Ref:', $ref_number, $user_email_content, '' );
 
 			// Store email content to TNA into a variable
-			$tna_email_content = $this->message( $form_name, $form_data, $ref_number, $post->ID );
+			$tna_email_content = $this->message( $form_name, $form_content, $ref_number, $post->ID );
 
 			// Send email to TNA
 			// Amend email address function with username to send email to desired destination.
@@ -138,19 +139,25 @@ class Form_Processor {
 		}
 	}
 
-	public function message( $form_name, $form_data, $ref_number, $id, $type = '' ) {
-		$content = success_message_header( 'Your reference number:', $ref_number );
+	public function message( $form_name, $form_content, $ref_number, $id, $type = '' ) {
+		if ( $type ) {
+			$subject = 'Your reference number:';
+		} else {
+			$subject = 'Reference number:';
+		}
+		$content = success_message_header( $subject, $ref_number );
 		if ( $type == 'user' ) {
 			$content .= confirmation_email_content( $id );
-		} elseif ( $type == 'confirm' ) {
+		} elseif ( $type == 'success' ) {
 			$content .= confirmation_content( $id );
 		}
 		if ( $type ) {
 			$content .= '<h3>Summary of your enquiry</h3>';
 		} else {
+			$content .= '<h3>'.$form_name.'</h3>';
 			$content .= '<h3>Summary of enquiry</h3>';
 		}
-		$content .= $this->display_data( $form_data );
+		$content .= $form_content;
 
 		return $content;
 	}
