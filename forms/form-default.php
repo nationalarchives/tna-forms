@@ -9,8 +9,9 @@
  * 3. Update shortcode function with new form function.
  * 4. Include newly created form file to tna-forms.php includes
  * 5. Change form from name. ie $form_name = 'Enquiry';
- * 6. All input IDs with two or more words use underscore.
- * 7. Update tna destination email. ie process_form( $form_name, 'contactcentre' )
+ * 6. All input IDs with two or more words use underscore. ie 'full_name'
+ * 7. All input name atts with two or more words use dash. ie 'full-name'
+ * 8. Update tna destination email. ie process_data( $form_name, $form_data, 'contactcentre' )
  *
  */
 
@@ -22,18 +23,18 @@ function return_form_default( $content ) {
 	       $tna_error_message;
 
 	$form_name = 'Default';
-	$form_id = strtolower( str_replace(' ', '-', $form_name) );
 
 	// If the form is submitted the form data is processed
-	if ( isset( $_POST['submit-'.$form_id] ) ) {
+	if ( isset( $_POST['submit-default'] ) ) {
 
-		$form_data = get_form_data( $_POST );
-		process_form( $form_name, $form_data );
+		$process = new Form_Processor;
+		$form_data = $process->get_data( $_POST );
+		$process->process_data( $form_name, $form_data );
 	}
 
 	// HTML form string
 	$html = new Form_Builder_Two;
-	$form =  $html->form_begins( $form_id, $form_name ) .
+	$form =  $html->form_begins( 'submit-default', $form_name ) .
 	         $html->fieldset_begins( 'Your enquiry' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_required_input() .
@@ -42,7 +43,7 @@ function return_form_default( $content ) {
 	         $html->form_text_input( 'Provide the dates or years that you are interested in', 'dates', 'dates' ) .
 	         $html->form_newsletter_checkbox() .
 	         $html->form_spam_filter( rand(10, 99) ) .
-	         $html->submit_form( 'submit-'.$form_id, 'submit-tna-form' ) .
+	         $html->submit_form( 'submit-default', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
 

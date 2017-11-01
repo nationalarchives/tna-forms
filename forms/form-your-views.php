@@ -12,18 +12,18 @@ function return_form_your_views( $content ) {
 	       $tna_error_message;
 
 	$form_name = 'Your views';
-	$form_id = strtolower( str_replace(' ', '-', $form_name) );
 
 	// If the form is submitted the form data is processed
-	if ( isset( $_POST['submit-'.$form_id] ) ) {
+	if ( isset( $_POST['submit-yv'] ) ) {
 
-		$form_data = get_form_data( $_POST );
-		process_form( $form_name, $form_data );
+		$process = new Form_Processor;
+		$form_data = $process->get_data( $_POST );
+		$process->process_data( $form_name, $form_data );
 	}
 
 	// HTML form string
 	$html = new Form_Builder;
-	$form =  $html->form_begins( $form_id, $form_name ) .
+	$form =  $html->form_begins( 'your-views', $form_name ) .
 	         $html->fieldset_begins( 'Your details' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name' ) .
 	         $html->form_email_input( 'Email address', 'email', 'email' ) .
@@ -37,7 +37,7 @@ function return_form_your_views( $content ) {
 	         $html->help_text( 'Please enter an order number or catalogue reference if either are relevant to this message.' ) .
 	         $html->form_text_input( 'Order number or catalogue reference', 'order_number_cat_ref', 'order-number-cat-ref' ) .
 	         $html->form_spam_filter( rand(10, 99) ) .
-	         $html->submit_form( 'submit-'.$form_id, 'submit-tna-form' ) .
+	         $html->submit_form( 'submit-yv', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
 
