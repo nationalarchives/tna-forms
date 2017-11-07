@@ -34,7 +34,7 @@ class Form_Processor {
 
 				} else {
 
-					$field_name = ucfirst( str_replace( '-required', '', $field_name ) );
+					$field_name = str_replace( '-required', '', $field_name );
 					$field_name = ucfirst( str_replace( '-', ' ', $field_name ) );
 
 					$display_data .= '<li>' . $field_name . ': ' . $field_value . '</li>';
