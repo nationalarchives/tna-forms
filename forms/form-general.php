@@ -22,12 +22,11 @@ function return_form_general( $content ) {
 	}
 
 	// HTML form string
-	$html = new Form_Builder;
+	$html = new Form_Builder_Two;
 	$form =  $html->form_begins( 'general', $form_name ) .
 	         $html->fieldset_begins( 'Your details' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
-	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
-	         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
+	         $html->form_email_required_input() .
 	         $html->form_text_input( 'Country', 'country', 'country', 'Please enter your country' ) .
 	         $html->fieldset_ends() .
 	         $html->fieldset_begins( 'Your enquiry' ) .
