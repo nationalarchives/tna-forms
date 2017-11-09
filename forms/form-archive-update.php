@@ -49,7 +49,7 @@ function return_form_archive_update( $content ) {
              $html->form_text_input('Dates of annual closure','dates_of_annual_closure','dates-of-annual-closure') .
              $html->form_select_input('Do visitors need to book in advance?','booking_in_advance','booking-in-advance', array('Yes','No')) .
              $html->form_text_input('Requirements for public access to MSS','requirements_for_public_access_to_mss', 'requirements-for-public-access-to-mss','','For example, CARN ticket, letter of introduction or proof of identity') .
-             $html->form_select_input('Is a reader ticket required?','is_a_reader_ticket_required', 'is-a-reader-ticket-required',array('Yes','No')) .
+             $html->form_select_input('Is a reader ticket required?','reader_ticket', 'reader-ticket',array('Yes','No')) .
              $html->form_select_input('Is a fee payable?','is_a_fee_payable', 'is-a-fee-payable',array('Yes','No')) .
              $html->form_select_input('Is there disability access?','is_there_disability_access', 'is-there-disability-access',array('Yes','No')) .
              $html->form_text_input('Is there a copy service?','copy_service','copy-service', '', 'For example, photographs, microfilm') .
