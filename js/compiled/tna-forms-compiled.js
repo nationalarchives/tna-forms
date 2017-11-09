@@ -475,21 +475,22 @@ function defaultForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
+                required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            country:{
+            "country-required":{
                 required:true,
                 noSpace:true
             },
-            enquiry:{
+            "enquiry-required":{
                 required:true,
                 noSpace:true
             }
@@ -499,18 +500,18 @@ function defaultForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required: "Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            country:{
+            "country-required":{
                 required:"Please enter your country"
             },
-            enquiry:{
+            "enquiry-required":{
                 required:"Please enter your enquiry"
             }
         }
@@ -566,18 +567,18 @@ function recordsResearchEnquiryForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name":{
+            "full-name-required":{
                 required:true,
                 noSpace:true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            enquiry:{
+            "enquiry-required":{
                 required:true,
                 noSpace:true
             }
@@ -587,15 +588,15 @@ function recordsResearchEnquiryForm(){
          * Error messages
          * */
         messages: {
-            "full-name":{
+            "full-name-required":{
                 required:"Please insert your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            enquiry:{
+            "enquiry-required":{
                 required:"Please enter your enquiry"
             }
         }
@@ -654,17 +655,17 @@ function yourViewsForm(){
             "full-name": {
                 noSpace: true
             },
-            email: {
+            "email": {
                 email:true
             },
             "confirm-email": {
                 equalTo: "#email"
             },
-            reason:{
+            "reason-required":{
                 required: true,
                 noSpace: true
             },
-            enquiry:{
+            "enquiry-required":{
                 required:true,
                 noSpace:true
             }
@@ -677,10 +678,10 @@ function yourViewsForm(){
             "confirm-email": {
                 equalTo: "Please enter your email address again"
             },
-            reason:{
+            "reason-required":{
                 required: "Please select an option"
             },
-            enquiry:{
+            "enquiry-required":{
                 required:"Please enter your enquiry"
             }
         }
@@ -735,26 +736,26 @@ function generalEnquiriesForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
                 required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            country:{
+            "country-required":{
                 required:true,
                 noSpace:true
             },
-            reason:{
+            "reason-required":{
                 required:true,
                 noSpace:true
             },
-            enquiry:{
+            "enquiry-required":{
                 required:true,
                 noSpace:true
             }
@@ -764,21 +765,21 @@ function generalEnquiriesForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required: "Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            country:{
+            "country-required":{
                 required:"Please enter your country"
             },
-            reason:{
+            "reason-required":{
                 required:"Please select an option"
             },
-            enquiry:{
+            "enquiry-required":{
                 required:"Please enter your enquiry"
             }
         }
@@ -833,18 +834,18 @@ function publicSectorForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
                 required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            enquiry:{
+            "enquiry-required":{
                 required:true,
                 noSpace:true
             }
@@ -854,15 +855,15 @@ function publicSectorForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required: "Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            enquiry:{
+            "enquiry-required":{
                 required:"Please enter your enquiry"
             }
         }
@@ -949,46 +950,46 @@ function iacsTrainingForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
                 required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            telephone:{
+            "telephone-required":{
                 required: true,
                 noSpace: true
             },
-            "job-title":{
+            "job-title-required":{
                 required:true,
                 noSpace: true
             },
-            organisation:{
+            "organisation-required":{
                 required:true,
                 noSpace: true
             },
-            address:{
+            "address-required":{
                 required:true,
                 noSpace:true
             },
-            "organisation-type":{
+            "organisation-type-required":{
                 required:true,
                 noSpace: true
             },
-            "your-role":{
+            "your-role-required":{
                 required:true,
                 noSpace: true
             },
-           "session-first-choice": {
+           "session-first-choice-required": {
                 required:true,
                 noSpace: true
             },
-            "session-second-choice": {
+            "session-second-choice-required": {
                 required:true,
                 noSpace: true
             }
@@ -998,36 +999,36 @@ function iacsTrainingForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required: "Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            telephone:{
+            "telephone-required":{
                 required: "Please enter your telephone number"
             },
-            "job-title":{
+            "job-title-required":{
                 required:"Please enter your job title"
             },
-            organisation:{
+            "organisation-required":{
                 required:"Please enter a department/agency/organisation"
             },
-            address:{
+            "address-required":{
                 required:"Please enter an address"
             },
-            "organisation-type":{
+            "organisation-type-required":{
                 required:"Please select an option"
             },
-            "your-role":{
+            "your-role-required":{
                 required:"Please select an option"
             },
-            "session-first-choice": {
+            "session-first-choice-required": {
                 required:"Please select an option"
             },
-            "session-second-choice": {
+            "session-second-choice-required": {
                 required:"Please select an option"
             }
         }
@@ -1082,22 +1083,22 @@ function applyToFilmForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
                 required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            "about_project":{
-                require:true,
+            "date-required":{
+                required:true,
                 noSpace: true
             },
-            date:{
+            "policy-required":{
                 required:true,
                 noSpace: true
             }
@@ -1107,19 +1108,19 @@ function applyToFilmForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required: "Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            "about-project":{
-                required:"Please enter your project details"
-            },
-            date:{
+            "date-required":{
                 required:"Please enter your filming date"
+            },
+            "policy-required":{
+                required:"Please agree to the terms and conditions"
             }
         }
     });
@@ -1173,18 +1174,18 @@ function pronomForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
                 required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            "file-format":{
+            "file-format-required":{
                 required: true,
                 noSpace: true
             }
@@ -1194,15 +1195,15 @@ function pronomForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required:"Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            "file-format":{
+            "file-format-required":{
                 required:"Please enter the file format"
             }
         }
@@ -1260,13 +1261,13 @@ function dcfForm(){
             "full-name": {
                 noSpace: true
             },
-            email: {
+            "email": {
                 email:true
             },
             "confirm-email": {
                 equalTo: "#email"
             },
-            "catalogue-reference":{
+            "catalogue-reference-required":{
                 required: true,
                 noSpace: true
             },
@@ -1281,7 +1282,7 @@ function dcfForm(){
             "confirm-email": {
                 equalTo: "Please enter your email address again"
             },
-            "catalogue-reference":{
+            "catalogue-reference-required":{
                 required: "Please enter your catalogue reference number"
             },
         }
@@ -1541,49 +1542,48 @@ function archiveUpdateForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
                 required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            "file-format":{
+            "file-format-required":{
                 required: true,
                 noSpace: true
             },
-            "type-of-entry":{
+            "type-of-entry-required":{
                 required: true
             },
-            "name-of-repository":{
+            "name-of-repository-required":{
                 required:true,
                 noSpace:true
             }
-
         },
         /**
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required:"Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            "file-format":{
+            "file-format-required":{
                 required:"Please enter the file format"
             },
-            "type-of-entry": {
+            "type-of-entry-required": {
                 required:"Please select from the dropdown"
             },
-            "name-of-repository":{
+            "name-of-repository-required":{
                 required:"Please enter the name of the repository"
             }
         }
@@ -1599,7 +1599,9 @@ function archiveUpdateForm(){
             }
         }
     });
-};/**
+}
+
+;/**
  * @contact-form-name: Public sector form
  *
  * ----- Table of contents -------------------------------------
@@ -1638,22 +1640,22 @@ function paidSearchForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
                 required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            country:{
+            "country-required":{
                 required:true,
                 noSpace:true
             },
-            "your-enquiry":{
+            "your-enquiry-required":{
                 required:true,
                 noSpace:true
             }
@@ -1663,18 +1665,18 @@ function paidSearchForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required: "Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            country:{
+            "country-required":{
                 required:"Please enter your country"
             },
-            "your-enquiry": {
+            "your-enquiry-required": {
                 required:"Please provide specific details of the information you are looking for, including any relevant catalogue references."
             }   
         }

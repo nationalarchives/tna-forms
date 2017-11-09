@@ -37,18 +37,18 @@ function publicSectorForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
                 required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            enquiry:{
+            "enquiry-required":{
                 required:true,
                 noSpace:true
             }
@@ -58,15 +58,15 @@ function publicSectorForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required: "Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            enquiry:{
+            "enquiry-required":{
                 required:"Please enter your enquiry"
             }
         }

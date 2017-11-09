@@ -37,25 +37,25 @@ function archiveUpdateForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
                 required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            "file-format":{
+            "file-format-required":{
                 required: true,
                 noSpace: true
             },
-            "type-of-entry":{
+            "type-of-entry-required":{
                 required: true
             },
-            "name-of-repository":{
+            "name-of-repository-required":{
                 required:true,
                 noSpace:true
             }
@@ -64,21 +64,21 @@ function archiveUpdateForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required:"Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            "file-format":{
+            "file-format-required":{
                 required:"Please enter the file format"
             },
-            "type-of-entry": {
+            "type-of-entry-required": {
                 required:"Please select from the dropdown"
             },
-            "name-of-repository":{
+            "name-of-repository-required":{
                 required:"Please enter the name of the repository"
             }
         }

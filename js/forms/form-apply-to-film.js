@@ -37,22 +37,22 @@ function applyToFilmForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
                 required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            "about_project":{
-                require:true,
+            "date-required":{
+                required:true,
                 noSpace: true
             },
-            date:{
+            "policy-required":{
                 required:true,
                 noSpace: true
             }
@@ -62,19 +62,19 @@ function applyToFilmForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required: "Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            "about-project":{
-                required:"Please enter your project details"
-            },
-            date:{
+            "date-required":{
                 required:"Please enter your filming date"
+            },
+            "policy-required":{
+                required:"Please agree to the terms and conditions"
             }
         }
     });

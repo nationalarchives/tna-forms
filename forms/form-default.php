@@ -34,7 +34,7 @@ function return_form_default( $content ) {
 
 	// HTML form string
 	$html = new Form_Builder_Two;
-	$form =  $html->form_begins( 'submit-default', $form_name ) .
+	$form =  $html->form_begins( 'default', $form_name ) .
 	         $html->fieldset_begins( 'Your enquiry' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_required_input() .
