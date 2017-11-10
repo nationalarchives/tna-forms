@@ -22,7 +22,7 @@ function return_form_public_sector( $content ) {
 	}
 
 	// HTML form string
-	$html = new Form_Builder_Two;
+	$html = new Form_Builder;
 	$form =  $html->form_begins( 'public-sector', $form_name ) .
 	         $html->fieldset_begins( 'Your details' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .

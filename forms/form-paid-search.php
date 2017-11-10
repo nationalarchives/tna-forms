@@ -22,7 +22,7 @@ function return_form_paid_search($content)
     }
 
     // HTML form string
-    $html = new Form_Builder_Two;
+    $html = new Form_Builder;
     $form = $html->form_begins('paid_search', $form_name) .
         $html->fieldset_begins('Your details') .
         $html->form_text_input('Full name', 'full_name', 'full-name', 'Please enter your full name') .

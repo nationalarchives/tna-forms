@@ -4,10 +4,6 @@
  */
 class Form_Builder {
 
-	public function __construct() {
-
-	}
-
 	public function form_begins( $id, $value, $no_validate = false ) {
 		$form = '<form action=""  id="%s" class="form-abandonment" method="POST" ' . $this->novalidate_for_testing( $no_validate ) . '>';
 		$form .= '<input type="hidden" name="tna-form" value="%s">';
@@ -48,6 +44,11 @@ class Form_Builder {
 	}
 
 	public function form_text_input( $label, $id, $name, $error = '', $hint = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -68,6 +69,11 @@ class Form_Builder {
 	}
 
 	public function form_textarea_input( $label, $id, $name, $error = '', $hint = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -88,6 +94,11 @@ class Form_Builder {
 	}
 
 	public function form_email_input( $label, $id, $name, $error = '', $match = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -109,7 +120,7 @@ class Form_Builder {
 		$form = '<div class="form-row">';
 		$form .= '<label for="email_required">Email address';
 		$form .= '</label>';
-		$form .= '<input type="email" id="email_required" name="email-required" aria-required="true" required';
+		$form .= '<input type="email" id="email" name="email-required" aria-required="true" required';
 		$form .= $this->set_value( 'email-required' );
 		$form .= $this->input_error_class( 'email-required', 'Please enter a valid email address', '' );
 		$form .= '>';
@@ -118,7 +129,7 @@ class Form_Builder {
 		$form .= '<div class="form-row">';
 		$form .= '<label for="confirm_email_required">Please re-type your email address';
 		$form .= '</label>';
-		$form .= '<input type="email" id="confirm_email_required" name="confirm-email-required" aria-required="true" required';
+		$form .= '<input type="email" id="confirm_email" name="confirm-email-required" aria-required="true" required';
 		$form .= $this->set_value( 'confirm-email-required' );
 		$form .= $this->input_error_class( 'confirm-email-required', 'Please enter your email address again', 'Email address' );
 		$form .= '>';
@@ -129,6 +140,11 @@ class Form_Builder {
 	}
 
 	public function form_tel_input( $label, $id, $name, $error = '', $hint = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -148,6 +164,11 @@ class Form_Builder {
 	}
 
 	public function form_date_input( $label, $id, $name, $error = '', $hint = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -167,6 +188,11 @@ class Form_Builder {
 	}
 
 	public function form_checkbox_input( $label, $id, $name, $error = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row checkbox">';
 		$form .= '<input type="checkbox" id="%s" name="%s" value="Yes" ';
 		$form .= $this->required_atts( $error );
@@ -210,6 +236,11 @@ class Form_Builder {
 	}
 
 	public function form_select_input( $label, $id, $name, $options = array(), $error = '', $hint = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -237,6 +268,11 @@ class Form_Builder {
 	}
 
 	public function form_select_input_training( $label, $id, $name, $options = array(), $error = '', $hint = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;

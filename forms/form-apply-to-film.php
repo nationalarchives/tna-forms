@@ -22,7 +22,7 @@ function return_form_apply_to_film( $content ) {
 	}
 
 	// HTML form string
-	$html = new Form_Builder_Two;
+	$html = new Form_Builder;
 	$form =  $html->form_begins( 'apply-to-film', $form_name ) .
 	         $html->fieldset_begins( 'Your details' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .

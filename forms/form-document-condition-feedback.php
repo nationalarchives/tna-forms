@@ -22,7 +22,7 @@ function return_form_dcf( $content ) {
     }
 
     // HTML form string
-    $html = new Form_Builder_Two;
+    $html = new Form_Builder;
     $form =  $html->form_begins( 'dcf', $form_name ) .
         $html->fieldset_begins( 'Document details' ) .
         $html->form_text_input( 'Catalogue reference', 'catalogue_reference', 'catalogue-reference', 'Please enter your catalogue reference number' ) .

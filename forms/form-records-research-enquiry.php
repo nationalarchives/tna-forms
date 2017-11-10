@@ -22,7 +22,7 @@ function return_form_rre( $content ) {
 	}
 
 	// HTML form string (I know, it's long!)
-	$html = new Form_Builder_Two;
+	$html = new Form_Builder;
 	$form =  $html->form_begins( 'records-research-enquiry', $form_name ) .
 	         $html->fieldset_begins( 'Your enquiry' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .

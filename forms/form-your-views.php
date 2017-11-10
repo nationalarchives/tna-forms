@@ -22,7 +22,7 @@ function return_form_your_views( $content ) {
 	}
 
 	// HTML form string
-	$html = new Form_Builder_Two;
+	$html = new Form_Builder;
 	$form =  $html->form_begins( 'your-views', $form_name ) .
 	         $html->fieldset_begins( 'Your details' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name' ) .
