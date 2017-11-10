@@ -71,7 +71,7 @@ class FormBuilderTest extends \PHPUnit_Framework_TestCase {
 	{
 		$class = new \Form_Builder();
 		$html = $class->form_text_input( 'Label', 'id', 'name', 'Error message', 'Hint text');
-		$this->assertEquals($html, '<div class="form-row"><label for="id">Label</label><p class="form-hint">Hint text</p><input type="text" id="id" name="name"  aria-required="true" required ></div>');
+		$this->assertEquals($html, '<div class="form-row"><label for="id">Label</label><p class="form-hint">Hint text</p><input type="text" id="id" name="name-required"  aria-required="true" required ></div>');
 	}
 	public function testFormBuilderMethodFormTextareaInput()
 	{
@@ -82,7 +82,7 @@ class FormBuilderTest extends \PHPUnit_Framework_TestCase {
 	{
 		$class = new \Form_Builder();
 		$html = $class->form_textarea_input( 'Label', 'id', 'name', 'Error message', 'Hint text');
-		$this->assertEquals($html, '<div class="form-row"><label for="id">Label</label><p class="form-hint">Hint text</p><textarea id="id" name="name"  aria-required="true" required ></textarea></div>');
+		$this->assertEquals($html, '<div class="form-row"><label for="id">Label</label><p class="form-hint">Hint text</p><textarea id="id" name="name-required"  aria-required="true" required ></textarea></div>');
 	}
 	public function testFormBuilderMethodFormEmailInput()
 	{
@@ -93,7 +93,18 @@ class FormBuilderTest extends \PHPUnit_Framework_TestCase {
 	{
 		$class = new \Form_Builder();
 		$html = $class->form_email_input( 'Label', 'id', 'name', 'Error message' );
-		$this->assertEquals($html, '<div class="form-row"><label for="id">Label</label><input type="email" id="id" name="name"  aria-required="true" required ></div>');
+		$this->assertEquals($html, '<div class="form-row"><label for="id">Label</label><input type="email" id="id" name="name-required"  aria-required="true" required ></div>');
+	}
+	public function testFormBuilderMethodFormEmailInputRequired()
+	{
+		$class = new \Form_Builder();
+		$this->assertTrue( method_exists($class, 'form_email_required_input') );
+	}
+	public function testFormBuilderMethodFormEmailInputRequiredReturns()
+	{
+		$class = new \Form_Builder();
+		$html = $class->form_email_required_input();
+		$this->assertEquals($html, '<div class="form-row"><label for="email_required">Email address</label><input type="email" id="email" name="email-required" aria-required="true" required></div><div class="form-row"><label for="confirm_email_required">Please re-type your email address</label><input type="email" id="confirm_email" name="confirm-email-required" aria-required="true" required></div>');
 	}
 	public function testFormBuilderMethodFormCheckboxInput()
 	{
