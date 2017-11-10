@@ -39,12 +39,6 @@ function tna_forms_shortcode( $atts, $content = '' ) {
 		case 'Document condition feedback':
 			return return_form_dcf( $content );
 			break;
-		case 'Freedom of information corporate':
-			return return_form_foi_corporate( $content);
-			break;
-		case 'Freedom of information record closed':
-			return return_form_foi_closed_record( $content);
-		    break;
         case 'Archive update':
             return return_form_archive_update ($content);
             break;
