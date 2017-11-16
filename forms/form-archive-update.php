@@ -111,7 +111,7 @@ function process_form_archive_update() {
 	// Get the form elements and store them into an array
 	$form_fields = array(
 		'Full Name'                                                                                                          => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
-		'Email address'                                                                                                      => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
+		'Email'                                                                                                      => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 		'Please re-type your email address'                                                                                  => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 		'Type of entry: new/update'                                                                                          => is_mandatory_select_valid(filter_input(INPUT_POST,'type-of-entry')),
 		'Name of repository'                                                                                                 => is_mandatory_text_field_valid(filter_input(INPUT_POST, 'name-of-repository')),
