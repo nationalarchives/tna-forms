@@ -197,6 +197,7 @@ class Form_Builder {
 		$form .= '<input type="checkbox" id="%s" name="%s" value="Yes" ';
 		$form .= $this->required_atts( $error );
 		$form .= $this->set_value( $name, 'checkbox' );
+        $form .= $this->set_get_value( $name );
 		$form .= '>';
 		$form .= '<label for="';
 		$form .= $id;
@@ -456,7 +457,10 @@ class Form_Builder {
 
 	public function set_get_value( $name ) {
 		if ( isset( $_GET[$name] ) ) {
-			return ' value="' . htmlspecialchars( trim( $_GET[$name] ) ) . '" ';
+		    if($_GET[$name] == true){
+                return ' checked="checked" ';
+            }
+            return ' value="' . htmlspecialchars( trim( $_GET[$name] ) ) . '" ';
 		}
 		return '';
 	}

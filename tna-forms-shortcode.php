@@ -45,6 +45,9 @@ function tna_forms_shortcode( $atts, $content = '' ) {
         case 'Request a paid search':
             return return_form_paid_search ($content);
             break;
+        case 'Request an assessment of a document':
+            return return_form_request_assessment_document ($content);
+            break;
 		default:
 			return return_form_default( $content );
 			break;

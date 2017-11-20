@@ -30,4 +30,5 @@ include 'forms/form-pronom.php';
 include 'forms/form-document-condition-feedback.php';
 include 'forms/form-archive-update.php';
 include 'forms/form-paid-search.php';
+include 'forms/form-request-assessment-document.php';
 include 'forms/form-default.php';
