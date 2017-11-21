@@ -17,17 +17,29 @@ class FormBuilderTest extends \PHPUnit_Framework_TestCase {
 		$class = new \Form_Builder();
 		$this->assertTrue( method_exists($class, 'form_begins') );
 	}
-	public function testFormBuilderMethodSetGetValueExists(){
+	public function testFormBuilderMethodSetGetValueInputExists(){
 		$class = new \Form_Builder();
-		$this->assertTrue( method_exists($class, 'set_get_value'));
+		$this->assertTrue( method_exists($class, 'set_get_value_input'));
 	}
-	public function testFormBuilderMethodSetGetValue()
+	public function testFormBuilderMethodSetGetValueInput()
 	{
 		$class = new \Form_Builder();
 		$_GET['DOCREF'] = 'J 132/103';
-		$data_class = $class->set_get_value( 'DOCREF' );
+		$data_class = $class->set_get_value_input( 'DOCREF' );
 		$this->assertEquals($data_class, ' value="J 132/103" ');
 	}
+
+    public function testFormBuilderMethodSetGetValueCheckboxExists(){
+        $class = new \Form_Builder();
+        $this->assertTrue( method_exists($class, 'set_get_value_checkbox'));
+    }
+    public function testFormBuilderMethodSetGetValueCheckboxTrue()
+    {
+        $class = new \Form_Builder();
+        $_GET['mould-treatment-required'] = true;
+        $data_class = $class->set_get_value_checkbox( 'mould-treatment-required' );
+        $this->assertEquals($data_class, ' checked="checked" ');
+    }
 	public function testFormBuilderMethodFormEnds()
 	{
 		$class = new \Form_Builder();
