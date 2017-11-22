@@ -54,6 +54,9 @@ $(document).ready(function() {
         else if ($('#paid_search').is(':visible')) {
             paidSearchForm();
         }
+        else if ($('#request-assessment-document').is(':visible')) {
+            radForm();
+        }
         else {
             defaultForm();
         }

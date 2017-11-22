@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Document condition feedback qUnit tests</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="fixture">
+    <form action="" id="request-assessment-document" class="form-abandonment" method="POST"><input type="hidden"
+                                                                                                   name="tna-form"
+                                                                                                   value="Request an assessment of a document"><input
+            type="hidden" name="token" value="4e9a30c691bdde67a45a3e3efb66b278"><input type="hidden" name="timestamp"
+                                                                                       value="1511353418">
+        <fieldset>
+            <legend>Document details</legend>
+            <div class="form-row"><label for="catalogue_reference">Catalogue reference <span
+                    class="optional">(optional)</span></label><input type="text" id="catalogue_reference"
+                                                                     name="catalogue-reference" value="HeyHo!" disabled>
+            </div>
+            <div class="form-row checkbox"><input type="checkbox" id="conservation_required"
+                                                  name="conservation-required" value="Yes" disabled><label
+                    for="conservation_required">Conservation required</label></div>
+            <div class="form-row checkbox"><input type="checkbox" id="mould_treatment_required"
+                                                  name="mould-treatment-required" value="Yes" checked="checked"
+                                                  disabled><label for="mould_treatment_required">Mould treatment
+                required</label></div>
+        </fieldset>
+        <fieldset>
+            <legend>Your details</legend>
+            <div class="form-row"><label for="full_name">Full name</label><input type="text" id="full_name"
+                                                                                 name="full-name-required"
+                                                                                 aria-required="true" required></div>
+            <div class="form-row"><label for="email_required">Email address</label><input type="email" id="email"
+                                                                                          name="email-required"
+                                                                                          aria-required="true" required>
+            </div>
+            <div class="form-row"><label for="confirm_email_required">Please re-type your email address</label><input
+                    type="email" id="confirm_email" name="confirm-email-required" aria-required="true" required></div>
+            <div class="form-row hidden"><label for="skype_name">Skype name (please ignore this field)</label><input
+                    type="text" id="skype_name" name="skype-name-24"></div>
+            <div class="form-row"><input type="submit" name="submit-request-assessment-document" id="submit-tna-form"
+                                         value="Submit"></div>
+        </fieldset>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="form-request-assessment-document.js"></script>
+</body>
+</html>

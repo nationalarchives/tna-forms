@@ -1229,11 +1229,11 @@ function pronomForm(){
  * 3. Add the validation rules
  *
  * */
-function dcfForm(){
+function radForm(){
     /**
      * 1. Declare variables
      * */
-    var formName = "#dcf";
+    var formName = "#request-assessment-document";
     var form = $(formName);
 
     /**
@@ -1258,37 +1258,33 @@ function dcfForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
-                noSpace: true
-            },
-            "email": {
-                email:true
-            },
-            "confirm-email": {
-                equalTo: "#email"
-            },
-            "catalogue-reference-required":{
+            "full-name-required": {
                 required: true,
                 noSpace: true
             },
-            "additional-details":{
-                noSpace:true
+            "email-required": {
+                email:true
+            },
+            "confirm-email-required": {
+                equalTo: "#email"
             }
         },
         /**
          * Error messages
          * */
         messages: {
-            "confirm-email": {
+            "full-name-required":{
+                required:"Please insert your full name"
+            },
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
+                required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
-            },
-            "catalogue-reference-required":{
-                required: "Please enter your catalogue reference number"
-            },
+            }
         }
     });
 
-    $("input[name='submit-dcf']").on('click', function(){
+    $("input[name='submit-request-assessment-document']").on('click', function(){
         var emphAlert = ($('.emphasis-block.error-message').length === 1);
         if(form.valid() !== true) {
             if(emphAlert) {
@@ -1747,6 +1743,9 @@ $(document).ready(function() {
         }
         else if ($('#paid_search').is(':visible')) {
             paidSearchForm();
+        }
+        else if ($('#request-assessment-document').is(':visible')) {
+            radForm();
         }
         else {
             defaultForm();
