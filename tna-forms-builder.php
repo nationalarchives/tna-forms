@@ -176,7 +176,7 @@ class Form_Builder {
      */
     public function form_email_required_input() {
 		$form = '<div class="form-row">';
-		$form .= '<label for="email_required">Email address';
+		$form .= '<label for="email">Email address';
 		$form .= '</label>';
 		$form .= '<input type="email" id="email" name="email-required" aria-required="true" required';
 		$form .= $this->set_value( 'email-required' );
@@ -185,7 +185,7 @@ class Form_Builder {
 		$form .= $this->input_error_message( 'email-required', 'Please enter a valid email address', '' );
 		$form .= '</div>';
 		$form .= '<div class="form-row">';
-		$form .= '<label for="confirm_email_required">Please re-type your email address';
+		$form .= '<label for="confirm_email">Please re-type your email address';
 		$form .= '</label>';
 		$form .= '<input type="email" id="confirm_email" name="confirm-email-required" aria-required="true" required';
 		$form .= $this->set_value( 'confirm-email-required' );
