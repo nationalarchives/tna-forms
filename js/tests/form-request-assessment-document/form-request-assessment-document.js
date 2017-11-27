@@ -1,10 +1,8 @@
 /**
  * THE NATIONAL ARCHIVES
  * ------------------------------------------------------------------------------
- * Your views qUnit tests
+ * Request an assessment of a document qUnit tests
  * ------------------------------------------------------------------------------
- * 1. Checking the DOM before plugin is applied
- * 2. Checking the Fields before plugin is applied
  */
 
 // Define the Form object
@@ -28,6 +26,7 @@ var form = {
 QUnit.module("Checking the mandatory DOM elements before plugin is applied", function () {
     QUnit.test("Check required elements in fixture", function (assert) {
         assert.ok($('form', '.'+form.fixture).length === 1, "The form is present");
+        assert.ok($('form#'+form.id, '.'+form.fixture).length === 1, "The form ID " + form.id +" is present");
         assert.ok($(form.typeSubmit, '.'+form.fixture).prop('disabled') === false, "The submit button is NOT disabled before the plugin has run");
         assert.equal($(form.typeHidden, '.'+form.fixture).attr('name'), "tna-form", "The input type hidden field with the attribute name of tna-form is present");
     });
