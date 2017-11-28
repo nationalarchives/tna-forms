@@ -40,7 +40,7 @@ QUnit.module("Checking the fields before plugin is applied", function () {
     QUnit.test("Check required elements in fixture by id", function (assert) {
 
         for (var ok = 0; ok < form.elem.length; ok++) {
-            assert.ok($('#' + form.elem[ok].id, '.'+form.fixture).length === 1, "ID -> " + form.elem[ok].id + " input is present");
+            assert.ok($('#' + form.elem[ok].id, '.'+form.fixture).length === 1, "Element -> with attribute ID " + form.elem[ok].id + " is present");
         }
 
     });
@@ -49,7 +49,7 @@ QUnit.module("Checking the fields before plugin is applied", function () {
 
 
         for (var e = 0; e < form.elem.length; e++) {
-            assert.equal($('#' + form.elem[e].id, '.'+form.fixture).attr('name'), form.elem[e].name, "Input -> attribute name " + form.elem[e].name + " is present");
+            assert.equal($('#' + form.elem[e].id, '.'+form.fixture).attr('name'), form.elem[e].name, "Element -> attribute name " + form.elem[e].name + " is present");
         }
 
         assert.equal($('#' + form.submitId, '.'+form.fixture).attr('name'), form.submitName, "Button -> attribute name " + form.submitName + " is present");
