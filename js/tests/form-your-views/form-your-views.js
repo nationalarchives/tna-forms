@@ -59,9 +59,10 @@ QUnit.module("Checking the fields before plugin is applied", function () {
     });
 
     QUnit.test("Check inputs if empty", function (assert) {
-        if (form.elem[equals].id === "email" || form.elem[equals].id === "confirm_email") {
-            assert.equal($('#' + form.elem[equals].id, '.' + form.fixture).val(), "", "Input -> " + form.elem[equals].id + " is empty");
+        for (var ok = 0; ok < form.elem.length; ok++) {
+            if (form.elem[ok].id === "email" || form.elem[ok].id === "confirm_email") {
+                assert.equal($('#' + form.elem[ok].id, '.' + form.fixture).val(), "", "Input -> " + form.elem[ok].id + " is empty");
+            }
         }
     });
-
 });

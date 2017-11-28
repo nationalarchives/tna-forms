@@ -38,30 +38,23 @@ QUnit.module("Checking the mandatory DOM elements before plugin is applied", fun
 QUnit.module("Checking the fields before plugin is applied", function () {
 
     QUnit.test("Check required elements in fixture by id", function (assert) {
-
         for (var ok = 0; ok < form.elem.length; ok++) {
             assert.ok($('#' + form.elem[ok].id, '.'+form.fixture).length === 1, "Element -> with attribute ID " + form.elem[ok].id + " is present");
         }
-
     });
 
     QUnit.test("Check required elements in fixture by name", function (assert) {
-
-
         for (var e = 0; e < form.elem.length; e++) {
             assert.equal($('#' + form.elem[e].id, '.'+form.fixture).attr('name'), form.elem[e].name, "Element -> attribute name " + form.elem[e].name + " is present");
         }
-
         assert.equal($('#' + form.submitId, '.'+form.fixture).attr('name'), form.submitName, "Button -> attribute name " + form.submitName + " is present");
-
     });
 
     QUnit.test("Check inputs if empty", function (assert) {
-
-        for (var equals = 1; equals < form.elem.length; equals++) {
-            assert.equal($('#' + form.elem[equals].id, '.'+form.fixture).val(), "", "Input -> " + form.elem[equals].id + " is empty");
+        for (var ok = 0; ok < form.elem.length; ok++) {
+            if (form.elem[ok].id === "email" || form.elem[ok].id === "confirm_email") {
+                assert.equal($('#' + form.elem[ok].id, '.' + form.fixture).val(), "", "Input -> " + form.elem[ok].id + " is empty");
+            }
         }
-
     });
-
 });
