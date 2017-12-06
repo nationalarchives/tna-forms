@@ -36,9 +36,10 @@ function return_form_request_assessment_document( $content ) {
     $html = new Form_Builder;
     $form =  $html->form_begins( 'request-assessment-document', $form_name) .
         $html->fieldset_begins( 'Document details' ) .
-        $html->form_text_input( 'Catalogue reference', 'catalogue_reference', 'catalogue-reference', '', '', true ) .
-        $html->form_checkbox_input('Conservation required', 'conservation_required', 'conservation-required', '', true) .
-        $html->form_checkbox_input('Mould treatment required', 'mould_treatment_required', 'mould-treatment-required', '', true) .
+        $html->form_text_input( 'Catalogue reference', 'catalogue_reference', 'catalogue-reference', '', '') .
+        $html->form_hidden_input('catalogue-reference', '').
+        $html->form_checkbox_input('Conservation required', 'conservation_required', 'conservation-required', '') .
+        $html->form_checkbox_input('Mould treatment required', 'mould_treatment_required', 'mould-treatment-required', '') .
         $html->fieldset_ends() .
         $html->fieldset_begins( 'Your details' ) .
         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Enter your full name') .

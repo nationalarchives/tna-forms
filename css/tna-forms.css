@@ -25,6 +25,8 @@ legend {
     max-width: 420px; }
     .form-row input[type=color]:disabled, .form-row input[type=email]:disabled, .form-row input[type=number]:disabled, .form-row input[type=tel]:disabled, .form-row input[type=text]:disabled, .form-row input[type=date]:disabled, .form-row input[type=url]:disabled, .form-row select:disabled, .form-row textarea:disabled {
       background: #eee; }
+    .form-row input[type=color]:read-only, .form-row input[type=email]:read-only, .form-row input[type=number]:read-only, .form-row input[type=tel]:read-only, .form-row input[type=text]:read-only, .form-row input[type=date]:read-only, .form-row input[type=url]:read-only, .form-row select:read-only, .form-row textarea:read-only {
+      background: #eee; }
   .form-row textarea {
     height: 120px; }
   .form-row p {

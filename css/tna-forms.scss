@@ -27,6 +27,9 @@ legend {
     &:disabled {
       background: #eee;
     }
+    &:read-only {
+      background: #eee;
+    }
   }
   textarea {
     height: 120px;

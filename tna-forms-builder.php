@@ -66,7 +66,6 @@ class Form_Builder {
      */
     public function form_hidden_input($name, $value ) {
 		$form = '<input type="hidden" name="%s" value="%s">';
-
 		return sprintf( $form, $name, $value );
 	}
 
@@ -79,13 +78,13 @@ class Form_Builder {
      * @param bool $disabled
      * @return string
      */
-    public function form_text_input($label, $id, $name, $error = '', $hint = '', $disabled = false ) {
+    public function form_text_input($label, $id, $name, $error = '', $hint = '', $readonly = false ) {
 
 	    // Add -required to the input name
         $name = $error ? $name.'-required' : $name;
 
 		// Add disable to the input
-		$disable = $disabled == true ? 'disabled' : '';
+		$read = $readonly == true ? 'readonly' : '';
 
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
@@ -99,7 +98,7 @@ class Form_Builder {
 		$form .= $this->set_value( $name );
 		$form .= $this->set_get_value_input( $name );
 		$form .= $this->input_error_class( $name, $error );
-		$form .= $disable;
+		$form .= $read;
 		$form .= '>';
 		$form .= $this->input_error_message( $name, $error );
 		$form .= '</div>';
