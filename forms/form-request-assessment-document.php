@@ -37,7 +37,6 @@ function return_form_request_assessment_document( $content ) {
     $form =  $html->form_begins( 'request-assessment-document', $form_name) .
         $html->fieldset_begins( 'Document details' ) .
         $html->form_text_input( 'Catalogue reference', 'catalogue_reference', 'catalogue-reference', '', '') .
-        $html->form_hidden_input('catalogue-reference', '').
         $html->form_checkbox_input('Conservation required', 'conservation_required', 'conservation-required', '') .
         $html->form_checkbox_input('Mould treatment required', 'mould_treatment_required', 'mould-treatment-required', '') .
         $html->fieldset_ends() .
