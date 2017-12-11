@@ -63,7 +63,7 @@ function dcfForm(){
             },
             "catalogue-reference-required":{
                 required: "Please enter your catalogue reference number"
-            },
+            }
         }
     });
 
