@@ -1,22 +1,41 @@
 /**
  * THE NATIONAL ARCHIVES
  * ------------------------------------------------------------------------------
- * Your views qUnit tests
+ * Document Condition Feedback qUnit tests
  * ------------------------------------------------------------------------------
- * 1. Checking the DOM before plugin is applied
- * 2. Checking the Fields before plugin is applied
  */
 
+// Define the Form object
+var form = {
+    fixture: "fixture",
+    id: "dcf",
+    submitName: "submit-dcf",
+    submitId: "submit-tna-form",
+    typeSubmit: "input[type=submit]",
+    typeHidden: "input[type=hidden]",
+    elem: [
+        {id: "catalogue_reference", name: "catalogue-reference-required"},
+        {id: "document_is_damaged", name: "document-is-damaged"},
+        {id: "contains_wrong_document", name: "contains-wrong-document"},
+        {id: "no_in_correct_order", name: "not-in-correct-order"},
+        {id: "additional_details", name: "additional-details"},
+        {id: "no", name: "email-a-response"},
+        {id: "yes", name: "email-a-response"},
+        {id: "full_name", name: "full-name"},
+        {id: "email", name: "email"},
+        {id: "confirm_email", name: "confirm-email"}
+    ]
+};
 
 /**
  * 1. Checking the DOM before plugin is applied
  */
 QUnit.module("Checking the mandatory DOM elements before plugin is applied", function () {
     QUnit.test("Check required elements in fixture", function (assert) {
-        assert.ok($('form', '.fixture').length == 1, "The form is present");
-        assert.ok($('form#dcf', '.fixture').length == 1, "The form ID is present");
-        assert.ok($('input[type=submit]', '.fixture').prop('disabled') == false, "The submit button is NOT disabled before the plugin has run");
-        assert.equal($('input[type=hidden]', '.fixture').attr('name'), "tna-form", "The input type hidden field with the attribute name of tna-form is present");
+        assert.ok($('form', '.' + form.fixture).length === 1, "The form is present");
+        assert.ok($('form#' + form.id, '.' + form.fixture).length === 1, "The form ID " + form.id + " is present");
+        assert.ok($(form.typeSubmit, '.' + form.fixture).prop('disabled') === false, "The submit button is NOT disabled before the plugin has run");
+        assert.equal($(form.typeHidden, '.' + form.fixture).attr('name'), "tna-form", "The input type hidden field with the attribute name of tna-form is present");
     });
 });
 
@@ -24,14 +43,25 @@ QUnit.module("Checking the mandatory DOM elements before plugin is applied", fun
  * 2. Checking the Fields before plugin is applied
  */
 QUnit.module("Checking the fields before plugin is applied", function () {
-    QUnit.test("Check required elements in fixture", function (assert) {
-        assert.ok($('#full_name', '.fixture').length == 1, "The full_name input is present");
-        assert.ok($('#email', '.fixture').length == 1, "The email input is present");
-        assert.equal($('#email', '.fixture').val(), "", "The email address is empty");
-        assert.ok($('#confirm_email', '.fixture').length == 1, "The confirm email input is present");
-        assert.equal($('#confirm_email', '.fixture').val(), "", "The confirm email address is empty");
-        assert.ok($('#catalogue_reference', '.fixture').length == 1, "The catalogue_reference input is present");
-        assert.ok($('#enquiry', '.fixture').length == 1, "The enquiry textarea is present");
-        assert.equal($('#submit-tna-form', '.fixture').attr('name'), "submit-dcf", "Name on input button is submit-dcf");
+
+    QUnit.test("Check required elements in fixture by id", function (assert) {
+        for (var ok = 0; ok < form.elem.length; ok++) {
+            assert.ok($('#' + form.elem[ok].id, '.' + form.fixture).length === 1, "Element -> with ID " + form.elem[ok].id + " is present");
+        }
+    });
+
+    QUnit.test("Check required elements in fixture by name", function (assert) {
+        for (var e = 0; e < form.elem.length; e++) {
+            assert.equal($('#' + form.elem[e].id, '.' + form.fixture).attr('name'), form.elem[e].name, "Element -> attribute name " + form.elem[e].name + " is present");
+        }
+        assert.equal($('#' + form.submitId, '.' + form.fixture).attr('name'), form.submitName, "Button -> attribute name " + form.submitName + " is present");
+    });
+
+    QUnit.test("Check inputs if empty", function (assert) {
+        for (var ok = 0; ok < form.elem.length; ok++) {
+            if (form.elem[ok].id === "email" || form.elem[ok].id === "confirm_email") {
+                assert.equal($('#' + form.elem[ok].id, '.' + form.fixture).val(), "", "Input -> " + form.elem[ok].id + " is empty");
+            }
+        }
     });
 });
