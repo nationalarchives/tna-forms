@@ -188,16 +188,16 @@ function return_form_british_citizenship( $content ) {
 	                        ' . field_error_message( 'full-name', 'Full name' ) . '
 	                    </div>
 	                    <div class="form-row">
-	                        <p id="prefer-contact">How would you prefer to know whether we have found the certificate?</p>
-	                        <p id="we-can-let" class="form-hint">We can let you know whether we\'ve found the certificate via email or post. The certificate will not automatically be sent to you.</p>
+	                        <p id="prefer-contact">Do you have an email address?</p>
+	                        <!--<p id="we-can-let" class="form-hint">We can let you know whether we\'ve found the certificate via email or post. The certificate will not automatically be sent to you.</p>-->
 		                    ' . field_error_message( 'preferred-contact', 'Preferred contact', 'radio' ) . '
 		                    <div class="form-col pref_contact">
 		                        <input id="contact_email" aria-labelledby="we-can-let prefer-contact email-label" type="radio" name="preferred-contact" value="Email" ' . set_value( 'preferred-contact', 'radio', 'Email' ) . '>
-		                        <label id="email-label" for="contact_email">Email</label>
+		                        <label id="email-label" for="contact_email">Yes</label>
 		                    </div>
 		                    <div class="form-col pref_contact">
 		                        <input id="contact_postal" aria-labelledby="prefer-contact post-label" type="radio" name="preferred-contact" value="Post" ' . set_value( 'preferred-contact', 'radio', 'Post' ) . '>
-		                        <label id="post-label" for="contact_postal">Post</label>
+		                        <label id="post-label" for="contact_postal">No</label>
 		                    </div>
 	                    </div>
 	                    <div class="email-wrapper">
