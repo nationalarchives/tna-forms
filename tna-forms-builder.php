@@ -4,11 +4,13 @@
  */
 class Form_Builder {
 
-	public function __construct() {
-
-	}
-
-	public function form_begins( $id, $value, $no_validate = false ) {
+    /**
+     * @param $id
+     * @param $value
+     * @param bool $no_validate
+     * @return string
+     */
+    public function form_begins($id, $value, $no_validate = false ) {
 		$form = '<form action=""  id="%s" class="form-abandonment" method="POST" ' . $this->novalidate_for_testing( $no_validate ) . '>';
 		$form .= '<input type="hidden" name="tna-form" value="%s">';
 		$form .= '<input type="hidden" name="token" value="' . form_token() . '">';
@@ -17,37 +19,73 @@ class Form_Builder {
 		return sprintf( $form, $id, $value );
 	}
 
-	public function form_foi_begins( $action = '', $id, $name ) {
+    /**
+     * @param string $action
+     * @param $id
+     * @param $name
+     * @return string
+     */
+    public function form_foi_begins($action = '', $id, $name ) {
 		$form = '<form action="%s"  id="%s" class="form-abandonment" name="%s" method="POST">';
 
 		return sprintf( $form, $action, $id, $name );
 	}
 
-	public function form_ends() {
+    /**
+     * @return string
+     */
+    public function form_ends() {
 		$form = '</form>';
 
 		return $form;
 	}
 
-	public function fieldset_begins( $legend ) {
+    /**
+     * @param $legend
+     * @return string
+     */
+    public function fieldset_begins($legend ) {
 		$form = '<fieldset><legend>%s</legend>';
 
 		return sprintf( $form, $legend );
 	}
 
-	public function fieldset_ends() {
+    /**
+     * @return string
+     */
+    public function fieldset_ends() {
 		$form = '</fieldset>';
 
 		return $form;
 	}
 
-	public function form_hidden_input( $name, $value ) {
+    /**
+     * @param $name
+     * @param $value
+     * @return string
+     */
+    public function form_hidden_input($name, $value ) {
 		$form = '<input type="hidden" name="%s" value="%s">';
-
 		return sprintf( $form, $name, $value );
 	}
 
-	public function form_text_input( $label, $id, $name, $error = '', $hint = '' ) {
+    /**
+     * @param $label
+     * @param $id
+     * @param $name
+     * @param string $error
+     * @param string $hint
+     * @param bool $disabled
+     * @return string
+     */
+    public function form_text_input($label, $id, $name, $error = '', $hint = '', $readonly = false ) {
+
+	    // Add -required to the input name
+        $name = $error ? $name.'-required' : $name;
+
+		// Add disable to the input
+		$read = $readonly == true ? 'readonly' : '';
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -58,8 +96,9 @@ class Form_Builder {
 		$form .= '<input type="text" id="%s" name="%s" ';
 		$form .= $this->required_atts( $error );
 		$form .= $this->set_value( $name );
-		$form .= $this->set_get_value( $name );
+		$form .= $this->set_get_value_input( $name );
 		$form .= $this->input_error_class( $name, $error );
+		$form .= $read;
 		$form .= '>';
 		$form .= $this->input_error_message( $name, $error );
 		$form .= '</div>';
@@ -67,7 +106,20 @@ class Form_Builder {
 		return sprintf( $form, $label, $id, $name );
 	}
 
-	public function form_textarea_input( $label, $id, $name, $error = '', $hint = '' ) {
+    /**
+     * @param $label
+     * @param $id
+     * @param $name
+     * @param string $error
+     * @param string $hint
+     * @return string
+     */
+    public function form_textarea_input($label, $id, $name, $error = '', $hint = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -87,7 +139,20 @@ class Form_Builder {
 		return sprintf( $form, $label, $id, $name );
 	}
 
-	public function form_email_input( $label, $id, $name, $error = '', $match = '' ) {
+    /**
+     * @param $label
+     * @param $id
+     * @param $name
+     * @param string $error
+     * @param string $match
+     * @return string
+     */
+    public function form_email_input($label, $id, $name, $error = '', $match = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -105,7 +170,46 @@ class Form_Builder {
 		return sprintf( $form, $label, $id, $name );
 	}
 
-	public function form_tel_input( $label, $id, $name, $error = '', $hint = '' ) {
+    /**
+     * @return string
+     */
+    public function form_email_required_input() {
+		$form = '<div class="form-row">';
+		$form .= '<label for="email">Email address';
+		$form .= '</label>';
+		$form .= '<input type="email" id="email" name="email-required" aria-required="true" required';
+		$form .= $this->set_value( 'email-required' );
+		$form .= $this->input_error_class( 'email-required', 'Please enter a valid email address', '' );
+		$form .= '>';
+		$form .= $this->input_error_message( 'email-required', 'Please enter a valid email address', '' );
+		$form .= '</div>';
+		$form .= '<div class="form-row">';
+		$form .= '<label for="confirm_email">Please re-type your email address';
+		$form .= '</label>';
+		$form .= '<input type="email" id="confirm_email" name="confirm-email-required" aria-required="true" required';
+		$form .= $this->set_value( 'confirm-email-required' );
+		$form .= $this->input_error_class( 'confirm-email-required', 'Please enter your email address again', 'Email address' );
+		$form .= '>';
+		$form .= $this->input_error_message( 'confirm-email-required', 'Please enter your email address again', 'Email address' );
+		$form .= '</div>';
+
+		return $form;
+	}
+
+    /**
+     * @param $label
+     * @param $id
+     * @param $name
+     * @param string $error
+     * @param string $hint
+     * @return string
+     */
+    public function form_tel_input($label, $id, $name, $error = '', $hint = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -124,7 +228,20 @@ class Form_Builder {
 		return sprintf( $form, $label, $id, $name );
 	}
 
-	public function form_date_input( $label, $id, $name, $error = '', $hint = '' ) {
+    /**
+     * @param $label
+     * @param $id
+     * @param $name
+     * @param string $error
+     * @param string $hint
+     * @return string
+     */
+    public function form_date_input($label, $id, $name, $error = '', $hint = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -143,11 +260,27 @@ class Form_Builder {
 		return sprintf( $form, $label, $id, $name );
 	}
 
-	public function form_checkbox_input( $label, $id, $name, $error = '' ) {
+    /**
+     * @param $label
+     * @param $id
+     * @param $name
+     * @param string $error
+     * @return string
+     */
+    public function form_checkbox_input($label, $id, $name, $error = '', $disabled = false ) {
+
+        // Add -required to the input name
+        $name = $error ? $name.'-required' : $name;
+
+        // Add disable to the input
+        $disable = $disabled == true ? 'disabled' : '';
+
 		$form = '<div class="form-row checkbox">';
 		$form .= '<input type="checkbox" id="%s" name="%s" value="Yes" ';
 		$form .= $this->required_atts( $error );
 		$form .= $this->set_value( $name, 'checkbox' );
+        $form .= $this->set_get_value_checkbox( $name );
+        $form .= $disable;
 		$form .= '>';
 		$form .= '<label for="';
 		$form .= $id;
@@ -159,22 +292,30 @@ class Form_Builder {
 		return sprintf( $form, $id, $name, $label );
 	}
 
-	public function form_radio_group( $title = '', $name, $radios = array() ) {
+    /**
+     * @param string $title
+     * @param $name
+     * @param array $radios
+     * @return string
+     */
+    public function form_radio_group($title = '', $name, $radios = array(), $disabled = false) {
 		$counter = 0;
 		$form = '<div class="form-row">';
 		if ( $title ) {
 			$form .= '<p>' . $title . '</p>';
 		}
+
+        // Add disable to the input
+        $disable = $disabled == true ? ' disabled' : '';
+
 		foreach ( $radios as $radio ) {
 			$id = strtolower( str_replace(' ', '_', $radio) );
-			if ( $counter == 0 && !isset( $_POST['tna-form'] ) ) {
-				$checked = 'checked';
-			} else {
-				$checked = '';
-			}
+            $checked = $counter == 0 && !isset( $_POST['tna-form'] ) ? 'checked' : '';
+
 			$form .= '<div class="radio">';
 			$form .= '<input type="radio" id="' . $id . '" name="' . $name . '" value="' . $radio . '" ' . $checked;
 			$form .= $this->set_value( $name, 'radio', $radio );
+            $form .= $disable;
 			$form .= '>';
 			$form .= '<label for="' . $id . '">';
 			$form .= $radio;
@@ -186,7 +327,21 @@ class Form_Builder {
 		return $form;
 	}
 
-	public function form_select_input( $label, $id, $name, $options = array(), $error = '', $hint = '' ) {
+    /**
+     * @param $label
+     * @param $id
+     * @param $name
+     * @param array $options
+     * @param string $error
+     * @param string $hint
+     * @return string
+     */
+    public function form_select_input($label, $id, $name, $options = array(), $error = '', $hint = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -213,7 +368,21 @@ class Form_Builder {
 		return sprintf( $form, $label, $id, $name );
 	}
 
-	public function form_select_input_training( $label, $id, $name, $options = array(), $error = '', $hint = '' ) {
+    /**
+     * @param $label
+     * @param $id
+     * @param $name
+     * @param array $options
+     * @param string $error
+     * @param string $hint
+     * @return string
+     */
+    public function form_select_input_training($label, $id, $name, $options = array(), $error = '', $hint = '' ) {
+
+		if ( $error ) {
+			$name = $name.'-required';
+		}
+
 		$form = '<div class="form-row">';
 		$form .= '<label for="';
 		$form .= $id;
@@ -252,7 +421,13 @@ class Form_Builder {
 		return sprintf( $form, $label, $id, $name );
 	}
 
-	public function submit_form( $name, $id, $value = 'Submit' ) {
+    /**
+     * @param $name
+     * @param $id
+     * @param string $value
+     * @return string
+     */
+    public function submit_form($name, $id, $value = 'Submit' ) {
 		$form = '<div class="form-row">';
 		$form .= '<input type="submit" name="%s" id="%s" value="%s">';
 		$form .= '</div>';
@@ -260,7 +435,11 @@ class Form_Builder {
 		return sprintf( $form, $name, $id, $value );
 	}
 
-	public function help_text( $text ) {
+    /**
+     * @param $text
+     * @return string
+     */
+    public function help_text($text ) {
 		$form = '<div class="form-row">';
 		$form .= '<p>%s</p>';
 		$form .= '</div>';
@@ -268,28 +447,46 @@ class Form_Builder {
 		return sprintf( $form, $text );
 	}
 
-	public function required_atts( $error ) {
+    /**
+     * @param $error
+     * @return string
+     */
+    public function required_atts($error ) {
 		if ( $error ) {
 			return ' aria-required="true" required ';
 		}
 		return '';
 	}
 
-	public function is_optional( $error ) {
+    /**
+     * @param $error
+     * @return string
+     */
+    public function is_optional($error ) {
 		if ( !$error ) {
 			return ' <span class="optional">(optional)</span>';
 		}
 		return '';
 	}
 
-	public function hint_text( $hint ) {
+    /**
+     * @param $hint
+     * @return string
+     */
+    public function hint_text($hint ) {
 		if ( $hint ) {
 			return sprintf( '<p class="form-hint">%s</p>', $hint );
 		}
 		return '';
 	}
 
-	public function input_error_message( $name, $error, $match = '' ) {
+    /**
+     * @param $name
+     * @param $error
+     * @param string $match
+     * @return string
+     */
+    public function input_error_message($name, $error, $match = '' ) {
 		$error_wrapper = '<span id="%s-error" class="form-error form-hint">%s</span>';
 		if ( $error && isset( $_POST['tna-form'] ) ) {
 			if ( isset( $_POST[$name] ) && isset( $_POST[$match] ) ) {
@@ -309,7 +506,13 @@ class Form_Builder {
 		return '';
 	}
 
-	public function input_error_class( $name, $error, $match = '' ) {
+    /**
+     * @param $name
+     * @param $error
+     * @param string $match
+     * @return string
+     */
+    public function input_error_class($name, $error, $match = '' ) {
 		if ( $error && isset( $_POST['tna-form'] ) ) {
 			if ( isset( $_POST[$name] ) && isset( $_POST[$match] ) ) {
 				if ( trim( $_POST[$name] ) !== trim( $_POST[$match] ) ) {
@@ -328,14 +531,21 @@ class Form_Builder {
 		return '';
 	}
 
-	public function novalidate_for_testing( $no_validate ) {
+    /**
+     * @param $no_validate
+     * @return string
+     */
+    public function novalidate_for_testing($no_validate ) {
 		if ( $no_validate ) {
 			return 'novalidate';
 		}
 		return '';
 	}
 
-	public function form_newsletter_checkbox() {
+    /**
+     * @return string
+     */
+    public function form_newsletter_checkbox() {
 		$form = '<div class="form-row checkbox">';
 		$form .= '<input type="checkbox" id="newsletter" name="newsletter" value="Yes" ';
 		$form .= set_value( 'newsletter', 'checkbox' );
@@ -351,7 +561,11 @@ class Form_Builder {
 		return $form;
 	}
 
-	public function form_spam_filter( $rand ) {
+    /**
+     * @param $rand
+     * @return string
+     */
+    public function form_spam_filter($rand ) {
 		$form = '<div class="form-row hidden">';
 		$form .= '<label for="skype_name">Skype name (please ignore this field)</label>';
 		$form .= '<input type="text" id="skype_name" name="skype-name-' . $rand . '">';
@@ -360,7 +574,13 @@ class Form_Builder {
 		return $form;
 	}
 
-	public function set_value( $name, $type = 'text', $select_value = '' ) {
+    /**
+     * @param $name
+     * @param string $type
+     * @param string $select_value
+     * @return string
+     */
+    public function set_value($name, $type = 'text', $select_value = '' ) {
 		if ( isset( $_POST[$name] ) ) {
 			switch( $type ) {
 				case 'text': {
@@ -395,11 +615,19 @@ class Form_Builder {
 		return '';
 	}
 
-	public function set_get_value( $name ) {
-		if ( isset( $_GET[$name] ) ) {
-			return ' value="' . htmlspecialchars( trim( $_GET[$name] ) ) . '" ';
-		}
-		return '';
+    /**
+     * @param $name
+     * @return string
+     */
+    public function set_get_value_input($name ) {
+		return isset( $_GET[$name] )  ? ' value="' . htmlspecialchars( trim( $_GET[$name] ) ) . '" ' :  '';
 	}
 
+    /**
+     * @param $name
+     * @return string
+     */
+    public function set_get_value_checkbox($name ) {
+        return (isset( $_GET[$name] ) && $_GET[$name] == true) ? ' checked="checked" ' : '';
+    }
 }

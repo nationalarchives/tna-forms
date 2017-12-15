@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Apply to film</title>
+    <title>Archive Update</title>
     <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
 </head>
 <body>
@@ -16,48 +16,43 @@
 <div class="fixture">
     <form action="" id="archive_update" class="form-abandonment" method="POST"><input type="hidden" name="tna-form"
                                                                                       value="Archive Update"><input
-            type="hidden" name="token" value="05f99af6a22080af928c8d6647863639"><input type="hidden" name="timestamp"
-                                                                                       value="1494428805">
+            type="hidden" name="token" value="bf3abb06036cf65efd56109a99360b80"><input type="hidden" name="timestamp"
+                                                                                       value="1512998041">
         <fieldset>
             <legend>Details of submitting officer</legend>
             <div class="form-row"><label for="full_name">Full name</label><input type="text" id="full_name"
-                                                                                 name="full-name" aria-required="true"
-                                                                                 required></div>
-            <div class="form-row"><label for="email">Email address</label><input type="email" id="email" name="email"
+                                                                                 name="full-name-required"
+                                                                                 aria-required="true" required></div>
+            <div class="form-row"><label for="email">Email address</label><input type="email" id="email"
+                                                                                 name="email-required"
                                                                                  aria-required="true" required></div>
             <div class="form-row"><label for="confirm_email">Please re-type your email address</label><input
-                    type="email" id="confirm_email" name="confirm-email" aria-required="true" required></div>
-            <div class="form-row"><label for="type_of_enty">Type of entry</label><select id="type_of_enty"
-                                                                                         name="type-of-entry"
-                                                                                         aria-required="true" required>
+                    type="email" id="confirm_email" name="confirm-email-required" aria-required="true" required></div>
+            <div class="form-row"><label for="type_of_entry">Are you submitting a new entry or updating an existing
+                entry?</label><select id="type_of_entry" name="type-of-entry-required" aria-required="true" required>
                 <option value="">Please select</option>
                 <option value="New">New</option>
                 <option value="Update">Update</option>
             </select></div>
         </fieldset>
         <fieldset>
-            <legend>Repository contact details</legend>
+            <legend>Repository details</legend>
             <div class="form-row"><label for="name_of_repository">Name of repository</label><input type="text"
                                                                                                    id="name_of_repository"
-                                                                                                   name="name-of-repository"
+                                                                                                   name="name-of-repository-required"
                                                                                                    aria-required="true"
                                                                                                    required></div>
             <div class="form-row"><label for="archon_code">Archon code <span
                     class="optional">(optional)</span></label><input type="text" id="archon_code" name="archon-code">
             </div>
-            <div class="form-row"><label for="address_of_repository">Address of repository <span class="optional">(optional)</span></label><textarea
-                    id="address_of_repository" name="address-of-repository"></textarea></div>
-            <div class="form-row"><label for="address_for_correspondence">Address for correspondence (if different from
-                above) <span class="optional">(optional)</span></label><textarea id="address_for_correspondence"
-                                                                                 name="address-for-correspondence"></textarea>
+            <div class="form-row"><label for="address_of_repository">Address <span
+                    class="optional">(optional)</span></label><textarea id="address_of_repository"
+                                                                        name="address-of-repository"></textarea></div>
+            <div class="form-row"><label for="address_for_correspondence">Address for correspondence if different from
+                above <span class="optional">(optional)</span></label><textarea id="address_for_correspondence"
+                                                                                name="address-for-correspondence"></textarea>
             </div>
-            <div class="form-row"><label for="full_name_of_person_in_charge">Full name of person in charge <span
-                    class="optional">(optional)</span></label><input type="text" id="full_name_of_person_in_charge"
-                                                                     name="full-name-of-person-in-charge"></div>
-            <div class="form-row"><label for="job_title_of_person_in_charge">Job title of person in charge <span
-                    class="optional">(optional)</span></label><input type="text" id="job_title_of_person_in_charge"
-                                                                     name="job-title-of-person-in-charge"></div>
-            <div class="form-row"><label for="telephone_number_for_general_enquiries">Telephone number for general
+            <div class="form-row"><label for="telephone_number_for_general_enquiries">Telephone/fax number for general
                 enquiries <span class="optional">(optional)</span></label><input type="tel"
                                                                                  id="telephone_number_for_general_enquiries"
                                                                                  name="telephone-number-for-general-enquiries">
@@ -65,8 +60,20 @@
             <div class="form-row"><label for="email_general_enquiries">Email address for general enquiries <span
                     class="optional">(optional)</span></label><input type="email" id="email_general_enquiries"
                                                                      name="email-general-enquiries"></div>
-            <div class="form-row"><label for="repository_website_url">Repository website URL <span class="optional">(optional)</span></label><input
+            <div class="form-row"><label for="repository_website_url">Repository website <span class="optional">(optional)</span></label><input
                     type="text" id="repository_website_url" name="repository-website-url"></div>
+        </fieldset>
+        <fieldset>
+            <legend>Details of person in charge of the repository</legend>
+            <div class="form-row"><label for="title">Title <span class="optional">(optional)</span></label><input
+                    type="text" id="title" name="title"></div>
+            <div class="form-row"><label for="first_name">First name <span
+                    class="optional">(optional)</span></label><input type="text" id="first_name" name="first-name">
+            </div>
+            <div class="form-row"><label for="last_name">Last name <span
+                    class="optional">(optional)</span></label><input type="text" id="last_name" name="last-name"></div>
+            <div class="form-row"><label for="job_title">Job title <span
+                    class="optional">(optional)</span></label><input type="text" id="job_title" name="job-title"></div>
         </fieldset>
         <fieldset>
             <legend>Repository visiting details</legend>
@@ -77,8 +84,8 @@
                                                                                             name="usual-opening-hours">
             </div>
             <div class="form-row"><label for="dates_of_annual_closure">Dates of annual closure <span class="optional">(optional)</span></label><input
-                    type="date" id="dates_of_annual_closure" name="dates-of-annual-closure"></div>
-            <div class="form-row"><label for="booking_in_advance">Booking in advance? <span
+                    type="text" id="dates_of_annual_closure" name="dates-of-annual-closure"></div>
+            <div class="form-row"><label for="booking_in_advance">Do visitors need to book in advance? <span
                     class="optional">(optional)</span></label><select id="booking_in_advance" name="booking-in-advance">
                 <option value="">Please select</option>
                 <option value="Yes">Yes</option>
@@ -89,9 +96,8 @@
                 <p class="form-hint">For example, CARN ticket, letter of introduction or proof of identity</p><input
                         type="text" id="requirements_for_public_access_to_mss"
                         name="requirements-for-public-access-to-mss"></div>
-            <div class="form-row"><label for="is_a_reader_ticket_required">Is a reader ticket required? <span
-                    class="optional">(optional)</span></label><select id="is_a_reader_ticket_required"
-                                                                      name="is-a-reader-ticket-required">
+            <div class="form-row"><label for="reader_ticket">Is a reader ticket required? <span class="optional">(optional)</span></label><select
+                    id="reader_ticket" name="reader-ticket">
                 <option value="">Please select</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
@@ -109,22 +115,22 @@
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
             </select></div>
-            <div class="form-row"><label for="copy_service">Is there a copy service? If so, in what format? <span
-                    class="optional">(optional)</span></label><input type="text" id="copy_service" name="copy-service">
-            </div>
+            <div class="form-row"><label for="copy_service">Is there a copy service? <span
+                    class="optional">(optional)</span></label>
+                <p class="form-hint">For example, photographs, microfilm</p><input type="text" id="copy_service"
+                                                                                   name="copy-service"></div>
             <div class="form-row"><label for="fee_based_research_service">Do you provide a fee based research service?
-                <span class="optional">(optional)</span></label>
-                <p class="form-hint">For example, photographs, microfilm</p><select id="fee_based_research_service"
-                                                                                    name="fee-based-research-service">
-                    <option value="">Please select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select></div>
+                <span class="optional">(optional)</span></label><select id="fee_based_research_service"
+                                                                        name="fee-based-research-service">
+                <option value="">Please select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select></div>
             <div class="form-row"><label for="aids_available_on_website">Details of finding aids available on website
                 <span class="optional">(optional)</span></label>
                 <p class="form-hint">For example, catalogue URL </p><input type="text" id="aids_available_on_website"
                                                                            name="aids-available-on-website"></div>
-            <div class="form-row"><label for="published_guide">Is there a published guide to the repository? If so give
+            <div class="form-row"><label for="published_guide">Is there a published guide to the repository? If so, give
                 details <span class="optional">(optional)</span></label><textarea id="published_guide"
                                                                                   name="published-guide"></textarea>
             </div>
@@ -137,7 +143,7 @@
                                                                                     name="additional-information"></textarea>
             </div>
             <div class="form-row hidden"><label for="skype_name">Skype name (please ignore this field)</label><input
-                    type="text" id="skype_name" name="skype-name-46"></div>
+                    type="text" id="skype_name" name="skype-name-64"></div>
             <div class="form-row"><input type="submit" name="submit-aup" id="submit-tna-form" value="Submit"></div>
         </fieldset>
     </form>

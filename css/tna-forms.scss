@@ -15,7 +15,7 @@ legend {
   margin: 0 auto;
   margin-bottom: 1.5em !important;
   #groupErrorPlacement {
-    MARGIN-TOP:20px;
+    margin-top:20px;
   }
   label {
     width: 100% !important;
@@ -24,6 +24,12 @@ legend {
   input[type=color], input[type=email], input[type=number], input[type=tel], input[type=text], input[type=date], input[type=url], select, textarea {
     width: 100% !important;
     max-width: 420px;
+    &:disabled {
+      background: #eee;
+    }
+    &:read-only {
+      background: #eee;
+    }
   }
   textarea {
     height: 120px;

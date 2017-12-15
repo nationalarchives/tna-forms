@@ -475,21 +475,22 @@ function defaultForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
+                required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            country:{
+            "country-required":{
                 required:true,
                 noSpace:true
             },
-            enquiry:{
+            "enquiry-required":{
                 required:true,
                 noSpace:true
             }
@@ -499,18 +500,18 @@ function defaultForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required: "Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            country:{
+            "country-required":{
                 required:"Please enter your country"
             },
-            enquiry:{
+            "enquiry-required":{
                 required:"Please enter your enquiry"
             }
         }
@@ -566,18 +567,18 @@ function recordsResearchEnquiryForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name":{
+            "full-name-required":{
                 required:true,
                 noSpace:true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            enquiry:{
+            "enquiry-required":{
                 required:true,
                 noSpace:true
             }
@@ -587,15 +588,15 @@ function recordsResearchEnquiryForm(){
          * Error messages
          * */
         messages: {
-            "full-name":{
+            "full-name-required":{
                 required:"Please insert your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            enquiry:{
+            "enquiry-required":{
                 required:"Please enter your enquiry"
             }
         }
@@ -654,17 +655,17 @@ function yourViewsForm(){
             "full-name": {
                 noSpace: true
             },
-            email: {
+            "email": {
                 email:true
             },
             "confirm-email": {
                 equalTo: "#email"
             },
-            reason:{
+            "reason-required":{
                 required: true,
                 noSpace: true
             },
-            enquiry:{
+            "enquiry-required":{
                 required:true,
                 noSpace:true
             }
@@ -677,10 +678,10 @@ function yourViewsForm(){
             "confirm-email": {
                 equalTo: "Please enter your email address again"
             },
-            reason:{
+            "reason-required":{
                 required: "Please select an option"
             },
-            enquiry:{
+            "enquiry-required":{
                 required:"Please enter your enquiry"
             }
         }
@@ -735,26 +736,26 @@ function generalEnquiriesForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
                 required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            country:{
+            "country-required":{
                 required:true,
                 noSpace:true
             },
-            reason:{
+            "reason-required":{
                 required:true,
                 noSpace:true
             },
-            enquiry:{
+            "enquiry-required":{
                 required:true,
                 noSpace:true
             }
@@ -764,21 +765,21 @@ function generalEnquiriesForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required: "Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            country:{
+            "country-required":{
                 required:"Please enter your country"
             },
-            reason:{
+            "reason-required":{
                 required:"Please select an option"
             },
-            enquiry:{
+            "enquiry-required":{
                 required:"Please enter your enquiry"
             }
         }
@@ -833,18 +834,18 @@ function publicSectorForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
                 required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            enquiry:{
+            "enquiry-required":{
                 required:true,
                 noSpace:true
             }
@@ -854,15 +855,15 @@ function publicSectorForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required: "Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            enquiry:{
+            "enquiry-required":{
                 required:"Please enter your enquiry"
             }
         }
@@ -949,46 +950,46 @@ function iacsTrainingForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
                 required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            telephone:{
+            "telephone-required":{
                 required: true,
                 noSpace: true
             },
-            "job-title":{
+            "job-title-required":{
                 required:true,
                 noSpace: true
             },
-            organisation:{
+            "organisation-required":{
                 required:true,
                 noSpace: true
             },
-            address:{
+            "address-required":{
                 required:true,
                 noSpace:true
             },
-            "organisation-type":{
+            "organisation-type-required":{
                 required:true,
                 noSpace: true
             },
-            "your-role":{
+            "your-role-required":{
                 required:true,
                 noSpace: true
             },
-           "session-first-choice": {
+           "session-first-choice-required": {
                 required:true,
                 noSpace: true
             },
-            "session-second-choice": {
+            "session-second-choice-required": {
                 required:true,
                 noSpace: true
             }
@@ -998,36 +999,36 @@ function iacsTrainingForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required: "Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            telephone:{
+            "telephone-required":{
                 required: "Please enter your telephone number"
             },
-            "job-title":{
+            "job-title-required":{
                 required:"Please enter your job title"
             },
-            organisation:{
+            "organisation-required":{
                 required:"Please enter a department/agency/organisation"
             },
-            address:{
+            "address-required":{
                 required:"Please enter an address"
             },
-            "organisation-type":{
+            "organisation-type-required":{
                 required:"Please select an option"
             },
-            "your-role":{
+            "your-role-required":{
                 required:"Please select an option"
             },
-            "session-first-choice": {
+            "session-first-choice-required": {
                 required:"Please select an option"
             },
-            "session-second-choice": {
+            "session-second-choice-required": {
                 required:"Please select an option"
             }
         }
@@ -1082,22 +1083,22 @@ function applyToFilmForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
                 required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            "about_project":{
-                require:true,
+            "date-required":{
+                required:true,
                 noSpace: true
             },
-            date:{
+            "policy-required":{
                 required:true,
                 noSpace: true
             }
@@ -1107,19 +1108,19 @@ function applyToFilmForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required: "Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            "about-project":{
-                required:"Please enter your project details"
-            },
-            date:{
+            "date-required":{
                 required:"Please enter your filming date"
+            },
+            "policy-required":{
+                required:"Please agree to the terms and conditions"
             }
         }
     });
@@ -1173,18 +1174,18 @@ function pronomForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
                 required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            "file-format":{
+            "file-format-required":{
                 required: true,
                 noSpace: true
             }
@@ -1194,21 +1195,287 @@ function pronomForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required:"Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            "file-format":{
+            "file-format-required":{
                 required:"Please enter the file format"
             }
         }
     });
 
     $("input[name='submit-pr']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
+};/**
+ * @contact-form-name: Your Views form
+ *
+ * ----- Table of contents -------------------------------------
+ *
+ * 1. Define variables
+ * 2. Include custom form methods from methods.js
+ * 3. Add the validation rules
+ *
+ * */
+function radForm(){
+    /**
+     * 1. Declare variables
+     * */
+    var formName = "#request-assessment-document";
+    var form = $(formName);
+
+    /**
+     * 2. Included custom form validation methods from methods.js
+     * */
+    formMethods();
+
+    /**
+     * 3. Add the validation rules
+     * */
+    form.validate({
+        errorElement: 'span',
+        errorClass: 'form-error form-hint',
+        highlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').addClass("form-warning");
+            $(element).closest('input[type="email"]').addClass("form-warning");
+            $(element).closest('textarea').addClass("form-warning");
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').removeClass("form-warning");
+            $(element).closest('input[type="email"]').removeClass("form-warning");
+            $(element).closest('textarea').removeClass("form-warning");
+        },
+        rules: {
+            "full-name-required": {
+                required: true,
+                noSpace: true
+            },
+            "email-required": {
+                email:true
+            },
+            "confirm-email-required": {
+                equalTo: "#email"
+            }
+        },
+        /**
+         * Error messages
+         * */
+        messages: {
+            "full-name-required":{
+                required:"Please insert your full name"
+            },
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
+                required:"Please enter your email address",
+                equalTo: "Please enter your email address again"
+            }
+        }
+    });
+
+    $("input[name='submit-request-assessment-document']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
+
+
+};/**
+ * @contact-form-name: Apply to film
+ *
+ * ----- Table of contents -------------------------------------
+ *
+ * 1. Define variables
+ * 2. Include custom form methods from methods.js
+ * 3. Add the validation rules
+ * */
+
+function archiveUpdateForm(){
+    /**
+     * 1. Declare variables
+     * */
+    var formName = "#archive_update";
+    var form = $(formName);
+
+    /**
+     * 2. Included custom form validation methods from methods.js
+     * */
+    formMethods();
+
+    /**
+     * 3. Add the validation rules
+     * */
+    form.validate({
+        errorElement: 'span',
+        errorClass: 'form-error form-hint',
+        highlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').addClass("form-warning");
+            $(element).closest('input[type="email"]').addClass("form-warning");
+            $(element).closest('textarea').addClass("form-warning");
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').removeClass("form-warning");
+            $(element).closest('input[type="email"]').removeClass("form-warning");
+            $(element).closest('textarea').removeClass("form-warning");
+        },
+        rules: {
+            "full-name-required": {
+                required: true,
+                noSpace: true
+            },
+            "email-required": {
+                required: true,
+                email:true
+            },
+            "confirm-email-required": {
+                equalTo: "#email"
+            },
+            "file-format-required":{
+                required: true,
+                noSpace: true
+            },
+            "type-of-entry-required":{
+                required: true
+            },
+            "name-of-repository-required":{
+                required:true,
+                noSpace:true
+            }
+        },
+        /**
+         * Error messages
+         * */
+        messages: {
+            "full-name-required": {
+                required:"Please enter your full name"
+            },
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
+                required:"Please enter your email address",
+                equalTo: "Please enter your email address again"
+            },
+            "file-format-required":{
+                required:"Please enter the file format"
+            },
+            "type-of-entry-required": {
+                required:"Please select from the dropdown"
+            },
+            "name-of-repository-required":{
+                required:"Please enter the name of the repository"
+            }
+        }
+    });
+
+    $("input[name='submit-aup']").on('click', function(){
+        var emphAlert = ($('.emphasis-block.error-message').length === 1);
+        if(form.valid() !== true) {
+            if(emphAlert) {
+                $('.emphasis-block.error-message').show();
+            } else {
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+            }
+        }
+    });
+}
+
+;/**
+ * @contact-form-name: Public sector form
+ *
+ * ----- Table of contents -------------------------------------
+ *
+ * 1. Define variables
+ * 2. Include custom form methods from methods.js
+ * 3. Add the validation rules
+ * */
+
+function paidSearchForm(){
+    /**
+     * 1. Declare variables
+     * */
+    var formName = "#paid_search";
+    var form = $(formName);
+
+    /**
+     * 2. Included custom form validation methods from methods.js
+     * */
+    formMethods();
+
+    /**
+     * 3. Add the validation rules
+     * */
+    form.validate({
+        errorElement: 'span',
+        errorClass: 'form-error form-hint',
+        highlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').addClass("form-warning");
+            $(element).closest('input[type="email"]').addClass("form-warning");
+            $(element).closest('textarea').addClass("form-warning");
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).closest('input[type="text"]').removeClass("form-warning");
+            $(element).closest('input[type="email"]').removeClass("form-warning");
+            $(element).closest('textarea').removeClass("form-warning");
+        },
+        rules: {
+            "full-name-required": {
+                required: true,
+                noSpace: true
+            },
+            "email-required": {
+                required: true,
+                email:true
+            },
+            "confirm-email-required": {
+                equalTo: "#email"
+            },
+            "country-required":{
+                required:true,
+                noSpace:true
+            },
+            "your-enquiry-required":{
+                required:true,
+                noSpace:true
+            }
+
+        },
+        /**
+         * Error messages
+         * */
+        messages: {
+            "full-name-required": {
+                required: "Please enter your full name"
+            },
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
+                required:"Please enter your email address",
+                equalTo: "Please enter your email address again"
+            },
+            "country-required":{
+                required:"Please enter your country"
+            },
+            "your-enquiry-required": {
+                required:"Please provide specific details of the information you are looking for, including any relevant catalogue references."
+            }   
+        }
+    });
+
+    $("input[name='submit-paid-search']").on('click', function(){
         var emphAlert = ($('.emphasis-block.error-message').length === 1);
         if(form.valid() !== true) {
             if(emphAlert) {
@@ -1260,13 +1527,13 @@ function dcfForm(){
             "full-name": {
                 noSpace: true
             },
-            email: {
+            "email": {
                 email:true
             },
             "confirm-email": {
                 equalTo: "#email"
             },
-            "catalogue-reference":{
+            "catalogue-reference-required":{
                 required: true,
                 noSpace: true
             },
@@ -1281,9 +1548,9 @@ function dcfForm(){
             "confirm-email": {
                 equalTo: "Please enter your email address again"
             },
-            "catalogue-reference":{
+            "catalogue-reference-required":{
                 required: "Please enter your catalogue reference number"
-            },
+            }
         }
     });
 
@@ -1299,397 +1566,6 @@ function dcfForm(){
     });
 
 
-};/**
- * @contact-form-name: FOI corporate form
- *
- * ----- Table of contents -------------------------------------
- *
- * 1. Define variables
- * 2. Include custom form methods from methods.js
- * 3. Add the validation rules
- * */
-
-/**
- * Template checklist
- * --- Before creating a new form please make sure the the form was generated using the OOP PHP ---
- *
- * 1. Copy/Paste default.js and change the name to the new form
- * 2. Include new form js file in Gruntfile.js under Concat plugin before tna-call-plugin.js
- * 3. Change the function name to match the new form name e.g. generalForm() etc
- * 4. Grab/Copy the ID of the form generated by the OOP
- * 5. Include the new function name inside the tna-call-plugin under else if(THE NEW ID).is(':visible') statement
- * 6. Change the default form ID from #default to match the actual <form> ID generated in OOP
- * 7. Add/Remove rules/messages to match the new form's fields by using their ID or name attribute
- * */
-
-function foiCorporateForm(){
-    /**
-     * 1. Declare variables
-     * */
-    var formName = "#foi_corporate";
-    var form = $(formName);
-
-    /**
-     * 2. Included custom form validation methods from methods.js
-     * */
-    formMethods();
-
-    /**
-     * 3. Add the validation rules
-     * */
-    form.validate({
-        errorElement: 'span',
-        errorClass: 'form-error form-hint',
-        highlight: function(element, errorClass, validClass) {
-            $(element).closest('input[type="text"]').addClass("form-warning");
-            $(element).closest('input[type="email"]').addClass("form-warning");
-            $(element).closest('textarea').addClass("form-warning");
-        },
-        unhighlight: function(element, errorClass, validClass) {
-            $(element).closest('input[type="text"]').removeClass("form-warning");
-            $(element).closest('input[type="email"]').removeClass("form-warning");
-            $(element).closest('textarea').removeClass("form-warning");
-        },
-        rules: {
-            "full-name": {
-                required: true,
-                noSpace: true
-            },
-            email: {
-                required: true,
-                email:true
-            },
-            "confirm-email": {
-                equalTo: "#email"
-            },
-            enquiry:{
-                required:true,
-                noSpace:true
-            }
-
-        },
-        /**
-         * Error messages
-         * */
-        messages: {
-            "full-name": {
-                required: "Please enter your full name"
-            },
-            email: "Please enter your email address",
-            "confirm-email": {
-                required:"Please enter your email address",
-                equalTo: "Please enter your email address again"
-            },
-            enquiry:{
-                required:"Please enter your enquiry"
-            }
-        }
-    });
-
-    $("input[name='submit-foi-corporate']").on('click', function(){
-        var emphAlert = ($('.emphasis-block.error-message').length === 1);
-        if(form.valid() !== true) {
-            if(emphAlert) {
-                $('.emphasis-block.error-message').show();
-            } else {
-                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
-            }
-        }
-    });
-};/**
- * @contact-form-name: FOI closed record form
- *
- * ----- Table of contents -------------------------------------
- *
- * 1. Define variables
- * 2. Include custom form methods from methods.js
- * 3. Add the validation rules
- * */
-
-/**
- * Template checklist
- * --- Before creating a new form please make sure the the form was generated using the OOP PHP ---
- *
- * 1. Copy/Paste default.js and change the name to the new form
- * 2. Include new form js file in Gruntfile.js under Concat plugin before tna-call-plugin.js
- * 3. Change the function name to match the new form name e.g. generalForm() etc
- * 4. Grab/Copy the ID of the form generated by the OOP
- * 5. Include the new function name inside the tna-call-plugin under else if(THE NEW ID).is(':visible') statement
- * 6. Change the default form ID from #default to match the actual <form> ID generated in OOP
- * 7. Add/Remove rules/messages to match the new form's fields by using their ID or name attribute
- * */
-
-function foiClosedRecordForm(){
-    /**
-     * 1. Declare variables
-     * */
-    var formName = "#foi_closed_record";
-    var form = $(formName);
-
-    /**
-     * 2. Included custom form validation methods from methods.js
-     * */
-    formMethods();
-
-    /**
-     * 3. Add the validation rules
-     * */
-    form.validate({
-        errorElement: 'span',
-        errorClass: 'form-error form-hint',
-        highlight: function(element, errorClass, validClass) {
-            $(element).closest('input[type="text"]').addClass("form-warning");
-            $(element).closest('input[type="email"]').addClass("form-warning");
-            $(element).closest('textarea').addClass("form-warning");
-        },
-        unhighlight: function(element, errorClass, validClass) {
-            $(element).closest('input[type="text"]').removeClass("form-warning");
-            $(element).closest('input[type="email"]').removeClass("form-warning");
-            $(element).closest('textarea').removeClass("form-warning");
-        },
-        rules: {
-            "full-name": {
-                noSpace: true
-            },
-            email: {
-                required: true,
-                email:true
-            },
-            "confirm-email": {
-                equalTo: "#email"
-            },
-            "postal-address":{
-                required:true,
-                noSpace:true
-            },
-            "telephone-number":{
-                telNumber:true
-            },
-            enquiry:{
-                required:true,
-                noSpace:true
-            }
-
-        },
-        /**
-         * Error messages
-         * */
-        messages: {
-            "full-name": {
-                required: "Please enter your full name"
-            },
-            email: "Please enter your email address",
-            "confirm-email": {
-                required:"Please enter your email address",
-                equalTo: "Please enter your email address again"
-            },
-            "postal-address":{
-                required:"Please enter your postal address"
-            },
-            enquiry:{
-                required:"Please enter your enquiry"
-            }
-        }
-    });
-
-    $("input[name='submit-foi-closed-record']").on('click', function(){
-        var emphAlert = ($('.emphasis-block.error-message').length === 1);
-        if(form.valid() !== true) {
-            if(emphAlert) {
-                $('.emphasis-block.error-message').show();
-            } else {
-                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
-            }
-        }
-    });
-};/**
- * @contact-form-name: Apply to film
- *
- * ----- Table of contents -------------------------------------
- *
- * 1. Define variables
- * 2. Include custom form methods from methods.js
- * 3. Add the validation rules
- * */
-
-function archiveUpdateForm(){
-    /**
-     * 1. Declare variables
-     * */
-    var formName = "#archive_update";
-    var form = $(formName);
-
-    /**
-     * 2. Included custom form validation methods from methods.js
-     * */
-    formMethods();
-
-    /**
-     * 3. Add the validation rules
-     * */
-    form.validate({
-        errorElement: 'span',
-        errorClass: 'form-error form-hint',
-        highlight: function(element, errorClass, validClass) {
-            $(element).closest('input[type="text"]').addClass("form-warning");
-            $(element).closest('input[type="email"]').addClass("form-warning");
-            $(element).closest('textarea').addClass("form-warning");
-        },
-        unhighlight: function(element, errorClass, validClass) {
-            $(element).closest('input[type="text"]').removeClass("form-warning");
-            $(element).closest('input[type="email"]').removeClass("form-warning");
-            $(element).closest('textarea').removeClass("form-warning");
-        },
-        rules: {
-            "full-name": {
-                required: true,
-                noSpace: true
-            },
-            email: {
-                required: true,
-                email:true
-            },
-            "confirm-email": {
-                equalTo: "#email"
-            },
-            "file-format":{
-                required: true,
-                noSpace: true
-            },
-            "type-of-entry":{
-                required: true
-            },
-            "name-of-repository":{
-                required:true,
-                noSpace:true
-            }
-
-        },
-        /**
-         * Error messages
-         * */
-        messages: {
-            "full-name": {
-                required:"Please enter your full name"
-            },
-            email: "Please enter your email address",
-            "confirm-email": {
-                required:"Please enter your email address",
-                equalTo: "Please enter your email address again"
-            },
-            "file-format":{
-                required:"Please enter the file format"
-            },
-            "type-of-entry": {
-                required:"Please select from the dropdown"
-            },
-            "name-of-repository":{
-                required:"Please enter the name of the repository"
-            }
-        }
-    });
-
-    $("input[name='submit-aup']").on('click', function(){
-        var emphAlert = ($('.emphasis-block.error-message').length === 1);
-        if(form.valid() !== true) {
-            if(emphAlert) {
-                $('.emphasis-block.error-message').show();
-            } else {
-                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
-            }
-        }
-    });
-};/**
- * @contact-form-name: Public sector form
- *
- * ----- Table of contents -------------------------------------
- *
- * 1. Define variables
- * 2. Include custom form methods from methods.js
- * 3. Add the validation rules
- * */
-
-function paidSearchForm(){
-    /**
-     * 1. Declare variables
-     * */
-    var formName = "#paid_search";
-    var form = $(formName);
-
-    /**
-     * 2. Included custom form validation methods from methods.js
-     * */
-    formMethods();
-
-    /**
-     * 3. Add the validation rules
-     * */
-    form.validate({
-        errorElement: 'span',
-        errorClass: 'form-error form-hint',
-        highlight: function(element, errorClass, validClass) {
-            $(element).closest('input[type="text"]').addClass("form-warning");
-            $(element).closest('input[type="email"]').addClass("form-warning");
-            $(element).closest('textarea').addClass("form-warning");
-        },
-        unhighlight: function(element, errorClass, validClass) {
-            $(element).closest('input[type="text"]').removeClass("form-warning");
-            $(element).closest('input[type="email"]').removeClass("form-warning");
-            $(element).closest('textarea').removeClass("form-warning");
-        },
-        rules: {
-            "full-name": {
-                required: true,
-                noSpace: true
-            },
-            email: {
-                required: true,
-                email:true
-            },
-            "confirm-email": {
-                equalTo: "#email"
-            },
-            country:{
-                required:true,
-                noSpace:true
-            },
-            "your-enquiry":{
-                required:true,
-                noSpace:true
-            }
-
-        },
-        /**
-         * Error messages
-         * */
-        messages: {
-            "full-name": {
-                required: "Please enter your full name"
-            },
-            email: "Please enter your email address",
-            "confirm-email": {
-                required:"Please enter your email address",
-                equalTo: "Please enter your email address again"
-            },
-            country:{
-                required:"Please enter your country"
-            },
-            "your-enquiry": {
-                required:"Please provide specific details of the information you are looking for, including any relevant catalogue references."
-            }   
-        }
-    });
-
-    $("input[name='submit-paid-search']").on('click', function(){
-        var emphAlert = ($('.emphasis-block.error-message').length === 1);
-        if(form.valid() !== true) {
-            if(emphAlert) {
-                $('.emphasis-block.error-message').show();
-            } else {
-                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
-            }
-        }
-    });
 };/**
  * @name  : Newsletter and Contact forms Wordpress plugin
  * @author: TNA WebTeam
@@ -1734,17 +1610,14 @@ $(document).ready(function() {
         else if ($('#dcf').is(':visible')) {
             dcfForm();
         }
-        else if ($('#foi_corporate').is(':visible')) {
-            foiCorporateForm();
-        }
-        else if ($('#foi_closed_record').is(':visible')){
-            foiClosedRecordForm();
-        }
         else if ($('#archive_update').is(':visible')) {
             archiveUpdateForm();
         }
         else if ($('#paid_search').is(':visible')) {
             paidSearchForm();
+        }
+        else if ($('#request-assessment-document').is(':visible')) {
+            radForm();
         }
         else {
             defaultForm();

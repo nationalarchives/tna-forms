@@ -14,34 +14,60 @@
 <br/>
 <br/>
 <div class="fixture">
-    <form action="" id="apply-to-film" method="POST"><input type="hidden" name="tna-form"
-                                                            value="Apply to film at The National Archives"><input
-            type="hidden" name="token" value="143c1d54dd6e4e4297f6871f84291ab8"><input type="hidden" name="timestamp"
-                                                                                       value="1481302909">
+    <form action="" id="apply-to-film" class="form-abandonment" method="POST"><input type="hidden" name="tna-form"
+                                                                                     value="Apply to film at The National Archives"><input
+            type="hidden" name="token" value="728b6e100b3ec0277ebf113552dba0e3"><input type="hidden" name="timestamp"
+                                                                                       value="1513005871">
         <fieldset>
             <legend>Your details</legend>
             <div class="form-row"><label for="full_name">Full name</label><input type="text" id="full_name"
-                                                                                 name="full-name" aria-required="true"
-                                                                                 required></div>
-            <div class="form-row"><label for="email">Email address</label><input type="email" id="email" name="email"
+                                                                                 name="full-name-required"
+                                                                                 aria-required="true" required></div>
+            <div class="form-row"><label for="email">Email address</label><input type="email" id="email"
+                                                                                 name="email-required"
                                                                                  aria-required="true" required></div>
             <div class="form-row"><label for="confirm_email">Please re-type your email address</label><input
-                    type="email" id="confirm_email" name="confirm-email" aria-required="true" required></div>
+                    type="email" id="confirm_email" name="confirm-email-required" aria-required="true" required></div>
             <div class="form-row"><label for="company">Company <span class="optional">(optional)</span></label><input
                     type="text" id="company" name="company"></div>
             <div class="form-row"><label for="job_title">Job title <span
                     class="optional">(optional)</span></label><input type="text" id="job_title" name="job-title"></div>
             <div class="form-row"><label for="telephone">Telephone <span class="optional">(optional)</span></label>
                 <p class="form-hint">Include the area code</p><input type="tel" id="telephone" name="telephone"></div>
-            <div class="form-row"><label for="about_project">About the project</label><textarea id="about_project"
-                                                                                                name="about-project"
-                                                                                                aria-required="true"
-                                                                                                required></textarea>
+        </fieldset>
+        <fieldset>
+            <legend>About the project</legend>
+            <div class="form-row"><label for="date">Preferred date of filming</label><input type="date" id="date"
+                                                                                            name="date-required"
+                                                                                            aria-required="true"
+                                                                                            required></div>
+            <div class="form-row"><label for="time">Preferred time of filming <span
+                    class="optional">(optional)</span></label>
+                <p class="form-hint">Use the 24 hour clock format, eg 15:00</p><input type="text" id="time" name="time">
             </div>
-            <div class="form-row"><label for="date">Date of filming</label><input type="text" id="date" name="date"
-                                                                                  aria-required="true" required></div>
+            <div class="form-row"><label for="broadcast">How will it be broadcast and when will it be transmitted? Is it
+                part of a series? <span class="optional">(optional)</span></label><textarea id="broadcast"
+                                                                                            name="broadcast"></textarea>
+            </div>
+            <div class="form-row"><label for="documents">Please list the documents you would like to film, providing
+                full references <span class="optional">(optional)</span></label><textarea id="documents"
+                                                                                          name="documents"></textarea>
+            </div>
+            <div class="form-row checkbox"><input type="checkbox" id="interview" name="interview" value="Yes"><label
+                    for="interview">Tick this box if you want to interview a member of staff</label></div>
+            <div class="form-row"><label for="interviewee">If you know the name of the staff member you want to
+                interview, enter it here <span class="optional">(optional)</span></label><input type="text"
+                                                                                                id="interviewee"
+                                                                                                name="interviewee">
+            </div>
+            <div class="form-row checkbox"><input type="checkbox" id="policy" name="policy-required" value="Yes"
+                                                  aria-required="true" required><label for="policy">I have read and
+                agreed to the filming <a
+                        href="http://nationalarchives.gov.uk/documents/filming-terms-and-conditions.pdf"
+                        target="_blank">terms and conditions</a>, including the charges and cancellation policy</label>
+            </div>
             <div class="form-row hidden"><label for="skype_name">Skype name (please ignore this field)</label><input
-                    type="text" id="skype_name" name="skype-name-25"></div>
+                    type="text" id="skype_name" name="skype-name-63"></div>
             <div class="form-row"><input type="submit" name="submit-atf" id="submit-tna-form" value="Submit"></div>
         </fieldset>
     </form>

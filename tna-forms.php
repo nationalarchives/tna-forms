@@ -12,6 +12,7 @@
 /* Included functions */
 include 'functions.php';
 include 'tna-forms-builder.php';
+include 'tna-forms-processor.php';
 include 'tna-forms-functions.php';
 include 'tna-forms-validation.php';
 include 'tna-forms-shortcode.php';
@@ -27,8 +28,7 @@ include 'forms/form-iacs-training.php';
 include 'forms/form-apply-to-film.php';
 include 'forms/form-pronom.php';
 include 'forms/form-document-condition-feedback.php';
-include 'forms/form-foi-corporate.php';
-include 'forms/form-foi-closed-record.php';
 include 'forms/form-archive-update.php';
 include 'forms/form-paid-search.php';
+include 'forms/form-request-assessment-document.php';
 include 'forms/form-default.php';

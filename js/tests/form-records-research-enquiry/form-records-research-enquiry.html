@@ -14,33 +14,43 @@
 <br/>
 <br/>
 <div class="fixture">
-    <form action="" id="records-research-enquiry" method="POST" novalidate>
-        <input type="hidden" name="tna-form" value="rre">
-        <input type="hidden" name="token" value="524c1894ed40d6c69344228485d35e46">
+    <form action="" id="records-research-enquiry" class="form-abandonment" method="POST"><input type="hidden"
+                                                                                                name="tna-form"
+                                                                                                value="Records and research enquiry"><input
+            type="hidden" name="token" value="6fdbd7749bc9ca6cd3de359a287a2147"><input type="hidden" name="timestamp"
+                                                                                       value="1511865161">
         <fieldset>
             <legend>Your enquiry</legend>
-            <div class="form-row">
-                <label for="full_name">Full name</label>
-                <input type="text" id="full_name" name="full-name" aria-required="true" required>
+            <div class="form-row"><label for="full_name">Full name</label><input type="text" id="full_name"
+                                                                                 name="full-name-required"
+                                                                                 aria-required="true" required></div>
+            <div class="form-row"><label for="email">Email address</label><input type="email" id="email"
+                                                                                 name="email-required"
+                                                                                 aria-required="true" required></div>
+            <div class="form-row"><label for="confirm_email">Please re-type your email address</label><input
+                    type="email" id="confirm_email" name="confirm-email-required" aria-required="true" required></div>
+            <div class="form-row"><label for="country">Country <span class="optional">(optional)</span></label><input
+                    type="text" id="country" name="country"></div>
+            <div class="form-row"><label for="enquiry">Your enquiry</label>
+                <p class="form-hint">Please provide specific details of the information you are looking for, including
+                    any relevant catalogue references.</p><textarea id="enquiry" name="enquiry-required"
+                                                                    aria-required="true" required></textarea></div>
+            <div class="form-row"><label for="dates">Dates or years that you are interested in <span class="optional">(optional)</span></label><input
+                    type="text" id="dates" name="dates"></div>
+            <div class="form-row checkbox"><input type="checkbox" id="newsletter" name="newsletter" value="Yes"><label
+                    for="newsletter">Tick here to receive our free monthly newsletter and email updates about our news,
+                products and services</label>
+                <p>
+                    <small>The National Archives only records personal information, including email addresses, for the
+                        purposes provided. We will not share your details with third parties. For more information read
+                        our <a href="http://www.nationalarchives.gov.uk/legal/privacy.htm" target="_blank">privacy
+                            policy</a>.
+                    </small>
+                </p>
             </div>
-            <div class="form-row">
-                <label for="email">Email address</label><input type="email" id="email" name="email" aria-required="true" required>
-            </div>
-            <div class="form-row">
-                <label for="confirm_email">Please re-type your email address</label><input type="email" id="confirm_email" name="confirm-email" aria-required="true" required>
-            </div>
-            <div class="form-row">
-                <label for="country">Country</label><input type="text" id="country" name="country"
-                                                                             aria-required="true" required></div>
-            <div class="form-row">
-                <label for="enquiry">Your enquiry</label>
-                <p class="form-hint">Please provide specific details of the information you are looking for.</p>
-                <textarea id="enquiry" name="enquiry" aria-required="true" required></textarea></div>
-            <div class="form-row">
-                <label for="dates">Provide the dates or years that you are interested in <span
-                    class="optional">(optional)</span></label><input type="text" id="dates" name="dates"></div>
-            <div class="form-row">
-                <input type="submit" name="submit-rre" id="submit-tna-form" value="Submit"></div>
+            <div class="form-row hidden"><label for="skype_name">Skype name (please ignore this field)</label><input
+                    type="text" id="skype_name" name="skype-name-58"></div>
+            <div class="form-row"><input type="submit" name="submit-rre" id="submit-tna-form" value="Submit"></div>
         </fieldset>
     </form>
 </div>

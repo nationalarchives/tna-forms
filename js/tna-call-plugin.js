@@ -42,17 +42,14 @@ $(document).ready(function() {
         else if ($('#dcf').is(':visible')) {
             dcfForm();
         }
-        else if ($('#foi_corporate').is(':visible')) {
-            foiCorporateForm();
-        }
-        else if ($('#foi_closed_record').is(':visible')){
-            foiClosedRecordForm();
-        }
         else if ($('#archive_update').is(':visible')) {
             archiveUpdateForm();
         }
         else if ($('#paid_search').is(':visible')) {
             paidSearchForm();
+        }
+        else if ($('#request-assessment-document').is(':visible')) {
+            radForm();
         }
         else {
             defaultForm();

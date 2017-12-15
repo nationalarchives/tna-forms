@@ -14,29 +14,35 @@
 <br/>
 <br/>
 <div class="fixture">
-    <form action="" id="general" method="POST" novalidate><input type="hidden" name="tna-form" value="general"><input
-            type="hidden" name="token" value="19846be34cae228a4b792579a253b199">
+    <form action="" id="general" class="form-abandonment" method="POST"><input type="hidden" name="tna-form"
+                                                                               value="General enquires"><input
+            type="hidden" name="token" value="211d1b19d504b01b82fee1ee70eb6439"><input type="hidden" name="timestamp"
+                                                                                       value="1512993971">
         <fieldset>
             <legend>Your details</legend>
             <div class="form-row"><label for="full_name">Full name</label><input type="text" id="full_name"
-                                                                                 name="full-name" aria-required="true"
-                                                                                 required></div>
-            <div class="form-row"><label for="email">Email address</label><input type="email" id="email" name="email"
+                                                                                 name="full-name-required"
+                                                                                 aria-required="true" required></div>
+            <div class="form-row"><label for="email">Email address</label><input type="email" id="email"
+                                                                                 name="email-required"
                                                                                  aria-required="true" required></div>
             <div class="form-row"><label for="confirm_email">Please re-type your email address</label><input
-                    type="email" id="confirm_email" name="confirm-email" aria-required="true" required></div>
-            <div class="form-row"><label for="country">Country</label><input type="text" id="country" name="country"
+                    type="email" id="confirm_email" name="confirm-email-required" aria-required="true" required></div>
+            <div class="form-row"><label for="country">Country</label><input type="text" id="country"
+                                                                             name="country-required"
                                                                              aria-required="true" required></div>
         </fieldset>
         <fieldset>
             <legend>Your enquiry</legend>
-            <div class="form-row"><label for="reason">Reason for contact</label><select id="reason" name="reason"
+            <div class="form-row"><label for="reason">Reason for contact</label><select id="reason"
+                                                                                        name="reason-required"
                                                                                         aria-required="true" required>
                 <option value="">Please select</option>
                 <option value="Website enquiry or support">Website enquiry or support</option>
                 <option value="General enquiry">General enquiry</option>
             </select></div>
-            <div class="form-row"><label for="enquiry">Your enquiry</label><textarea id="enquiry" name="enquiry"
+            <div class="form-row"><label for="enquiry">Your enquiry</label><textarea id="enquiry"
+                                                                                     name="enquiry-required"
                                                                                      aria-required="true"
                                                                                      required></textarea></div>
         </fieldset>
@@ -46,8 +52,18 @@
                     class="optional">(optional)</span></label><input type="text" id="catalogue_reference"
                                                                      name="catalogue-reference"></div>
             <div class="form-row checkbox"><input type="checkbox" id="newsletter" name="newsletter" value="Yes"><label
-                    for="newsletter">Tick here if you'd like to receive our free monthly newsletter and email updates
-                about news, products and services from The National Archives.</label></div>
+                    for="newsletter">Tick here to receive our free monthly newsletter and email updates about our news,
+                products and services</label>
+                <p>
+                    <small>The National Archives only records personal information, including email addresses, for the
+                        purposes provided. We will not share your details with third parties. For more information read
+                        our <a href="http://www.nationalarchives.gov.uk/legal/privacy.htm" target="_blank">privacy
+                            policy</a>.
+                    </small>
+                </p>
+            </div>
+            <div class="form-row hidden"><label for="skype_name">Skype name (please ignore this field)</label><input
+                    type="text" id="skype_name" name="skype-name-68"></div>
             <div class="form-row"><input type="submit" name="submit-ge" id="submit-tna-form" value="Submit"></div>
         </fieldset>
     </form>

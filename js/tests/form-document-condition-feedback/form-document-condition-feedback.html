@@ -14,27 +14,17 @@
 <br/>
 <br/>
 <div class="fixture">
-    <form action="" id="dcf" class="form-abandonment" method="POST" novalidate="novalidate"><input type="hidden"
-                                                                                                   name="tna-form"
-                                                                                                   value="Document condition feedback"><input
-            type="hidden" name="token" value="a4b5c2031f73ddaab617bec119bc0661"><input type="hidden" name="timestamp"
-                                                                                       value="1487001813">
-        <fieldset>
-            <legend>Your details</legend>
-            <div class="form-row"><label for="full_name">Full name <span
-                    class="optional">(optional)</span></label><input type="text" id="full_name" name="full-name"></div>
-            <div class="form-row"><label for="email">Email address <span
-                    class="optional">(optional)</span></label><input type="email" id="email" name="email"></div>
-            <div class="form-row"><label for="confirm_email">Please re-type your email address <span class="optional">(optional)</span></label><input
-                    type="email" id="confirm_email" name="confirm-email"></div>
-        </fieldset>
+    <form action="" id="dcf" class="form-abandonment" method="POST"><input type="hidden" name="tna-form"
+                                                                           value="Document condition feedback"><input
+            type="hidden" name="token" value="eb2fd7618461efd20f67ee437f8bf47a"><input type="hidden" name="timestamp"
+                                                                                       value="1512995800">
         <fieldset>
             <legend>Document details</legend>
             <div class="form-row"><label for="catalogue_reference">Catalogue reference</label><input type="text"
                                                                                                      id="catalogue_reference"
-                                                                                                     name="catalogue-reference"
+                                                                                                     name="catalogue-reference-required"
                                                                                                      aria-required="true"
-                                                                                                     required=""></div>
+                                                                                                     required></div>
             <div class="form-row checkbox"><input type="checkbox" id="document_is_damaged" name="document-is-damaged"
                                                   value="Yes"><label for="document_is_damaged">Document is
                 damaged</label></div>
@@ -44,31 +34,27 @@
             <div class="form-row checkbox"><input type="checkbox" id="no_in_correct_order" name="not-in-correct-order"
                                                   value="Yes"><label for="no_in_correct_order">Pages not in correct
                 order</label></div>
+            <div class="form-row"><label for="additional_details">Additional details <span
+                    class="optional">(optional)</span></label><textarea id="additional_details"
+                                                                        name="additional-details"></textarea></div>
         </fieldset>
         <fieldset>
-            <legend>Additional details</legend>
-            <div class="form-row"><label for="enquiry">Your enquiry <span class="optional">(optional)</span></label>
-                <p class="form-hint">Please provide specific details of the information you are looking for.</p>
-                <textarea id="enquiry" name="enquiry"></textarea>
-                <grammarly-btn>
-                    <div style="z-index: 2; opacity: 1; transform: translate(469.344px, 1022px);"
-                         class="_e725ae-textarea_btn _e725ae-anonymous _e725ae-not_focused" data-grammarly-reactid=".0">
-                        <div class="_e725ae-transform_wrap" data-grammarly-reactid=".0.0">
-                            <div title="Protected by Grammarly" class="_e725ae-status" data-grammarly-reactid=".0.0.0">
-                                &nbsp;</div>
-                        </div>
-                        <span class="_e725ae-btn_text" data-grammarly-reactid=".0.1">Not signed in</span></div>
-                </grammarly-btn>
-            </div>
+            <legend>Your details</legend>
             <div class="form-row"><p>Do you need someone from the team to email you a response to your feedback?</p>
-                <div class="radio"><input type="radio" id="no" name="email-a-response" value="No" checked=""><label
+                <div class="radio"><input type="radio" id="no" name="email-a-response" value="No" checked><label
                         for="no">No</label></div>
                 <div class="radio"><input type="radio" id="yes" name="email-a-response" value="Yes"><label
                         for="yes">Yes</label></div>
             </div>
+            <div class="form-row"><label for="full_name">Full name <span
+                    class="optional">(optional)</span></label><input type="text" id="full_name" name="full-name"></div>
+            <div class="form-row"><label for="email">Email address <span
+                    class="optional">(optional)</span></label><input type="email" id="email" name="email"></div>
+            <div class="form-row"><label for="confirm_email">Please re-type your email address <span class="optional">(optional)</span></label><input
+                    type="email" id="confirm_email" name="confirm-email"></div>
         </fieldset>
         <div class="form-row hidden"><label for="skype_name">Skype name (please ignore this field)</label><input
-                type="text" id="skype_name" name="skype-name-38"></div>
+                type="text" id="skype_name" name="skype-name-80"></div>
         <div class="form-row"><input type="submit" name="submit-dcf" id="submit-tna-form" value="Submit"></div>
     </form>
 </div>
