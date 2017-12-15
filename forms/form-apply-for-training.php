@@ -24,7 +24,7 @@ function return_form_apply_for_training( $sessions, $content ) {
 	// HTML form string
 	$html = new Form_Builder;
 	$form =  $html->form_begins( 'default', $form_name ) .
-	         $html->fieldset_begins( 'Your enquiry' ) .
+	         $html->fieldset_begins( 'Your contact details' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_required_input() .
 	         $html->fieldset_ends() .
