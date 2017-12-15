@@ -48,6 +48,9 @@ function tna_forms_shortcode( $atts, $content = '' ) {
         case 'Request an assessment of a document':
             return return_form_request_assessment_document ($content);
             break;
+		case 'Apply for training':
+			return return_form_apply_for_training( explode(', ', $a['sessions']), $content );
+			break;
 		default:
 			return return_form_default( $content );
 			break;
