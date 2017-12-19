@@ -23,7 +23,7 @@ function return_form_apply_for_training( $sessions, $content ) {
 
 	// HTML form string
 	$html = new Form_Builder;
-	$form =  $html->form_begins( 'default', $form_name ) .
+	$form =  $html->form_begins( 'apply-for-training', $form_name ) .
 	         $html->fieldset_begins( 'Your contact details' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_required_input() .
@@ -42,7 +42,7 @@ function return_form_apply_for_training( $sessions, $content ) {
 	         $html->form_select_input_training( 'Session (1st choice)', 'session_first_choice', 'session-first-choice', $sessions, 'Please select an option' ) .
 	         $html->form_select_input_training( 'Session (2nd choice)', 'session_second_choice', 'session-second-choice', $sessions, 'Please select an option' ) .
 	         $html->form_spam_filter( rand(10, 99) ) .
-	         $html->submit_form( 'submit-aft', 'submit-tna-form' ) .
+	         $html->submit_form( 'submit-apply-for-training', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
 
