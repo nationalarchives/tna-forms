@@ -24,9 +24,18 @@ var form = {
         {id: "full_name", name: "full-name"},
         {id: "email", name: "email"},
         {id: "confirm_email", name: "confirm-email"}
+    ],
+    regex : /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
+    emails: [
+        {valid: "m@m.com", invalid: "m@m."},
+        {valid: "my_test@test.co.uk", invalid: "@test.co.uk"},
+        {valid: "someEmails@yahoo.com", invalid: "someEmails@@yahoo.com"},
+        {valid: "attack@gmail.co.uk", invalid: "attack@gmail.co.uk."}
     ]
 };
-
+function isValidEmail(str, reg) {
+    return reg.test(str);
+}
 /**
  * 1. Checking the DOM before plugin is applied
  */
@@ -62,6 +71,19 @@ QUnit.module("Checking the fields before plugin is applied", function () {
             if (form.elem[ok].id === "email" || form.elem[ok].id === "confirm_email") {
                 assert.equal($('#' + form.elem[ok].id, '.' + form.fixture).val(), "", "Input -> " + form.elem[ok].id + " is empty");
             }
+        }
+    });
+});
+QUnit.module("Checking email address", function () {
+    QUnit.test("Is valid", function (assert) {
+        for (var i = 0; i < form.emails.length; i++) {
+            assert.ok(isValidEmail(form.emails[i].valid, form.regex), form.emails[i].valid + " email address is valid");
+        }
+    });
+
+    QUnit.test("Is invalid", function (assert) {
+        for (var i = 0; i < form.emails.length; i++) {
+            assert.notOk(isValidEmail(form.emails[i].invalid, form.regex), form.emails[i].invalid + " email address is invalid");
         }
     });
 });
