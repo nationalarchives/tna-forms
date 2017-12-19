@@ -14,7 +14,7 @@ function return_form_apply_for_training( $sessions, $content ) {
 	$form_name = 'Apply for training';
 
 	// If the form is submitted the form data is processed
-	if ( isset( $_POST['submit-aft'] ) ) {
+	if ( isset( $_POST['submit-apply-for-training'] ) ) {
 
 		$process = new Form_Processor;
 		$form_data = $process->get_data( $_POST );
