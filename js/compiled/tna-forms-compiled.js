@@ -60,11 +60,18 @@
         }, 'Please complete the field'); // Global message if there's only white space for required fields
 
 
-    /** Advance email validation method
+    /** Custom email message
      * */
     $.extend($.validator.messages, {
-        email: "Please enter a valid email address",
+        email: "Please enter a valid email address"
     });
+
+    /**
+     * Custom regex for email validation
+     * */
+    $.validator.addMethod("emailCustom", function(value, element) {
+        return this.optional(element) || /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(value);
+    }, "Please enter a valid email address");
 
     $.validator.addMethod("telNumber", function(value, element) {
         return this.optional(element) || /(\d)\w+/i.test(value);
@@ -1089,7 +1096,8 @@ function applyToFilmForm(){
             },
             "email-required": {
                 required: true,
-                email:true
+                email:true,
+                emailCustom:true
             },
             "confirm-email-required": {
                 equalTo: "#email"
