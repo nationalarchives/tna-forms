@@ -919,7 +919,7 @@ function iacsTrainingForm(){
                     sessionTwo.find('option[value="' + selectedItem + '"]').prop("disabled", true);
                 }
             });
-        }
+        };
 
         // Compare session 1 with 2
         compareSessions($firstSession,$secondSession);
@@ -1050,11 +1050,11 @@ function iacsTrainingForm(){
  * 3. Add the validation rules
  * */
 
-function applyToFilmForm(){
+function applyForTrainingForm(){
     /**
      * 1. Declare variables
      * */
-    var formName = "#apply-to-film";
+    var formName = "#apply-for-training";
     var form = $(formName);
 
     /**
@@ -1062,6 +1062,29 @@ function applyToFilmForm(){
      * */
     formMethods();
 
+    // Declare self executing function and keep all my variables inside this scope
+    (function(){
+
+        // Declare variables
+        var $firstSession = $('#session_first_choice');
+        var $secondSession = $('#session_second_choice');
+
+        // Declare anonymous function
+        var compareSessions = function (sessionOne, sessionTwo){
+            sessionOne.change(function() {
+                sessionTwo.find('option').prop("disabled", false);
+                var selectedItem = $(this).val();
+                if (selectedItem) {
+                    sessionTwo.find('option[value="' + selectedItem + '"]').prop("disabled", true);
+                }
+            });
+        };
+
+        // Compare session 1 with 2
+        compareSessions($firstSession,$secondSession);
+        // Compare session 2 with 1
+        compareSessions($secondSession,$firstSession);
+    })();
     /**
      * 3. Add the validation rules
      * */
@@ -1090,12 +1113,24 @@ function applyToFilmForm(){
             "confirm-email-required": {
                 equalTo: "#email"
             },
-            "date-required":{
-                required:true,
+            "job-title-required":{
+                required: true,
                 noSpace: true
             },
-            "policy-required":{
-                required:true,
+            "department-agency-organisation-required":{
+                required: true,
+                noSpace: true
+            },
+            "postal-required":{
+                required: true,
+                noSpace: true
+            },
+            "session-first-choice-required":{
+                required: true,
+                noSpace: true
+            },
+            "session-second-choice-required":{
+                required: true,
                 noSpace: true
             }
 
@@ -1112,16 +1147,25 @@ function applyToFilmForm(){
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            "date-required":{
-                required:"Please enter your filming date"
+            "job-title-required":{
+                required: "Please enter your job title"
             },
-            "policy-required":{
-                required:"Please agree to the terms and conditions"
+            "department-agency-organisation-required":{
+                required: "Please enter your department, agency or organisation"
+            },
+            "postal-required":{
+                required: "Please enter your postal address"
+            },
+            "session-first-choice-required":{
+                required: "Please select an option"
+            },
+            "session-second-choice-required":{
+                required: "Please select an option"
             }
         }
     });
 
-    $("input[name='submit-atf']").on('click', function(){
+    $("input[name='submit-apply-for-training']").on('click', function(){
         var emphAlert = ($('.emphasis-block.error-message').length === 1);
         if(form.valid() !== true) {
             if(emphAlert) {
@@ -1614,6 +1658,9 @@ $(document).ready(function() {
         }
         else if ($('#request-assessment-document').is(':visible')) {
             radForm();
+        }
+        else if ($('#apply-for-training').is(':visible')) {
+            applyForTrainingForm();
         }
         else {
             defaultForm();

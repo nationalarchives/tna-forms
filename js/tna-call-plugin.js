@@ -51,6 +51,9 @@ $(document).ready(function() {
         else if ($('#request-assessment-document').is(':visible')) {
             radForm();
         }
+        else if ($('#apply-for-training').is(':visible')) {
+            applyForTrainingForm();
+        }
         else {
             defaultForm();
         }
