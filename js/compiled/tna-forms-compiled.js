@@ -60,26 +60,22 @@
         }, 'Please complete the field'); // Global message if there's only white space for required fields
 
 
-    /** Advance email validation method
+    /** Custom email message
      * */
     $.extend($.validator.messages, {
-        email: "Please enter a valid email address",
+        email: "Please enter a valid email address"
     });
+
+    /**
+     * Custom regex for email validation
+     * */
+    $.validator.addMethod("email", function(value, element) {
+        return this.optional(element) || /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(value);
+    }, "Please enter a valid email address");
 
     $.validator.addMethod("telNumber", function(value, element) {
         return this.optional(element) || /(\d)\w+/i.test(value);
     }, "Please enter a valid telephone number");
-
-
-    /*$.validator.addMethod("sessions_val_not_equal", function(value, element) {
-
-        firstSession = $('#session_first_choice').val();
-        secondSession = $('#session_second_choice').val();
-
-        return firstSession !== secondSession
-
-    }, "* Session choice should not match");*/
-
 }
 
 ;/**
