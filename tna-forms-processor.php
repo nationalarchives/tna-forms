@@ -97,8 +97,9 @@ class Form_Processor {
 	 * @param $form_name
 	 * @param $form_data
 	 * @param string $tna_recipient
+	 * @param string $alt_recipient
 	 */
-	public function process_data( $form_name, $form_data, $tna_recipient = '' ) {
+	public function process_data( $form_name, $form_data, $tna_recipient = '', $alt_recipient = '' ) {
 
 		// Global variables
 		global $tna_success_message,
@@ -143,9 +144,14 @@ class Form_Processor {
 			$this->send_email( $user_email, $form_name . ' - Ref:', $ref_number, $user_email_content );
 
 			// Email to TNA
+			if ($alt_recipient) {
+				$alt_email = $this->get_tna_email( $alt_recipient );
+			} else {
+				$alt_email = '';
+			}
 			$tna_email         = $this->get_tna_email( $tna_recipient );
 			$tna_email_content = $this->message( $form_name, $form_content, $ref_number, $post->ID );
-			$this->send_email( $tna_email, $form_name . ' - Ref:', $ref_number, $tna_email_content );
+			$this->send_email( $tna_email, $form_name . ' - Ref:', $ref_number, $tna_email_content, $alt_email );
 
 			// Subscribe to newsletter
 			if ( isset( $form_data['newsletter'] ) ) {
@@ -215,8 +221,9 @@ class Form_Processor {
 	 * @param $subject
 	 * @param $ref_number
 	 * @param $content
+	 * @param $alt_email
 	 */
-	public function send_email( $email, $subject, $ref_number, $content ) {
+	public function send_email( $email, $subject, $ref_number, $content, $alt_email='' ) {
 		if ( is_email( $email ) ) {
 
 			// Email Subject
@@ -229,6 +236,10 @@ class Form_Processor {
 			$email_headers = 'From: The National Archives (DO NOT REPLY) <no-reply@nationalarchives.gov.uk>';
 
 			wp_mail( $email, $email_subject, $email_message, $email_headers );
+
+			if ($alt_email) {
+				wp_mail( $alt_email, $email_subject, $email_message, $email_headers );
+			}
 		}
 	}
 
