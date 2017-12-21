@@ -8,8 +8,8 @@
 // Define the Form object
 var form = {
     fixture: "fixture",
-    id: "apply-to-film",
-    submitName: "submit-atf",
+    id: "apply-for-training",
+    submitName: "submit-apply-for-training",
     submitId: "submit-tna-form",
     typeSubmit: "input[type=submit]",
     typeHidden: "input[type=hidden]",
@@ -17,15 +17,13 @@ var form = {
         {id: "full_name", name: "full-name-required"},
         {id: "email", name: "email-required"},
         {id: "confirm_email", name: "confirm-email-required"},
-        {id: "company", name: "company"},
-        {id: "job_title", name: "job-title"},
-        {id: "telephone", name: "telephone"},
-        {id: "date", name: "date-required"},
-        {id: "broadcast", name: "broadcast"},
-        {id: "documents", name: "documents"},
-        {id: "interview", name: "interview"},
-        {id: "interviewee", name: "interviewee"},
-        {id: "policy", name: "policy-required"}
+        {id: "job_title", name: "job-title-required"},
+        {id: "department_agency_organisation", name: "department-agency-organisation-required"},
+        {id: "postal", name: "postal-required"},
+        {id: "line_manager_full_name", name: "line-manager-full-name"},
+        {id: "line_manager_email", name: "line-manager-email"},
+        {id: "session_first_choice", name: "session-first-choice-required"},
+        {id: "session_second_choice", name: "session-second-choice-required"}
     ],
     regex : /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
     emails: [

@@ -16,13 +16,17 @@ legend {
   margin: 0 auto;
   margin-bottom: 1.5em !important; }
   .form-row #groupErrorPlacement {
-    MARGIN-TOP: 20px; }
+    margin-top: 20px; }
   .form-row label {
     width: 100% !important;
     margin-right: 0 !important; }
   .form-row input[type=color], .form-row input[type=email], .form-row input[type=number], .form-row input[type=tel], .form-row input[type=text], .form-row input[type=date], .form-row input[type=url], .form-row select, .form-row textarea {
     width: 100% !important;
     max-width: 420px; }
+    .form-row input[type=color]:disabled, .form-row input[type=email]:disabled, .form-row input[type=number]:disabled, .form-row input[type=tel]:disabled, .form-row input[type=text]:disabled, .form-row input[type=date]:disabled, .form-row input[type=url]:disabled, .form-row select:disabled, .form-row textarea:disabled {
+      background: #eee; }
+    .form-row input[type=color]:read-only, .form-row input[type=email]:read-only, .form-row input[type=number]:read-only, .form-row input[type=tel]:read-only, .form-row input[type=text]:read-only, .form-row input[type=date]:read-only, .form-row input[type=url]:read-only, .form-row select:read-only, .form-row textarea:read-only {
+      background: #eee; }
   .form-row textarea {
     height: 120px; }
   .form-row p {

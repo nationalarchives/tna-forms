@@ -50,21 +50,22 @@ function defaultForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
+                required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            country:{
+            "country-required":{
                 required:true,
                 noSpace:true
             },
-            enquiry:{
+            "enquiry-required":{
                 required:true,
                 noSpace:true
             }
@@ -74,18 +75,18 @@ function defaultForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required: "Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            country:{
+            "country-required":{
                 required:"Please enter your country"
             },
-            enquiry:{
+            "enquiry-required":{
                 required:"Please enter your enquiry"
             }
         }

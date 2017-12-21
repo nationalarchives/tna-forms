@@ -11,13 +11,22 @@ function return_form_iacs_training( $sessions, $content ) {
 	global $tna_success_message,
 	       $tna_error_message;
 
+	$form_name = 'Information Assurance and Cyber Security training';
+
+	// If the form is submitted the form data is processed
+	if ( isset( $_POST['submit-iacs'] ) ) {
+
+		$process = new Form_Processor;
+		$form_data = $process->get_data( $_POST );
+		$process->process_data( $form_name, $form_data );
+	}
+
 	// HTML form string
 	$html = new Form_Builder;
-	$form =  $html->form_begins( 'iacs_training', 'Information Assurance and Cyber Security training' ) .
+	$form =  $html->form_begins( 'iacs_training', $form_name ) .
 	         $html->fieldset_begins( 'Your details' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
-	         $html->form_email_input( 'Email address', 'email', 'email', 'Please enter a valid email address' ) .
-	         $html->form_email_input( 'Please re-type your email address', 'confirm_email', 'confirm-email', 'Please enter your email address again', 'email' ) .
+	         $html->form_email_required_input() .
 	         $html->form_tel_input( 'Telephone', 'telephone', 'telephone', 'Please enter your telephone number', '(include area code)' ) .
 	         $html->fieldset_ends() .
 	         $html->fieldset_begins( 'Organisation details' ) .
@@ -78,96 +87,3 @@ function return_form_iacs_training( $sessions, $content ) {
 		return $content . $form;
 	}
 }
-
-function process_form_iacs_training() {
-	// The processing happens at form submission.
-	// If no form is submitted we stop here.
-	if ( ! is_admin() && isset( $_POST['submit-iacs'] ) ) {
-
-		// Checks for token
-		// If the token exists then the form has been submitted so do nothing
-		/* $token = filter_input( INPUT_POST, 'token' );
-		if ( get_transient( 'token_' . $token ) ) {
-			$_POST = array();
-			return;
-		}
-		set_transient( 'token_' . $token, 'form-token', 360 ); */
-
-		// Global variables
-		global $tna_success_message,
-		       $tna_error_message;
-
-		// Setting global variables
-		$tna_success_message = '';
-		$tna_error_message   = '';
-
-		// Get the form elements and store them into an array
-		$form_fields = array(
-			'Name'                      => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'full-name' ) ),
-			'Email'                     => is_mandatory_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
-			'Confirm email'             => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
-			'Telephone'                 => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'telephone' ) ),
-			'Job title'                 => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'job-title' ) ),
-			'Organisation'              => is_mandatory_text_field_valid( filter_input( INPUT_POST, 'organisation' ) ),
-			'Address'                   => is_mandatory_textarea_field_valid( filter_input( INPUT_POST, 'address' ) ),
-			'Organisation description'  => is_mandatory_select_valid( filter_input( INPUT_POST, 'organisation-type' ) ),
-			'Organisation other'        => is_text_field_valid( filter_input( INPUT_POST, 'other-organisation' ) ),
-			'Role'                      => is_mandatory_select_valid( filter_input( INPUT_POST, 'your-role' ) ),
-			'Role other'                => is_text_field_valid( filter_input( INPUT_POST, 'role-other' ) ),
-			'Length in role'            => is_text_field_valid( filter_input( INPUT_POST, 'role-length' ) ),
-			'Session 1st choice'        => is_mandatory_select_valid( filter_input( INPUT_POST, 'session-first-choice' ) ),
-			'Session 2nd choice'        => is_mandatory_select_valid( filter_input( INPUT_POST, 'session-second-choice' ) ),
-			'Previous training'         => is_select_valid( filter_input( INPUT_POST, 'previous-training' ) ),
-			'Previous training details' => is_textarea_field_valid( filter_input( INPUT_POST, 'previous-training-details' ) ),
-			'Newsletter'                => is_checkbox_valid( filter_input( INPUT_POST, 'newsletter' ) ),
-			'Spam'                      => is_this_spam( $_POST )
-		);
-
-		// If any value inside the array is false then there is an error
-		if ( in_array( false, $form_fields ) ) {
-
-			// Oops! Error!
-
-			// Store error message into the global variable
-			$tna_error_message = display_error_message();
-
-			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
-
-		} else {
-
-			// Yay! Success!
-
-			global $post;
-			// Generate reference number based on user's surname and timestamp
-			$ref_number = ref_number( 'TNA', date_timestamp_get( date_create() ) );
-
-			// Store confirmation content into the global variable
-			$tna_success_message = success_message_header( 'Your reference number:', $ref_number );
-			$tna_success_message .= confirmation_content( $post->ID );
-			$tna_success_message .= '<h3>Summary of your enquiry</h3>';
-			$tna_success_message .= display_compiled_form_data( $form_fields );
-
-			// Store email content to user into a variable
-			$email_to_user = success_message_header( 'Your reference number:', $ref_number );
-			$email_to_user .= confirmation_email_content( $post->ID );
-			$email_to_user .= '<h3>Summary of your enquiry</h3>';
-			$email_to_user .= display_compiled_form_data( $form_fields );
-
-			// Send email to user
-			send_form_via_email( $form_fields['Email'], 'Your training - Ref:', $ref_number, $email_to_user, $form_fields['Spam'] );
-
-			// Store email content to TNA into a variable
-			$email_to_tna = success_message_header( 'Reference number:', $ref_number );
-			$email_to_tna .= display_compiled_form_data( $form_fields );
-
-			// Send email to TNA
-			// Amend email address function with username to send email to desired destination.
-			// eg, get_tna_email( 'contactcentre' )
-			send_form_via_email( get_tna_email(), 'IA training - Ref:', $ref_number, $email_to_tna, $form_fields['Spam'] );
-
-			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
-
-		}
-	}
-}
-add_action('wp', 'process_form_iacs_training');

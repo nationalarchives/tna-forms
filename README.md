@@ -47,6 +47,8 @@ Each session group is defined by brackets. Each session title, session time and 
 
 `[tna-form name="Document condition feedback"]`
 
+(Email recipients hardcoded into function: dsddocumentcare, consenquiries)
+
 **Freedom of information corporate** form:
 
 `[tna-form name="Freedom of information corporate"]`
@@ -63,6 +65,14 @@ Each session group is defined by brackets. Each session title, session time and 
 **Request a paid search** form:
 
 `[tna-form name="Request a paid search"]`
+
+**Request an assessment of a document** form:
+
+`[tna-form name="Request an assessment of a document"]`
+
+**Apply for Digital Continuity training** and **Apply for Selection & Transfer Process Foundation training** forms:
+
+`[tna-form name="Apply for training" sessions="(Training session 1, session time 1, session time 2), (Training session 2, session time 1, session time 2)"]`
 
 ## Development setup
 
@@ -610,3 +620,4 @@ Website URL: https://phpunit.de/
 
 
 
+ 

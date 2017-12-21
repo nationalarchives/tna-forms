@@ -40,17 +40,17 @@ function yourViewsForm(){
             "full-name": {
                 noSpace: true
             },
-            email: {
+            "email": {
                 email:true
             },
             "confirm-email": {
                 equalTo: "#email"
             },
-            reason:{
+            "reason-required":{
                 required: true,
                 noSpace: true
             },
-            enquiry:{
+            "enquiry-required":{
                 required:true,
                 noSpace:true
             }
@@ -63,10 +63,10 @@ function yourViewsForm(){
             "confirm-email": {
                 equalTo: "Please enter your email address again"
             },
-            reason:{
+            "reason-required":{
                 required: "Please select an option"
             },
-            enquiry:{
+            "enquiry-required":{
                 required:"Please enter your enquiry"
             }
         }

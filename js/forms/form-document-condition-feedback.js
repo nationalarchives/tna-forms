@@ -40,13 +40,13 @@ function dcfForm(){
             "full-name": {
                 noSpace: true
             },
-            email: {
+            "email": {
                 email:true
             },
             "confirm-email": {
                 equalTo: "#email"
             },
-            "catalogue-reference":{
+            "catalogue-reference-required":{
                 required: true,
                 noSpace: true
             },
@@ -61,9 +61,9 @@ function dcfForm(){
             "confirm-email": {
                 equalTo: "Please enter your email address again"
             },
-            "catalogue-reference":{
+            "catalogue-reference-required":{
                 required: "Please enter your catalogue reference number"
-            },
+            }
         }
     });
 

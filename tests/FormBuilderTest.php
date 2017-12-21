@@ -17,17 +17,29 @@ class FormBuilderTest extends \PHPUnit_Framework_TestCase {
 		$class = new \Form_Builder();
 		$this->assertTrue( method_exists($class, 'form_begins') );
 	}
-	public function testFormBuilderMethodSetGetValueExists(){
+	public function testFormBuilderMethodSetGetValueInputExists(){
 		$class = new \Form_Builder();
-		$this->assertTrue( method_exists($class, 'set_get_value'));
+		$this->assertTrue( method_exists($class, 'set_get_value_input'));
 	}
-	public function testFormBuilderMethodSetGetValue()
+	public function testFormBuilderMethodSetGetValueInput()
 	{
 		$class = new \Form_Builder();
 		$_GET['DOCREF'] = 'J 132/103';
-		$data_class = $class->set_get_value( 'DOCREF' );
+		$data_class = $class->set_get_value_input( 'DOCREF' );
 		$this->assertEquals($data_class, ' value="J 132/103" ');
 	}
+
+    public function testFormBuilderMethodSetGetValueCheckboxExists(){
+        $class = new \Form_Builder();
+        $this->assertTrue( method_exists($class, 'set_get_value_checkbox'));
+    }
+    public function testFormBuilderMethodSetGetValueCheckboxTrue()
+    {
+        $class = new \Form_Builder();
+        $_GET['mould-treatment-required'] = true;
+        $data_class = $class->set_get_value_checkbox( 'mould-treatment-required' );
+        $this->assertEquals($data_class, ' checked="checked" ');
+    }
 	public function testFormBuilderMethodFormEnds()
 	{
 		$class = new \Form_Builder();
@@ -71,7 +83,7 @@ class FormBuilderTest extends \PHPUnit_Framework_TestCase {
 	{
 		$class = new \Form_Builder();
 		$html = $class->form_text_input( 'Label', 'id', 'name', 'Error message', 'Hint text');
-		$this->assertEquals($html, '<div class="form-row"><label for="id">Label</label><p class="form-hint">Hint text</p><input type="text" id="id" name="name"  aria-required="true" required ></div>');
+		$this->assertEquals($html, '<div class="form-row"><label for="id">Label</label><p class="form-hint">Hint text</p><input type="text" id="id" name="name-required"  aria-required="true" required ></div>');
 	}
 	public function testFormBuilderMethodFormTextareaInput()
 	{
@@ -82,7 +94,7 @@ class FormBuilderTest extends \PHPUnit_Framework_TestCase {
 	{
 		$class = new \Form_Builder();
 		$html = $class->form_textarea_input( 'Label', 'id', 'name', 'Error message', 'Hint text');
-		$this->assertEquals($html, '<div class="form-row"><label for="id">Label</label><p class="form-hint">Hint text</p><textarea id="id" name="name"  aria-required="true" required ></textarea></div>');
+		$this->assertEquals($html, '<div class="form-row"><label for="id">Label</label><p class="form-hint">Hint text</p><textarea id="id" name="name-required"  aria-required="true" required ></textarea></div>');
 	}
 	public function testFormBuilderMethodFormEmailInput()
 	{
@@ -93,7 +105,18 @@ class FormBuilderTest extends \PHPUnit_Framework_TestCase {
 	{
 		$class = new \Form_Builder();
 		$html = $class->form_email_input( 'Label', 'id', 'name', 'Error message' );
-		$this->assertEquals($html, '<div class="form-row"><label for="id">Label</label><input type="email" id="id" name="name"  aria-required="true" required ></div>');
+		$this->assertEquals($html, '<div class="form-row"><label for="id">Label</label><input type="email" id="id" name="name-required"  aria-required="true" required ></div>');
+	}
+	public function testFormBuilderMethodFormEmailInputRequired()
+	{
+		$class = new \Form_Builder();
+		$this->assertTrue( method_exists($class, 'form_email_required_input') );
+	}
+	public function testFormBuilderMethodFormEmailInputRequiredReturns()
+	{
+		$class = new \Form_Builder();
+		$html = $class->form_email_required_input();
+		$this->assertEquals($html, '<div class="form-row"><label for="email">Email address</label><input type="email" id="email" name="email-required" aria-required="true" required></div><div class="form-row"><label for="confirm_email">Please re-type your email address</label><input type="email" id="confirm_email" name="confirm-email-required" aria-required="true" required></div>');
 	}
 	public function testFormBuilderMethodFormCheckboxInput()
 	{

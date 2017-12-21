@@ -8,11 +8,11 @@
  * 3. Add the validation rules
  * */
 
-function pronomForm(){
+function applyForTrainingForm(){
     /**
      * 1. Declare variables
      * */
-    var formName = "#pronom";
+    var formName = "#apply-for-training";
     var form = $(formName);
 
     /**
@@ -20,6 +20,29 @@ function pronomForm(){
      * */
     formMethods();
 
+    // Declare self executing function and keep all my variables inside this scope
+    (function(){
+
+        // Declare variables
+        var $firstSession = $('#session_first_choice');
+        var $secondSession = $('#session_second_choice');
+
+        // Declare anonymous function
+        var compareSessions = function (sessionOne, sessionTwo){
+            sessionOne.change(function() {
+                sessionTwo.find('option').prop("disabled", false);
+                var selectedItem = $(this).val();
+                if (selectedItem) {
+                    sessionTwo.find('option[value="' + selectedItem + '"]').prop("disabled", true);
+                }
+            });
+        };
+
+        // Compare session 1 with 2
+        compareSessions($firstSession,$secondSession);
+        // Compare session 2 with 1
+        compareSessions($secondSession,$firstSession);
+    })();
     /**
      * 3. Add the validation rules
      * */
@@ -48,7 +71,23 @@ function pronomForm(){
             "confirm-email-required": {
                 equalTo: "#email"
             },
-            "file-format-required":{
+            "job-title-required":{
+                required: true,
+                noSpace: true
+            },
+            "department-agency-organisation-required":{
+                required: true,
+                noSpace: true
+            },
+            "postal-required":{
+                required: true,
+                noSpace: true
+            },
+            "session-first-choice-required":{
+                required: true,
+                noSpace: true
+            },
+            "session-second-choice-required":{
                 required: true,
                 noSpace: true
             }
@@ -59,20 +98,32 @@ function pronomForm(){
          * */
         messages: {
             "full-name-required": {
-                required:"Please enter your full name"
+                required: "Please enter your full name"
             },
             "email-required": "Please enter your email address",
             "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            "file-format-required":{
-                required:"Please enter the file format"
+            "job-title-required":{
+                required: "Please enter your job title"
+            },
+            "department-agency-organisation-required":{
+                required: "Please enter your department, agency or organisation"
+            },
+            "postal-required":{
+                required: "Please enter your postal address"
+            },
+            "session-first-choice-required":{
+                required: "Please select an option"
+            },
+            "session-second-choice-required":{
+                required: "Please select an option"
             }
         }
     });
 
-    $("input[name='submit-pr']").on('click', function(){
+    $("input[name='submit-apply-for-training']").on('click', function(){
         var emphAlert = ($('.emphasis-block.error-message').length === 1);
         if(form.valid() !== true) {
             if(emphAlert) {

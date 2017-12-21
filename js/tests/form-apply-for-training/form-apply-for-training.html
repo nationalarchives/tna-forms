@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply to film</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="fixture">
+    <form action="" id="apply-for-training" class="form-abandonment" method="POST"><input type="hidden" name="tna-form"
+                                                                                          value="Apply for training"><input
+            type="hidden" name="token" value="ccc6e3a02f016db68720bb13b4bd9bae"><input type="hidden" name="timestamp"
+                                                                                       value="1513696352">
+        <fieldset>
+            <legend>Your contact details</legend>
+            <div class="form-row"><label for="full_name">Full name</label><input type="text" id="full_name"
+                                                                                 name="full-name-required"
+                                                                                 aria-required="true" required></div>
+            <div class="form-row"><label for="email">Email address</label><input type="email" id="email"
+                                                                                 name="email-required"
+                                                                                 aria-required="true" required></div>
+            <div class="form-row"><label for="confirm_email">Please re-type your email address</label><input
+                    type="email" id="confirm_email" name="confirm-email-required" aria-required="true" required></div>
+        </fieldset>
+        <fieldset>
+            <legend>Your job details</legend>
+            <div class="form-row"><label for="job_title">Job title</label><input type="text" id="job_title"
+                                                                                 name="job-title-required"
+                                                                                 aria-required="true" required></div>
+            <div class="form-row"><label
+                    for="department_agency_organisation">Department/agency/organisation</label><input type="text"
+                                                                                                      id="department_agency_organisation"
+                                                                                                      name="department-agency-organisation-required"
+                                                                                                      aria-required="true"
+                                                                                                      required></div>
+            <div class="form-row"><label for="postal">Postal address</label><textarea id="postal" name="postal-required"
+                                                                                      aria-required="true"
+                                                                                      required></textarea></div>
+        </fieldset>
+        <fieldset>
+            <legend>Line manager details</legend>
+            <p class="form-hint">Please enter "N/A" if not applicable.</p>
+            <div class="form-row"><label for="line_manager_full_name">Full name <span class="optional">(optional)</span></label><input
+                    type="text" id="line_manager_full_name" name="line-manager-full-name"></div>
+            <div class="form-row"><label for="line_manager_email">Email address <span class="optional">(optional)</span></label><input
+                    type="email" id="line_manager_email" name="line-manager-email"></div>
+        </fieldset>
+        <fieldset>
+            <legend>Session details</legend>
+            <div class="form-row"><label for="session_first_choice">Session (1st choice)</label><select
+                    id="session_first_choice" name="session-first-choice-required" aria-required="true" required>
+                <option value="">Please select</option>
+                <optgroup label="Training">
+                    <option value="No session time 1">No session time 1</option>
+                    <option value="No session time 2">No session time 2</option>
+                </optgroup>
+            </select></div>
+            <div class="form-row"><label for="session_second_choice">Session (2nd choice)</label><select
+                    id="session_second_choice" name="session-second-choice-required" aria-required="true" required>
+                <option value="">Please select</option>
+                <optgroup label="Training">
+                    <option value="No session time 1">No session time 1</option>
+                    <option value="No session time 2">No session time 2</option>
+                </optgroup>
+            </select></div>
+            <div class="form-row hidden"><label for="skype_name">Skype name (please ignore this field)</label><input
+                    type="text" id="skype_name" name="skype-name-31"></div>
+            <div class="form-row"><input type="submit" name="submit-apply-for-training" id="submit-tna-form"
+                                         value="Submit"></div>
+        </fieldset>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="form-apply-for-training.js"></script>
+</body>
+</html>

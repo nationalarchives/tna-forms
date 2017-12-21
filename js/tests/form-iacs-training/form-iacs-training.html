@@ -14,38 +14,40 @@
 <br/>
 <br/>
 <div class="fixture">
-    <form action="" id="iacs_training" method="POST"><input type="hidden" name="tna-form"
-                                                            value="Information Assurance and Cyber Security training"><input
-            type="hidden" name="token" value="92bc202ccdd62b36fe42136189223bbe">
+    <form action="" id="iacs_training" class="form-abandonment" method="POST"><input type="hidden" name="tna-form"
+                                                                                     value="Information Assurance and Cyber Security training"><input
+            type="hidden" name="token" value="e956ae1046588fc4c6015ac53e77c8f8"><input type="hidden" name="timestamp"
+                                                                                       value="1512753844">
         <fieldset>
             <legend>Your details</legend>
             <div class="form-row"><label for="full_name">Full name</label><input type="text" id="full_name"
-                                                                                 name="full-name" aria-required="true"
-                                                                                 required></div>
-            <div class="form-row"><label for="email">Email address</label><input type="email" id="email" name="email"
+                                                                                 name="full-name-required"
+                                                                                 aria-required="true" required></div>
+            <div class="form-row"><label for="email">Email address</label><input type="email" id="email"
+                                                                                 name="email-required"
                                                                                  aria-required="true" required></div>
             <div class="form-row"><label for="confirm_email">Please re-type your email address</label><input
-                    type="email" id="confirm_email" name="confirm-email" aria-required="true" required></div>
+                    type="email" id="confirm_email" name="confirm-email-required" aria-required="true" required></div>
             <div class="form-row"><label for="telephone">Telephone</label>
-                <p class="form-hint">(include area code)</p><input type="tel" id="telephone" name="telephone"
+                <p class="form-hint">(include area code)</p><input type="tel" id="telephone" name="telephone-required"
                                                                    aria-required="true" required></div>
         </fieldset>
         <fieldset>
             <legend>Organisation details</legend>
             <div class="form-row"><label for="job_title">Job title</label><input type="text" id="job_title"
-                                                                                 name="job-title" aria-required="true"
-                                                                                 required></div>
+                                                                                 name="job-title-required"
+                                                                                 aria-required="true" required></div>
             <div class="form-row"><label for="organisation">Department/agency/organisation</label><input type="text"
                                                                                                          id="organisation"
-                                                                                                         name="organisation"
+                                                                                                         name="organisation-required"
                                                                                                          aria-required="true"
                                                                                                          required></div>
-            <div class="form-row"><label for="address">Address</label><textarea id="address" name="address"
+            <div class="form-row"><label for="address">Address</label><textarea id="address" name="address-required"
                                                                                 aria-required="true"
                                                                                 required></textarea></div>
             <div class="form-row"><label for="organisation_type">Which of the following best describes your
-                organisation?</label><select id="organisation_type" name="organisation-type" aria-required="true"
-                                             required>
+                organisation?</label><select id="organisation_type" name="organisation-type-required"
+                                             aria-required="true" required>
                 <option value="">Please select</option>
                 <option value="Ministerial Department">Ministerial Department</option>
                 <option value="Non-Ministerial Department">Non-Ministerial Department</option>
@@ -63,7 +65,7 @@
         <fieldset>
             <legend>Role details</legend>
             <div class="form-row"><label for="your_role">Which of the following best describes your role?</label><select
-                    id="your_role" name="your-role" aria-required="true" required>
+                    id="your_role" name="your-role-required" aria-required="true" required>
                 <option value="">Please select</option>
                 <option value="SIRO">SIRO</option>
                 <option value="Audit Committee member">Audit Committee member</option>
@@ -80,27 +82,19 @@
         <fieldset>
             <legend>Session details</legend>
             <div class="form-row"><label for="session_first_choice">Session (1st choice)</label><select
-                    id="session_first_choice" name="session-first-choice" aria-required="true" required>
+                    id="session_first_choice" name="session-first-choice-required" aria-required="true" required>
                 <option value="">Please select</option>
-                <optgroup label="Training session 1">
-                    <option value="session time 1">session time 1</option>
-                    <option value="session time 2">session time 2</option>
-                </optgroup>
-                <optgroup label="Training session 2">
-                    <option value="session time 3">session time 3</option>
-                    <option value="session time 4">session time 4</option>
+                <optgroup label="Training">
+                    <option value="No session time 1">No session time 1</option>
+                    <option value="No session time 2">No session time 2</option>
                 </optgroup>
             </select></div>
             <div class="form-row"><label for="session_second_choice">Session (2nd choice)</label><select
-                    id="session_second_choice" name="session-second-choice" aria-required="true" required>
+                    id="session_second_choice" name="session-second-choice-required" aria-required="true" required>
                 <option value="">Please select</option>
-                <optgroup label="Training session 1">
-                    <option value="session time 1">session time 1</option>
-                    <option value="session time 2">session time 2</option>
-                </optgroup>
-                <optgroup label="Training session 2">
-                    <option value="session time 3">session time 3</option>
-                    <option value="session time 4">session time 4</option>
+                <optgroup label="Training">
+                    <option value="No session time 1">No session time 1</option>
+                    <option value="No session time 2">No session time 2</option>
                 </optgroup>
             </select></div>
             <div class="form-row"><label for="previous_training">Have you previously done any IA training? <span
@@ -113,6 +107,14 @@
                     class="optional">(optional)</span></label><textarea id="previous_training_details"
                                                                         name="previous-training-details"></textarea>
             </div>
+        </fieldset>
+        <fieldset>
+            <legend>Notify me</legend>
+            <div class="form-row checkbox"><input type="checkbox" id="newsletter" name="newsletter" value="Yes"><label
+                    for="newsletter">Do you want to receive our monthly SIRO newsletter or be updated about upcoming
+                events?</label></div>
+            <div class="form-row hidden"><label for="skype_name">Skype name (please ignore this field)</label><input
+                    type="text" id="skype_name" name="skype-name-73"></div>
             <div class="form-row"><input type="submit" name="submit-iacs" id="submit-tna-form" value="Submit"></div>
         </fieldset>
     </form>

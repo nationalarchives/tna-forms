@@ -41,7 +41,7 @@ function iacsTrainingForm(){
                     sessionTwo.find('option[value="' + selectedItem + '"]').prop("disabled", true);
                 }
             });
-        }
+        };
 
         // Compare session 1 with 2
         compareSessions($firstSession,$secondSession);
@@ -68,46 +68,46 @@ function iacsTrainingForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
+            "full-name-required": {
                 required: true,
                 noSpace: true
             },
-            email: {
+            "email-required": {
                 required: true,
                 email:true
             },
-            "confirm-email": {
+            "confirm-email-required": {
                 equalTo: "#email"
             },
-            telephone:{
+            "telephone-required":{
                 required: true,
                 noSpace: true
             },
-            "job-title":{
+            "job-title-required":{
                 required:true,
                 noSpace: true
             },
-            organisation:{
+            "organisation-required":{
                 required:true,
                 noSpace: true
             },
-            address:{
+            "address-required":{
                 required:true,
                 noSpace:true
             },
-            "organisation-type":{
+            "organisation-type-required":{
                 required:true,
                 noSpace: true
             },
-            "your-role":{
+            "your-role-required":{
                 required:true,
                 noSpace: true
             },
-           "session-first-choice": {
+           "session-first-choice-required": {
                 required:true,
                 noSpace: true
             },
-            "session-second-choice": {
+            "session-second-choice-required": {
                 required:true,
                 noSpace: true
             }
@@ -117,36 +117,36 @@ function iacsTrainingForm(){
          * Error messages
          * */
         messages: {
-            "full-name": {
+            "full-name-required": {
                 required: "Please enter your full name"
             },
-            email: "Please enter your email address",
-            "confirm-email": {
+            "email-required": "Please enter your email address",
+            "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            telephone:{
+            "telephone-required":{
                 required: "Please enter your telephone number"
             },
-            "job-title":{
+            "job-title-required":{
                 required:"Please enter your job title"
             },
-            organisation:{
+            "organisation-required":{
                 required:"Please enter a department/agency/organisation"
             },
-            address:{
+            "address-required":{
                 required:"Please enter an address"
             },
-            "organisation-type":{
+            "organisation-type-required":{
                 required:"Please select an option"
             },
-            "your-role":{
+            "your-role-required":{
                 required:"Please select an option"
             },
-            "session-first-choice": {
+            "session-first-choice-required": {
                 required:"Please select an option"
             },
-            "session-second-choice": {
+            "session-second-choice-required": {
                 required:"Please select an option"
             }
         }

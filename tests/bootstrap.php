@@ -7,3 +7,4 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 require dirname(__DIR__) . '/tna-forms-validation.php';
 require dirname(__DIR__) . '/tna-forms-functions.php';
 require dirname(__DIR__) . '/tna-forms-builder.php';
+require dirname(__DIR__) . '/tna-forms-processor.php';
