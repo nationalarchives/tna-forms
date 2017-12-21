@@ -47,6 +47,8 @@ Each session group is defined by brackets. Each session title, session time and 
 
 `[tna-form name="Document condition feedback"]`
 
+(Email recipients hardcoded into function: dsddocumentcare, consenquiries)
+
 **Freedom of information corporate** form:
 
 `[tna-form name="Freedom of information corporate"]`
