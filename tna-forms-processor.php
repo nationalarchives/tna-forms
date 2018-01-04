@@ -155,7 +155,7 @@ class Form_Processor {
 
 			// Subscribe to newsletter
 			if ( isset( $form_data['newsletter'] ) ) {
-				subscribe_to_newsletter( $form_data['newsletter'], $form_data['full-name'], $user_email, $form_name, '' );
+				subscribe_to_newsletter_post( $form_data['newsletter'], $form_data['full-name'], $user_email, $form_name );
 			}
 		}
 	}
