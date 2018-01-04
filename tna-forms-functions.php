@@ -177,16 +177,6 @@ function get_tna_email( $user = '' ) {
 	}
 }
 
-function subscribe_to_newsletter( $subscribe, $name, $email, $form, $spam ) {
-	if ( $subscribe == 'Yes' ) {
-
-		$email_message = '<p>' . $name . ' has subscribed to the newsletter via ' . $form . ' form</p>';
-		$email_message .= '<p>Email address: ' . $email . '</p>';
-
-		send_form_via_email( get_tna_email(), $name, 'Newsletter sign up by', $email_message, $spam );
-	}
-}
-
 function subscribe_to_newsletter_post( $subscribe, $name, $email, $source ) {
 	if ( $subscribe == 'Yes' ) {
 

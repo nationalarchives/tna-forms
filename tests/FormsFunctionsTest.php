@@ -96,7 +96,7 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	}
 	public function testFormNewsletter()
 	{
-		$this->assertTrue(function_exists('subscribe_to_newsletter'));
+		$this->assertTrue(function_exists('subscribe_to_newsletter_post'));
 	}
 	public function testConfirmationEmailContent()
 	{
