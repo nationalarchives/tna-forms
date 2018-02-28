@@ -32,4 +32,5 @@ include 'forms/form-archive-update.php';
 include 'forms/form-paid-search.php';
 include 'forms/form-request-assessment-document.php';
 include 'forms/form-apply-for-training.php';
+include 'forms/form-letters-of-no-evidence.php';
 include 'forms/form-default.php';
