@@ -23,11 +23,11 @@ function return_form_letters_of_no_evidence( $content ) {
 
 	// HTML form string
 	$html = new Form_Builder;
-	$form =  $html->form_begins( 'letters_of_no_evidence', $form_name, 'no-validate' ) .
+	$form =  $html->form_begins( 'letters_of_no_evidence', $form_name ) .
 	         $html->fieldset_begins( 'Subject\'s personal details' ) .
-	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter subject\'s full name' ) .
+	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter subject\'s§ full name' ) .
 	         $html->form_text_input( 'Alternative name(s)', 'alternative_names', 'alternative-names','','Enter any other names that the subject may have been known by.' ) .
-             $html->form_text_input( 'Birth or death dates', 'birth_or_death_dates', 'birth-or-death-dates','Please enter the birth or death dates','Enter the approximate year range in which they may have lived.' ) .
+             $html->form_text_input( 'Birth and/or death dates', 'birth_or_death_dates', 'birth-or-death-dates','Please enter the birth or death dates','If you don’t know the exact dates of their birth and/or death, an approximate year range should be enough for us to do a search.' ) .
              $html->form_text_input( 'Nationality at time of possible application for naturalisation', 'nationality_at_time_of_possible_application_for_naturalisation', 'nationality-at-time-of-possible-application-for-naturalisation') .
 	         $html->fieldset_ends() .
 	         $html->fieldset_begins( 'Your contact details') .
