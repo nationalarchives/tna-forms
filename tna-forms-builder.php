@@ -188,9 +188,9 @@ class Form_Builder {
 		$form .= '</label>';
 		$form .= '<input type="email" id="confirm_email" name="confirm-email-required" aria-required="true" required';
 		$form .= $this->set_value( 'confirm-email-required' );
-		$form .= $this->input_error_class( 'confirm-email-required', 'Please enter your email address again', 'Email address' );
+		$form .= $this->input_error_class( 'confirm-email-required', 'Please enter your email address again', 'email-required' );
 		$form .= '>';
-		$form .= $this->input_error_message( 'confirm-email-required', 'Please enter your email address again', 'Email address' );
+		$form .= $this->input_error_message( 'confirm-email-required', 'Please enter your email address again', 'email-required' );
 		$form .= '</div>';
 
 		return $form;
