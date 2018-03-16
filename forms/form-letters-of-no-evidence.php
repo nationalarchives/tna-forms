@@ -36,7 +36,7 @@ function return_form_letters_of_no_evidence($content)
         $html->help_text('Provide your details so we can let you know the outcome of the search for evidence of naturalisation.') .
         $html->form_text_input('Full name', 'full_name_contact_details', 'full-name-contact-details', 'Enter your full name') .
         $html->form_email_required_input() .
-        $html->form_textarea_input('Postal address', 'postal_address', 'postal-address', 'Enter your postal address.') .
+        $html->form_textarea_input('Postal address', 'postal_address', 'postal-address', 'Enter your postal address.', 'If we don\'t find evidence, you will have the option to <br >order a posted letter from us which confirms this. ') .
         $html->form_spam_filter(rand(10, 99)) .
         $html->submit_form('submit-letters-of-no-evidence', 'submit-tna-form') .
         $html->fieldset_ends() .
