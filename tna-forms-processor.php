@@ -60,14 +60,14 @@ class Form_Processor
                     // do nothing
                 }
             }
-            $display_data .= '&lt;enquiry_id&gt;' . $ref_number . '&lt;enquiry_id&gt;<br>&lt;full_name&gt;' . $data['full-name-required'] . '&lt;full_name&gt;<br>
-                    &lt;alternative_name&gt;' . $data['alternative-names'] . '&lt;alternative_name&gt;<br>
-                    &lt;birth_date&gt;' . $data['date-of-birth-required'] . '&lt;birth_date&gt;<br>
-                    &lt;death_date&gt;' . $data['date_of_death'] . '&lt;death_date&gt;<br>
-                    &lt;country_of_birth&gt;' . $data['country-of-birth'] . '&lt;country_of_birth&gt;<br>
-                    &lt;contact_full_name&gt;' . $data['full-name-contact-details-required'] . '&lt;contact_full_name&gt;<br>
-                    &lt;contact_email&gt;' . $data['email-required'] . '&lt;contact_email&gt;<br>
-                    &lt;contact_address&gt;' . $data['postal-address-required'] . '&lt;contact_address&gt;';
+            $display_data .= '&lt;enquiry_id&gt;' . $ref_number . '&lt;/enquiry_id&gt;<br>&lt;full_name&gt;' . $data['full-name-required'] . '&lt;/full_name&gt;<br>
+                    &lt;alternative_name&gt;' . $data['alternative-names'] . '&lt;/alternative_name&gt;<br>
+                    &lt;birth_date&gt;' . $data['date-of-birth-required'] . '&lt;/birth_date&gt;<br>
+                    &lt;death_date&gt;' . $data['date_of_death'] . '&lt;/death_date&gt;<br>
+                    &lt;country_of_birth&gt;' . $data['country-of-birth'] . '&lt;/country_of_birth&gt;<br>
+                    &lt;contact_full_name&gt;' . $data['full-name-contact-details-required'] . '&lt;/contact_full_name&gt;<br>
+                    &lt;contact_email&gt;' . $data['email-required'] . '&lt;/contact_email&gt;<br>
+                    &lt;contact_address&gt;' . $data['postal-address-required'] . '&lt;/contact_address&gt;';
 
             $display_data .= '</div>';
 
