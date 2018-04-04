@@ -28,8 +28,8 @@ function return_form_letters_of_no_evidence($content)
         $html->fieldset_begins('Subject\'s personal details') .
         $html->form_text_input('Full name', 'full_name', 'full-name', 'Enter the full name of the subject') .
         $html->form_text_input('Alternative name(s)', 'alternative_names', 'alternative-names', '', 'For example, married or Anglicised names.') .
-        $html->form_text_input('Date of birth', 'date_of_birth', 'date-of-birth', 'Enter a date of birth, even if it is the approximate year.', 'If you don’t know the exact date, the approximate year <br/> should be enough for us to do a search.') .
-        $html->form_text_input('Date of death', 'date_of_death', 'date_of_death', '', 'If you don’t know the exact date, the approximate year <br/> should be enough for us to do a search.') .
+        $html->form_text_input('Date of birth', 'date_of_birth', 'date-of-birth', 'Enter a date of birth, even if it is the approximate year.', 'For example, 04/07/1901 or July 1901.<br>If you don’t know the exact date, enter the approximate year.') .
+        $html->form_text_input('Date of death', 'date_of_death', 'date_of_death', '', 'For example, 04/07/1928 or July 1920.<br>If you don’t know the exact date, enter the approximate year.') .
         $html->form_text_input('Country of birth', 'country_of_birth', 'country-of-birth') .
         $html->fieldset_ends() .
         $html->fieldset_begins('Your contact details') .
