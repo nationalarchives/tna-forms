@@ -128,7 +128,7 @@ class Form_Processor
      * @param string $tna_recipient
      * @param string $alt_recipient
      */
-    public function process_data($form_name, $form_data, $tna_recipient = '', $alt_recipient = '')
+    public function process_data($form_name, $form_data, $tna_recipient = '', $alt_recipient = '', $send_xml_format = false)
     {
 
         // Global variables
@@ -177,14 +177,14 @@ class Form_Processor
 
             // Email to TNA
 
-            if ($alt_recipient) {
+            if ($send_xml_format) {
                 $alt_email = $this->get_tna_email($alt_recipient);
                 $form_content = $this->display_data($form_data) .
                     $form_content = "<br>" .
-                        $form_content = "Cut and paste the XML appearing below this line into the 'Description' field in Infoservice." .
-                            $form_content = "<br>" .
-                                $form_content = "<br>" .
-                                    $form_content = $this->display_data_xml($form_data, $ref_number);
+                    $form_content = "Cut and paste the XML appearing below this line into the 'Description' field in Infoservice." .
+                    $form_content = "<br>" .
+                    $form_content = "<br>" .
+                    $form_content = $this->display_data_xml($form_data, $ref_number);
             } else {
                 $alt_email = '';
             }
