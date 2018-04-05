@@ -178,19 +178,15 @@ class Form_Processor
             // Email to TNA
 
             if ($send_xml_format) {
-                $alt_email = $this->get_tna_email($alt_recipient);
                 $form_content = $this->display_data($form_data) .
                     $form_content = "<br>" .
                     $form_content = "Cut and paste the XML appearing below this line into the 'Description' field in Infoservice." .
                     $form_content = "<br>" .
                     $form_content = "<br>" .
                     $form_content = $this->display_data_xml($form_data, $ref_number);
-            } else {
-                $alt_email = '';
             }
-
+            $alt_email = '';
             $tna_email = $this->get_tna_email($tna_recipient);
-
             $tna_email_content = $this->message($form_name, $form_content, $ref_number, $post->ID);
             $this->send_email($tna_email, $form_name . ' - Ref:', $ref_number, $tna_email_content, $alt_email);
 
@@ -301,7 +297,6 @@ class Form_Processor
             $contact_user = get_user_by('login', $user);
             if ($contact_user) {
                 $email = $contact_user->user_email;
-
                 return $email;
             } else {
                 $email = get_option('admin_email');
