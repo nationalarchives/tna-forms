@@ -25,7 +25,7 @@ function return_form_letters_of_no_evidence($content)
     // HTML form string
     $html = new Form_Builder;
     $form = $html->form_begins('letters_of_no_evidence', $form_name, 'novalidate') .
-        $html->fieldset_begins('Subject\'s personal details') .
+        $html->fieldset_begins('Ancestor\'s personal details') .
         $html->form_text_input('Full name', 'full_name', 'full-name', 'Enter the full name of the subject') .
         $html->form_text_input('Alternative name(s)', 'alternative_names', 'alternative-names', '', 'For example, married or Anglicised names.') .
         $html->form_text_input('Date of birth', 'date_of_birth', 'date-of-birth', 'Enter a date of birth, even if it is the approximate year.', 'For example, 04/07/1901 or July 1901.<br>If you don’t know the exact date, enter the approximate year.') .
