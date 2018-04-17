@@ -184,8 +184,6 @@ class Form_Processor
                     $form_content = "<br>" .
                     $form_content = "<br>" .
                     $form_content = $this->display_data_xml($form_data, $ref_number);
-                var_dump($form_content);
-                die;
             }
             $alt_email = '';
             $tna_email = $this->get_tna_email($tna_recipient);
