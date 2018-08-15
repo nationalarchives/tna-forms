@@ -11,10 +11,11 @@ class Form_Builder {
      * @return string
      */
     public function form_begins($id, $value, $no_validate = false ) {
+	    $token = form_token();
 		$form = '<form action=""  id="%s" class="form-abandonment" method="POST" ' . $this->novalidate_for_testing( $no_validate ) . '>';
 		$form .= '<input type="hidden" name="tna-form" value="%s">';
-		$form .= '<input type="hidden" name="token" value="' . form_token() . '">';
-	    $form .= '<input type="hidden" name="saved_token" value="' . get_transient( 'tna-token-'.$value ) . '">';
+		$form .= '<input type="hidden" name="token" value="' . $token . '">';
+	    $form .= '<input type="hidden" name="saved_token" value="' . get_transient( 'tna-token-'.$token ) . '">';
 		$form .= '<input type="hidden" name="timestamp" value="' . time() . '">';
 
 		return sprintf( $form, $id, $value );
