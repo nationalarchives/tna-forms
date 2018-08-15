@@ -9,6 +9,8 @@
  * License: GPL2
  */
 
+define( 'DONOTCACHEPAGE', true );
+
 /* Included functions */
 include 'functions.php';
 include 'tna-forms-builder.php';
