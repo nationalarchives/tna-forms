@@ -147,7 +147,12 @@ function send_form_via_email( $email, $subject, $ref_number, $content, $spam ) {
 }
 
 function form_token() {
-	return md5( uniqid( "", true ) );
+	$token = md5( uniqid( "", true ) );
+
+	// Save token and keep for 6 hours
+	set_transient( 'tna-token-'.$token, $token, 6*HOUR_IN_SECONDS );
+
+	return $token;
 }
 
 function get_tna_email( $user = '' ) {

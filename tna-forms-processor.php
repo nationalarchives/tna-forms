@@ -54,9 +54,16 @@ class Form_Processor {
 	public function get_data( $data ) {
 		$form_data = array();
 		foreach ( $data as $key => $value ) {
-			if ( $key == 'tna-form' || $key == 'token' || $key == 'timestamp' || strpos( $key, 'submit' ) !== false ) {
+			if ( $key == 'tna-form' || $key == 'timestamp' || strpos( $key, 'submit' ) !== false ) {
 				// do nothing
-			} elseif ( strpos( $key, 'skype-name' ) !== false && trim( $value ) !== '' ) {
+			} elseif ( $key == 'token' ) {
+				$saved_token = get_transient( 'tna-token-'.$value );
+				if ( !$saved_token ) {
+					$form_data['spam'] = true;
+				} else {
+					delete_transient( 'tna-token-'.$value );
+				}
+			}elseif ( strpos( $key, 'skype-name' ) !== false && trim( $value ) !== '' ) {
 				$form_data['spam'] = true;
 			} else {
 				if ( strpos( $key, 'required' ) !== false ) {
@@ -120,8 +127,10 @@ class Form_Processor {
 		// If any value inside the array is false then there is an error
 		if ( isset( $form_data['spam'] ) ) {
 
+			$client_ip   = $_SERVER['REMOTE_ADDR'];
+
 			// Oops! Spam!
-			$this->log_spam( 'yes', date_timestamp_get( date_create() ), $user_email );
+			$this->log_spam( 'yes', date_timestamp_get( date_create() ), $user_email, $client_ip );
 
 		} elseif ( in_array( false, $form_data ) ) {
 
@@ -285,10 +294,10 @@ class Form_Processor {
 	 * @param $time
 	 * @param $email
 	 */
-	public function log_spam( $spam, $time, $email ) {
+	public function log_spam( $spam, $time, $email, $ip ) {
 		if ( $spam == 'yes' ) {
 			$file = plugin_dir_path( __FILE__ ) . 'spam_log.txt';
-			$log  = $time . ' - ' . $email . PHP_EOL;
+			$log  = $ip . ' : ' . $time . ' - ' . $email . PHP_EOL;
 			file_put_contents( $file, $log, FILE_APPEND );
 		}
 	}
