@@ -5,7 +5,7 @@
  */
 
 function enqueue_form_styles() {
-	wp_register_style( 'tna-form-styles', plugin_dir_url(__FILE__) . 'css/tna-forms.css', array(), '1.4.2'  );
+	wp_register_style( 'tna-form-styles', plugin_dir_url(__FILE__) . 'css/tna-forms.css', array(), '1.6'  );
 	global $post;
 	if (has_shortcode($post->post_content, 'tna-form') || has_shortcode($post->post_content, 'form-builder')) {
 		wp_enqueue_style('tna-form-styles');
