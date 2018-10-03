@@ -51,6 +51,9 @@ function tna_forms_shortcode( $atts, $content = '' ) {
 		case 'Apply for training':
 			return return_form_apply_for_training( explode(', ', $a['sessions']), $content );
 			break;
+        case 'Letters of no evidence':
+            return return_form_letters_of_no_evidence ($content);
+            break;
 		default:
 			return return_form_default( $content );
 			break;

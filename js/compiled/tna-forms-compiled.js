@@ -1526,20 +1526,20 @@ function paidSearchForm(){
         }
     });
 };/**
- * @contact-form-name: Your Views form
+ * @contact-form-name: Letters of no evidence
  *
  * ----- Table of contents -------------------------------------
  *
  * 1. Define variables
  * 2. Include custom form methods from methods.js
  * 3. Add the validation rules
- *
  * */
-function dcfForm(){
+
+function lettersOfNoEvidenceForm(){
     /**
      * 1. Declare variables
      * */
-    var formName = "#dcf";
+    var formName = "#letters_of_no_evidence";
     var form = $(formName);
 
     /**
@@ -1564,48 +1564,64 @@ function dcfForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name": {
-                noSpace: true
-            },
-            "email": {
-                email:true
-            },
-            "confirm-email": {
-                equalTo: "#email"
-            },
-            "catalogue-reference-required":{
+            "full-name-required": {
                 required: true,
                 noSpace: true
             },
-            "additional-details":{
-                noSpace:true
+            "full-name-contact-details-required":{
+                required: true
+            },
+            "date-of-birth-required":{
+                required: true,
+                noSpace: true
+            },
+            "email-required": {
+                required: true,
+                email:true
+            },
+            "confirm-email-required": {
+                equalTo: "#email"
+            },
+            "postal-address-required":{
+                required: true,
+                noSpace: true
             }
+
         },
         /**
          * Error messages
          * */
         messages: {
-            "confirm-email": {
-                equalTo: "Please enter your email address again"
+            "full-name-required": {
+                required:"Enter the full name of the subject"
             },
-            "catalogue-reference-required":{
-                required: "Please enter your catalogue reference number"
+            "email-required": "Enter your email address",
+            "confirm-email-required": {
+                required: "Enter your email address",
+                equalTo: "Enter your email address again so we know it is correct"
+            },
+            "full-name-contact-details-required":{
+                required: "Enter the full name of the subject"
+            },
+            "date-of-birth-required":{
+                required: "Enter a date of birth, even if it is the approximate year"
+            },
+            "postal-address-required":{
+                required:"Enter your postal address"
             }
         }
     });
 
-    $("input[name='submit-dcf']").on('click', function(){
+    $("input[name='submit-letters-of-no-evidence']").on('click', function(){
         var emphAlert = ($('.emphasis-block.error-message').length === 1);
         if(form.valid() !== true) {
             if(emphAlert) {
                 $('.emphasis-block.error-message').show();
             } else {
-                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">There was a problem</p><p>Check the highlighted fields.</p></div>');
             }
         }
     });
-
-
 };/**
  * @contact-form-name: Apply to film
  *
@@ -1752,6 +1768,9 @@ $(document).ready(function() {
         }
         else if ($('#apply-for-training').is(':visible')) {
             applyForTrainingForm();
+        }
+        else if ($('#letters_of_no_evidence').is(':visible')){
+            lettersOfNoEvidenceForm();
         }
         else {
             defaultForm();
