@@ -41,13 +41,6 @@ function lettersOfNoEvidenceForm(){
                 required: true,
                 noSpace: true
             },
-            "full-name-contact-details-required":{
-                required: true
-            },
-            "date-of-birth-required":{
-                required: true,
-                noSpace: true
-            },
             "email-required": {
                 required: true,
                 email:true
@@ -55,7 +48,7 @@ function lettersOfNoEvidenceForm(){
             "confirm-email-required": {
                 equalTo: "#email"
             },
-            "postal-address-required":{
+            "file-format-required":{
                 required: true,
                 noSpace: true
             }
@@ -66,21 +59,15 @@ function lettersOfNoEvidenceForm(){
          * */
         messages: {
             "full-name-required": {
-                required:"Enter the full name of the subject"
+                required:"Please enter your full name"
             },
-            "email-required": "Enter your email address",
+            "email-required": "Please enter your email address",
             "confirm-email-required": {
-                required: "Enter your email address",
-                equalTo: "Enter your email address again so we know it is correct"
+                required:"Please enter your email address",
+                equalTo: "Please enter your email address again"
             },
-            "full-name-contact-details-required":{
-                required: "Enter the full name of the subject"
-            },
-            "date-of-birth-required":{
-                required: "Enter a date of birth, even if it is the approximate year"
-            },
-            "postal-address-required":{
-                required:"Enter your postal address"
+            "file-format-required":{
+                required:"Please enter the file format"
             }
         }
     });
@@ -91,7 +78,7 @@ function lettersOfNoEvidenceForm(){
             if(emphAlert) {
                 $('.emphasis-block.error-message').show();
             } else {
-                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">There was a problem</p><p>Check the highlighted fields.</p></div>');
+                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
             }
         }
     });
