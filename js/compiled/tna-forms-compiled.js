@@ -1740,16 +1740,6 @@ function lettersOfNoEvidenceForm(){
                 required: true,
                 noSpace: true
             },
-<<<<<<< HEAD
-            "full-name-contact-details-required":{
-                required: true
-            },
-            "date-of-birth-required":{
-                required: true,
-                noSpace: true
-            },
-=======
->>>>>>> c78f5ee7ab187c1a0b2acb3bfba9df2e9aed693e
             "email-required": {
                 required: true,
                 email:true
@@ -1757,11 +1747,7 @@ function lettersOfNoEvidenceForm(){
             "confirm-email-required": {
                 equalTo: "#email"
             },
-<<<<<<< HEAD
-            "postal-address-required":{
-=======
             "file-format-required":{
->>>>>>> c78f5ee7ab187c1a0b2acb3bfba9df2e9aed693e
                 required: true,
                 noSpace: true
             }
@@ -1772,23 +1758,6 @@ function lettersOfNoEvidenceForm(){
          * */
         messages: {
             "full-name-required": {
-<<<<<<< HEAD
-                required:"Enter the full name of the subject"
-            },
-            "email-required": "Enter your email address",
-            "confirm-email-required": {
-                required: "Enter your email address",
-                equalTo: "Enter your email address again so we know it is correct"
-            },
-            "full-name-contact-details-required":{
-                required: "Enter the full name of the subject"
-            },
-            "date-of-birth-required":{
-                required: "Enter a date of birth, even if it is the approximate year"
-            },
-            "postal-address-required":{
-                required:"Enter your postal address"
-=======
                 required:"Please enter your full name"
             },
             "email-required": "Please enter your email address",
@@ -1798,7 +1767,6 @@ function lettersOfNoEvidenceForm(){
             },
             "file-format-required":{
                 required:"Please enter the file format"
->>>>>>> c78f5ee7ab187c1a0b2acb3bfba9df2e9aed693e
             }
         }
     });
@@ -1809,11 +1777,7 @@ function lettersOfNoEvidenceForm(){
             if(emphAlert) {
                 $('.emphasis-block.error-message').show();
             } else {
-<<<<<<< HEAD
-                $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">There was a problem</p><p>Check the highlighted fields.</p></div>');
-=======
                 $(form).before().prepend('<div class="emphasis-block error-message" role="alert"><p class="h3">Sorry, there was a problem</p><p>Please check the highlighted fields to proceed.</p></div>');
->>>>>>> c78f5ee7ab187c1a0b2acb3bfba9df2e9aed693e
             }
         }
     });
