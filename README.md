@@ -74,6 +74,10 @@ Each session group is defined by brackets. Each session title, session time and 
 
 `[tna-form name="Apply for training" sessions="(Training session 1, session time 1, session time 2), (Training session 2, session time 1, session time 2)"]`
 
+**Letters of no evidence** form:
+
+`[tna-form name="Letters of no evidence"]`
+
 ## Development setup
 
 ### 1.0 Clone the repository
