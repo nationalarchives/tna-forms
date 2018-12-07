@@ -186,7 +186,7 @@ class Form_Processor {
 
 			// Email to TNA
             if ($send_xml_format) {
-                //$alt_email = $this->get_tna_email($alt_recipient);
+                //$alt_email = $this->get_tna_email($alt_recipient); ---> Please keep for further reference
                 $form_content = $this->display_data($form_data) .
                     $form_content = "<br>" .
                         $form_content = "Cut and paste the XML appearing below this line into the 'Description' field in Infoservice." .
