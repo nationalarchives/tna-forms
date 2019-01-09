@@ -1,0 +1,23 @@
+/*
+*  
+*/
+
+.tna-forms-panels {
+    border: 1px solid #ccc;
+    margin: 20px 0px 40px;
+    &.box-height {
+        .entry-content {
+            padding: 10px 20px;
+        }
+    }
+
+    .center-text {
+        text-align: center;
+    }
+    
+    .contact-icon {
+        margin: 10px 0 20px;
+    }
+}
+
+
