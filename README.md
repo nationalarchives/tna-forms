@@ -81,9 +81,9 @@ Each session group is defined by brackets. Each session title, session time and 
 **Static content panels**
 * !IMPORTANT - Add all other form shortcodes above this section
 * It enables two panels for web chat and enquiry form to be used on a page
-`[tna-panels]` or `[tna-panels type="both"]` - By default will show both panels
-`[tna-panels type="chat"]` - Chat panel only
-`[tna-panels type="enquiry"]` - Enquiry panel only
+*`[tna-panels]` or `[tna-panels type="both"]` - By default will show both panels
+*`[tna-panels type="chat"]` - Chat panel only
+*`[tna-panels type="enquiry"]` - Enquiry panel only
 
 ## Development setup
 
