@@ -54,6 +54,9 @@ $(document).ready(function() {
         else if ($('#apply-for-training').is(':visible')) {
             applyForTrainingForm();
         }
+        else if ($('#letters_of_no_evidence').is(':visible')) {
+            lettersOfNoEvidenceForm();
+        }
         else {
             defaultForm();
         }

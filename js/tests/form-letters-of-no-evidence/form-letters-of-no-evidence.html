@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Letters of no evidence qUnit tests</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="fixture">
+    <form action="" id="letters_of_no_evidence" class="form-abandonment" method="POST"><input type="hidden"
+                                                                                              name="tna-form"
+                                                                                              value="Letters of no evidence"><input
+            type="hidden" name="token" value="c831b36f20892c9f9d53432672a8caa2"><input type="hidden" name="timestamp"
+                                                                                       value="1520267392">
+        <fieldset>
+            <legend>Subject's personal details</legend>
+            <div class="form-row"><label for="full_name">Full name</label><input type="text" id="full_name"
+                                                                                 name="full-name-required"
+                                                                                 aria-required="true" required></div>
+            <div class="form-row"><label for="alternative_names">Alternative name(s) <span
+                    class="optional">(optional)</span></label>
+                <p class="form-hint">For example, married or Anglicised names.</p><input type="text"
+                                                                                         id="alternative_names"
+                                                                                         name="alternative-names"></div>
+            <div class="form-row"><label for="date_of_birth">Date of birth</label>
+                <p class="form-hint">If you don’t know the exact date, the approximate year <br/> should be enough for
+                    us to do a search.</p><input type="text" id="date_of_birth" name="date-of-birth-required"
+                                                 aria-required="true" required></div>
+            <div class="form-row"><label for="date_of_death">Date of death <span
+                    class="optional">(optional)</span></label>
+                <p class="form-hint">If you don’t know the exact date, the approximate year <br/> should be enough for
+                    us to do a search.</p><input type="text" id="date_of_death" name="date_of_death"></div>
+            <div class="form-row"><label for="country_of_birth">Country of birth <span
+                    class="optional">(optional)</span></label><input type="text" id="country_of_birth"
+                                                                     name="country-of-birth"></div>
+        </fieldset>
+        <fieldset>
+            <legend>Your contact details</legend>
+            <div class="form-row"><p>Provide your details so we can let you know the outcome of the search for evidence
+                of naturalisation.</p></div>
+            <div class="form-row"><label for="full_name_contact_details">Full name</label><input type="text"
+                                                                                                 id="full_name_contact_details"
+                                                                                                 name="full-name-contact-details-required"
+                                                                                                 aria-required="true"
+                                                                                                 required></div>
+            <div class="form-row"><label for="email">Email address</label><input type="email" id="email"
+                                                                                 name="email-required"
+                                                                                 aria-required="true" required></div>
+            <div class="form-row"><label for="confirm_email">Please re-type your email address</label><input
+                    type="email" id="confirm_email" name="confirm-email-required" aria-required="true" required></div>
+            <div class="form-row"><label for="postal_address">Postal address</label><textarea id="postal_address"
+                                                                                              name="postal-address-required"
+                                                                                              aria-required="true"
+                                                                                              required></textarea></div>
+            <div class="form-row hidden"><label for="skype_name">Skype name (please ignore this field)</label><input
+                    type="text" id="skype_name" name="skype-name-68"></div>
+            <div class="form-row"><input type="submit" name="submit-letters-of-no-evidence" id="submit-tna-form"
+                                         value="Submit"></div>
+        </fieldset>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="form-letters-of-no-evidence.js"></script>
+</body>
+</html>

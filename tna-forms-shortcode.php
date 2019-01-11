@@ -51,6 +51,9 @@ function tna_forms_shortcode( $atts, $content = '' ) {
 		case 'Apply for training':
 			return return_form_apply_for_training( explode(', ', $a['sessions']), $content );
 			break;
+        case 'Letters of no evidence':
+            return return_form_letters_of_no_evidence ($content);
+            break;
 		default:
 			return return_form_default( $content );
 			break;
@@ -98,3 +101,33 @@ function tnafb_shortcode( $atts ) {
 }
 
 add_shortcode( 'form-builder', 'tnafb_shortcode' );
+
+// Function to create a static content panels shortcode
+function static_content_panels($atts) {
+	// This needs to stay empty. Thank you!
+	$pan = '';
+	$enquiry = '<div class="row"><div class="col-sm-6"><div class="tna-forms-panels box-height clearfix"><div class="entry-content center-text"><h3>Use our enquiry form</h3><a href="https://www.nationalarchives.gov.uk/contact-us/make-a-records-and-research-enquiry/make-a-records-and-research-enquiry-form/" aria-label="Use our enquiry form"><img class="contact-icon" src="'. plugin_dir_url( __FILE__ ) .'/img/form-icon.png" alt="Use our enquiry form icon" /></a><p>For more detailed research enquiries</p><p><b>Typical response time via email within 10 working days</b></p></div></div></div></div>';
+	$chat = '<div class="row"><div class="col-sm-6"><div class="tna-forms-panels box-height clearfix"><div class="entry-content center-text"><h3>Chat to an advisor online</h3><div id="ciEvtM" class="clearfix"></div><div id="scEvtM" class="contact-icon"></div><div id="sdEvtM"></div><script type="text/javascript">var seEvtM=document.createElement("script");seEvtM.type="text/javascript";var seEvtMs=(location.protocol.indexOf("https")==0?"https":"http")+"://image.providesupport.com/js/0or0ihkh4hylp1qnz87w7c01gr/safe-standard.js?ps_h=EvtM&ps_t="+new Date().getTime();setTimeout("seEvtM.src=seEvtMs;document.getElementById(\"sdEvtM\").appendChild(seEvtM)",1); setTimeout(function(){ $(document).ready(function(){ var panelA = $("#scEvtM a"); var panelImg = $("#scEvtM a img"); if(panelA.length > 0 && panelImg.length > 0) {  panelA.attr("aria-label", "Chat to an advisor online"); panelImg.attr("alt", "Chat to an advisor online icon");} });}, 3000);</script><noscript><a href="http://www.providesupport.com?messenger=0or0ihkh4hylp1qnz87w7c01gr">Live Help Desk</a></noscript><p>For quick pointers</p><p><b>Available from Tuesday to Saturday between 09:00 and 17:00</b></p></div></div></div></div>';
+	$both = '<div class="row"><div class="col-sm-6"><div class="tna-forms-panels box-height clearfix"><div class="entry-content center-text"><h3>Use our enquiry form</h3><a href="https://www.nationalarchives.gov.uk/contact-us/make-a-records-and-research-enquiry/make-a-records-and-research-enquiry-form/" aria-label="Use our enquiry form"><img class="contact-icon" src="'. plugin_dir_url( __FILE__ ) .'/img/form-icon.png" alt="Use our enquiry form icon" /></a><p>For more detailed research enquiries</p><p><b>Typical response time via email within 10 working days</b></p></div></div></div><div class="col-sm-6"><div class="tna-forms-panels box-height clearfix"><div class="entry-content center-text"><h3>Chat to an advisor online</h3><div id="ciEvtM" class="clearfix"></div><div id="scEvtM" class="contact-icon"></div><div id="sdEvtM"></div><script type="text/javascript">var seEvtM=document.createElement("script");seEvtM.type="text/javascript";var seEvtMs=(location.protocol.indexOf("https")==0?"https":"http")+"://image.providesupport.com/js/0or0ihkh4hylp1qnz87w7c01gr/safe-standard.js?ps_h=EvtM&ps_t="+new Date().getTime();setTimeout("seEvtM.src=seEvtMs;document.getElementById(\"sdEvtM\").appendChild(seEvtM)",1); setTimeout(function(){ $(document).ready(function(){ var panelA = $("#scEvtM a"); var panelImg = $("#scEvtM a img"); if(panelA.length > 0 && panelImg.length > 0) {  panelA.attr("aria-label", "Chat to an advisor online"); panelImg.attr("alt", "Chat to an advisor online icon");} });}, 3000);</script><noscript><a href="http://www.providesupport.com?messenger=0or0ihkh4hylp1qnz87w7c01gr" title="Live Help Desk">Live Help Desk</a></noscript><p>For quick pointers</p><p><b>Available from Tuesday to Saturday between 09:00 and 17:00</b></p></div></div></div></div>';
+	
+	// Define the shortcode parameter and add a default value if the parameter is not present in the shortcode
+	$a = shortcode_atts( array(
+		'type' => 'both'
+	), $atts );
+	
+	// Check the shortcode parameter and display accordingly
+	if(isset($a['type'])){
+		if($a['type'] == 'enquiry') {
+			$pan = $enquiry;
+		} elseif ($a['type'] == 'chat') {
+			$pan = $chat;
+		} elseif ($a['type'] == 'both') {
+			$pan = $both;
+		} else {
+			$pan = 'Panel does not exist';
+		}
+	}
+	
+    return $pan;
+}
+add_shortcode('tna-panels', 'static_content_panels');
