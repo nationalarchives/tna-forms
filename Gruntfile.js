@@ -9,7 +9,8 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    'css/tna-forms.css': 'css/tna-forms.scss'
+                    'css/tna-forms.css': 'css/tna-forms.scss',
+                    'css/tna-forms-panels.css':'css/tna-forms-panels.scss'
                 }
             }
         },
