@@ -552,7 +552,7 @@ class Form_Builder {
 		$form .= set_value( 'newsletter', 'checkbox' );
 		$form .= '>';
 		$form .= '<label for="newsletter">';
-		$form .= 'Tick here to receive our free monthly newsletter and email updates about our news, products and services';
+		$form .= 'Tick here to receive regular email updates about our news, products and services';
 		$form .= '</label>';
 		$form .= '<p><small>';
 		$form .= 'The National Archives only records personal information, including email addresses, for the purposes provided. We will not share your details with third parties. ';
