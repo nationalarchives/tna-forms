@@ -104,7 +104,9 @@ class Form_Processor {
             );
         }
 
-        if (!$response->success) {
+        var_dump($response);
+
+        if ($response->success == false) {
             $form_data['spam'] = true;
         }
 
