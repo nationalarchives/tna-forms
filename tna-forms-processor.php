@@ -84,7 +84,30 @@ class Form_Processor {
 	 * @return array
 	 */
 	public function get_data( $data ) {
-		$form_data = array();
+
+        $form_data = array();
+
+        // your secret key
+        $secret = "6Lfu7ZcUAAAAAMe3cwcLhmvXv5FqJb8Qos7NFwQd";
+
+        // empty response
+        $response = null;
+
+        // check secret key
+        $reCaptcha = new ReCaptcha($secret);
+
+        // if submitted check response
+        if ($data["g-recaptcha-response"]) {
+            $response = $reCaptcha->verifyResponse(
+                get_client_ip(),
+                $data["g-recaptcha-response"]
+            );
+        }
+
+        if (!$response->success) {
+            $form_data['spam'] = true;
+        }
+
 		foreach ( $data as $key => $value ) {
 			if ( $key == 'tna-form' || $key == 'timestamp' || strpos( $key, 'submit' ) !== false ) {
 				// do nothing
@@ -159,7 +182,7 @@ class Form_Processor {
 		// If any value inside the array is false then there is an error
 		if ( isset( $form_data['spam'] ) ) {
 
-			$client_ip   = $_SERVER['REMOTE_ADDR'];
+			$client_ip   = get_client_ip();
 
 			// Oops! Spam!
 			$this->log_spam( 'yes', date_timestamp_get( date_create() ), $user_email, $client_ip );

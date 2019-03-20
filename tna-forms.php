@@ -36,3 +36,6 @@ include 'forms/form-request-assessment-document.php';
 include 'forms/form-apply-for-training.php';
 include 'forms/form-letters-of-no-evidence.php';
 include 'forms/form-default.php';
+
+// grab recaptcha library
+require_once "recaptcha.php";

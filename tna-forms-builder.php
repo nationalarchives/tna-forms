@@ -37,6 +37,7 @@ class Form_Builder {
      */
     public function form_ends() {
 		$form = '</form>';
+		$form .= '<script src="https://www.google.com/recaptcha/api.js" async defer></script>';
 
 		return $form;
 	}
@@ -430,6 +431,7 @@ class Form_Builder {
      */
     public function submit_form($name, $id, $value = 'Submit' ) {
 		$form = '<div class="form-row">';
+		$form .= '<div class="g-recaptcha" data-sitekey="6Lfu7ZcUAAAAALdMID1CqanOaCLHlQ-kw5RjFHn3"></div>';
 		$form .= '<input type="submit" name="%s" id="%s" value="%s">';
 		$form .= '</div>';
 

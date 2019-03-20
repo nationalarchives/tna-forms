@@ -311,3 +311,22 @@ function cf_add_contact_forms_meta_box() {
 	add_meta_box('cf-receipt-email', 'Contact form user receipt email', 'cf_receipt_email_markup', 'page', 'normal', 'high', null);
 	add_meta_box('cf-get-tna-email', 'Contact form TNA recipient', 'cf_get_tna_email_markup', 'page', 'side', 'low', null);
 }
+
+function get_client_ip() {
+    //whether ip is from share internet
+    if (!empty($_SERVER['HTTP_CLIENT_IP']))
+    {
+        $ip_address = $_SERVER['HTTP_CLIENT_IP'];
+    }
+    //whether ip is from proxy
+    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+    {
+        $ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    }
+    //whether ip is from remote address
+    else
+    {
+        $ip_address = $_SERVER['REMOTE_ADDR'];
+    }
+    return $ip_address;
+}
