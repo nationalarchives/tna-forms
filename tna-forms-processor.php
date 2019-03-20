@@ -104,10 +104,12 @@ class Form_Processor {
             );
         }
 
+        var_dump($data["g-recaptcha-response"]);
+
         var_dump($response);
 
         if ($response->success == false) {
-            $form_data['spam'] = true;
+            $form_data['robot-success'] = false;
         }
 
 		foreach ( $data as $key => $value ) {
