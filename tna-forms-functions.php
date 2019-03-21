@@ -349,7 +349,7 @@ define( 'RECAP_KEY', '6Lfu7ZcUAAAAAMe3cwcLhmvXv5FqJb8Qos7NFwQd' );
 
 function verify_recaptcha_response( $response ) {
     if ( isset( $response ) && !empty( $response ) ) {
-        $secret = 'RECAP_KEY';
+        $secret = RECAP_KEY;
         $verify_response = wp_get_content('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$response);
 
         var_dump($verify_response);
