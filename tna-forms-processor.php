@@ -87,28 +87,17 @@ class Form_Processor {
 
         $form_data = array();
 
-        // your secret key
-        $secret = "6Lfu7ZcUAAAAAMe3cwcLhmvXv5FqJb8Qos7NFwQd";
-
-        // empty response
         $response = null;
-
-        // check secret key
-        $reCaptcha = new ReCaptcha($secret);
-
-        // if submitted check response
-        if ($data["g-recaptcha-response"]) {
-            $response = $reCaptcha->verifyResponse(
-                get_client_ip(),
-                $data["g-recaptcha-response"]
-            );
-        }
-
         var_dump($data["g-recaptcha-response"]);
+
+
+        if ( $data["g-recaptcha-response"] ) {
+            $response = verify_recaptcha_response( $data["g-recaptcha-response"] );
+        }
 
         var_dump($response);
 
-        if ($response->success == false) {
+        if ($response == false) {
             $form_data['robot-success'] = false;
         }
 

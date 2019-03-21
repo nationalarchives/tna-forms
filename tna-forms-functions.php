@@ -330,3 +330,36 @@ function get_client_ip() {
     }
     return $ip_address;
 }
+
+function wp_get_content( $url ) {
+    if ( ! class_exists( 'WP_Http' ) ) {
+        include_once( ABSPATH . WPINC . '/class-http.php' );
+    }
+    $request = new WP_Http;
+    $result  = $request->request( $url );
+    if ( check_result( $result ) ) {
+        $content = $result['body'];
+    } else {
+        $content = null;
+    }
+    return $content;
+}
+
+define( 'RECAP_KEY', '6Lfu7ZcUAAAAAMe3cwcLhmvXv5FqJb8Qos7NFwQd' );
+
+function verify_recaptcha_response( $response ) {
+    if ( isset( $response ) && !empty( $response ) ) {
+        $secret = 'RECAP_KEY';
+        $verify_response = wp_get_content('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$response);
+
+        var_dump($verify_response);
+
+        $response_data = json_decode($verify_response);
+        if ($response_data->success) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}
