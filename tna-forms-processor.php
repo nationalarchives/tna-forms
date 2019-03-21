@@ -244,7 +244,7 @@ class Form_Processor {
 	public function error_message() {
 		$error_message = '<div class="emphasis-block error-message" role="alert">';
 		$error_message .= '<h3>Sorry, there was a problem</h3>';
-		$error_message .= '<p>Please check the highlighted fields to proceed.</p></div>';
+		$error_message .= '<p>Please check the highlighted fields and the reCAPTCHA checkbox to proceed.</p></div>';
 
 		return $error_message;
 	}
