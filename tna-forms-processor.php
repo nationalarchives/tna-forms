@@ -95,8 +95,6 @@ class Form_Processor {
             $response = verify_recaptcha_response( $data["g-recaptcha-response"] );
         }
 
-        var_dump($response);
-
         if ($response == false) {
             $form_data['robot-success'] = false;
         }
