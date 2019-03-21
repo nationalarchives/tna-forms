@@ -361,8 +361,6 @@ function verify_recaptcha_response( $response ) {
     $secret = '6Lfu7ZcUAAAAAMe3cwcLhmvXv5FqJb8Qos7NFwQd';
     $verify_response = wp_f_get_content('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$response );
 
-    var_dump($verify_response);
-
     $response_data = json_decode($verify_response);
 
     if ( $response_data->success ) {

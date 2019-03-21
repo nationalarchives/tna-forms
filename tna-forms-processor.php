@@ -26,8 +26,10 @@ class Form_Processor {
 		if ( is_array( $data ) ) {
 			$display_data = '<div class="form-data"><ul>';
 			foreach ( $data as $field_name => $field_value ) {
-				if ( strpos( $field_name,
-						'skype-name' ) !== false || $field_name == 'confirm-email-required' || $field_name == 'confirm-email'
+				if ( strpos( $field_name, 'skype-name' ) !== false ||
+                    $field_name == 'confirm-email-required' ||
+                    $field_name == 'confirm-email' ||
+                    $field_name == 'g-recaptcha-response'
 				) {
 
 					// do nothing
@@ -88,8 +90,6 @@ class Form_Processor {
         $form_data = array();
 
         $response = null;
-        var_dump($data["g-recaptcha-response"]);
-
 
         if ( $data["g-recaptcha-response"] ) {
             $response = verify_recaptcha_response( $data["g-recaptcha-response"] );
