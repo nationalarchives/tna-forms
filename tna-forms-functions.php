@@ -331,13 +331,24 @@ function get_client_ip() {
     return $ip_address;
 }
 
+function wp_verify_result( $result ) {
+    if ( is_wp_error( $result ) ) {
+        $result = false;
+    } elseif ( wp_remote_retrieve_response_code( $result ) == '404' ) {
+        $result = false;
+    } else {
+        $result = true;
+    }
+    return $result;
+}
+
 function wp_get_content( $url ) {
     if ( ! class_exists( 'WP_Http' ) ) {
         include_once( ABSPATH . WPINC . '/class-http.php' );
     }
     $request = new WP_Http;
     $result  = $request->request( $url );
-    if ( check_result( $result ) ) {
+    if ( wp_verify_result( $result ) ) {
         $content = $result['body'];
     } else {
         $content = null;
