@@ -331,7 +331,7 @@ function get_client_ip() {
     return $ip_address;
 }
 
-function wp_verify_result( $result ) {
+function wp_f_verify_result( $result ) {
     if ( is_wp_error( $result ) ) {
         $result = false;
     } elseif ( wp_remote_retrieve_response_code( $result ) == '404' ) {
@@ -342,13 +342,13 @@ function wp_verify_result( $result ) {
     return $result;
 }
 
-function wp_get_content( $url ) {
+function wp_f_get_content( $url ) {
     if ( ! class_exists( 'WP_Http' ) ) {
         include_once( ABSPATH . WPINC . '/class-http.php' );
     }
     $request = new WP_Http;
     $result  = $request->request( $url );
-    if ( wp_verify_result( $result ) ) {
+    if ( wp_f_verify_result( $result ) ) {
         $content = $result['body'];
     } else {
         $content = null;
@@ -359,7 +359,7 @@ function wp_get_content( $url ) {
 function verify_recaptcha_response( $response ) {
 
     $secret = '6Lfu7ZcUAAAAAMe3cwcLhmvXv5FqJb8Qos7NFwQd';
-    $verify_response = wp_get_content('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$response );
+    $verify_response = wp_f_get_content('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$response );
 
     var_dump($verify_response);
 
