@@ -256,14 +256,9 @@ function process_form_british_citizenship() {
 		}
 		set_transient( 'token_' . $token, 'form-token', 360 ); */
 
-        $recaptcha_success = null;
-        if ( isset($_POST["g-recaptcha-response"] )) {
+        $response = null;
+        if ( isset($_POST["g-recaptcha-response"]) ) {
             $response = verify_recaptcha_response( $_POST["g-recaptcha-response"] );
-            if ($response == false) {
-                $recaptcha_success = false;
-            } else {
-                $recaptcha_success = true;
-            }
         }
 
 
@@ -306,7 +301,7 @@ function process_form_british_citizenship() {
 			'Confirm email'               => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 			'Postal address'              => is_textarea_field_valid( filter_input( INPUT_POST, 'postal-address' ) ),
 			'Spam'                        => is_this_spam( $_POST ),
-            'reCaptcha'                   => $recaptcha_success
+            'reCaptcha'                   => $response
 		);
 		// If any value inside the array is false then there is an error
 		if ( in_array( false, $form_fields ) ) {
