@@ -220,10 +220,14 @@ function return_form_british_citizenship( $content ) {
 	                        <input type="text" id="skype_name" name="skype-name-' . rand(10, 99) . '">
 	                    </div>
 	                    <div class="form-row">
+	                        <div class="g-recaptcha" data-sitekey="6Lfu7ZcUAAAAALdMID1CqanOaCLHlQ-kw5RjFHn3"></div>
+	                    </div>
+	                    <div class="form-row">
 	                        <input type="submit" alt="Submit" name="submit-bc" id="submit-tna-form" value="Submit">
 	                    </div>
 	                </fieldset>
-	            </form>';
+	            </form>
+	            <script src="https://www.google.com/recaptcha/api.js" async defer></script>';
 	// If the form submission comes with errors give us back
 	// the form populated with form data and error messages
 	if ( $tna_error_message ) {
@@ -251,6 +255,13 @@ function process_form_british_citizenship() {
 			return;
 		}
 		set_transient( 'token_' . $token, 'form-token', 360 ); */
+
+        $response = null;
+        if ( isset($_POST["g-recaptcha-response"]) ) {
+            $response = verify_recaptcha_response( $_POST["g-recaptcha-response"] );
+        }
+
+
 		// Global variables
 		global $tna_success_message,
 		       $tna_error_message,
@@ -289,7 +300,8 @@ function process_form_british_citizenship() {
 			'Email'                       => is_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'               => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 			'Postal address'              => is_textarea_field_valid( filter_input( INPUT_POST, 'postal-address' ) ),
-			'Spam'                        => is_this_spam( $_POST )
+			'Spam'                        => is_this_spam( $_POST ),
+            'reCaptcha'                   => $response
 		);
 		// If any value inside the array is false then there is an error
 		if ( in_array( false, $form_fields ) ) {

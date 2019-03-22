@@ -84,7 +84,7 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 		$tna_error_messages['Name'] = 'Please enter your name';
 		$tna_error_messages['Email'] = 'Please enter your email address';
 		$data = display_error_message( array( 'Name' => false, 'Email' => 'info@domain.com'  ) );
-		$this->assertEquals($data, '<div class="emphasis-block error-message" role="alert"><h3>Sorry, there was a problem</h3><p>Please check the highlighted fields to proceed.</p></div>');
+		$this->assertEquals($data, '<div class="emphasis-block error-message" role="alert"><h3>Sorry, there was a problem</h3><p>Please check any highlighted fields and the reCAPTCHA checkbox to proceed.</p></div>');
 	}
 	public function testFormToken()
 	{
