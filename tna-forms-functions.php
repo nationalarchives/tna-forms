@@ -311,3 +311,62 @@ function cf_add_contact_forms_meta_box() {
 	add_meta_box('cf-receipt-email', 'Contact form user receipt email', 'cf_receipt_email_markup', 'page', 'normal', 'high', null);
 	add_meta_box('cf-get-tna-email', 'Contact form TNA recipient', 'cf_get_tna_email_markup', 'page', 'side', 'low', null);
 }
+
+function get_client_ip() {
+    //whether ip is from share internet
+    if (!empty($_SERVER['HTTP_CLIENT_IP']))
+    {
+        $ip_address = $_SERVER['HTTP_CLIENT_IP'];
+    }
+    //whether ip is from proxy
+    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+    {
+        $ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    }
+    //whether ip is from remote address
+    else
+    {
+        $ip_address = $_SERVER['REMOTE_ADDR'];
+    }
+    return $ip_address;
+}
+
+function wp_f_verify_result( $result ) {
+    if ( is_wp_error( $result ) ) {
+        $result = false;
+    } elseif ( wp_remote_retrieve_response_code( $result ) == '404' ) {
+        $result = false;
+    } else {
+        $result = true;
+    }
+    return $result;
+}
+
+function wp_f_get_content( $url ) {
+    if ( ! class_exists( 'WP_Http' ) ) {
+        include_once( ABSPATH . WPINC . '/class-http.php' );
+    }
+    $request = new WP_Http;
+    $result  = $request->request( $url );
+    if ( wp_f_verify_result( $result ) ) {
+        $content = $result['body'];
+    } else {
+        $content = null;
+    }
+    return $content;
+}
+
+function verify_recaptcha_response( $response ) {
+
+    $secret = '6Lfu7ZcUAAAAAMe3cwcLhmvXv5FqJb8Qos7NFwQd';
+    $verify_response = wp_f_get_content('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$response );
+
+    $response_data = json_decode($verify_response);
+
+    if ( $response_data->success ) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}

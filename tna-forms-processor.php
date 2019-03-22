@@ -26,8 +26,10 @@ class Form_Processor {
 		if ( is_array( $data ) ) {
 			$display_data = '<div class="form-data"><ul>';
 			foreach ( $data as $field_name => $field_value ) {
-				if ( strpos( $field_name,
-						'skype-name' ) !== false || $field_name == 'confirm-email-required' || $field_name == 'confirm-email'
+				if ( strpos( $field_name, 'skype-name' ) !== false ||
+                    $field_name == 'confirm-email-required' ||
+                    $field_name == 'confirm-email' ||
+                    $field_name == 'g-recaptcha-response'
 				) {
 
 					// do nothing
@@ -84,7 +86,19 @@ class Form_Processor {
 	 * @return array
 	 */
 	public function get_data( $data ) {
-		$form_data = array();
+
+        $form_data = array();
+
+        $response = null;
+
+        if ( $data["g-recaptcha-response"] ) {
+            $response = verify_recaptcha_response( $data["g-recaptcha-response"] );
+        }
+
+        if ($response == false) {
+            $form_data['robot-success'] = false;
+        }
+
 		foreach ( $data as $key => $value ) {
 			if ( $key == 'tna-form' || $key == 'timestamp' || strpos( $key, 'submit' ) !== false ) {
 				// do nothing
@@ -159,7 +173,7 @@ class Form_Processor {
 		// If any value inside the array is false then there is an error
 		if ( isset( $form_data['spam'] ) ) {
 
-			$client_ip   = $_SERVER['REMOTE_ADDR'];
+			$client_ip   = get_client_ip();
 
 			// Oops! Spam!
 			$this->log_spam( 'yes', date_timestamp_get( date_create() ), $user_email, $client_ip );
@@ -228,7 +242,7 @@ class Form_Processor {
 	public function error_message() {
 		$error_message = '<div class="emphasis-block error-message" role="alert">';
 		$error_message .= '<h3>Sorry, there was a problem</h3>';
-		$error_message .= '<p>Please check the highlighted fields to proceed.</p></div>';
+		$error_message .= '<p>Please check the highlighted fields and the reCAPTCHA checkbox to proceed.</p></div>';
 
 		return $error_message;
 	}

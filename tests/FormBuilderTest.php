@@ -45,12 +45,6 @@ class FormBuilderTest extends \PHPUnit_Framework_TestCase {
 		$class = new \Form_Builder();
 		$this->assertTrue( method_exists($class, 'form_ends') );
 	}
-	public function testFormBuilderMethodFormEndsReturns()
-	{
-		$class = new \Form_Builder();
-		$html = $class->form_ends();
-		$this->assertEquals($html, '</form>');
-	}
 	public function testFormBuilderMethodFieldsetBegins()
 	{
 		$class = new \Form_Builder();
@@ -155,12 +149,6 @@ class FormBuilderTest extends \PHPUnit_Framework_TestCase {
 	{
 		$class = new \Form_Builder();
 		$this->assertTrue( method_exists($class, 'submit_form') );
-	}
-	public function testFormBuilderMethodSubmitFormReturns()
-	{
-		$class = new \Form_Builder();
-		$html = $class->submit_form( 'submit', 'submit' );
-		$this->assertEquals($html, '<div class="form-row"><input type="submit" name="submit" id="submit" value="Submit"></div>');
 	}
 	public function testFormBuilderMethodHelpText()
 	{
