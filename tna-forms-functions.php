@@ -84,7 +84,7 @@ function display_compiled_form_data( $data ) {
 	if ( is_array( $data ) ) {
 		$display_data = '<div class="form-data"><ul>';
 		foreach ( $data as $field_name => $field_value ) {
-			if ( $field_name == 'Spam' || $field_name == 'Confirm email') {
+			if ( $field_name == 'Spam' || $field_name == 'Confirm email' || $field_name == 'reCaptcha' ) {
 				// do nothing
 			} else {
 				$display_data .= '<li>' . $field_name . ': ' . $field_value . '</li>';
@@ -98,7 +98,7 @@ function display_compiled_form_data( $data ) {
 
 function display_error_message() {
 	$error_message = '<div class="emphasis-block error-message" role="alert"><h3>Sorry, there was a problem</h3>';
-	$error_message .= '<p>Please check the highlighted fields to proceed.</p></div>';
+	$error_message .= '<p>Please check any highlighted fields and the reCAPTCHA checkbox to proceed.</p></div>';
 
 	return $error_message;
 }
