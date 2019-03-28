@@ -11,7 +11,7 @@ class Form_Builder {
      * @return string
      */
     public function form_begins($id, $value, $no_validate = false ) {
-	    $token = token( 8, 40 );
+	    $token = token( 16 );
 		$form = '<form action=""  id="%s" class="form-abandonment" method="POST" ' . $this->novalidate_for_testing( $no_validate ) . '>';
 		$form .= '<input type="hidden" name="tna-form" value="%s">';
 		$form .= '<input type="hidden" name="token" value="' . $token . '">';

@@ -157,9 +157,10 @@ function form_token() {
 	return $token;
 }
 
-function token($n, $l, $token = '') {
+function token($n, $token = '') {
 
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $l = $n*4;
 
     if ( $token ) {
         $output = str_split($token, $n);
