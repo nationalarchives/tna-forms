@@ -373,7 +373,7 @@ class Form_Processor {
             $n = $stored_ip+1;
             set_transient( $tans_id, $n, 20*MINUTE_IN_SECONDS );
             $this->log_ip( date_timestamp_get( date_create() ), $user_email, $id.' - '.$client_ip );
-            // return false;
+            return false;
         } else {
             $n = $stored_ip+1;
             set_transient( $tans_id, $n, 20*MINUTE_IN_SECONDS );
