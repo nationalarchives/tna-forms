@@ -17,3 +17,6 @@ composer.phar
 
 ### SASS cache
 .sass-cache
+
+ip_log.txt
+spam_log.txt

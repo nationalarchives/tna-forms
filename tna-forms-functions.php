@@ -157,13 +157,16 @@ function form_token() {
 	return $token;
 }
 
-function token($a = 8, $b = 8, $token = '') {
+function token($n, $l, $token = '') {
 
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     if ( $token ) {
-        $output = str_split($token, $a);
-        if ( get_transient( $output[0] ) && get_transient( $output[1] ) ) {
+        $output = str_split($token, $n);
+        if ( get_transient( $output[0] ) &&
+            get_transient( $output[1] ) &&
+            get_transient( $token )
+        ) {
             delete_transient( $output[0] );
             delete_transient( $output[1] );
             return true;
@@ -172,19 +175,16 @@ function token($a = 8, $b = 8, $token = '') {
         }
     }
 
-    $token_a = '';
-    for ($i = 0; $i < $a; $i++) {
-        $token_a .= $characters[mt_rand(0, strlen($characters) - 1)];
+    $fresh_token = '';
+    for ($i = 0; $i < $l; $i++) {
+        $fresh_token .= $characters[mt_rand(0, strlen($characters) - 1)];
     }
-    set_transient( $token_a, $token_a, 45*MINUTE_IN_SECONDS );
+    $output = str_split($fresh_token, $n);
+    set_transient( $fresh_token, $fresh_token, 45*MINUTE_IN_SECONDS );
+    set_transient( $output[0], $output[0], 45*MINUTE_IN_SECONDS );
+    set_transient( $output[1], $output[1], 45*MINUTE_IN_SECONDS );
 
-    $token_b = '';
-    for ($i = 0; $i < $b; $i++) {
-        $token_b .= $characters[mt_rand(0, strlen($characters) - 1)];
-    }
-    set_transient( $token_b, $token_b, 45*MINUTE_IN_SECONDS );
-
-    return $token_a.$token_b;
+    return $fresh_token;
 }
 
 function get_tna_email( $user = '' ) {
