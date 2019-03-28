@@ -157,6 +157,36 @@ function form_token() {
 	return $token;
 }
 
+function token($a = 8, $b = 8, $token = '') {
+
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    if ( $token ) {
+        $output = str_split($token, $a);
+        if ( get_transient( $output[0] ) && get_transient( $output[1] ) ) {
+            delete_transient( $output[0] );
+            delete_transient( $output[1] );
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    $token_a = '';
+    for ($i = 0; $i < $a; $i++) {
+        $token_a .= $characters[mt_rand(0, strlen($characters) - 1)];
+    }
+    set_transient( $token_a, $token_a, 45*MINUTE_IN_SECONDS );
+
+    $token_b = '';
+    for ($i = 0; $i < $b; $i++) {
+        $token_b .= $characters[mt_rand(0, strlen($characters) - 1)];
+    }
+    set_transient( $token_b, $token_b, 45*MINUTE_IN_SECONDS );
+
+    return $token_a.$token_b;
+}
+
 function get_tna_email( $user = '' ) {
 	global $post;
 	$meta_user = get_post_meta($post->ID, 'cf_get_tna_email', true);

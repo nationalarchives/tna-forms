@@ -93,13 +93,13 @@ class Form_Processor {
 			if ( $key == 'tna-form' || $key == 'timestamp' || strpos( $key, 'submit' ) !== false ) {
 				// do nothing
 			} elseif ( $key == 'token' ) {
-				$saved_token = get_transient( 'tna-token-'.$value );
-				if ( !$saved_token ) {
-					$form_data['spam'] = true;
-				} else {
-					delete_transient( 'tna-token-'.$value );
-				}
-			}elseif ( strpos( $key, 'skype-name' ) !== false && trim( $value ) !== '' ) {
+                $saved_token = get_transient( 'tna-token-'.$value );
+                if ( !$saved_token ) {
+                    $form_data['spam'] = true;
+                } else {
+                    delete_transient( 'tna-token-'.$value );
+                }
+            } elseif ( strpos( $key, 'skype-name' ) !== false && trim( $value ) !== '' ) {
 				$form_data['spam'] = true;
 			} else {
 				if ( strpos( $key, 'required' ) !== false ) {
@@ -351,6 +351,12 @@ class Form_Processor {
 			file_put_contents( $file, $log, FILE_APPEND );
 		}
 	}
+
+    public function log_ip( $time, $email, $ip ) {
+        $file = plugin_dir_path( __FILE__ ) . 'ip_log.txt';
+        $log  = $ip . ' : ' . $time . ' - ' . $email . PHP_EOL;
+        file_put_contents( $file, $log, FILE_APPEND );
+    }
 
 	public function check_ip( $client_ip, $user_email ) {
 
