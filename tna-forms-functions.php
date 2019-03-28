@@ -149,8 +149,8 @@ function send_form_via_email( $email, $subject, $ref_number, $content, $spam ) {
 function form_token() {
 	$token = md5( uniqid( "", true ) );
 
-	// Save token and keep for 6 hours
-	set_transient( 'tna-token-'.$token, $token, 6*HOUR_IN_SECONDS );
+	// Save token and keep for 45 minutes
+	set_transient( 'tna-token-'.$token, $token, 45*MINUTE_IN_SECONDS );
 
 	return $token;
 }

@@ -89,16 +89,6 @@ class Form_Processor {
 
         $form_data = array();
 
-        $response = null;
-
-        if ( $data["g-recaptcha-response"] ) {
-            $response = verify_recaptcha_response( $data["g-recaptcha-response"] );
-        }
-
-        if ($response == false) {
-            $form_data['robot-success'] = false;
-        }
-
 		foreach ( $data as $key => $value ) {
 			if ( $key == 'tna-form' || $key == 'timestamp' || strpos( $key, 'submit' ) !== false ) {
 				// do nothing
