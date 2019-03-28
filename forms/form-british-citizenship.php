@@ -224,9 +224,12 @@ function return_form_british_citizenship( $content ) {
 	                    </div>
 	                </fieldset>
 	            </form>';
+	if ( isset( $_POST['submit-bc'] ) ) {
+        process_form_british_citizenship();
+    }
 	// If the form submission comes with errors give us back
 	// the form populated with form data and error messages
-	if ( $tna_error_message ) {
+	elseif ( $tna_error_message ) {
 		return $tna_error_message . $form;
 	}
 	// If the form is successful give us the confirmation content
@@ -243,15 +246,21 @@ function process_form_british_citizenship() {
 	// The processing happens at form submission.
 	// If no form is submitted we stop here.
 	if ( ! is_admin() && isset( $_POST['submit-bc'] ) ) {
-		// Checks for token
-		// If the token exists then the form has been submitted so do nothing
-		/* $token = filter_input( INPUT_POST, 'token' );
-		if ( get_transient( 'token_' . $token ) ) {
-			$_POST = array();
-			return;
-		}
-		set_transient( 'token_' . $token, 'form-token', 360 ); */
 
+		// Checks for token
+        if ( isset( $_POST['token'] ) ) {
+            $saved_token = get_transient('tna-token-'.$_POST['token']);
+            if (!$saved_token) {
+                $token = false;
+            } else {
+                $token = $_POST['token'];
+                delete_transient('tna-token-'.$_POST['token']);
+            }
+        } else {
+            $token = false;
+        }
+
+        $client_ip   = get_client_ip();
 
 		// Global variables
 		global $tna_success_message,
@@ -291,8 +300,11 @@ function process_form_british_citizenship() {
 			'Email'                       => is_email_field_valid( filter_input( INPUT_POST, 'email' ) ),
 			'Confirm email'               => does_fields_match( $_POST['confirm-email'], $_POST['email'] ),
 			'Postal address'              => is_textarea_field_valid( filter_input( INPUT_POST, 'postal-address' ) ),
-			'Spam'                        => is_this_spam( $_POST )
+			'Spam'                        => is_this_spam( $_POST ),
+            'Token'                       => $token,
+            'IP'                          => $client_ip
 		);
+
 		// If any value inside the array is false then there is an error
 		if ( in_array( false, $form_fields ) ) {
 
@@ -337,4 +349,3 @@ function process_form_british_citizenship() {
 		}
 	}
 }
-add_action('wp', 'process_form_british_citizenship');
