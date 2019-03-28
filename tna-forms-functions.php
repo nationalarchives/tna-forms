@@ -81,6 +81,7 @@ function print_page() {
 }
 
 function display_compiled_form_data( $data ) {
+
 	if ( is_array( $data ) ) {
 		$display_data = '<div class="form-data"><ul>';
 		foreach ( $data as $field_name => $field_value ) {
@@ -91,7 +92,7 @@ function display_compiled_form_data( $data ) {
 			}
 		}
 		$display_data .= '</ul></div>';
-        $display_data .= '<p style="color:#ddd";>Token: '.$data['Token'].' '.$data['IP'].'</p>';
+        $display_data .= '<p style="color:#fff";>Token: '.$data['Token'].'</p><p style="color:#ddd";>This was received from IP '.$data['IP'].'</p>';
 
 		return $display_data;
 	}

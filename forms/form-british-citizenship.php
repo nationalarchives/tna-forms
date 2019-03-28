@@ -220,22 +220,22 @@ function return_form_british_citizenship( $content ) {
 	                        <input type="text" id="skype_name" name="skype-name-' . rand(10, 99) . '">
 	                    </div>
 	                    <div class="form-row">
-	                        <input type="submit" alt="Submit" name="submit-bc" id="submit-tna-form" value="Submit">
+	                        <input type="submit" alt="Submit" name="submit-bcf" id="submit-tna-form" value="Submit">
 	                    </div>
 	                </fieldset>
 	            </form>';
-	if ( isset( $_POST['submit-bc'] ) ) {
+	if ( isset( $_POST['submit-bcf'] ) ) {
         process_form_british_citizenship();
+        // If the form submission comes with errors give us back
+        // the form populated with form data and error messages
+        if ( $tna_error_message ) {
+            return $tna_error_message . $form;
+        }
+        // If the form is successful give us the confirmation content
+        elseif ( $tna_success_message ) {
+            return $tna_success_message . print_page();
+        }
     }
-	// If the form submission comes with errors give us back
-	// the form populated with form data and error messages
-	elseif ( $tna_error_message ) {
-		return $tna_error_message . $form;
-	}
-	// If the form is successful give us the confirmation content
-	elseif ( $tna_success_message ) {
-		return $tna_success_message . print_page();
-	}
 	// If no form submission, hence the user has
 	// accessed the page for the first time, give us an empty form
 	else {
@@ -244,8 +244,6 @@ function return_form_british_citizenship( $content ) {
 }
 function process_form_british_citizenship() {
 	// The processing happens at form submission.
-	// If no form is submitted we stop here.
-	if ( ! is_admin() && isset( $_POST['submit-bc'] ) ) {
 
 		// Checks for token
         if ( isset( $_POST['token'] ) ) {
@@ -305,6 +303,7 @@ function process_form_british_citizenship() {
             'IP'                          => $client_ip
 		);
 
+
 		// If any value inside the array is false then there is an error
 		if ( in_array( false, $form_fields ) ) {
 
@@ -314,6 +313,7 @@ function process_form_british_citizenship() {
 			$tna_error_message = display_error_message();
 
 			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
+
 		} else {
 
 			// Yay! Success!
@@ -347,5 +347,4 @@ function process_form_british_citizenship() {
 				$email_to_tna, $form_fields['Spam'] );
 			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 		}
-	}
 }
