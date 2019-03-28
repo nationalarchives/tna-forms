@@ -351,13 +351,24 @@ class Form_Processor {
 		}
 	}
 
-    public function log_ip( $time, $email, $ip ) {
+    /**
+     * @param $time
+     * @param $email
+     * @param $ip
+     */
+    public function log_ip($time, $email, $ip ) {
         $file = plugin_dir_path( __FILE__ ) . 'ip_log.txt';
         $log  = $ip . ' : ' . $time . ' - ' . $email . PHP_EOL;
         file_put_contents( $file, $log, FILE_APPEND );
     }
 
-	public function check_ip( $client_ip, $user_email, $id ) {
+    /**
+     * @param $client_ip
+     * @param $user_email
+     * @param $id
+     * @return bool
+     */
+    public function check_ip($client_ip, $user_email, $id ) {
 
         if (strpos($client_ip, ':') !== false) {
             $client_ip = current(explode(':', $client_ip));
