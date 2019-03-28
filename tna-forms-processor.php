@@ -160,6 +160,12 @@ class Form_Processor {
 			$user_email = '';
 		}
 
+		$ip_status = $this->check_ip( get_client_ip(), $user_email );
+
+		if ( $ip_status == false ) {
+            $form_data['spam'] = true;
+        }
+
 		// If any value inside the array is false then there is an error
 		if ( isset( $form_data['spam'] ) ) {
 
@@ -345,4 +351,31 @@ class Form_Processor {
 			file_put_contents( $file, $log, FILE_APPEND );
 		}
 	}
+
+	public function check_ip( $client_ip, $user_email ) {
+
+        if (strpos($client_ip, ':') !== false) {
+            $client_ip = current(explode(':', $client_ip));
+        }
+        // If IP is stored in transient then spam is true
+        /*if ( get_transient('blocked_ip_'.$client_ip) ) {
+            return false;
+        }*/
+
+        $stored_ip = get_transient('ip_'.$client_ip);
+
+        if ( !$stored_ip ) {
+            set_transient( 'ip_'.$client_ip, 1, 20*MINUTE_IN_SECONDS );
+            $this->log_ip( date_timestamp_get( date_create() ), $user_email, $client_ip );
+        } elseif ( $stored_ip > 3 ) {
+            $n = $stored_ip+1;
+            set_transient( 'ip_'.$client_ip, $n, 20*MINUTE_IN_SECONDS );
+            $this->log_ip( date_timestamp_get( date_create() ), $user_email, $client_ip );
+            return false;
+        } else {
+            $n = $stored_ip+1;
+            set_transient( 'ip_'.$client_ip, $n, 20*MINUTE_IN_SECONDS );
+        }
+        return true;
+    }
 }
