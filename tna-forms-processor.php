@@ -94,9 +94,11 @@ class Form_Processor {
 			if ( $key == 'timestamp' || strpos( $key, 'submit' ) !== false ) {
 				// do nothing
 			} elseif ( $key == 'token' ) {
-                $saved_token = token( 16, $value );
+                $saved_token = get_transient( 'tna-token-'.$value );
                 if ( !$saved_token ) {
                     $form_data['spam'] = true;
+                } else {
+                    delete_transient( 'tna-token-'.$value );
                 }
             } elseif ( strpos( $key, 'skype-name' ) !== false && trim( $value ) !== '' ) {
 				$form_data['spam'] = true;
