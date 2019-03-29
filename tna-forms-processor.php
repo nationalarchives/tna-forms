@@ -30,7 +30,8 @@ class Form_Processor {
                     $field_name == 'confirm-email-required' ||
                     $field_name == 'confirm-email' ||
                     $field_name == 'g-recaptcha-response' ||
-                    $field_name == 'tna-form'
+                    $field_name == 'tna-form' ||
+                    $field_name == 'timestamp'
 				) {
 
 					// do nothing
@@ -91,7 +92,7 @@ class Form_Processor {
         $form_data = array();
 
 		foreach ( $data as $key => $value ) {
-			if ( $key == 'timestamp' || strpos( $key, 'submit' ) !== false ) {
+			if ( strpos( $key, 'submit' ) !== false ) {
 				// do nothing
 			} elseif ( $key == 'token' ) {
                 $saved_token = get_transient( 'tna-token-'.$value );
@@ -161,7 +162,7 @@ class Form_Processor {
 			$user_email = '';
 		}
 
-		$ip_status = $this->check_ip( get_client_ip(), $user_email, $form_data['tna-form']);
+		$ip_status = $this->check_ip( get_client_ip(), $user_email, $form_data['tna-form'], $form_data['timestamp'] );
 
 		if ( $ip_status == false ) {
             $form_data['spam'] = true;
@@ -368,12 +369,18 @@ class Form_Processor {
      * @param $client_ip
      * @param $user_email
      * @param $id
+     * @param $time_stamp
      * @return bool
      */
-    public function check_ip($client_ip, $user_email, $id ) {
+    public function check_ip( $client_ip, $user_email, $id, $time_stamp ) {
 
         if (strpos($client_ip, ':') !== false) {
             $client_ip = current(explode(':', $client_ip));
+        }
+
+        if ( (time() - $time_stamp) < 3  ) {
+            $this->log_ip( date_timestamp_get( date_create() ), $user_email, 'Too fast - '.$id.' - '.$client_ip );
+            return false;
         }
 
         $tans_id = str_replace(' ', '_', $id ).'_ip_'.$client_ip;
@@ -382,14 +389,14 @@ class Form_Processor {
 
         if ( !$stored_ip ) {
             set_transient( $tans_id, 1, 20*MINUTE_IN_SECONDS );
-        } elseif ( $stored_ip > 3 ) {
-            $n = $stored_ip+1;
-            set_transient( $tans_id, $n, 20*MINUTE_IN_SECONDS );
-            $this->log_ip( date_timestamp_get( date_create() ), $user_email, $id.' - '.$client_ip );
-            return false;
         } else {
             $n = $stored_ip+1;
             set_transient( $tans_id, $n, 20*MINUTE_IN_SECONDS );
+
+            if ( $stored_ip > 3 ) {
+                $this->log_ip( date_timestamp_get( date_create() ), $user_email, $id.' - '.$client_ip );
+                return false;
+            }
         }
         return true;
     }

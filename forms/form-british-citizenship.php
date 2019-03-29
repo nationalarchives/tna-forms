@@ -260,6 +260,18 @@ function process_form_british_citizenship() {
 
         $client_ip   = get_client_ip();
 
+        if ( isset($_POST['email']) ) {
+            $client_email = $_POST['email'];
+        } else {
+            $client_email = '';
+        }
+
+        $ip_status = check_ip( get_client_ip(), $client_email, $_POST['tna-form'], $_POST['timestamp'] );
+
+        if ( $ip_status == false ) {
+            $token = false;
+        }
+
 		// Global variables
 		global $tna_success_message,
 		       $tna_error_message,
@@ -347,4 +359,33 @@ function process_form_british_citizenship() {
 				$email_to_tna, $form_fields['Spam'] );
 			log_spam( $form_fields['Spam'], date_timestamp_get( date_create() ), $form_fields['Email'] );
 		}
+}
+
+function check_ip( $client_ip, $user_email, $id, $time_stamp ) {
+
+    if (strpos($client_ip, ':') !== false) {
+        $client_ip = current(explode(':', $client_ip));
+    }
+
+    if ( (time() - $time_stamp) < 3  ) {
+        $this->log_ip( date_timestamp_get( date_create() ), $user_email, 'Too fast - '.$id.' - '.$client_ip );
+        return false;
+    }
+
+    $tans_id = str_replace(' ', '_', $id ).'_ip_'.$client_ip;
+
+    $stored_ip = get_transient($tans_id);
+
+    if ( !$stored_ip ) {
+        set_transient( $tans_id, 1, 20*MINUTE_IN_SECONDS );
+    } else {
+        $n = $stored_ip+1;
+        set_transient( $tans_id, $n, 20*MINUTE_IN_SECONDS );
+
+        if ( $stored_ip > 3 ) {
+            $this->log_ip( date_timestamp_get( date_create() ), $user_email, $id.' - '.$client_ip );
+            return false;
+        }
+    }
+    return true;
 }
