@@ -368,7 +368,7 @@ function check_ip( $client_ip, $user_email, $id, $time_stamp ) {
     }
 
     if ( (time() - $time_stamp) < 3  ) {
-        $this->log_ip( date_timestamp_get( date_create() ), $user_email, 'Too fast - '.$id.' - '.$client_ip );
+        log_ip( date_timestamp_get( date_create() ), $user_email, 'Too fast - '.$id.' - '.$client_ip );
         return false;
     }
 
@@ -383,9 +383,15 @@ function check_ip( $client_ip, $user_email, $id, $time_stamp ) {
         set_transient( $tans_id, $n, 20*MINUTE_IN_SECONDS );
 
         if ( $stored_ip > 3 ) {
-            $this->log_ip( date_timestamp_get( date_create() ), $user_email, $id.' - '.$client_ip );
+            log_ip( date_timestamp_get( date_create() ), $user_email, $id.' - '.$client_ip );
             return false;
         }
     }
     return true;
+}
+
+function log_ip($time, $email, $ip ) {
+    $file = plugin_dir_path( __FILE__ ) . 'ip_log.txt';
+    $log  = $ip . ' : ' . $time . ' - ' . $email . PHP_EOL;
+    file_put_contents( $file, $log, FILE_APPEND );
 }
