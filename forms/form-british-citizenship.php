@@ -368,7 +368,7 @@ function check_ip( $client_ip, $user_email, $id, $time_stamp ) {
     }
 
     if ( (time() - $time_stamp) < 3  ) {
-        log_ip( date_timestamp_get( date_create() ), $user_email, 'Too fast - '.$id.' - '.$client_ip );
+        log_ip( $time_stamp, $user_email, 'Too fast - '.$id.' - '.$client_ip );
         return false;
     }
 
@@ -383,7 +383,7 @@ function check_ip( $client_ip, $user_email, $id, $time_stamp ) {
         set_transient( $tans_id, $n, 20*MINUTE_IN_SECONDS );
 
         if ( $stored_ip > 3 ) {
-            log_ip( date_timestamp_get( date_create() ), $user_email, $id.' - '.$client_ip );
+            log_ip( $time_stamp, $user_email, $id.' - '.$client_ip );
             return false;
         }
     }
