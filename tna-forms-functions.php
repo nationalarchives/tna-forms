@@ -81,16 +81,18 @@ function print_page() {
 }
 
 function display_compiled_form_data( $data ) {
+
 	if ( is_array( $data ) ) {
 		$display_data = '<div class="form-data"><ul>';
 		foreach ( $data as $field_name => $field_value ) {
-			if ( $field_name == 'Spam' || $field_name == 'Confirm email' || $field_name == 'reCaptcha' ) {
+			if ( $field_name == 'Spam' || $field_name == 'Confirm email' || $field_name == 'Token' || $field_name == 'IP' ) {
 				// do nothing
 			} else {
 				$display_data .= '<li>' . $field_name . ': ' . $field_value . '</li>';
 			}
 		}
 		$display_data .= '</ul></div>';
+        $display_data .= '<p style="color:#fff";>Token: '.$data['Token'].'</p><p style="color:#ddd";>This was received from IP '.$data['IP'].'</p>';
 
 		return $display_data;
 	}
@@ -98,7 +100,7 @@ function display_compiled_form_data( $data ) {
 
 function display_error_message() {
 	$error_message = '<div class="emphasis-block error-message" role="alert"><h3>Sorry, there was a problem</h3>';
-	$error_message .= '<p>Please check any highlighted fields and the reCAPTCHA checkbox to proceed.</p></div>';
+	$error_message .= '<p>Please check any highlighted fields.</p></div>';
 
 	return $error_message;
 }
@@ -153,6 +155,37 @@ function form_token() {
 	set_transient( 'tna-token-'.$token, $token, 45*MINUTE_IN_SECONDS );
 
 	return $token;
+}
+
+function token($n, $token = '') {
+
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $l = $n*4;
+
+    if ( $token ) {
+        $output = str_split($token, $n);
+        if ( get_transient( $output[0] ) &&
+            get_transient( $output[1] ) &&
+            get_transient( $token )
+        ) {
+            delete_transient( $output[0] );
+            delete_transient( $output[1] );
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    $fresh_token = '';
+    for ($i = 0; $i < $l; $i++) {
+        $fresh_token .= $characters[mt_rand(0, strlen($characters) - 1)];
+    }
+    $output = str_split($fresh_token, $n);
+    set_transient( $fresh_token, $fresh_token, 45*MINUTE_IN_SECONDS );
+    set_transient( $output[0], $output[0], 45*MINUTE_IN_SECONDS );
+    set_transient( $output[1], $output[1], 45*MINUTE_IN_SECONDS );
+
+    return $fresh_token;
 }
 
 function get_tna_email( $user = '' ) {
