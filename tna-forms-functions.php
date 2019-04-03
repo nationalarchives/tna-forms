@@ -81,16 +81,18 @@ function print_page() {
 }
 
 function display_compiled_form_data( $data ) {
+
 	if ( is_array( $data ) ) {
 		$display_data = '<div class="form-data"><ul>';
 		foreach ( $data as $field_name => $field_value ) {
-			if ( $field_name == 'Spam' || $field_name == 'Confirm email') {
+			if ( $field_name == 'Spam' || $field_name == 'Confirm email' || $field_name == 'Token' || $field_name == 'IP' ) {
 				// do nothing
 			} else {
 				$display_data .= '<li>' . $field_name . ': ' . $field_value . '</li>';
 			}
 		}
 		$display_data .= '</ul></div>';
+        $display_data .= '<p style="color:#fff";>Token: '.$data['Token'].'</p><p style="color:#ddd";>This was received from IP '.$data['IP'].'</p>';
 
 		return $display_data;
 	}
@@ -98,7 +100,7 @@ function display_compiled_form_data( $data ) {
 
 function display_error_message() {
 	$error_message = '<div class="emphasis-block error-message" role="alert"><h3>Sorry, there was a problem</h3>';
-	$error_message .= '<p>Please check the highlighted fields to proceed.</p></div>';
+	$error_message .= '<p>Please check any highlighted fields.</p></div>';
 
 	return $error_message;
 }
@@ -149,10 +151,41 @@ function send_form_via_email( $email, $subject, $ref_number, $content, $spam ) {
 function form_token() {
 	$token = md5( uniqid( "", true ) );
 
-	// Save token and keep for 6 hours
-	set_transient( 'tna-token-'.$token, $token, 6*HOUR_IN_SECONDS );
+	// Save token and keep for 45 minutes
+	set_transient( 'tna-token-'.$token, $token, 45*MINUTE_IN_SECONDS );
 
 	return $token;
+}
+
+function token($n, $token = '') {
+
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $l = $n*4;
+
+    if ( $token ) {
+        $output = str_split($token, $n);
+        if ( get_transient( $output[0] ) &&
+            get_transient( $output[1] ) &&
+            get_transient( $token )
+        ) {
+            delete_transient( $output[0] );
+            delete_transient( $output[1] );
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    $fresh_token = '';
+    for ($i = 0; $i < $l; $i++) {
+        $fresh_token .= $characters[mt_rand(0, strlen($characters) - 1)];
+    }
+    $output = str_split($fresh_token, $n);
+    set_transient( $fresh_token, $fresh_token, 45*MINUTE_IN_SECONDS );
+    set_transient( $output[0], $output[0], 45*MINUTE_IN_SECONDS );
+    set_transient( $output[1], $output[1], 45*MINUTE_IN_SECONDS );
+
+    return $fresh_token;
 }
 
 function get_tna_email( $user = '' ) {
@@ -310,4 +343,63 @@ function cf_meta_box_save( $post_id ) {
 function cf_add_contact_forms_meta_box() {
 	add_meta_box('cf-receipt-email', 'Contact form user receipt email', 'cf_receipt_email_markup', 'page', 'normal', 'high', null);
 	add_meta_box('cf-get-tna-email', 'Contact form TNA recipient', 'cf_get_tna_email_markup', 'page', 'side', 'low', null);
+}
+
+function get_client_ip() {
+    //whether ip is from share internet
+    if (!empty($_SERVER['HTTP_CLIENT_IP']))
+    {
+        $ip_address = $_SERVER['HTTP_CLIENT_IP'];
+    }
+    //whether ip is from proxy
+    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+    {
+        $ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    }
+    //whether ip is from remote address
+    else
+    {
+        $ip_address = $_SERVER['REMOTE_ADDR'];
+    }
+    return $ip_address;
+}
+
+function wp_f_verify_result( $result ) {
+    if ( is_wp_error( $result ) ) {
+        $result = false;
+    } elseif ( wp_remote_retrieve_response_code( $result ) == '404' ) {
+        $result = false;
+    } else {
+        $result = true;
+    }
+    return $result;
+}
+
+function wp_f_get_content( $url ) {
+    if ( ! class_exists( 'WP_Http' ) ) {
+        include_once( ABSPATH . WPINC . '/class-http.php' );
+    }
+    $request = new WP_Http;
+    $result  = $request->request( $url );
+    if ( wp_f_verify_result( $result ) ) {
+        $content = $result['body'];
+    } else {
+        $content = null;
+    }
+    return $content;
+}
+
+function verify_recaptcha_response( $response ) {
+
+    $secret = '6Lfu7ZcUAAAAAMe3cwcLhmvXv5FqJb8Qos7NFwQd';
+    $verify_response = wp_f_get_content('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$response );
+
+    $response_data = json_decode($verify_response);
+
+    if ( $response_data->success ) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }

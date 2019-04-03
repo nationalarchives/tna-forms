@@ -26,8 +26,12 @@ class Form_Processor {
 		if ( is_array( $data ) ) {
 			$display_data = '<div class="form-data"><ul>';
 			foreach ( $data as $field_name => $field_value ) {
-				if ( strpos( $field_name,
-						'skype-name' ) !== false || $field_name == 'confirm-email-required' || $field_name == 'confirm-email'
+				if ( strpos( $field_name, 'skype-name' ) !== false ||
+                    $field_name == 'confirm-email-required' ||
+                    $field_name == 'confirm-email' ||
+                    $field_name == 'g-recaptcha-response' ||
+                    $field_name == 'tna-form' ||
+                    $field_name == 'timestamp'
 				) {
 
 					// do nothing
@@ -84,18 +88,20 @@ class Form_Processor {
 	 * @return array
 	 */
 	public function get_data( $data ) {
-		$form_data = array();
+
+        $form_data = array();
+
 		foreach ( $data as $key => $value ) {
-			if ( $key == 'tna-form' || $key == 'timestamp' || strpos( $key, 'submit' ) !== false ) {
+			if ( strpos( $key, 'submit' ) !== false ) {
 				// do nothing
 			} elseif ( $key == 'token' ) {
-				$saved_token = get_transient( 'tna-token-'.$value );
-				if ( !$saved_token ) {
-					$form_data['spam'] = true;
-				} else {
-					delete_transient( 'tna-token-'.$value );
-				}
-			}elseif ( strpos( $key, 'skype-name' ) !== false && trim( $value ) !== '' ) {
+                $saved_token = get_transient( 'tna-token-'.$value );
+                if ( !$saved_token ) {
+                    $form_data['spam'] = true;
+                } else {
+                    delete_transient( 'tna-token-'.$value );
+                }
+            } elseif ( strpos( $key, 'skype-name' ) !== false && trim( $value ) !== '' ) {
 				$form_data['spam'] = true;
 			} else {
 				if ( strpos( $key, 'required' ) !== false ) {
@@ -156,10 +162,16 @@ class Form_Processor {
 			$user_email = '';
 		}
 
+		$ip_status = $this->check_ip( get_client_ip(), $user_email, $form_data['tna-form'], $form_data['timestamp'] );
+
+		if ( $ip_status == false ) {
+            $form_data['spam'] = true;
+        }
+
 		// If any value inside the array is false then there is an error
 		if ( isset( $form_data['spam'] ) ) {
 
-			$client_ip   = $_SERVER['REMOTE_ADDR'];
+			$client_ip   = get_client_ip();
 
 			// Oops! Spam!
 			$this->log_spam( 'yes', date_timestamp_get( date_create() ), $user_email, $client_ip );
@@ -228,7 +240,7 @@ class Form_Processor {
 	public function error_message() {
 		$error_message = '<div class="emphasis-block error-message" role="alert">';
 		$error_message .= '<h3>Sorry, there was a problem</h3>';
-		$error_message .= '<p>Please check the highlighted fields to proceed.</p></div>';
+		$error_message .= '<p>Please check the highlighted fields and the reCAPTCHA checkbox to proceed.</p></div>';
 
 		return $error_message;
 	}
@@ -341,4 +353,51 @@ class Form_Processor {
 			file_put_contents( $file, $log, FILE_APPEND );
 		}
 	}
+
+    /**
+     * @param $time
+     * @param $email
+     * @param $ip
+     */
+    public function log_ip($time, $email, $ip ) {
+        $file = plugin_dir_path( __FILE__ ) . 'ip_log.txt';
+        $log  = $ip . ' : ' . $time . ' - ' . $email . PHP_EOL;
+        file_put_contents( $file, $log, FILE_APPEND );
+    }
+
+    /**
+     * @param $client_ip
+     * @param $user_email
+     * @param $id
+     * @param $time_stamp
+     * @return bool
+     */
+    public function check_ip( $client_ip, $user_email, $id, $time_stamp ) {
+
+        if (strpos($client_ip, ':') !== false) {
+            $client_ip = current(explode(':', $client_ip));
+        }
+
+        if ( (time() - $time_stamp) < 3  ) {
+            $this->log_ip( $time_stamp, $user_email, 'Too fast - '.$id.' - '.$client_ip );
+            return false;
+        }
+
+        $tans_id = str_replace(' ', '_', $id ).'_ip_'.$client_ip;
+
+        $stored_ip = get_transient($tans_id);
+
+        if ( !$stored_ip ) {
+            set_transient( $tans_id, 1, 20*MINUTE_IN_SECONDS );
+        } else {
+            $n = $stored_ip+1;
+            set_transient( $tans_id, $n, 20*MINUTE_IN_SECONDS );
+
+            if ( $stored_ip > 3 ) {
+                $this->log_ip( $time_stamp, $user_email, $id.' - '.$client_ip );
+                return false;
+            }
+        }
+        return true;
+    }
 }
