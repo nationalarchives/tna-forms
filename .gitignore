@@ -20,3 +20,5 @@ composer.phar
 
 ip_log.txt
 spam_log.txt
+
+package-lock.json
