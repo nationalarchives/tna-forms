@@ -1,11 +1,13 @@
-/*
-*  
-*/
 .tna-forms-panels {
-  border: 1px solid #ccc;
+  border: none;
   margin: 20px 0px 40px; }
   .tna-forms-panels.box-height .entry-content {
-    padding: 10px 20px; }
+    border: 2px solid #dde5d5;
+    padding: 10px 20px;
+    margin-bottom: 0;
+    min-height: 345px; }
+  .tna-forms-panels.box-height .entry-content:after {
+    display: none; }
   .tna-forms-panels .center-text {
     text-align: center; }
   .tna-forms-panels .contact-icon {
