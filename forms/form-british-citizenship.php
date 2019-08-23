@@ -55,7 +55,7 @@ function return_form_british_citizenship( $content ) {
 	                            <input type="number" aria-labelledby="dob year" id="certificate_year" name="certificate-year" ' . set_value( 'certificate-year' ) . '>
 	                        </span>
 	                    </div>
-	                    <div class="form-row dob-approx">
+	                    <div class="form-row checkbox dob-approx">
 	                        <input id="certificate_dob_approx" type="checkbox" name="certificate-dob-approx" value="Yes" ' . set_value( 'certificate-dob-approx', 'checkbox' ) . '>
 	                        <label for="certificate_dob_approx">Tick here if the date of birth is an approximation.</label>
 	                    </div>
@@ -190,11 +190,11 @@ function return_form_british_citizenship( $content ) {
 	                    <div class="form-row">
 	                        <p id="prefer-contact">Do you have an email address ?</p>
 		                    ' . field_error_message( 'preferred-contact', 'Preferred contact', 'radio' ) . '
-		                    <div class="form-col pref_contact">
+		                    <div class="form-col pref_contact radio">
 		                        <input id="contact_email" aria-labelledby="we-can-let prefer-contact email-label" type="radio" name="preferred-contact" value="Email" ' . set_value( 'preferred-contact', 'radio', 'Email' ) . '>
 		                        <label id="email-label" for="contact_email">Yes</label>
 		                    </div>
-		                    <div class="form-col pref_contact">
+		                    <div class="form-col pref_contact radio">
 		                        <input id="contact_postal" aria-labelledby="prefer-contact post-label" type="radio" name="preferred-contact" value="Post" ' . set_value( 'preferred-contact', 'radio', 'Post' ) . '>
 		                        <label id="post-label" for="contact_postal">No</label>
 		                    </div>
