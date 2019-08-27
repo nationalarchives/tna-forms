@@ -75,7 +75,7 @@ function success_message_header( $content = '', $number ) {
 }
 
 function print_page() {
-	$print = '<input class="print_button" type="button" onClick="window.print()" value="Print this page"/>';
+	$print = '<p><input class="print_button" type="button" onClick="window.print()" value="Print this page"/></p>';
 
 	return $print;
 }
@@ -92,7 +92,7 @@ function display_compiled_form_data( $data ) {
 			}
 		}
 		$display_data .= '</ul></div>';
-        $display_data .= '<p style="color:#fff";>Token: '.$data['Token'].'</p><p style="color:#ddd";>This was received from IP '.$data['IP'].'</p>';
+        $display_data .= '<p style="color:#fff";>Token: '.$data['Token'].'<br>This was received from IP '.$data['IP'].'</p>';
 
 		return $display_data;
 	}
