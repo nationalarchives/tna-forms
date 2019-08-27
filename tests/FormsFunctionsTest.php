@@ -72,7 +72,7 @@ class FormsFunctionsTest extends \PHPUnit_Framework_TestCase {
 	public function testDisplayCompiledFormDataOutput()
 	{
 		$data = display_compiled_form_data( array( 'Name' => 'John Smith', 'Token' => 'xxx', 'IP' => '1.1.1.1' ) );
-		$this->assertEquals($data, '<div class="form-data"><ul><li>Name: John Smith</li></ul></div><p style="color:#fff";>Token: xxx</p><p style="color:#ddd";>This was received from IP 1.1.1.1</p>');
+		$this->assertEquals($data, '<div class="form-data"><ul><li>Name: John Smith</li></ul></div><p style="color:#fff";>Token: xxx<br>This was received from IP 1.1.1.1</p>');
 	}
 	public function testDisplayErrorMessage()
 	{
