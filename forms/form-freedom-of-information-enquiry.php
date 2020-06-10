@@ -15,17 +15,17 @@
  *
  */
 
-function return_form_default( $content ) {
+function return_form_foie( $content ) {
 
 	// Global variables to determine if the form submission
 	// is successful or comes back with errors
 	global $tna_success_message,
 	       $tna_error_message;
 
-	$form_name = 'Default';
+	$form_name = 'Freeedom of Information enquiry';
 
 	// If the form is submitted the form data is processed
-	if ( isset( $_POST['submit-default'] ) ) {
+	if ( isset( $_POST['submit-foie'] ) ) {
 
 		$process = new Form_Processor;
 		$form_data = $process->get_data( $_POST );
@@ -34,16 +34,13 @@ function return_form_default( $content ) {
 
 	// HTML form string
 	$html = new Form_Builder;
-	$form =  $html->form_begins( 'default', $form_name ) .
-	         $html->fieldset_begins( 'Your enquiry' ) .
+	$form =  $html->form_begins( 'foie', $form_name ) .
+	         $html->fieldset_begins( 'Your details' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_required_input() .
-	         $html->form_text_input( 'Country', 'country', 'country', 'Please enter your country' ) .
 	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .
-	         $html->form_text_input( 'Provide the dates or years that you are interested in', 'dates', 'dates' ) .
-	         $html->form_newsletter_checkbox() .
 	         $html->form_spam_filter( rand(10, 99) ) .
-	         $html->submit_form( 'submit-default', 'submit-tna-form' ) .
+	         $html->submit_form( 'submit-foie', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
 	         $html->form_ends();
 
