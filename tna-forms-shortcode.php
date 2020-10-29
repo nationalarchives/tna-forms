@@ -57,6 +57,9 @@ function tna_forms_shortcode( $atts, $content = '' ) {
         case 'Freedom of Information enquiry':
         	return return_form_foie ($content);
         	break;
+        case 'Freedom of Information closed record enquiry':
+        	return return_form_foicr ($content);
+        	break;
 		default:
 			return return_form_default( $content );
 			break;
