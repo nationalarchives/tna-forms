@@ -37,7 +37,13 @@ function freedomOfInformationEnquiryForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name-required": {
+            "title": {
+                noSpace: true
+            },
+            "first-name": {
+                noSpace: true
+            },
+            "last-name-required": {
                 required: true,
                 noSpace: true
             },
@@ -57,8 +63,8 @@ function freedomOfInformationEnquiryForm(){
          * Error messages
          * */
         messages: {
-            "full-name-required": {
-                required: "Please enter your full name"
+            "last-name-required": {
+                required: "Please enter your last name"
             },
             "email-required": "Please enter your email address",
             "confirm-email-required": {
