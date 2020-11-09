@@ -34,7 +34,7 @@ function return_form_foie( $content ) {
 
 	// HTML form string
 	$html = new Form_Builder;
-	$form =  $html->form_begins( 'foie', $form_name ) .
+	$form =  $html->form_begins( 'foie', $form_name, 'novalidate' ) .
 	         $html->fieldset_begins( 'Your details' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_required_input() .

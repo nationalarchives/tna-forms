@@ -59,24 +59,33 @@ class Form_Processor {
     public function display_data_xml($data, $ref_number)
     {
         if (is_array($data)) {
-            $display_data = '<div style="background:#eee; border:1px solid #ccc; ">';
-            foreach ($data as $field_name => $field_value) {
-                if (strpos($field_name,
-                        'skype-name') !== false || $field_name == 'confirm-email-required' || $field_name == 'confirm-email'
-                ) {
-                    // do nothing
-                }
-            }
-            $display_data .= '&lt;enquiry_id&gt;' . $ref_number . '&lt;/enquiry_id&gt;<br>&lt;full_name&gt;' . $data['full-name-required'] . '&lt;/full_name&gt;<br>
-                    &lt;alternative_name&gt;' . $data['alternative-names'] . '&lt;/alternative_name&gt;<br>
-                    &lt;birth_date&gt;' . $data['date-of-birth-required'] . '&lt;/birth_date&gt;<br>
-                    &lt;death_date&gt;' . $data['date_of_death'] . '&lt;/death_date&gt;<br>
-                    &lt;country_of_birth&gt;' . $data['country-of-birth'] . '&lt;/country_of_birth&gt;<br>
-                    &lt;contact_full_name&gt;' . $data['full-name-contact-details-required'] . '&lt;/contact_full_name&gt;<br>
-                    &lt;contact_email&gt;' . $data['email-required'] . '&lt;/contact_email&gt;<br>
-                    &lt;contact_address&gt;' . $data['postal-address-required'] . '&lt;/contact_address&gt;';
+            if (!empty($data['date-of-birth-required'])) {
+	            $display_data = '<div style="background:#eee; border:1px solid #ccc; ">';
+	            foreach ($data as $field_name => $field_value) {
+	                if (strpos($field_name,
+	                        'skype-name') !== false || $field_name == 'confirm-email-required' || $field_name == 'confirm-email'
+	                ) {
+	                    // do nothing
+	                }
+	            }
 
-            $display_data .= '</div>';
+	            $display_data .= '&lt;enquiry_id&gt;' . $ref_number . '&lt;/enquiry_id&gt;<br>
+	            		&lt;full_name&gt;' . $data['full-name-required'] . '&lt;/full_name&gt;<br>
+	                    &lt;alternative_name&gt;' . $data['alternative-names'] . '&lt;/alternative_name&gt;<br>
+	                    &lt;birth_date&gt;' . $data['date-of-birth-required'] . '&lt;/birth_date&gt;<br>
+	                    &lt;death_date&gt;' . $data['date_of_death'] . '&lt;/death_date&gt;<br>
+	                    &lt;country_of_birth&gt;' . $data['country-of-birth'] . '&lt;/country_of_birth&gt;<br>
+	                    &lt;contact_full_name&gt;' . $data['full-name-contact-details-required'] . '&lt;/contact_full_name&gt;<br>
+	                    &lt;contact_email&gt;' . $data['email-required'] . '&lt;/contact_email&gt;<br>
+	                    &lt;contact_address&gt;' . $data['postal-address-required'] . '&lt;/contact_address&gt;';
+	            $display_data .= '</div>';
+
+        	} else {
+	            $display_data = '&lt;enquiry_id&gt;' . $ref_number . '&lt;/enquiry_id&gt;<br>
+	            		&lt;full_name&gt;' . $data['full-name-required'] . '&lt;/full_name&gt;<br>
+	                    &lt;contact_email&gt;' . $data['email-required'] . '&lt;/contact_email&gt;<br>
+	                    &lt;enquiry&gt;' . $data['enquiry-required'] . '&lt;/enquiry&gt;';
+        	}
 
             return $display_data;
         }
