@@ -29,7 +29,7 @@ function return_form_foie( $content ) {
 
 		$process = new Form_Processor;
 		$form_data = $process->get_data( $_POST );
-		$process->process_data( $form_name, $form_data, 'foiteam' );
+		$process->process_data( $form_name, $form_data, 'foiteam', '', '', true);
 	}
 
 	// HTML form string
