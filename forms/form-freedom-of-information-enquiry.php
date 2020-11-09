@@ -29,14 +29,13 @@ function return_form_foie( $content ) {
 
 		$process = new Form_Processor;
 		$form_data = $process->get_data( $_POST );
-		$process->process_data( $form_name, $form_data, 'foiteam', '', '', true);
+		$process->process_data( $form_name, $form_data, 'foiteam', '', true);
 	}
 
 	// HTML form string
 	$html = new Form_Builder;
 	$form =  $html->form_begins( 'foie', $form_name ) .
 	         $html->fieldset_begins( 'Your details' ) .
-	         $html->form_text_input( 'Title', 'title', 'title', 'Please enter your title' ) .
 	         $html->form_text_input( 'Full name', 'full_name', 'full-name', 'Please enter your full name' ) .
 	         $html->form_email_required_input() .
 	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .
