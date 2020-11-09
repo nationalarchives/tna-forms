@@ -37,6 +37,9 @@ function freedomOfInformationEnquiryForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
+            "title": {
+                noSpace: true
+            },
             "full-name-required": {
                 required: true,
                 noSpace: true
