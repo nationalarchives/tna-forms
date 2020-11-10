@@ -38,9 +38,11 @@ function freedomOfInformationEnquiryForm(){
         },
         rules: {
             "title": {
+                required: false,
                 noSpace: true
             },
             "first-name": {
+                required: false,
                 noSpace: true
             },
             "last-name-required": {

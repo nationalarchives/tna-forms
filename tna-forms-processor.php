@@ -59,24 +59,34 @@ class Form_Processor {
     public function display_data_xml($data, $ref_number)
     {
         if (is_array($data)) {
-            $display_data = '<div style="background:#eee; border:1px solid #ccc; ">';
-            foreach ($data as $field_name => $field_value) {
-                if (strpos($field_name,
-                        'skype-name') !== false || $field_name == 'confirm-email-required' || $field_name == 'confirm-email'
-                ) {
-                    // do nothing
-                }
-            }
-            $display_data .= '&lt;enquiry_id&gt;' . $ref_number . '&lt;/enquiry_id&gt;<br>&lt;full_name&gt;' . $data['full-name-required'] . '&lt;/full_name&gt;<br>
-                    &lt;alternative_name&gt;' . $data['alternative-names'] . '&lt;/alternative_name&gt;<br>
-                    &lt;birth_date&gt;' . $data['date-of-birth-required'] . '&lt;/birth_date&gt;<br>
-                    &lt;death_date&gt;' . $data['date_of_death'] . '&lt;/death_date&gt;<br>
-                    &lt;country_of_birth&gt;' . $data['country-of-birth'] . '&lt;/country_of_birth&gt;<br>
-                    &lt;contact_full_name&gt;' . $data['full-name-contact-details-required'] . '&lt;/contact_full_name&gt;<br>
-                    &lt;contact_email&gt;' . $data['email-required'] . '&lt;/contact_email&gt;<br>
-                    &lt;contact_address&gt;' . $data['postal-address-required'] . '&lt;/contact_address&gt;';
 
-            $display_data .= '</div>';
+        	if (!empty($data['date-of-birth-required'])){
+	            $display_data = '<div style="background:#eee; border:1px solid #ccc; ">';
+	            foreach ($data as $field_name => $field_value) {
+	                if (strpos($field_name,
+	                        'skype-name') !== false || $field_name == 'confirm-email-required' || $field_name == 'confirm-email'
+	                ) {
+	                    // do nothing
+	                }
+	            }
+	            $display_data .= '&lt;enquiry_id&gt;' . $ref_number . '&lt;/enquiry_id&gt;<br>&lt;full_name&gt;' . $data['full-name-required'] . '&lt;/full_name&gt;<br>
+	                    &lt;alternative_name&gt;' . $data['alternative-names'] . '&lt;/alternative_name&gt;<br>
+	                    &lt;birth_date&gt;' . $data['date-of-birth-required'] . '&lt;/birth_date&gt;<br>
+	                    &lt;death_date&gt;' . $data['date_of_death'] . '&lt;/death_date&gt;<br>
+	                    &lt;country_of_birth&gt;' . $data['country-of-birth'] . '&lt;/country_of_birth&gt;<br>
+	                    &lt;contact_full_name&gt;' . $data['full-name-contact-details-required'] . '&lt;/contact_full_name&gt;<br>
+	                    &lt;contact_email&gt;' . $data['email-required'] . '&lt;/contact_email&gt;<br>
+	                    &lt;contact_address&gt;' . $data['postal-address-required'] . '&lt;/contact_address&gt;';
+
+	            $display_data .= '</div>';
+	        } else {
+	            $display_data .= '&lt;enquiry_id&gt;' . $ref_number . '&lt;/enquiry_id&gt;<br>
+	            		&lt;title&gt;' . $data['title'] . '&lt;/title&gt;<br>
+	            		&lt;first_name&gt;' . $data['first-name'] . '&lt;/first_name&gt;<br>
+	            		&lt;last_name&gt;' . $data['last-name-required'] . '&lt;/last_name&gt;<br>
+	                    &lt;contact_email&gt;' . $data['email-required'] . '&lt;/contact_email&gt;<br>
+	                    &lt;enquiry&gt;' . $data['enquiry-required'] . '&lt;/enquiry&gt;';
+	        }
 
             return $display_data;
         }
@@ -199,19 +209,30 @@ class Form_Processor {
 			// Email to TNA
             if ($send_xml_format) {
                 //$alt_email = $this->get_tna_email($alt_recipient); ---> Please keep for further reference
-                $form_content = $this->display_data($form_data) .
-                    $form_content = "<br>" .
-                        $form_content = "Cut and paste the XML appearing below this line into the 'Description' field in Infoservice." .
-                            $form_content = "<br>" .
-                                $form_content = "<br>" .
-                                    $form_content = $this->display_data_xml($form_data, $ref_number);
+
+				if ($form_name == 'Freedom of information enquiry') {
+                   $form_content = $this->display_data_xml($form_data, $ref_number);
+		        } else {
+	                $form_content = $this->display_data($form_data) .
+	                    $form_content = "<br>" .
+	                        $form_content = "Cut and paste the XML appearing below this line into the 'Description' field in Infoservice." .
+	                            $form_content = "<br>" .
+	                                $form_content = "<br>" .
+	                                    $form_content = $this->display_data_xml($form_data, $ref_number);
+		        }
             } else {
                 $alt_email = '';
             }
 
             $tna_email = $this->get_tna_email($tna_recipient);
 
-            $tna_email_content = $this->message($form_name, $form_content, $ref_number, $post->ID);
+
+            if ($form_name == 'Freedom of information enquiry') {
+            	$tna_email_content = $form_content;
+            } else {
+            	$tna_email_content = $this->message($form_name, $form_content, $ref_number, $post->ID);
+			}
+
             $this->send_email($tna_email, $form_name . ' - Ref:', $ref_number, $tna_email_content, $alt_email);
 
 			// Subscribe to newsletter
@@ -272,6 +293,8 @@ class Form_Processor {
 			$content .= '<h3>' . $form_name . '</h3>';
 			$content .= '<h3>Summary of enquiry</h3>';
 		}
+
+		
 		$content .= $form_content;
 
 		return $content;
