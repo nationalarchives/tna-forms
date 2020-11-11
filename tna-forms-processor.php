@@ -233,7 +233,13 @@ class Form_Processor {
             	$tna_email_content = $this->message($form_name, $form_content, $ref_number, $post->ID);
 			}
 
-            $this->send_email($tna_email, $form_name . ' - Ref:', $ref_number, $tna_email_content, $alt_email);
+			if ($form_name == 'Freedom of information enquiry') {
+				$tna_subject = '? FOI DIRECT ';
+				} else {
+				$tna_subject = $form_name . ' - Ref:';
+			}
+
+            $this->send_email($tna_email, $tna_subject, $ref_number, $tna_email_content, $alt_email);
 
 			// Subscribe to newsletter
 			if ( isset( $form_data['newsletter'] ) ) {
@@ -279,11 +285,7 @@ class Form_Processor {
 		if ( $type ) {
 			$subject = 'Your reference number:';
 		} else {
-			if ($form_name == 'Freedom of information enquiry') {
-				$subject = '? FOI DIRECT '
-			} else {
-				$subject = 'Reference number:';
-			}
+			$subject = 'Reference number:';
 		}
 		$content = success_message_header( $subject, $ref_number );
 		if ( $type == 'user' ) {
