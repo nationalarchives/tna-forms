@@ -279,7 +279,11 @@ class Form_Processor {
 		if ( $type ) {
 			$subject = 'Your reference number:';
 		} else {
-			$subject = 'Reference number:';
+			if ($form_name == 'Freedom of information enquiry') {
+				$subject = '? FOI DIRECT '
+			} else {
+				$subject = 'Reference number:';
+			}
 		}
 		$content = success_message_header( $subject, $ref_number );
 		if ( $type == 'user' ) {
