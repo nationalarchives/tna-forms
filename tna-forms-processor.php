@@ -280,7 +280,7 @@ class Form_Processor {
 			$subject = 'Your reference number:';
 		} else {
 			if ($form_name == 'Freedom of information enquiry') {
-				$subject = '? FOI DIRECT '
+				$subject = '? FOI DIRECT ';
 			} else {
 				$subject = 'Reference number:';
 			}
