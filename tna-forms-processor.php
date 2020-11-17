@@ -82,7 +82,7 @@ class Form_Processor {
 	        } else {
 	            $display_data .= '&lt;enquiry_id&gt;' . $ref_number . '&lt;/enquiry_id&gt;<br>
 	            		&lt;title&gt;' . $data['title'] . '&lt;/title&gt;<br>
-	            		&lt;first_name&gt;' . $data['first-name'] . '&lt;/first_name&gt;<br>
+	            		&lt;first_name&gt;' . $data['first-name-required'] . '&lt;/first_name&gt;<br>
 	            		&lt;last_name&gt;' . $data['last-name-required'] . '&lt;/last_name&gt;<br>
 	                    &lt;contact_email&gt;' . $data['email-required'] . '&lt;/contact_email&gt;<br>
 	                    &lt;enquiry&gt;' . $data['enquiry-required'] . '&lt;/enquiry&gt;';

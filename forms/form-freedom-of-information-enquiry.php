@@ -37,7 +37,7 @@ function return_form_foie( $content ) {
 	$form =  $html->form_begins( 'foie', $form_name, 'novalidate' ) .
 	         $html->fieldset_begins( 'Your details' ) .
 	         $html->form_text_input( 'Title', 'title', 'title') .
-			 $html->form_text_input( 'First Name', 'first_name', 'first-name') .
+			 $html->form_text_input( 'First Name', 'first_name', 'first-name', 'Please enter your first name' ) .
 	         $html->form_text_input( 'Last name', 'last_name', 'last-name', 'Please enter your last name' ) .
 	         $html->form_email_required_input() .
 	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for.' ) .

@@ -42,7 +42,7 @@ function freedomOfInformationEnquiryForm(){
                 noSpace: true
             },
             "first-name": {
-                required: false,
+                required: true,
                 noSpace: true
             },
             "last-name-required": {
