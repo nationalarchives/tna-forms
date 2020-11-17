@@ -3,6 +3,8 @@
 # tna-forms
 TNA forms Wordpress plugin
 
+v1.10 (2020-11-17)
+
 ## Usage
 
 ### Shortcode
