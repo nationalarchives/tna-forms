@@ -191,7 +191,7 @@ function return_form_british_citizenship( $content ) {
 	                        <p id="prefer-contact">Do you have an email address ?</p>
 		                    ' . field_error_message( 'preferred-contact', 'Preferred contact', 'radio' ) . '
 		                    <div class="form-col pref_contact radio">
-		                        <input id="contact_email" aria-labelledby="we-can-let prefer-contact email-label" type="radio" name="preferred-contact" value="Email" ' . set_value( 'preferred-contact', 'radio', 'Email' ) . '>
+		                        <input id="contact_email" aria-labelledby="prefer-contact email-label" type="radio" name="preferred-contact" value="Email" ' . set_value( 'preferred-contact', 'radio', 'Email' ) . '>
 		                        <label id="email-label" for="contact_email">Yes</label>
 		                    </div>
 		                    <div class="form-col pref_contact radio">
