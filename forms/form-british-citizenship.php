@@ -84,8 +84,8 @@ function return_form_british_citizenship( $content ) {
 	                        <input type="text" id="certificate_number" name="certificate-number" ' . set_value( 'certificate-number' ) . '>
 	                    </div>
 	                    <div class="form-row registration-year">
-	                    <p><label id="year-of-registration" class="form-label" for="certificate_year_issued_from">Year of registration <span class="optional">(optional)</span></label></p>
-	                        <label id="from" class="form-label" for="certificate_year_issued_from">from</label>
+	                    <p>Year of registration <span class="optional">(optional)</span></p>
+	                        <label id="from" class="form-label" for="certificate_year_issued_from"><span class="sr-only">Year of registration (optional)</span>from</label>
 	                        <select id="certificate_year_issued_from" name="certificate-year-issued-from">
 	                            <option value="" aria-label="Certificate year of registration from (optional). Please select a year.">Please select</option>
 	                            <option value="1949" ' . set_value( 'certificate-year-issued-from', 'select', '1949' ) . '>1949</option>
@@ -127,7 +127,7 @@ function return_form_british_citizenship( $content ) {
 	                            <option value="1985" ' . set_value( 'certificate-year-issued-from', 'select', '1985' ) . '>1985</option>
 								<option value="1986" ' . set_value( 'certificate-year-issued-from', 'select', '1986' ) . '>1986</option>
 	                        </select>
-	                        <label id="to" class="form-label" for="certificate_year_issued_to">to</label>
+	                        <label id="to" class="form-label" for="certificate_year_issued_to"><span class="sr-only">Year of registration (optional)</span>to</label>
 	                        <select id="certificate_year_issued_to" name="certificate-year-issued-to">
 	                            <option value="" aria-label="Certificate year of registration to (optional). Please select a year.">Please select</option>
 	                            <option value="1949" ' . set_value( 'certificate-year-issued-to', 'select', '1949' ) . '>1949</option>
