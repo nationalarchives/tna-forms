@@ -68,7 +68,7 @@ function return_form_british_citizenship( $content ) {
 	                    </div>
 	                </fieldset>
 	                <fieldset class="form-step-2">
-	                    <legend>Certificate details (optional)</legend>
+	                    <legend>Certificate details <span aria-hidden="true">(optional)</span></legend>
 	                    <div class="form-row form-nav">
 	                        <a href="#" title="back" class="button-back">&#10094; Back</a>
 	                    </div>
@@ -84,10 +84,11 @@ function return_form_british_citizenship( $content ) {
 	                        <input type="text" id="certificate_number" name="certificate-number" ' . set_value( 'certificate-number' ) . '>
 	                    </div>
 	                    <div class="form-row registration-year">
+						
 	                    <p>Year of registration <span class="optional">(optional)</span></p>
 	                        <label id="from" class="form-label" for="certificate_year_issued_from"><span class="sr-only">Year of registration (optional)</span>from</label>
 	                        <select id="certificate_year_issued_from" name="certificate-year-issued-from">
-	                            <option value="" aria-label="Certificate year of registration from (optional). Please select a year.">Please select</option>
+	                            <option value="" aria-label="Please select a year.">Please select</option>
 	                            <option value="1949" ' . set_value( 'certificate-year-issued-from', 'select', '1949' ) . '>1949</option>
 	                            <option value="1950" ' . set_value( 'certificate-year-issued-from', 'select', '1950' ) . '>1950</option>
 	                            <option value="1951" ' . set_value( 'certificate-year-issued-from', 'select', '1951' ) . '>1951</option>
@@ -129,7 +130,7 @@ function return_form_british_citizenship( $content ) {
 	                        </select>
 	                        <label id="to" class="form-label" for="certificate_year_issued_to"><span class="sr-only">Year of registration (optional)</span>to</label>
 	                        <select id="certificate_year_issued_to" name="certificate-year-issued-to">
-	                            <option value="" aria-label="Certificate year of registration to (optional). Please select a year.">Please select</option>
+	                            <option value="" aria-label="Please select a year.">Please select</option>
 	                            <option value="1949" ' . set_value( 'certificate-year-issued-to', 'select', '1949' ) . '>1949</option>
 	                            <option value="1950" ' . set_value( 'certificate-year-issued-to', 'select', '1950' ) . '>1950</option>
 	                            <option value="1951" ' . set_value( 'certificate-year-issued-to', 'select', '1951' ) . '>1951</option>
