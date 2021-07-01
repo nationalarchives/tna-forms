@@ -317,7 +317,12 @@ class Form_Processor {
 		if ( is_email( $email ) ) {
 
 			// Email Subject
-			$email_subject = $subject . ' ' . $ref_number;
+
+			if (strpos($subject, 'FOI DIRECT') === false) {
+				$email_subject = $subject . ' ' . $ref_number;
+			} else {
+				$email_subject = $subject;
+			}
 
 			// Email message
 			$email_message = $content;
