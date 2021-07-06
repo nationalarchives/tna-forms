@@ -82,6 +82,10 @@ legend {
   width: 146px !important;
   margin-right: 2% !important; }
 
+.registration-year p {
+  font-family: 'Roboto Mono', monospace;
+  margin-bottom: 5px; }
+
 .success-message {
   background-color: #D5EAEA !important;
   border-left: 4px solid #008484 !important; }
