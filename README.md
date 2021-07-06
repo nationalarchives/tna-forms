@@ -3,7 +3,7 @@
 # tna-forms
 TNA forms Wordpress plugin
 
-v1.10 (2020-11-17)
+v1.11 (2021-07-06)
 
 ## Usage
 
