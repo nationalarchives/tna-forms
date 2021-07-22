@@ -86,6 +86,9 @@ class Form_Processor {
 	            		&lt;last_name&gt;' . $data['last-name-required'] . '&lt;/last_name&gt;<br>
 	                    &lt;contact_email&gt;' . $data['email-required'] . '&lt;/contact_email&gt;<br>
 	                    &lt;enquiry&gt;' . $data['enquiry-required'] . '&lt;/enquiry&gt;';
+	            if ($data['country-required']) {
+	            	$display_data .= '<br>&lt;contact_country&gt;' . $data['country-required'] . '&lt;/contact_country&gt;';
+	            }
 	        }
 
             return $display_data;
@@ -210,7 +213,7 @@ class Form_Processor {
             if ($send_xml_format) {
                 //$alt_email = $this->get_tna_email($alt_recipient); ---> Please keep for further reference
 
-				if ($form_name == 'Freedom of information enquiry') {
+				if ($form_name == 'Freedom of information enquiry'  || $form_name == 'Request a paid search') {
                    $form_content = $this->display_data_xml($form_data, $ref_number);
 		        } else {
 	                $form_content = $this->display_data($form_data) .
@@ -227,14 +230,16 @@ class Form_Processor {
             $tna_email = $this->get_tna_email($tna_recipient);
 
 
-            if ($form_name == 'Freedom of information enquiry') {
+            if ($form_name == 'Freedom of information enquiry' || $form_name == 'Request a paid search') {
             	$tna_email_content = $form_content;
             } else {
             	$tna_email_content = $this->message($form_name, $form_content, $ref_number, $post->ID);
 			}
 
 			if ($form_name == 'Freedom of information enquiry') {
-				$tna_subject = '? FOI DIRECT ';
+					$tna_subject = '? FOI DIRECT ';
+				} elseif($form_name == 'Request a paid search') {
+					$tna_subject = '? FOI DIRECT PAID SEARCH';
 				} else {
 				$tna_subject = $form_name . ' - Ref:';
 			}
