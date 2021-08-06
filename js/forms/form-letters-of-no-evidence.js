@@ -37,7 +37,11 @@ function lettersOfNoEvidenceForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name-required": {
+            "frst-name-required": {
+                required: true,
+                noSpace: true
+            },
+            "last-name-required": {
                 required: true,
                 noSpace: true
             },
@@ -58,8 +62,11 @@ function lettersOfNoEvidenceForm(){
          * Error messages
          * */
         messages: {
-            "full-name-required": {
-                required:"Please enter your full name"
+            "first-name-required": {
+                required:"Please enter your first name"
+            },
+             "last-name-required": {
+                required:"Please enter your last name"
             },
             "email-required": "Please enter your email address",
             "confirm-email-required": {
