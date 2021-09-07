@@ -1747,7 +1747,11 @@ function lettersOfNoEvidenceForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name-required": {
+            "frst-name-required": {
+                required: false,
+                noSpace: true
+            },
+            "last-name-required": {
                 required: true,
                 noSpace: true
             },
@@ -1758,23 +1762,58 @@ function lettersOfNoEvidenceForm(){
             "confirm-email-required": {
                 equalTo: "#email"
             },
+            "address-1-required": {
+                required: true,
+                noSpace: true
+            },
+            "address-town-required": {
+                required: true,
+                noSpace: true
+            },
+            "address-postcode-required": {
+                required: true,
+                noSpace: true
+            },
+            "address-country-required": {
+                required: true,
+                noSpace: true
+            },
             "file-format-required":{
                 required: true,
                 noSpace: true
-            }
+            },
+	    "alternative-last-name":{
+		required: true,
+		noSpace: true
+	    }
 
         },
         /**
          * Error messages
          * */
         messages: {
-            "full-name-required": {
-                required:"Please enter your full name"
+            "first-name-required": {
+                required:"Please enter your first name"
+            },
+             "last-name-required": {
+                required:"Please enter your last name"
             },
             "email-required": "Please enter your email address",
             "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
+            },
+            "address-1-required": {
+                required:"Please enter address"
+            },
+            "address-town-required":{
+                required:"Please enter your town or city"
+            },
+            "address-postcode-required":{
+                required:"Please enter your postcode"
+            },
+            "address-country-required": {
+                required:"Please enter your country"
             },
             "file-format-required":{
                 required:"Please enter the file format"
@@ -1792,7 +1831,8 @@ function lettersOfNoEvidenceForm(){
             }
         }
     });
-};/**
+}
+;/**
  * @name  : Newsletter and Contact forms Wordpress plugin
  * @author: TNA WebTeam
  * @owner : The National Archives
