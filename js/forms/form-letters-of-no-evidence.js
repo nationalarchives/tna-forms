@@ -72,7 +72,7 @@ function lettersOfNoEvidenceForm(){
                 required: true,
                 noSpace: true
             },
-	    "alternative-last-name":{
+	    "contact-last-name":{
 		required: true,
 		noSpace: true
 	    }
