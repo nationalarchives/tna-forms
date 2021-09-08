@@ -70,15 +70,22 @@ class Form_Processor {
 	                }
 	            }
 	            $display_data .= '&lt;enquiry_id&gt;' . $ref_number . '&lt;/enquiry_id&gt;<br>
-           		    &lt;first_name&gt;' . $data['first-name-required'] . '&lt;/first_name&gt;<br>
+           		    &lt;first_name&gt;' . $data['first-name'] . '&lt;/first_name&gt;<br>
 	            	    &lt;last_name&gt;' . $data['last-name-required'] . '&lt;/last_name&gt;<br>
-	                    &lt;alternative_name&gt;' . $data['alternative-names'] . '&lt;/alternative_name&gt;<br>
+	                    &lt;alternative_first_name&gt;' . $data['alternative-first-name'] . '&lt;/alternative_first_name&gt;<br>
+	                    &lt;alternative_last_name&gt;' . $data['alternative-last-name'] . '&lt;/alternative_last_name&gt;<br>
 	                    &lt;birth_date&gt;' . $data['date-of-birth-required'] . '&lt;/birth_date&gt;<br>
 	                    &lt;death_date&gt;' . $data['date_of_death'] . '&lt;/death_date&gt;<br>
 	                    &lt;country_of_birth&gt;' . $data['country-of-birth'] . '&lt;/country_of_birth&gt;<br>
-	                    &lt;contact_full_name&gt;' . $data['full-name-contact-details-required'] . '&lt;/contact_full_name&gt;<br>
+	                    &lt;contact_first_name&gt;' . $data['first-name-contact'] . '&lt;/contact_first_name&gt;<br>
+	                    &lt;contact_last_name&gt;' . $data['last-name-contact-required'] . '&lt;/contact_last_name&gt;<br>
 	                    &lt;contact_email&gt;' . $data['email-required'] . '&lt;/contact_email&gt;<br>
-	                    &lt;contact_address&gt;' . $data['postal-address-required'] . '&lt;/contact_address&gt;';
+	                    &lt;contact_address_1&gt;' . $data['address-street-1-required'] . '&lt;/contact_address_1&gt;<br>
+	                    &lt;contact_address_2&gt;' . $data['address-street-2'] . '&lt;/contact_address_2&gt;<br>
+	                    &lt;contact_address_town_city&gt;' . $data['address-town-city-required'] . '&lt;/contact_address_town_city&gt;<br>
+	                    &lt;contact_address_county&gt;' . $data['address-county'] . '&lt;/contact_address_county&gt;<br>
+	                    &lt;contact_address_country&gt;' . $data['address-country-required'] . '&lt;/contact_address_country&gt;<br>
+	                    &lt;contact_address_postcode&gt;' . $data['address-postcode-required'] . '&lt;/contact_address_postcode&gt;';
 
 	            $display_data .= '</div>';
 	        } else {
