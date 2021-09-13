@@ -77,6 +77,7 @@ class Form_Processor {
 	                    &lt;birth_date&gt;' . $data['date-of-birth-required'] . '&lt;/birth_date&gt;<br>
 	                    &lt;death_date&gt;' . $data['date_of_death'] . '&lt;/death_date&gt;<br>
 	                    &lt;country_of_birth&gt;' . $data['country-of-birth'] . '&lt;/country_of_birth&gt;<br>
+	                    &lt;contact_title&gt;' . $data['title-contact'] . '&lt;/contact_title&gt;<br>
 	                    &lt;contact_first_name&gt;' . $data['first-name-contact'] . '&lt;/contact_first_name&gt;<br>
 	                    &lt;contact_last_name&gt;' . $data['last-name-contact-required'] . '&lt;/contact_last_name&gt;<br>
 	                    &lt;contact_email&gt;' . $data['email-required'] . '&lt;/contact_email&gt;<br>

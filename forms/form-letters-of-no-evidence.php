@@ -36,6 +36,7 @@ function return_form_letters_of_no_evidence($content)
         $html->fieldset_ends() .
         $html->fieldset_begins('Your contact details') .
         $html->help_text('Provide your details so we can let you know the outcome of the search for evidence of naturalisation.') .
+        $html->form_text_input('Title', 'title_contact', 'title-contact') .
         $html->form_text_input('First name', 'first_name_contact', 'first-name-contact') .
         $html->form_text_input('Last name', 'last_name_contact', 'last-name-contact', 'Enter your last name') .
         $html->form_email_required_input() .
