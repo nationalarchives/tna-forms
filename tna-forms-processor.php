@@ -70,7 +70,7 @@ class Form_Processor {
 	                }
 	            }
 	            $display_data .= '&lt;enquiry_id&gt;' . $ref_number . '&lt;/enquiry_id&gt;<br>
-           		    &lt;sublect_forename&gt;' . $data['first-name'] . '&lt;/subject_forename&gt;<br>
+           		    &lt;subject_forename&gt;' . $data['first-name'] . '&lt;/subject_forename&gt;<br>
 	            	    &lt;subject_surname&gt;' . $data['last-name-required'] . '&lt;/subject_surname&gt;<br>
 	                    &lt;other_forename&gt;' . $data['alternative-first-name'] . '&lt;/other_forename&gt;<br>
 	                    &lt;other_surname&gt;' . $data['alternative-last-name'] . '&lt;/other_surname&gt;<br>
