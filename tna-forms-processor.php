@@ -70,10 +70,10 @@ class Form_Processor {
 	                }
 	            }
 	            $display_data .= '&lt;enquiry_id&gt;' . $ref_number . '&lt;/enquiry_id&gt;<br>
-           		    &lt;first_name&gt;' . $data['first-name'] . '&lt;/first_name&gt;<br>
-	            	    &lt;last_name&gt;' . $data['last-name-required'] . '&lt;/last_name&gt;<br>
-	                    &lt;alternative_first_name&gt;' . $data['alternative-first-name'] . '&lt;/alternative_first_name&gt;<br>
-	                    &lt;alternative_last_name&gt;' . $data['alternative-last-name'] . '&lt;/alternative_last_name&gt;<br>
+           		    &lt;sublect_forename&gt;' . $data['first-name'] . '&lt;/subject_forename&gt;<br>
+	            	    &lt;subject_surname&gt;' . $data['last-name-required'] . '&lt;/subject_surname&gt;<br>
+	                    &lt;other_forename&gt;' . $data['alternative-first-name'] . '&lt;/other_forename&gt;<br>
+	                    &lt;other_surname&gt;' . $data['alternative-last-name'] . '&lt;/other_surname&gt;<br>
 	                    &lt;birth_date&gt;' . $data['date-of-birth-required'] . '&lt;/birth_date&gt;<br>
 	                    &lt;death_date&gt;' . $data['date_of_death'] . '&lt;/death_date&gt;<br>
 	                    &lt;country_of_birth&gt;' . $data['country-of-birth'] . '&lt;/country_of_birth&gt;<br>
