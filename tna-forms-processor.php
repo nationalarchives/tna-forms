@@ -69,14 +69,24 @@ class Form_Processor {
 	                    // do nothing
 	                }
 	            }
-	            $display_data .= '&lt;enquiry_id&gt;' . $ref_number . '&lt;/enquiry_id&gt;<br>&lt;full_name&gt;' . $data['full-name-required'] . '&lt;/full_name&gt;<br>
-	                    &lt;alternative_name&gt;' . $data['alternative-names'] . '&lt;/alternative_name&gt;<br>
+	            $display_data .= '&lt;enquiry_id&gt;' . $ref_number . '&lt;/enquiry_id&gt;<br>
+           		    &lt;subject_forename&gt;' . $data['first-name'] . '&lt;/subject_forename&gt;<br>
+	            	    &lt;subject_surname&gt;' . $data['last-name-required'] . '&lt;/subject_surname&gt;<br>
+	                    &lt;other_forename&gt;' . $data['alternative-first-name'] . '&lt;/other_forename&gt;<br>
+	                    &lt;other_surname&gt;' . $data['alternative-last-name'] . '&lt;/other_surname&gt;<br>
 	                    &lt;birth_date&gt;' . $data['date-of-birth-required'] . '&lt;/birth_date&gt;<br>
 	                    &lt;death_date&gt;' . $data['date_of_death'] . '&lt;/death_date&gt;<br>
 	                    &lt;country_of_birth&gt;' . $data['country-of-birth'] . '&lt;/country_of_birth&gt;<br>
-	                    &lt;contact_full_name&gt;' . $data['full-name-contact-details-required'] . '&lt;/contact_full_name&gt;<br>
+	                    &lt;contact_title&gt;' . $data['title-contact'] . '&lt;/contact_title&gt;<br>
+	                    &lt;contact_first_name&gt;' . $data['first-name-contact'] . '&lt;/contact_first_name&gt;<br>
+	                    &lt;contact_last_name&gt;' . $data['last-name-contact-required'] . '&lt;/contact_last_name&gt;<br>
 	                    &lt;contact_email&gt;' . $data['email-required'] . '&lt;/contact_email&gt;<br>
-	                    &lt;contact_address&gt;' . $data['postal-address-required'] . '&lt;/contact_address&gt;';
+	                    &lt;contact_address_1&gt;' . $data['address-street-1-required'] . '&lt;/contact_address_1&gt;<br>
+	                    &lt;contact_address_2&gt;' . $data['address-street-2'] . '&lt;/contact_address_2&gt;<br>
+	                    &lt;contact_address_town_city&gt;' . $data['address-town-city-required'] . '&lt;/contact_address_town_city&gt;<br>
+	                    &lt;contact_address_county&gt;' . $data['address-county'] . '&lt;/contact_address_county&gt;<br>
+	                    &lt;contact_address_country&gt;' . $data['address-country-required'] . '&lt;/contact_address_country&gt;<br>
+	                    &lt;contact_address_postcode&gt;' . $data['address-postcode-required'] . '&lt;/contact_address_postcode&gt;';
 
 	            $display_data .= '</div>';
 	        } else {
@@ -213,7 +223,7 @@ class Form_Processor {
             if ($send_xml_format) {
                 //$alt_email = $this->get_tna_email($alt_recipient); ---> Please keep for further reference
 
-				if ($form_name == 'Freedom of information enquiry'  || $form_name == 'Request a paid search') {
+				if ($form_name == 'Freedom of information enquiry'  || $form_name == 'Request a paid search' || $form_name == 'Letters of no evidence') {
                    $form_content = $this->display_data_xml($form_data, $ref_number);
 		        } else {
 	                $form_content = $this->display_data($form_data) .
@@ -230,7 +240,7 @@ class Form_Processor {
             $tna_email = $this->get_tna_email($tna_recipient);
 
 
-            if ($form_name == 'Freedom of information enquiry' || $form_name == 'Request a paid search') {
+            if ($form_name == 'Freedom of information enquiry' || $form_name == 'Request a paid search' || $form_name == 'Letters of no evidence') {
             	$tna_email_content = $form_content;
             } else {
             	$tna_email_content = $this->message($form_name, $form_content, $ref_number, $post->ID);
@@ -240,6 +250,8 @@ class Form_Processor {
 					$tna_subject = '? FOI DIRECT ';
 				} elseif($form_name == 'Request a paid search') {
 					$tna_subject = '? FOI DIRECT PAID SEARCH';
+				} elseif($form_name == 'Letters of no evidence') {
+					$tna_subject = '? FOI DIRECT LONE';
 				} else {
 				$tna_subject = $form_name . ' - Ref:';
 			}
