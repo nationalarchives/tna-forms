@@ -14,6 +14,7 @@ node_modules
 ### Composer template
 composer.phar
 /vendor/
+composer.lock
 
 ### SASS cache
 .sass-cache
@@ -22,3 +23,5 @@ ip_log.txt
 spam_log.txt
 
 package-lock.json
+.DS_Store
+*.swp

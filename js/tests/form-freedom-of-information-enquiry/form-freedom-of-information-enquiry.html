@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Freedom of information enquiry</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="fixture">
+    <form action="" id="freedom-of-information-enquiry" class="form-abandonment" method="POST"><input type="hidden" name="tna-form"
+                                                                               value="Freedom of information enquiry"><input
+            type="hidden" name="token" value="211d1b19d504b01b82fee1ee70eb6439"><input type="hidden" name="timestamp"
+                                                                                       value="1512993971">
+        <fieldset>
+            <legend>Your details</legend>
+            <div class="form-row"><label for="full_name">Full name</label><input type="text" id="full_name"
+                                                                                 name="full-name-required"
+                                                                                 aria-required="true" required></div>
+            <div class="form-row"><label for="email">Email address</label><input type="email" id="email"
+                                                                                 name="email-required"
+                                                                                 aria-required="true" required></div>
+            <div class="form-row"><label for="confirm_email">Please re-type your email address</label><input
+                    type="email" id="confirm_email" name="confirm-email-required" aria-required="true" required></div>
+            <div class="form-row"><label for="enquiry">Your enquiry</label><textarea id="enquiry"
+                                                                                     name="enquiry-required"
+                                                                                     aria-required="true"
+                                                                                     required></textarea></div>
+        </fieldset>
+        <fieldset>
+            <legend>Additional information</legend>
+            <div class="form-row checkbox"><input type="checkbox" id="newsletter" name="newsletter" value="Yes"><label
+                    for="newsletter">Tick here to receive regular email updates about our news, products and services</label>
+                <p>
+                    <small>The National Archives only records personal information, including email addresses, for the
+                        purposes provided. We will not share your details with third parties. For more information read
+                        our <a href="http://www.nationalarchives.gov.uk/legal/privacy.htm" target="_blank">privacy
+                            policy</a>.
+                    </small>
+                </p>
+            </div>
+            <div class="form-row hidden"><label for="skype_name">Skype name (please ignore this field)</label><input
+                    type="text" id="skype_name" name="skype-name-68"></div>
+            <div class="form-row"><input type="submit" name="submit-foie" id="submit-tna-form" value="Submit"></div>
+        </fieldset>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="form-freedom-of-information-enquiry.js"></script>
+</body>
+</html>

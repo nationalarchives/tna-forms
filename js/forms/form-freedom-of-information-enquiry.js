@@ -1,5 +1,5 @@
 /**
- * @contact-form-name: Public sector form
+ * @contact-form-name: Freedom of information enquiry
  *
  * ----- Table of contents -------------------------------------
  *
@@ -8,11 +8,11 @@
  * 3. Add the validation rules
  * */
 
-function paidSearchForm(){
+function freedomOfInformationEnquiryForm(){
     /**
      * 1. Declare variables
      * */
-    var formName = "#paid_search";
+    var formName = "#freedom-of-information-enquiry";
     var form = $(formName);
 
     /**
@@ -36,7 +36,6 @@ function paidSearchForm(){
             $(element).closest('input[type="email"]').removeClass("form-warning");
             $(element).closest('textarea').removeClass("form-warning");
         },
-
         rules: {
             "title": {
                 required: false,
@@ -57,40 +56,30 @@ function paidSearchForm(){
             "confirm-email-required": {
                 equalTo: "#email"
             },
-            "country-required":{
-                required:true,
-                noSpace:true
-            },
             "enquiry-required":{
                 required:true,
                 noSpace:true
             }
         },
-
         /**
          * Error messages
          * */
         messages: {
-            "first-name-required": {
-                required: "Please enter your first name"
-            },
             "last-name-required": {
                 required: "Please enter your last name"
             },
             "email-required": "Please enter your email address",
-            "country-required": "Please enter your country",
             "confirm-email-required": {
                 required:"Please enter your email address",
                 equalTo: "Please enter your email address again"
             },
-            "enquiry-required": {
-                required:"Please provide specific details of the information you are looking for, including any relevant catalogue references."
-            }   
+            "enquiry-required":{
+                required:"Please enter your enquiry"
+            }
         }
     });
 
-
-    $("input[name='submit-paid-search']").on('click', function(){
+    $("input[name='submit-foie']").on('click', function(){
         var emphAlert = ($('.emphasis-block.error-message').length === 1);
         if(form.valid() !== true) {
             if(emphAlert) {

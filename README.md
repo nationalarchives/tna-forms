@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/nationalarchives/tna-forms.svg?branch=master)](https://travis-ci.org/nationalarchives/tna-forms)
-
 # tna-forms
 TNA forms Wordpress plugin
+
+v1.11 (2021-07-06)
 
 ## Usage
 
