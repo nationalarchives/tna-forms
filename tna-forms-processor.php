@@ -223,7 +223,7 @@ class Form_Processor {
             if ($send_xml_format) {
                 //$alt_email = $this->get_tna_email($alt_recipient); ---> Please keep for further reference
 
-				if ($form_name == 'Freedom of information enquiry'  || $form_name == 'Request a paid search' || $form_name == 'Letters of no evidence') {
+				if ($form_name == 'Freedom of information enquiry'  || $form_name == 'Request a paid search' || $form_name == 'Letters of no evidence' || $form_name == 'Records and research enquiry') {
                    $form_content = $this->display_data_xml($form_data, $ref_number);
 		        } else {
 	                $form_content = $this->display_data($form_data) .
@@ -240,7 +240,7 @@ class Form_Processor {
             $tna_email = $this->get_tna_email($tna_recipient);
 
 
-            if ($form_name == 'Freedom of information enquiry' || $form_name == 'Request a paid search' || $form_name == 'Letters of no evidence') {
+            if ($form_name == 'Freedom of information enquiry' || $form_name == 'Request a paid search' || $form_name == 'Letters of no evidence' || $form_name == 'Records and research enquiry') {
             	$tna_email_content = $form_content;
             } else {
             	$tna_email_content = $this->message($form_name, $form_content, $ref_number, $post->ID);
@@ -252,6 +252,8 @@ class Form_Processor {
 					$tna_subject = '? FOI DIRECT PAID SEARCH';
 				} elseif($form_name == 'Letters of no evidence') {
 					$tna_subject = '? FOI DIRECT LONE';
+				} elseif($form_name == 'Records and research enquiry') {
+					$tna_subject = '? FOI DIRECT GENAA';
 				} else {
 				$tna_subject = $form_name . ' - Ref:';
 			}
