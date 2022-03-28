@@ -99,6 +99,9 @@ class Form_Processor {
 	            if ($data['country-required']) {
 	            	$display_data .= '<br>&lt;contact_country&gt;' . $data['country-required'] . '&lt;/contact_country&gt;';
 	            }
+	            if ($data['country']) {
+	            	$display_data .= '<br>&lt;contact_country&gt;' . $data['country'] . '&lt;/contact_country&gt;';
+	            }
 	        }
 
             return $display_data;
@@ -223,7 +226,7 @@ class Form_Processor {
             if ($send_xml_format) {
                 //$alt_email = $this->get_tna_email($alt_recipient); ---> Please keep for further reference
 
-				if ($form_name == 'Freedom of information enquiry'  || $form_name == 'Request a paid search' || $form_name == 'Letters of no evidence' || $form_name == 'Records and research enquiry') {
+		if ($form_name == 'Freedom of information enquiry'  || $form_name == 'Request a paid search' || $form_name == 'Letters of no evidence' || $form_name == 'Records and research enquiry') {
                    $form_content = $this->display_data_xml($form_data, $ref_number);
 		        } else {
 	                $form_content = $this->display_data($form_data) .
