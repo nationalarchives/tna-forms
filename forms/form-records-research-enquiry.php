@@ -31,7 +31,6 @@ function return_form_rre( $content ) {
 	         $html->form_email_required_input() .
 	         $html->form_text_input( 'Country', 'country', 'country' ) .
 	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for, including any relevant catalogue references.' ) .
-	         $html->form_text_input( 'Dates or years that you are interested in', 'dates', 'dates' ) .
 	         $html->form_newsletter_checkbox() .
 	         $html->form_spam_filter( rand(10, 99) ) .
 	         $html->submit_form( 'submit-rre', 'submit-tna-form' ) .
