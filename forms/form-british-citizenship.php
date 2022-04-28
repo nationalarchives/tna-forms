@@ -410,19 +410,20 @@ function process_form_british_citizenship() {
 			$email_to_user = success_message_header( 'Your reference number:', $ref_number );
 			$email_to_user .= confirmation_email_content( $post->ID );
 			$email_to_user .= '<h3>Summary of your enquiry</h3>';
-//			$email_to_user .= display_compiled_form_data( $form_fields );
+			$email_to_user .= display_compiled_form_data( $form_fields );
 
 			// Send email to user
-//			send_form_via_email( $form_fields['Email'][0], 'Check for a certificate of British citizenship - Ref:', $ref_number,
-//				$email_to_user, $form_fields['Spam'][0] );
-
+			if ( $form_fields['Email'][0] ) {
+			send_form_via_email( $form_fields['Email'][0], 'Check for a certificate of British citizenship - Ref:', $ref_number,
+				$email_to_user, $form_fields['Spam'][0] );
+			}
 			// Store email content to TNA into a variable
 			$email_to_tna = success_message_header( 'Reference number:', $ref_number );
 //			$email_to_tna .= display_compiled_form_data( $form_fields );
 			$email_to_tna .= tna_xml_form_data( $form_fields );
 			// Send email to TNA
-//			send_form_via_email( get_tna_email(), 'Certificate of British citizenship request - Ref:', $ref_number,
-//				$email_to_tna, $form_fields['Spam'][0] );
+			send_form_via_email( get_tna_email(), 'Certificate of British citizenship request - Ref:', $ref_number,
+				$email_to_tna, $form_fields['Spam'][0] );
 			log_spam( $form_fields['Spam'][0], date_timestamp_get( date_create() ), $form_fields['Email'][0] );
 		}
 }
