@@ -420,7 +420,7 @@ function process_form_british_citizenship() {
 			// Store email content to TNA into a variable
 			$email_to_tna = tna_xml_form_data( $form_fields );
 			// Send email to TNA
-			send_form_via_email( get_tna_email(), '? FOI DIRECT NATCERT - Ref:', $ref_number,
+			send_form_via_email( get_tna_email(), '? FOI DIRECT NATCERT', '',
 				$email_to_tna, $form_fields['Spam'][0] );
 			log_spam( $form_fields['Spam'][0], date_timestamp_get( date_create() ), $form_fields['Email'][0] );
 		}
