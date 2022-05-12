@@ -148,7 +148,7 @@ function send_form_via_email( $email, $subject, $ref_number, $content, $spam ) {
 		$email_message = $content;
 
 		// Email header
-		$email_headers = 'From: The National Archives (DO NOT REPLY) <webmaster@nationalarchives.gov.uk>';
+		$email_headers = 'From: The National Archives (DO NOT REPLY) <no-reply@nationalarchives.gov.uk>';
 		wp_mail( $email, $email_subject, $email_message, $email_headers );
 	}
 }
