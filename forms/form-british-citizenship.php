@@ -20,7 +20,6 @@ function return_form_british_citizenship( $content ) {
 	            	<input type="hidden" name="tna-form" value="naturalisation">
 	            	<input type="hidden" name="token" value="' . form_token() . '">
 	            	<input type="hidden" name="timestamp" value="' . time() . '">
-			<input type="hidden" name
 	                <fieldset class="form-step-1">
 	                    <legend>Certificate holder\'s details</legend>
 	                    <div class="form-row">
@@ -377,6 +376,7 @@ function process_form_british_citizenship() {
 			'County'                            => array(is_text_field_valid( filter_input( INPUT_POST, 'address-county' ) ), 'contact_address_county'),
 			'Postcode'                          => array(is_text_field_valid( filter_input( INPUT_POST, 'address-postcode' ) ), 'contact_address_postcode'),
 			'Country'                           => array(is_text_field_valid( filter_input( INPUT_POST, 'address-country' ) ), 'contact_address_country'),
+			'Newsletter'                        => array(null, 'newsletter'),
 			'Spam'                              => array(is_this_spam( $_POST ), ''),
             'Token'                             => array($token, ''),
             'IP'                                => array($client_ip, '')
@@ -435,7 +435,7 @@ function tna_xml_form_data( $data ) {
 			if ( $field_value[1] == '') {
 				// do nothing
 			} else {
-				$display_data .= htmlspecialchars('<' . $field_value[1] . '>' . html_entity_decode($field_value[0]) . '</' . $field_value[1] . '>') . '<br/>';
+                                $display_data .= htmlspecialchars('<' . $field_value[1] . '>') . html_entity_decode($field_value[0], null, 'UTF-8') . htmlspecialchars('</' . $field_value[1] . '>') . '<br/>'				
 			}
 		}
         $display_data .= '<p style="color:#fff";>Token: '.$data['Token'][0].'<br>This was received from IP '.$data['IP'][0].'</p>';
