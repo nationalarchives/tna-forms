@@ -27,12 +27,12 @@ function return_form_british_citizenship( $content ) {
 	                    </div>
 	                    <div class="form-row">
 	                        <label for="certificate_first_name">Certificate holder first name</label>
-	                        <input type="text" id="certificate_first_name" name="certificate-first-name" name="first-name" aria-required="true" required ' . set_value( 'certificate-first-name' ) . '>
+	                        <input type="text" id="certificate_first_name" name="certificate-first-name" aria-required="true" required ' . set_value( 'certificate-first-name' ) . '>
 	                        ' . field_error_message( 'certificate-first-name', 'Certificate holder first name' ) . '
 	                    </div>
 	                    <div class="form-row">
 	                        <label for="certificate_last_name">Certificate holder last name</label>
-	                        <input type="text" id="certificate_last_name" name="certificate-last-name" name="first-name" aria-required="true" required ' . set_value( 'certificate-last-name' ) . '>
+	                        <input type="text" id="certificate_last_name" name="certificate-last-name" aria-required="true" required ' . set_value( 'certificate-last-name' ) . '>
 	                        ' . field_error_message( 'certificate-last-name', 'Certificate holder last name' ) . '
 	                    </div>
 	                    <div class="form-row">
