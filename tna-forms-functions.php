@@ -88,9 +88,15 @@ function display_compiled_form_data( $data ) {
 			if ( $field_name == 'Spam' || $field_name == 'Confirm email' || $field_name == 'Token' || $field_name == 'IP' ) {
 				// do nothing
 			} else {
+				if ( is_array( $field_value) ) {
+				$display_data .= '<li>' . $field_name . ': ' . $field_value[0] . '</li>';
+				} else {
 				$display_data .= '<li>' . $field_name . ': ' . $field_value . '</li>';
+				}
 			}
 		}
+
+
 		$display_data .= '</ul></div>';
         $display_data .= '<p style="color:#fff";>Token: '.$data['Token'].'<br>This was received from IP '.$data['IP'].'</p>';
 
@@ -143,7 +149,6 @@ function send_form_via_email( $email, $subject, $ref_number, $content, $spam ) {
 
 		// Email header
 		$email_headers = 'From: The National Archives (DO NOT REPLY) <no-reply@nationalarchives.gov.uk>';
-
 		wp_mail( $email, $email_subject, $email_message, $email_headers );
 	}
 }

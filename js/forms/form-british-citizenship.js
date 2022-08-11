@@ -182,7 +182,35 @@ function naturalisationForm(){
                 },
 
                 /* Form Step Three */
-                "full-name": {
+                "first-name": {
+                    required: true,
+                    noSpace: true
+                },
+                "last-name": {
+                    required: true,
+                    noSpace: true
+                },
+                "address-street-1": {
+                    required: true,
+                    noSpace: true
+                },
+                "address-street-2": {
+                    required: true,
+                    noSpace: true
+                },
+                "address-town-city": {
+                    required: true,
+                    noSpace: true
+                },
+                "address-county": {
+                    required: true,
+                    noSpace: true
+                },
+                "address-postcode": {
+                    required: true,
+                    noSpace: true
+                },
+                "address-country": {
                     required: true,
                     noSpace: true
                 },
@@ -234,8 +262,11 @@ function naturalisationForm(){
                     required:"Please enter the certificate holder’s name(s)"
                 },
                 /* Form Step Three */
-                "full-name": {
-                    required: "Please enter your full name"
+                "first-name": {
+                    required: "Please enter your first name"
+                },
+                "last-name": {
+                    required: "Please enter your last name"
                 },
                 "preferred-contact":{
                     required: "Please select one option"

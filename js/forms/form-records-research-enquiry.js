@@ -38,13 +38,17 @@ function recordsResearchEnquiryForm(){
             $(element).closest('textarea').removeClass("form-warning");
         },
         rules: {
-            "full-name-required":{
-                required:true,
-                noSpace:true
+             "title": {
+                required: false,
+                noSpace: true
             },
-            "email-required": {
+            "first-name-required": {
                 required: true,
-                email:true
+                noSpace: true
+            },
+            "last-name-required": {
+                required: true,
+                noSpace: true
             },
             "confirm-email-required": {
                 equalTo: "#email"
@@ -59,8 +63,11 @@ function recordsResearchEnquiryForm(){
          * Error messages
          * */
         messages: {
-            "full-name-required":{
-                required:"Please insert your full name"
+            "first-name-required": {
+                required: "Please enter your first name"
+            },
+            "last-name-required": {
+                required: "Please enter your last name"
             },
             "email-required": "Please enter your email address",
             "confirm-email-required": {
