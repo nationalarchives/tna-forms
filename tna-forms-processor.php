@@ -254,7 +254,7 @@ class Form_Processor {
 				} elseif($form_name == 'Request a paid search') {
 					$tna_subject = '? FOI DIRECT PAID SEARCH';
 				} elseif($form_name == 'Letters of no evidence') {
-					$tna_subject = '? FOI DIRECT LONE';
+					$tna_subject = '? FOI DIRECTAA LONE';
 				} elseif($form_name == 'Records and research enquiry') {
 					$tna_subject = '? FOI DIRECT GENAA';
 				} else {
