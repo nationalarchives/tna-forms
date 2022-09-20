@@ -25,9 +25,9 @@ function return_form_rre( $content ) {
 	$html = new Form_Builder;
 	$form =  $html->form_begins( 'records-research-enquiry', $form_name ) .
 	         $html->fieldset_begins( 'Your enquiry' ) .
-	         $html->form_text_input( 'Title', 'title', 'title') .
-                 $html->form_text_input( 'First Name', 'first_name', 'first-name', 'Please enter your first name' ) .
-                 $html->form_text_input( 'Last name', 'last_name', 'last-name', 'Please enter your last name' ) .
+	         $html->form_text_input( 'Title (Mr, Mrs, Miss, Ms or other title)', 'title', 'title' ) .
+             $html->form_text_input( 'First Name', 'first_name', 'first-name', 'Please enter your first name' ) .
+             $html->form_text_input( 'Last name', 'last_name', 'last-name', 'Please enter your last name' ) .
 	         $html->form_email_required_input() .
 	         $html->form_text_input( 'Country', 'country', 'country' ) .
 	         $html->form_textarea_input( 'Your enquiry', 'enquiry', 'enquiry', 'Please enter your enquiry', 'Please provide specific details of the information you are looking for, including any relevant catalogue references.' ) .
