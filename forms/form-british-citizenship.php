@@ -65,7 +65,7 @@ function return_form_british_citizenship( $content ) {
 	                        </span>
 	                    </div>
 	                    <div class="form-row checkbox dob-approx">
-	                        <input id="certificate_dob_approx" type="checkbox" name="certificate-dob-approx" value="Yes" ' . set_value( 'certificate-dob-approx', 'checkbox' ) . '>
+	                        <input id="certificate_dob_approx" type="checkbox" name="certificate-dob-approx" value="True" ' . set_value( 'certificate-dob-approx', 'checkbox' ) . '>
 	                        <label for="certificate_dob_approx">Tick here if the date of birth is an approximation.</label>
 	                    </div>
 	                    <div class="form-row">
@@ -359,7 +359,7 @@ function process_form_british_citizenship() {
 			'DOB'                               => array(is_text_field_valid( filter_input( INPUT_POST, 'certificate-day' ) ) . '-' .
 			                                       is_text_field_valid( filter_input( INPUT_POST, 'certificate-month' ) ) . '-' .
 			                                       is_text_field_valid( filter_input( INPUT_POST, 'certificate-year' ) ), 'birth_date_noval'),
-			'Approx DOB'                        => array(( isset( $_POST['certificate-dob-approx'] ) ) ? is_checkbox_radio_valid( filter_input( INPUT_POST, 'certificate-dob-approx' ) ) : 'No', 'mandatory_is_birth_date_approx'),
+			'Approx DOB'                        => array(( isset( $_POST['certificate-dob-approx'] ) ) ? is_checkbox_radio_valid( filter_input( INPUT_POST, 'certificate-dob-approx' ) ) : 'False', 'mandatory_is_birth_date_approx'),
 			'Certificate holder address'        => array(is_textarea_field_valid( filter_input( INPUT_POST, 'certificate-postal-address' ) ), 'certificate_holder_address'),
 			'Country of issue'                  => array(is_text_field_valid( filter_input( INPUT_POST, 'certificate-issued-country' ) ), 'certificate_country_of_issue'),
 			'Certificate number'                => array(is_text_field_valid( filter_input( INPUT_POST, 'certificate-number' ) ), 'certificate_numb'),
