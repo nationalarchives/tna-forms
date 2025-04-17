@@ -2,6 +2,10 @@
 
 class Form_Processor {
 
+    private $blocked_email_list = [
+        "danjohnpen1982@icloud.com",
+    ];
+
 	/**
 	 * @param $key
 	 *
@@ -226,7 +230,7 @@ class Form_Processor {
             if ($send_xml_format) {
                 //$alt_email = $this->get_tna_email($alt_recipient); ---> Please keep for further reference
 
-		if ($form_name == 'Freedom of information enquiry'  || $form_name == 'Request a paid search' || $form_name == 'Letters of no evidence' || $form_name == 'Records and research enquiry') {
+		        if ($form_name == 'Freedom of information enquiry'  || $form_name == 'Request a paid search' || $form_name == 'Letters of no evidence' || $form_name == 'Records and research enquiry') {
                    $form_content = $this->display_data_xml($form_data, $ref_number);
 		        } else {
 	                $form_content = $this->display_data($form_data) .
@@ -261,7 +265,9 @@ class Form_Processor {
 				$tna_subject = $form_name . ' - Ref:';
 			}
 
-            $this->send_email($tna_email, $tna_subject, $ref_number, $tna_email_content, $alt_email);
+            if (! in_array($user_email, $this->blocked_email_list) {
+                $this->send_email($tna_email, $tna_subject, $ref_number, $tna_email_content, $alt_email);
+            }
 
 			// Subscribe to newsletter
 			if ( isset( $form_data['newsletter'] ) ) {
@@ -322,7 +328,7 @@ class Form_Processor {
 			$content .= '<h3>Summary of enquiry</h3>';
 		}
 
-		
+
 		$content .= $form_content;
 
 		return $content;
