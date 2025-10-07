@@ -26,7 +26,10 @@ class Form_Builder {
      * @param $name
      * @return string
      */
-    public function form_foi_begins($action = '', $id, $name ) {
+    public function form_foi_begins($action, $id, $name ) {
+        if (!isset($action)) {
+            $action = '';
+        }
 		$form = '<form action="%s"  id="%s" class="form-abandonment" name="%s" method="POST">';
 
 		return sprintf( $form, $action, $id, $name );
@@ -299,7 +302,16 @@ class Form_Builder {
      * @param array $radios
      * @return string
      */
-    public function form_radio_group($title = '', $name, $radios = array(), $disabled = false) {
+    public function form_radio_group($title, $name, $radios, $disabled) {
+        if (!isset($title)) {
+            $title = '';
+        }
+        if (!isset($radios)) {
+            $radios = array();
+        }
+        if (!isset($disabled)) {
+            $disabled = false;
+        }
 		$counter = 0;
 		$form = '<div class="form-row">';
 		if ( $title ) {
