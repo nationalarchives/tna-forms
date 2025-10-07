@@ -68,7 +68,10 @@ function ref_number( $prefix, $time_stamp ) {
 	return $prefix . $time_stamp . $suffix;
 }
 
-function success_message_header( $content = '', $number ) {
+function success_message_header( $content, $number ) {
+    if(!isset($content)) {
+        $content = '';
+    }
 	$wrapper = '<div class="reference-number emphasis-block success-message"><span>%s</span><h2>%s</h2></div>';
 
 	return sprintf( $wrapper, $content, $number );
