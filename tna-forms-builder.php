@@ -302,7 +302,7 @@ class Form_Builder {
      * @param array $radios
      * @return string
      */
-    public function form_radio_group($title, $name, $radios, $disabled) {
+    public function form_radio_group($title, $name, $radios, $disabled = false) {
         if (!isset($title)) {
             $title = '';
         }
