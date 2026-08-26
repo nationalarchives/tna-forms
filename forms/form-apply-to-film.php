@@ -39,6 +39,7 @@ function return_form_apply_to_film( $content ) {
 	         $html->form_checkbox_input( 'Tick this box if you want to interview a member of staff', 'interview', 'interview' ) .
 	         $html->form_text_input( 'If you know the name of the staff member you want to interview, enter it here', 'interviewee', 'interviewee' ) .
 	         $html->form_checkbox_input( 'I have read and agreed to the filming <a href="http://nationalarchives.gov.uk/documents/filming-terms-and-conditions.pdf" target="_blank">terms and conditions</a>, including the charges and cancellation policy', 'policy', 'policy', 'Please confirm you have read and agree to the terms and conditions' ) .
+	         $html->form_checkbox_input( 'Tick this box to sign up to the National Archives Image Library newsletter containing the latest licensing opportunities', 'newsletter', 'newsletter' ) .
 	         $html->form_spam_filter( rand(10, 99) ) .
 	         $html->submit_form( 'submit-atf', 'submit-tna-form' ) .
 	         $html->fieldset_ends() .
